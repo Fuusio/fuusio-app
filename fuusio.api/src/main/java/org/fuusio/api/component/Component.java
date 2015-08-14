@@ -15,10 +15,8 @@
  */
 package org.fuusio.api.component;
 
-import org.fuusio.api.plugin.PluginInterface;
-
 /**
- * {@link Component} is a tagging interface for architectural component objects.
+ * {@link Component} is a tagging interface for various architectural component objects.
  */
-public interface Component extends PluginInterface {
+public interface Component {
 }

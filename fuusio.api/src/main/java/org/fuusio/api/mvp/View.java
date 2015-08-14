@@ -21,6 +21,7 @@ import org.fuusio.api.component.Component;
 
 /**
  * {@link View} is interface for View components in a MVP architectural pattern implementation.
+ * @param <T_Presenter> The parametrised type extending {@link Presenter}.
  */
 public interface View<T_Presenter extends Presenter> extends Component {
 

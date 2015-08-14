@@ -18,7 +18,7 @@ package org.fuusio.api.mvp;
 /**
  * {@link PresentationModel} extends {@link Model} to define an interface for implementing
  * presentation models for {@link Presenter}s.
- * @param <T_Presenter> The parametrised type of {@link Presenter}.
+ * @param <T_Presenter> The parametrised type extending {@link Presenter}.
  */
 public interface PresentationModel<T_Presenter extends Presenter, T_EventType> extends Model<T_EventType> {
 

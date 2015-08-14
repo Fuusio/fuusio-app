@@ -26,10 +26,10 @@ public class Dependency {
 
     /**
      * A {@link HashMap} containing the activated {@link DependencyScope}s using method
-     * {@link Dependency#activateScope(ScopeProvider)}. Even if there can be multiple
+     * {@link Dependency#activateScope(ScopeManager)}. Even if there can be multiple
      * activated {@link DependencyScope}s only one of them can be the active one.
      */
-    private final static HashMap<ScopeProvider, DependencyScope> sDependencyScopes = new HashMap<>();
+    private final static HashMap<ScopeManager, DependencyScope> sDependencyScopes = new HashMap<>();
 
     /**
      * The currently active {@link DependencyScope}.
@@ -37,12 +37,12 @@ public class Dependency {
     private static DependencyScope sActiveScope = null;
 
     /**
-     * Adds the {@link DependencyScope} managed by the given {@link ScopeProvider} to
+     * Adds the {@link DependencyScope} managed by the given {@link ScopeManager} to
      * the map of current {@link DependencyScope}s.
-     * @param pProvider A {@link ScopeProvider}
+     * @param pProvider A {@link ScopeManager}
      * @return A {@link DependencyScope}.
      */
-    public static DependencyScope addScope(final ScopeProvider pProvider) {
+    public static DependencyScope addScope(final ScopeManager pProvider) {
 
         final DependencyScope scope = pProvider.getDependencyScope();
         sDependencyScopes.put(pProvider, scope);
@@ -51,12 +51,12 @@ public class Dependency {
     }
 
     /**
-     * Gets a {@link DependencyScope} managed by the given {@link ScopeProvider}.
-     * @param pProvider A {@link ScopeProvider}.
+     * Gets a {@link DependencyScope} managed by the given {@link ScopeManager}.
+     * @param pProvider A {@link ScopeManager}.
      * @param <T> A type parameter for casting the requested dependency to expected type.
      * @return A {@link DependencyScope}. May return {@code null}.
      */
-    public static <T extends DependencyScope> T getScope(final ScopeProvider pProvider) {
+    public static <T extends DependencyScope> T getScope(final ScopeManager pProvider) {
         return (T)sDependencyScopes.get(pProvider);
     }
 
@@ -71,25 +71,25 @@ public class Dependency {
     }
 
     /**
-     * Activates a {@link DependencyScope} for the given {@link ScopeProvider}.
+     * Activates a {@link DependencyScope} for the given {@link ScopeManager}.
      * The active {@link DependencyScope} is used for resolving dependencies. Setting the currently
      * active {@link DependencyScope} is not thread safe. Therefore this method can be invoked
      * only from the Main UI thread.
-     * @param pProvider A {@link ScopeProvider}.
+     * @param pProvider A {@link ScopeManager}.
      */
-    public static void activateScope(final ScopeProvider pProvider) {
+    public static void activateScope(final ScopeManager pProvider) {
 
         DependencyScope scope = sDependencyScopes.get(pProvider);
 
         if (scope == null) {
             scope = addScope(pProvider);
-            scope.setProvider(pProvider);
+            scope.setManager(pProvider);
         }
 
         if (sActiveScope != scope) {
 
             if (sActiveScope != null) {
-                deactivateScope(sActiveScope.getProvider());
+                deactivateScope(sActiveScope.getManager());
             }
 
             if (scope != null) {
@@ -102,12 +102,12 @@ public class Dependency {
     }
 
     /**
-     * Deactivates a {@link DependencyScope} managed by the given {@link ScopeProvider}.
+     * Deactivates a {@link DependencyScope} managed by the given {@link ScopeManager}.
      * When a {@link DependencyScope} is deactivated it is also disposed if disposing is allowed
      * for the deactivated {@link DependencyScope}.
-     * @param pProvider A {@link ScopeProvider}.
+     * @param pProvider A {@link ScopeManager}.
      */
-    public static void deactivateScope(final ScopeProvider pProvider) {
+    public static void deactivateScope(final ScopeManager pProvider) {
 
         final DependencyScope scope = pProvider.getDependencyScope();
 

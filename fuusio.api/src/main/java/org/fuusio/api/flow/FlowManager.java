@@ -18,7 +18,7 @@ package org.fuusio.api.flow;
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.dependency.Dependency;
 import org.fuusio.api.dependency.DependencyScope;
-import org.fuusio.api.dependency.ScopeProvider;
+import org.fuusio.api.dependency.ScopeManager;
 
 import java.lang.reflect.Constructor;
 
@@ -27,7 +27,7 @@ public class FlowManager {
     private static final String POSTFIX_IMPL = "Impl";
 
     private static FlowManager sInstance = null;
-    private static ScopeProvider sTestScopeProvider = null;
+    private static ScopeManager sTestScopeManager = null;
 
     private Flow mActiveFlow;
 
@@ -47,12 +47,12 @@ public class FlowManager {
     }
 
     /**
-     * Sets a {@link ScopeProvider} that is used to provide a {@link DependencyScope} for testing
+     * Sets a {@link ScopeManager} that is used to provide a {@link DependencyScope} for testing
      * purposes.
-     * @param pProvider A {@link ScopeProvider}.
+     * @param pProvider A {@link ScopeManager}.
      */
-    public static void setTestScopeProvider(final ScopeProvider pProvider) {
-        sTestScopeProvider = pProvider;
+    public static void setTestScopeProvider(final ScopeManager pProvider) {
+        sTestScopeManager = pProvider;
     }
 
     /**
@@ -66,9 +66,9 @@ public class FlowManager {
     private static <T extends Flow> T getMockFlow(final Class<T> pFlowClass) {
         T flow = null;
 
-        if (sTestScopeProvider != null) {
+        if (sTestScopeManager != null) {
             final DependencyScope savedScope = D.getActiveScope();
-            D.activateScope(sTestScopeProvider);
+            D.activateScope(sTestScopeManager);
 
             flow = D.get(pFlowClass);
 
@@ -81,10 +81,10 @@ public class FlowManager {
                     throw new RuntimeException(e);
                 }
             }
-            D.deactivateScope(sTestScopeProvider);
+            D.deactivateScope(sTestScopeManager);
 
             if (savedScope != null) {
-                D.activateScope(savedScope.getProvider());
+                D.activateScope(savedScope.getManager());
             }
         }
         return flow;
@@ -100,7 +100,7 @@ public class FlowManager {
 
     /**
      * Creates the specified {@link Flow}, but does not start it. If the flow is
-     * a {@link ScopeProvider} its {@link FlowScope} is added to cache of
+     * a {@link ScopeManager} its {@link FlowScope} is added to cache of
      * {@link DependencyScope}s.
      * @param pFlowClass A {@link Flow}
      * @param pContainer A {@link FlowFragmentContainer}.

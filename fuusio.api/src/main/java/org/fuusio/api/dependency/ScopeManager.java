@@ -20,10 +20,10 @@ package org.fuusio.api.dependency;
  * interface typically also manage the lifecycle of the {@link DependencyScope} they provide
  * by activating and deactivating it.
  */
-public interface ScopeProvider {
+public interface ScopeManager {
 
     /**
-     * Gets the {@link DependencyScope} provide by this {@link ScopeProvider}.
+     * Gets the {@link DependencyScope} provide by this {@link ScopeManager}.
      * @param <T> The generic return type of {@link DependencyScope}.
      * @return A {@link DependencyScope}.
      */

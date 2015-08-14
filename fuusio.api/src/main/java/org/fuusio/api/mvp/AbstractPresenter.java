@@ -42,10 +42,18 @@ public class AbstractPresenter<T_View extends View> implements Presenter<T_View>
         mStopped = false;
     }
 
+    /**
+     * Return the {@link View} of this {@link Presenter}.
+     * @return A {@link View}.
+     */
     public final T_View getView() {
         return mView;
     }
 
+    /**
+     * Set the {@link View} of this {@link Presenter}.
+     * @param pView A {@link View}.
+     */
     public void setView(final T_View pView) {
         mView = pView;
     }
@@ -101,6 +109,11 @@ public class AbstractPresenter<T_View extends View> implements Presenter<T_View>
         }
     }
 
+    /**
+     * Add the given {@link Presenter.Listener} to receive events from this {@link Presenter}.
+     * @param pListener A {@link Presenter.Listener} to be added.
+     * @return A {@code boolean} value {@code true} if adding succeeded; otherwise {@code false}.
+     */
     @Override
     public boolean addListener(final Presenter.Listener pListener) {
         if (!mListeners.contains(pListener)) {
@@ -110,6 +123,11 @@ public class AbstractPresenter<T_View extends View> implements Presenter<T_View>
         return false;
     }
 
+    /**
+     * Remove the given {@link Presenter.Listener} from receiving events from this {@link Presenter}.
+     * @param pListener A {@link Presenter.Listener} to be removed.
+     * @return A {@code boolean} value {@code true} if removing succeeded; otherwise {@code false}.
+     */
     @Override
     public boolean removeListener(final Presenter.Listener pListener) {
         if (mListeners.contains(pListener)) {

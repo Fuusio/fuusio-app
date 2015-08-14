@@ -15,8 +15,6 @@ import org.fuusio.api.flow.FlowFragment;
 
 public class TestFragment2 extends FlowFragment<TestPresenter2> implements TestView2 {
 
-    private Binding mButtonBinding;
-
     public TestFragment2() {
         mPresenter = D.get(TestPresenter2.class, this);
     }
@@ -29,7 +27,7 @@ public class TestFragment2 extends FlowFragment<TestPresenter2> implements TestV
     @Override
     protected void createBindings() {
 
-        mButtonBinding = new Binding(this, R.id.button) {
+        new Binding(this, R.id.button) {
             @Override
             protected void clicked() {
                 mPresenter.onButtonClicked();

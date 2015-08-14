@@ -46,12 +46,12 @@ public abstract class DependencyScope {
     /**
      * A reference to an optional overriding {@link DependencyScope} used providing mock dependencies.
      */
-    protected DependencyScope mMockScope;
+    protected DependencyScope mMockedScope;
 
     /**
-     * The {@link ScopeProvider} that provides and manages this {@link DependencyScope}.
+     * The {@link ScopeManager} that manages this {@link DependencyScope}.
      */
-    private ScopeProvider mProvider;
+    private ScopeManager mScopeManager;
 
     /**
      * A helper field for storing the currently requested type of dependency.
@@ -64,19 +64,19 @@ public abstract class DependencyScope {
     }
 
     /**
-     * Get the {@link ScopeProvider} that manages the lifecycle this {@link DependencyScope}.
-     * @return A {@link ScopeProvider}.
+     * Get the {@link ScopeManager} that manages the lifecycle this {@link DependencyScope}.
+     * @return A {@link ScopeManager}.
      */
-    public final ScopeProvider getProvider() {
-        return mProvider;
+    public final ScopeManager getManager() {
+        return mScopeManager;
     }
 
     /**
-     * Set the {@link ScopeProvider} that manages the lifecycle this {@link DependencyScope}.
-     * @param pProvider A {@link ScopeProvider}.
+     * Set the {@link ScopeManager} that manages the lifecycle this {@link DependencyScope}.
+     * @param pManager A {@link ScopeManager}.
      */
-    protected void setProvider(final ScopeProvider pProvider) {
-        mProvider = pProvider;
+    protected void setManager(final ScopeManager pManager) {
+        mScopeManager = pManager;
     }
 
     /**
@@ -100,8 +100,8 @@ public abstract class DependencyScope {
      * {@link DependencyScope} can be used for providing mock dependencies for unit tests.
      * @return A {@link DependencyScope}. May return {@code null}.
      */
-    public final DependencyScope getMockScope() {
-        return mMockScope;
+    public final DependencyScope getMockedScope() {
+        return mMockedScope;
     }
 
     /**
@@ -109,8 +109,8 @@ public abstract class DependencyScope {
      * {@link DependencyScope} can be used for providing mock dependencies for unit tests.
      * @param pScope A {@link DependencyScope}.
      */
-    public void setMockScope(final DependencyScope pScope) {
-        mMockScope = pScope;
+    public void setMockedScope(final DependencyScope pScope) {
+        mMockedScope = pScope;
     }
 
     /**
@@ -227,8 +227,8 @@ public abstract class DependencyScope {
 
             if (dependency == null) {
 
-                if (mMockScope != null) {
-                    dependency = mMockScope.getDependency(pDependencyType, pDependant, pCreateNew);
+                if (mMockedScope != null) {
+                    dependency = mMockedScope.getDependency(pDependencyType, pDependant, pCreateNew);
                 } else {
                     dependency = getDependency();
                 }
@@ -330,30 +330,30 @@ public abstract class DependencyScope {
         mDependencies.clear();
         mDependants.clear();
         mParentScope = null;
-        mProvider = null;
+        mScopeManager = null;
         mDependencyType = null;
 
-        if (mMockScope != null) {
-            mMockScope.dispose();
-            mMockScope = null;
+        if (mMockedScope != null) {
+            mMockedScope.dispose();
+            mMockedScope = null;
         }
     }
 
     /**
      * This method is invoked by {@link Dependency} when this {@link DependencyScope} is activated
-     * for the given {@link ScopeProvider}.
-     * @param pProvider A {@link ScopeProvider}.
+     * for the given {@link ScopeManager}.
+     * @param pProvider A {@link ScopeManager}.
      */
-    public void onActivated(final ScopeProvider pProvider) {
+    public void onActivated(final ScopeManager pProvider) {
         // By default do nothing
     }
 
     /**
      * This method is invoked by {@link Dependency} when this {@link DependencyScope} is deactivated
-     * for the given {@link ScopeProvider}.
-     * @param pProvider A {@link ScopeProvider}.
+     * for the given {@link ScopeManager}.
+     * @param pProvider A {@link ScopeManager}.
      */
-    public void onDeactivated(final ScopeProvider pProvider) {
+    public void onDeactivated(final ScopeManager pProvider) {
         // By default do nothing
     }
 

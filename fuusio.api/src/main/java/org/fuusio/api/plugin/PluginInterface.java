@@ -18,7 +18,7 @@ package org.fuusio.api.plugin;
 
 /**
  * {@link PluginInterface} defines a base interface for interfaces that are used to create plugs
- * (as {@link java.lang.reflect.Proxy} objects) into {@link PluginBus}.
+ * into {@link PluginBus}.
  */
 public interface PluginInterface {
 }

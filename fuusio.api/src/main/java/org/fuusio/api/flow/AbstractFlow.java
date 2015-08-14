@@ -22,7 +22,7 @@ import android.content.Context;
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.dependency.Dependency;
 import org.fuusio.api.dependency.DependencyScope;
-import org.fuusio.api.dependency.ScopeProvider;
+import org.fuusio.api.dependency.ScopeManager;
 import org.fuusio.api.mvp.View;
 import org.fuusio.api.mvp.Presenter;
 import org.fuusio.api.ui.action.ActionContext;
@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * {@link AbstractFlow} provides an abstract base class for implementing {@link Flow}s.
  */
-public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopeProvider {
+public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopeManager {
 
     protected final ArrayList<View> mActiveViews;
 
@@ -43,7 +43,6 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopePro
     protected FlowScope mDependencyScope;
     protected FlowManager mFlowManager;
     protected FlowFragmentContainer mFragmentContainer;
-
 
     protected AbstractFlow(final FlowFragmentContainer pContainer) {
         mFragmentContainer = pContainer;
@@ -102,7 +101,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopePro
     }
 
     /**
-     * Creates the {@link FlowScope} for this {@link ScopeProvider}.
+     * Creates the {@link FlowScope} for this {@link ScopeManager}.
      * @return A {@link FlowScope}. May not be {@code null}.
      */
     protected abstract FlowScope createDependencyScope();

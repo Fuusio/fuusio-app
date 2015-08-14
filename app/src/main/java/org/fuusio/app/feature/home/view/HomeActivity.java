@@ -15,7 +15,7 @@ import android.view.View;
 
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.dependency.DependencyScope;
-import org.fuusio.api.dependency.ScopeProvider;
+import org.fuusio.api.dependency.ScopeManager;
 import org.fuusio.api.flow.FlowManager;
 import org.fuusio.app.FuusioBaseActivity;
 import org.fuusio.app.R;
@@ -26,7 +26,7 @@ import org.fuusio.app.feature.test.flow.TestFlow;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends FuusioBaseActivity<HomePresenter> implements HomeView, ScopeProvider {
+public class HomeActivity extends FuusioBaseActivity<HomePresenter> implements HomeView, ScopeManager {
 
     private HomeDependencyScope mScope;
 

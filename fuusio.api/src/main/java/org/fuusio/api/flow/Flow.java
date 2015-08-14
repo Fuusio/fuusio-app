@@ -18,7 +18,7 @@ package org.fuusio.api.flow;
 import android.support.v4.app.FragmentManager;
 
 import org.fuusio.api.component.Component;
-import org.fuusio.api.dependency.ScopeProvider;
+import org.fuusio.api.dependency.ScopeManager;
 import org.fuusio.api.mvp.View;
 
 import java.util.List;
@@ -28,7 +28,7 @@ import java.util.List;
  * and Presenter according to received user interaction events. A concrete {@link Flow} implementation
  * also provides a {@link FlowScope} for dependency injection.
  */
-public interface Flow extends Component, ScopeProvider, FragmentManager.OnBackStackChangedListener {
+public interface Flow extends Component, ScopeManager, FragmentManager.OnBackStackChangedListener {
 
     /**
      * Gets the currently active Views.
@@ -38,17 +38,17 @@ public interface Flow extends Component, ScopeProvider, FragmentManager.OnBackSt
 
     /**
      * Adds the given {@link View} to the set of active Views.
-     * @param view A {@link View} to be added.
+     * @param pView A {@link View} to be added.
      * @return The given {@link View} if it was not already in the set of active Views.
      */
-    View addActiveView(View view);
+    View addActiveView(View pView);
 
     /**
      * Removes the given {@link View} from the set of active Views.
-     * @param view A {@link View} to be removed.
+     * @param pView A {@link View} to be removed.
      * @return The given {@link View} if it was included in the set of active Views.
      */
-    View removeActiveView(View view);
+    View removeActiveView(View pView);
 
     /**
      * A {@link Flow} implementation can use this method to activate i.e. to make visible the given
