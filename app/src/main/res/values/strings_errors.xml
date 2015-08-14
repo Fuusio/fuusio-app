@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // Common error messages
+
+    <string name="error_unknown_error">Unknown application error</string>
+
+    // Database error messages
+
+    <string name="error_db_failed_to_open_db">Failed to query error logs from database</string>
+    <string name="error_db_failed_to_insert_user">Failed to insert a User to database</string>
+    <string name="error_db_failed_to_update_user">Failed to update a User in database</string>
+    <string name="error_db_failed_to_query_users">Failed to query Users from database</string>
+
+    // Model error messages
+
+    <string name="error_model_invalid_name">The given name is not valid</string>
+
+</resources>
