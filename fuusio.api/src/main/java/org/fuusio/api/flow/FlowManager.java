@@ -21,7 +21,6 @@ import org.fuusio.api.dependency.DependencyScope;
 import org.fuusio.api.dependency.ScopeProvider;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 public class FlowManager {
 
@@ -104,12 +103,12 @@ public class FlowManager {
      * a {@link ScopeProvider} its {@link FlowScope} is added to cache of
      * {@link DependencyScope}s.
      * @param pFlowClass A {@link Flow}
-     * @param pContainer A {@link FragmentContainer}.
+     * @param pContainer A {@link FlowFragmentContainer}.
      * @param <T>
      * @return A {@link Flow}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends Flow> T createFlow(final Class<T> pFlowClass, final FragmentContainer pContainer) {
+    public <T extends Flow> T createFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer) {
 
         T flow = getMockFlow(pFlowClass);
 
@@ -121,7 +120,7 @@ public class FlowManager {
                     implClass = (Class<T>)Class.forName(pFlowClass.getName() + POSTFIX_IMPL);
                 }
 
-                final Class[] paramTypes = {FragmentContainer.class};
+                final Class[] paramTypes = {FlowFragmentContainer.class};
                 final Object[] paramValues = {pContainer};
                 final Constructor<T> constructor = implClass.getConstructor(paramTypes);
                 flow = constructor.newInstance(paramValues);
@@ -136,14 +135,14 @@ public class FlowManager {
 
     /**
      * Starts the specified {@link Flow} whose {@link android.app.Fragment}s are hosted by
-     * the given {@link FragmentContainer}.
+     * the given {@link FlowFragmentContainer}.
      * @param pFlowClass A {@link Class} specifying the {@link Flow} to be created and started.
-     * @param pContainer A {@link FragmentContainer}.
+     * @param pContainer A {@link FlowFragmentContainer}.
      * @param <T> The generic type of started {@link Flow}.
      * @return A {@link Flow}.
      */
     @SuppressWarnings("unchecked")
-    public static <T extends Flow> T startFlow(final Class<T> pFlowClass, final FragmentContainer pContainer) {
+    public static <T extends Flow> T startFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer) {
 
         T flow = getMockFlow(pFlowClass);
 
@@ -155,7 +154,7 @@ public class FlowManager {
                     implClass = (Class<T>) Class.forName(pFlowClass.getName() + POSTFIX_IMPL);
                 }
 
-                final Class[] paramTypes = {FragmentContainer.class};
+                final Class[] paramTypes = {FlowFragmentContainer.class};
                 final Object[] paramValues = {pContainer};
                 final Constructor<T> constructor = implClass.getConstructor(paramTypes);
                 flow = constructor.newInstance(paramValues);
@@ -185,7 +184,7 @@ public class FlowManager {
     }
 
     /**
-     * Invoked to handle Back Pressed event received by the {@link FragmentContainer}.
+     * Invoked to handle Back Pressed event received by the {@link FlowFragmentContainer}.
      * @return A {@code boolean} value indicating if the event was consumed by this method.
      */
     public boolean onBackPressed() {

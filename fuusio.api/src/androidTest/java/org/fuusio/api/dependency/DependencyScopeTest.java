@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import org.fuusio.api.flow.FragmentContainer;
+import org.fuusio.api.flow.FlowFragmentContainer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class DependencyScopeTest {
 
     private Context mApplicationContext;
-    private FragmentContainer mFragmentHost;
+    private FlowFragmentContainer mFragmentHost;
     private TestView mTestView;
     private TestPresenter mTestPresenter;
     private TestParentDependencyScope mParentScope;
@@ -30,7 +30,7 @@ public class DependencyScopeTest {
     @Before
     public void beforeTests() {
         mApplicationContext = InstrumentationRegistry.getContext();
-        mFragmentHost = Mockito.mock(FragmentContainer.class);
+        mFragmentHost = Mockito.mock(FlowFragmentContainer.class);
         mParentScope = new TestParentDependencyScope();
     }
 

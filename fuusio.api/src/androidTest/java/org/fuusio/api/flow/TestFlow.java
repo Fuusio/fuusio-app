@@ -2,7 +2,7 @@ package org.fuusio.api.flow;
 
 public class TestFlow extends AbstractFlow {
 
-    public TestFlow(final FragmentContainer pHost) {
+    public TestFlow(final FlowFragmentContainer pHost) {
         super(pHost);
     }
 

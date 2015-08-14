@@ -35,6 +35,7 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
 
     protected T_Presenter mPresenter;
     protected boolean mRestarted;
+    protected boolean mPaused;
 
     protected ViewActivity() {
         mRestarted = false;
@@ -60,27 +61,8 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
         if (mPresenter != null) {
             mPresenter.onViewStart(this);
         }
-
-
-
-        f(1, 1);
     }
 
-
-    long x = 0;
-
-    private void f(long i, long j) {
-        long k = i + j;
-        System.out.print(Character.toString((char)('A' + (char)(k % 26))));
-        //System.out.print(k % 26);
-        //System.out.print(" ");
-        if (x++ == 90) {
-            System.out.println();
-            return;
-        }
-
-        f(j,k);
-    }
 
     @Override
     protected void onResume() {
@@ -89,6 +71,8 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
         if (mPresenter != null) {
             mPresenter.onViewResume(this);
         }
+
+        mPaused = false;
     }
 
     @Override
@@ -107,6 +91,8 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
         if (mPresenter != null) {
             mPresenter.onViewPause(this);
         }
+
+        mPaused = true;
     }
 
     @Override
@@ -118,6 +104,23 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
     protected void onRestart() {
         super.onRestart();
         mRestarted = true;
+    }
+
+    /**
+     * Tests if the given {@link View} can be shown.
+     * @param pView A {@link View}.
+     * @return A {@code boolean}.
+     */
+    public boolean canShowView(View pView) {
+        return !isPaused();
+    }
+
+    /**
+     * Test if this {@link ViewActivity} has been paused.
+     * @return A {@code boolean}.
+     */
+    public boolean isPaused() {
+        return mPaused;
     }
 
     /**

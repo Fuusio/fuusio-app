@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 @SmallTest
 public class FlowManagerTest {
 
-    private FragmentContainer mFragmentHost;
+    private FlowFragmentContainer mFragmentHost;
     private FlowManager mFlowManager;
     private FragmentManager mFragmentManager;
 
@@ -34,7 +34,7 @@ public class FlowManagerTest {
     @Test
     public void test() {
 
-        mFragmentHost = Mockito.mock(FragmentContainer.class);
+        mFragmentHost = Mockito.mock(FlowFragmentContainer.class);
         when(mFragmentHost.getSupportFragmentManager()).thenReturn(mFragmentManager);
         assertNotNull(mFlowManager);
 

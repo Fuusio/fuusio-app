@@ -10,11 +10,11 @@ import android.support.v7.widget.Toolbar;
 
 import org.fuusio.api.flow.Flow;
 import org.fuusio.api.flow.FlowFragment;
-import org.fuusio.api.flow.FragmentContainer;
+import org.fuusio.api.flow.FlowFragmentContainer;
 import org.fuusio.api.mvp.Presenter;
 import org.fuusio.api.mvp.ViewActivity;
 
-public abstract class FuusioBaseActivity<T_Presenter extends Presenter> extends ViewActivity<T_Presenter> implements FragmentContainer {
+public abstract class FuusioBaseActivity<T_Presenter extends Presenter> extends ViewActivity<T_Presenter> implements FlowFragmentContainer {
 
     protected ActionBar mActionBar;
     protected DrawerLayout mDrawerLayout;

@@ -5,7 +5,7 @@ import org.fuusio.app.feature.test.flow.TestFlowImpl;
 
 import org.fuusio.api.app.FuusioApplicationScope;
 import org.fuusio.api.dependency.D;
-import org.fuusio.api.flow.FragmentContainer;
+import org.fuusio.api.flow.FlowFragmentContainer;
 import org.fuusio.api.model.ModelObjectManager;
 
 public class FuusioSampleAppScope extends FuusioApplicationScope {
@@ -18,7 +18,7 @@ public class FuusioSampleAppScope extends FuusioApplicationScope {
     protected <T> T getDependency() {
 
         if (type(TestFlow.class)) {
-            return dependency(new TestFlowImpl(D.get(FragmentContainer.class)));
+            return dependency(new TestFlowImpl(D.get(FlowFragmentContainer.class)));
         }
         return super.getDependency();
     }

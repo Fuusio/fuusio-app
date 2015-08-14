@@ -2,11 +2,11 @@ package org.fuusio.api.dependency;
 
 import org.fuusio.api.flow.AbstractFlow;
 import org.fuusio.api.flow.FlowScope;
-import org.fuusio.api.flow.FragmentContainer;
+import org.fuusio.api.flow.FlowFragmentContainer;
 
 public class TestFlow extends AbstractFlow {
 
-    public TestFlow(final FragmentContainer pHost) {
+    public TestFlow(final FlowFragmentContainer pHost) {
         super(pHost);
     }
 

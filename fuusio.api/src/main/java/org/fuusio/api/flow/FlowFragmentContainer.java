@@ -19,17 +19,26 @@ import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.res.Resources;
 
+import org.fuusio.api.mvp.View;
+
 /**
- * {@link FragmentContainer} defines an interface for objects that can be used to show {@link FlowFragment}s.
+ * {@link FlowFragmentContainer} defines an interface for objects that can be used to show {@link FlowFragment}s.
  * Typically a such object is an {@link android.app.Activity}.
  */
-public interface FragmentContainer {
+public interface FlowFragmentContainer {
 
     /**
      * Gets the {@link Context} available for  {@link FlowFragment}s
      * @return A {@link Context}.
      */
     Context getContext();
+
+    /**
+     * Tests if the given {@link View} can be shown.
+     * @param pView A {@link View}.
+     * @return A {@code boolean}.
+     */
+    boolean canShowView(View pView);
 
     /**
      * Gets the {@link FragmentManager} that manages {@link android.app.Fragment}s.

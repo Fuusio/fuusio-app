@@ -21,13 +21,13 @@ public abstract class FlowScope<T_Flow extends Flow> extends DependencyScope {
 
     protected final T_Flow mFlow;
 
-    protected FragmentContainer mFragmentContainer;
+    protected FlowFragmentContainer mFragmentContainer;
 
     protected FlowScope(final T_Flow pFlow) {
         this(pFlow, null);
     }
 
-    protected FlowScope(final T_Flow pFlow, final FragmentContainer pContainer) {
+    protected FlowScope(final T_Flow pFlow, final FlowFragmentContainer pContainer) {
         mFlow = pFlow;
         mFragmentContainer = pContainer;
     }

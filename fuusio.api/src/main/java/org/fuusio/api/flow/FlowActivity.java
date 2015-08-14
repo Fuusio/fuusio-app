@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import org.fuusio.api.dependency.D;
+import org.fuusio.api.mvp.Presenter;
 import org.fuusio.api.mvp.ViewActivity;
 
 /**
@@ -12,7 +13,7 @@ import org.fuusio.api.mvp.ViewActivity;
  * events of an {@link Activity} and can control UI control logic according to the events.
  * @param <T_Flow> A type parameter for {@link Flow}.
  */
-public abstract class FlowActivity<T_Flow extends Flow> extends ViewActivity {
+public abstract class FlowActivity<T_Flow extends Flow, T_Presenter extends Presenter> extends ViewActivity<T_Presenter> {
 
     protected T_Flow mFlow;
 
@@ -39,8 +40,6 @@ public abstract class FlowActivity<T_Flow extends Flow> extends ViewActivity {
         super.onStart();
         mFlow.start();
     }
-
-
 
     @Override
     protected void onRestart() {

@@ -7,12 +7,12 @@ import org.fuusio.app.feature.test.view.TestView2;
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.flow.AbstractFlow;
 import org.fuusio.api.flow.FlowScope;
-import org.fuusio.api.flow.FragmentContainer;
+import org.fuusio.api.flow.FlowFragmentContainer;
 import org.fuusio.api.mvp.Presenter;
 
 public class TestFlowImpl extends AbstractFlow implements TestFlow {
 
-    public TestFlowImpl(final FragmentContainer pContainer) {
+    public TestFlowImpl(final FlowFragmentContainer pContainer) {
         super(pContainer);
     }
 

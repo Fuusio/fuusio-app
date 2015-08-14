@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 public class AbstractFlowTest {
 
     private Context mApplicationContext;
-    private FragmentContainer mFragmentHost;
+    private FlowFragmentContainer mFragmentHost;
     private FlowManager mFlowManager;
     private FragmentManager mFragmentManager;
     private TestFlow mTestFlow;
@@ -39,7 +39,7 @@ public class AbstractFlowTest {
         mApplicationContext = InstrumentationRegistry.getContext();
         mFragmentManager = Mockito.mock(FragmentManager.class);
         mFlowManager = FlowManager.getInstance();
-        mFragmentHost = Mockito.mock(FragmentContainer.class);
+        mFragmentHost = Mockito.mock(FlowFragmentContainer.class);
 
         when(mFragmentHost.getSupportFragmentManager()).thenReturn(mFragmentManager);
     }

@@ -42,10 +42,10 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopePro
     protected Context mContext;
     protected FlowScope mDependencyScope;
     protected FlowManager mFlowManager;
-    protected FragmentContainer mFragmentContainer;
+    protected FlowFragmentContainer mFragmentContainer;
 
 
-    protected AbstractFlow(final FragmentContainer pContainer) {
+    protected AbstractFlow(final FlowFragmentContainer pContainer) {
         mFragmentContainer = pContainer;
         mActiveViews = new ArrayList<>();
         mBackStackSize = 0;
@@ -110,6 +110,10 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopePro
     @SuppressWarnings("unchecked")
     @Override
     public void activateView(final View pView) {
+
+        if (!mFragmentContainer.canShowView(pView)) {
+            return;
+        }
 
         final Class<? extends View> viewClass = getClass(pView);
         getDependencyScope().cache(viewClass, pView);
