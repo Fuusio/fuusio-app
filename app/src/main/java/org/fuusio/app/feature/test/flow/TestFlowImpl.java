@@ -1,5 +1,7 @@
 package org.fuusio.app.feature.test.flow;
 
+import android.os.Bundle;
+
 import org.fuusio.app.feature.test.presenter.TestPresenter1;
 import org.fuusio.app.feature.test.view.TestView1;
 import org.fuusio.app.feature.test.view.TestView2;
@@ -12,8 +14,8 @@ import org.fuusio.api.mvp.Presenter;
 
 public class TestFlowImpl extends AbstractFlow implements TestFlow {
 
-    public TestFlowImpl(final FlowFragmentContainer pContainer) {
-        super(pContainer);
+    public TestFlowImpl(final FlowFragmentContainer pContainer, final Bundle pParams) {
+        super(pContainer, pParams);
     }
 
     @Override
@@ -22,7 +24,7 @@ public class TestFlowImpl extends AbstractFlow implements TestFlow {
     }
 
     @Override
-    public void onStart() {
+    public void onStart(final Bundle pParams) {
         activateView(D.get(TestView1.class));
     }
 

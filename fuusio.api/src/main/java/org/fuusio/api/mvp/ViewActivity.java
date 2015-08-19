@@ -124,6 +124,14 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
     }
 
     /**
+     * Test if this {@link ViewActivity} has been restarted.
+     * @return A {@code boolean}.
+     */
+    public boolean isRestarted() {
+        return mRestarted;
+    }
+
+    /**
      * Invoked to bind {@link ViewBinding}s to {@link View}s. This method has to be overridden in
      * classes extended from {@link ViewFragment}.
      */

@@ -106,8 +106,8 @@ public class HomeActivity extends FuusioBaseActivity<HomePresenter> implements H
     protected void onStart() {
         super.onStart();
 
-        FlowManager.startFlow(TestFlow.class, this);
-        // OPTION FlowManager.startFlow(D.get(TestFlow.class, this));
+        FlowManager.startFlow(TestFlow.class, this, null);
+        // OPTION FlowManager.startFlow(D.get(TestFlow.class, this), null);
     }
 
     @Override

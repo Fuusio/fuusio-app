@@ -15,6 +15,8 @@
  */
 package org.fuusio.api.flow;
 
+import android.os.Bundle;
+
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.dependency.Dependency;
 import org.fuusio.api.dependency.DependencyScope;
@@ -104,11 +106,12 @@ public class FlowManager {
      * {@link DependencyScope}s.
      * @param pFlowClass A {@link Flow}
      * @param pContainer A {@link FlowFragmentContainer}.
-     * @param <T>
+     * @param pParams A {@link Bundle} containing parameters for the started {@link Flow}.
+     * @param <T> The type extended from {@link Flow}.
      * @return A {@link Flow}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends Flow> T createFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer) {
+    public <T extends Flow> T createFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer, final Bundle pParams) {
 
         T flow = getMockFlow(pFlowClass);
 
@@ -120,8 +123,8 @@ public class FlowManager {
                     implClass = (Class<T>)Class.forName(pFlowClass.getName() + POSTFIX_IMPL);
                 }
 
-                final Class[] paramTypes = {FlowFragmentContainer.class};
-                final Object[] paramValues = {pContainer};
+                final Class[] paramTypes = {FlowFragmentContainer.class, Bundle.class};
+                final Object[] paramValues = {pContainer, pParams};
                 final Constructor<T> constructor = implClass.getConstructor(paramTypes);
                 flow = constructor.newInstance(paramValues);
                 Dependency.addScope(flow);
@@ -134,15 +137,16 @@ public class FlowManager {
     }
 
     /**
-     * Starts the specified {@link Flow} whose {@link android.app.Fragment}s are hosted by
+     * Creates and starts the specified {@link Flow} whose {@link android.app.Fragment}s are hosted by
      * the given {@link FlowFragmentContainer}.
      * @param pFlowClass A {@link Class} specifying the {@link Flow} to be created and started.
      * @param pContainer A {@link FlowFragmentContainer}.
-     * @param <T> The generic type of started {@link Flow}.
+     * @param pParams A {@link Bundle} containing parameters for the created and started {@link Flow}.
+     * @param <T> The type extended from {@link Flow}.
      * @return A {@link Flow}.
      */
     @SuppressWarnings("unchecked")
-    public static <T extends Flow> T startFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer) {
+    public static <T extends Flow> T startFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer, final Bundle pParams) {
 
         T flow = getMockFlow(pFlowClass);
 
@@ -154,8 +158,8 @@ public class FlowManager {
                     implClass = (Class<T>) Class.forName(pFlowClass.getName() + POSTFIX_IMPL);
                 }
 
-                final Class[] paramTypes = {FlowFragmentContainer.class};
-                final Object[] paramValues = {pContainer};
+                final Class[] paramTypes = {FlowFragmentContainer.class, Bundle.class};
+                final Object[] paramValues = {pContainer, pParams};
                 final Constructor<T> constructor = implClass.getConstructor(paramTypes);
                 flow = constructor.newInstance(paramValues);
             } catch (final Exception e) {
@@ -164,21 +168,22 @@ public class FlowManager {
         }
 
         final FlowManager flowManager = D.get(FlowManager.class);
-        return flowManager.startFlow(flow);
+        return flowManager.startFlow(flow, pParams);
     }
 
     /**
      * Starts the given {@link Flow}.
-     * @param pFlow {The {@link Flow} tostarted.
-     * @param <T> The generic type of started {@link Flow}.
+     * @param pFlow {The {@link Flow} to be started.
+     * @param pParams A {@link Bundle} containing parameters for the started {@link Flow}.
+     * @param <T> The type extended from {@link Flow}.
      * @return A {@link Flow}.
      */
-    public static <T extends Flow> T startFlow(final T pFlow) {
+    public static <T extends Flow> T startFlow(final T pFlow, final Bundle pParams) {
 
         final FlowManager flowManager = D.get(FlowManager.class);
 
         pFlow.setFlowManager(flowManager);
-        pFlow.start();
+        pFlow.start(pParams);
         flowManager.mActiveFlow = pFlow;
         return pFlow;
     }

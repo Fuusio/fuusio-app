@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2001 - 2015 Marko Salmela, http://fuusio.org
+ * Copyright (C) 2001-2015 Marko Salmela.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.fuusio.api.mvp;
+package org.fuusio.api.util;
+
+import java.util.List;
 
 /**
- * {@link PresentationModel} extends {@link Model} to define an interface for implementing
- * presentation models for {@link Presenter}s.
- * @param <T_Presenter> The parametrised type extending {@link Presenter}.
+ * {@link Listenable} provides an interface for classes that have listeners.
  */
-public interface PresentationModel<T_Presenter extends Presenter, T_EventType> extends Model<T_EventType> {
+public interface Listenable<T_Listener> {
 
-    T_Presenter getPresenter();
+    List<T_Listener> getListeners();
+
+    boolean addListener(T_Listener pListener);
+
+    boolean removeListener(T_Listener pListener);
+
+    void removeAllListeners();
 }

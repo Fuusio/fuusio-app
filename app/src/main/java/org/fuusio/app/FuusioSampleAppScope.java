@@ -18,7 +18,7 @@ public class FuusioSampleAppScope extends FuusioApplicationScope {
     protected <T> T getDependency() {
 
         if (type(TestFlow.class)) {
-            return dependency(new TestFlowImpl(D.get(FlowFragmentContainer.class)));
+            return dependency(new TestFlowImpl(D.get(FlowFragmentContainer.class), null));
         }
         return super.getDependency();
     }

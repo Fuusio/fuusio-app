@@ -18,6 +18,7 @@ package org.fuusio.api.mvp;
 import android.os.Bundle;
 
 import org.fuusio.api.component.Component;
+import org.fuusio.api.util.Listenable;
 
 /**
  * {@link View} is interface for View components in a MVP architectural pattern implementation.

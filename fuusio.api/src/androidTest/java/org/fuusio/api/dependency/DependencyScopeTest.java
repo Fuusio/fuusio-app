@@ -52,7 +52,7 @@ public class DependencyScopeTest {
     @Test
     public void test() {
 
-        final TestFlow testFlow = new TestFlow(mFragmentHost);
+        final TestFlow testFlow = new TestFlow(mFragmentHost, null);
         final TestDependencyScope scope = (TestDependencyScope)testFlow.getDependencyScope();
         scope.setParentScope(mParentScope);
 

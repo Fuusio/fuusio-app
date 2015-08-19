@@ -15,6 +15,7 @@
  */
 package org.fuusio.api.flow;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
@@ -37,15 +38,22 @@ import java.util.List;
 public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopeManager {
 
     protected final ArrayList<View> mActiveViews;
+    protected final FlowFragmentContainer mFragmentContainer;
+    protected final Bundle mParams;
 
     protected int mBackStackSize;
     protected Context mContext;
     protected FlowScope mDependencyScope;
     protected FlowManager mFlowManager;
-    protected FlowFragmentContainer mFragmentContainer;
 
-    protected AbstractFlow(final FlowFragmentContainer pContainer) {
+    /**
+     * Construct a new instance of {@link AbstractFlow} with the given {@link FlowFragmentContainer}.
+     * @param pContainer A {@link FlowFragmentContainer}.
+     * @param pParams A {@link Bundle} containing parameters for starting the {@link Flow}.
+     */
+    protected AbstractFlow(final FlowFragmentContainer pContainer, final Bundle pParams) {
         mFragmentContainer = pContainer;
+        mParams = pParams;
         mActiveViews = new ArrayList<>();
         mBackStackSize = 0;
         mContext = pContainer.getContext();
@@ -68,6 +76,12 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopeMan
         return mActiveViews;
 
     }
+
+    /**
+     * Adds the given {@link View} to the set of currently active Views. This method is
+     * meant to be used only by the Flow Framework.
+     * @param pView A {@link View}.
+     */
     @Override
     public final View addActiveView(final View pView) {
         if (!mActiveViews.contains(pView)) {
@@ -76,7 +90,11 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopeMan
         }
         return null;
     }
-
+    /**
+     * Removes the given {@link View} from the set of currently active Views. This method
+     * is meant to be used only by the Flow Framework.
+     * @param pView A {@link View}.
+     */
     @Override
     public final View removeActiveView(final View pView) {
         if (mActiveViews.contains(pView)) {
@@ -86,7 +104,13 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopeMan
         return null;
     }
 
-    protected boolean isActiveView(final View pView) {
+    /**
+     * Tests if the given {@link View} is currently active one.
+     * @param pView A {@link View}.
+     * @return A {@code boolean} value.
+     */
+    @Override
+    public boolean isActiveView(final View pView) {
         return mActiveViews.contains(pView);
     }
 
@@ -205,12 +229,12 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopeMan
     }
 
     @Override
-    public final void start() {
+    public final void start(final Bundle pParams) {
         final FragmentManager manager = mFragmentContainer.getSupportFragmentManager();
         manager.addOnBackStackChangedListener(this);
         Dependency.activateScope(this);
 
-        onStart();
+        onStart(pParams);
     }
 
     @Override
@@ -251,7 +275,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopeMan
     }
 
     @Override
-    public void onStart() {
+    public void onStart(final Bundle pParams) {
         // Do nothing by default
     }
 

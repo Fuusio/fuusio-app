@@ -53,7 +53,7 @@ public class FlowManagerTest {
         when(mFragmentHost.getSupportFragmentManager()).thenReturn(mFragmentManager);
         assertNotNull(mFlowManager);
 
-        final TestFlow flow = mFlowManager.startFlow(TestFlow.class, mFragmentHost);
+        final TestFlow flow = mFlowManager.startFlow(TestFlow.class, mFragmentHost, null);
 
         assertNotNull(flow);
     }

@@ -15,6 +15,7 @@
  */
 package org.fuusio.api.flow;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
 import org.fuusio.api.component.Component;
@@ -58,6 +59,14 @@ public interface Flow extends Component, ScopeManager, FragmentManager.OnBackSta
     void activateView(View pView);
 
     /**
+     * Tests if the given {@link View} is currently active one.
+     * @param pView A {@link View}.
+     * @return A {@code boolean} value.
+     */
+    boolean isActiveView(View pView);
+
+
+    /**
      * Gets the {@link FlowManager} that started this {@link Flow}.
      * @return A {@link FlowManager}.
      */
@@ -86,9 +95,10 @@ public interface Flow extends Component, ScopeManager, FragmentManager.OnBackSta
 
     /**
      * This method is invoked to start this {@link Flow}. The method is not intended to be invoked
-     * directly by a developer, but via invoking {@link FlowManager#startFlow(Flow)}.
+     * directly by a developer, but via invoking {@link FlowManager#startFlow(Flow, Bundle)}.
+     * @param pParams A {@link Bundle} containing parameters for starting the {@link Flow}.
      */
-    void start();
+    void start(final Bundle pParams);
 
     /**
      * This method is invoked to stop this {@link Flow}.
@@ -116,9 +126,10 @@ public interface Flow extends Component, ScopeManager, FragmentManager.OnBackSta
     void onRestart();
 
     /**
-     * This method is invoked by {@link Flow#start()} when this {@link Flow} is started.
+     * This method is invoked by {@link Flow#start(Bundle)} when this {@link Flow} is started.
+     * @param pParams A {@link Bundle} containing parameters for starting the {@link Flow}.
      */
-    void onStart();
+    void onStart(final Bundle pParams);
 
     /**
      * This method is invoked by {@link Flow#stop()} when this {@link Flow} is  stopped.

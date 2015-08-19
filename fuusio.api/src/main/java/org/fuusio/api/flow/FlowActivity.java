@@ -38,7 +38,7 @@ public abstract class FlowActivity<T_Flow extends Flow, T_Presenter extends Pres
     @Override
     protected void onStart() {
         super.onStart();
-        mFlow.start();
+        mFlow.start(null);
     }
 
     @Override

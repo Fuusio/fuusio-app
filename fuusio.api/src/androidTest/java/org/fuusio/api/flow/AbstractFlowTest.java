@@ -64,13 +64,13 @@ public class AbstractFlowTest {
 
         assertNotNull(mFlowManager);
 
-        mTestFlow = mFlowManager.startFlow(TestFlow.class, mFragmentHost);
+        mTestFlow = mFlowManager.startFlow(TestFlow.class, mFragmentHost, null);
         assertNotNull(mTestFlow);
 
         final DependencyScope scope = mTestFlow.getDependencyScope();
         assertNotNull(scope);
 
-        mTestFlow.onStart();
+        mTestFlow.onStart(null);
 
         verify(mFragmentManager, atLeastOnce()).addOnBackStackChangedListener((FragmentManager.OnBackStackChangedListener) any());
 

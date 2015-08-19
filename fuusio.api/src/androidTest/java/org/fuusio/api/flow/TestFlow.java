@@ -15,10 +15,12 @@
  */
 package org.fuusio.api.flow;
 
+import android.os.Bundle;
+
 public class TestFlow extends AbstractFlow {
 
-    public TestFlow(final FlowFragmentContainer pHost) {
-        super(pHost);
+    public TestFlow(final FlowFragmentContainer pHost, final Bundle pParams) {
+        super(pHost, pParams);
     }
 
     @Override

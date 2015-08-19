@@ -62,11 +62,6 @@ public abstract class FlowFragment<T_Presenter extends Presenter> extends ViewFr
     }
 
     @Override
-    public void onCreate(final Bundle pInState) {
-        super.onCreate(pInState);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
 

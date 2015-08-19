@@ -22,12 +22,11 @@ import org.fuusio.api.plugin.Plugin;
 import org.fuusio.api.plugin.PluginBus;
 import org.fuusio.api.plugin.PluginComponent;
 import org.fuusio.api.plugin.PluginInjector;
+import org.fuusio.api.util.AbstractListenable;
 
 import java.util.ArrayList;
 
-public class AbstractPresenter<T_View extends View> implements Presenter<T_View> {
-
-    protected final ArrayList<Presenter.Listener> mListeners;
+public class AbstractPresenter<T_View extends View> extends AbstractListenable<Presenter.Listener> implements Presenter<T_View> {
 
     protected boolean mStopped;
     protected T_View mView;
@@ -38,7 +37,6 @@ public class AbstractPresenter<T_View extends View> implements Presenter<T_View>
 
     protected AbstractPresenter(final T_View pView) {
         setView(pView);
-        mListeners = new ArrayList<>();
         mStopped = false;
     }
 
@@ -109,33 +107,6 @@ public class AbstractPresenter<T_View extends View> implements Presenter<T_View>
         }
     }
 
-    /**
-     * Add the given {@link Presenter.Listener} to receive events from this {@link Presenter}.
-     * @param pListener A {@link Presenter.Listener} to be added.
-     * @return A {@code boolean} value {@code true} if adding succeeded; otherwise {@code false}.
-     */
-    @Override
-    public boolean addListener(final Presenter.Listener pListener) {
-        if (!mListeners.contains(pListener)) {
-            mListeners.add(pListener);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Remove the given {@link Presenter.Listener} from receiving events from this {@link Presenter}.
-     * @param pListener A {@link Presenter.Listener} to be removed.
-     * @return A {@code boolean} value {@code true} if removing succeeded; otherwise {@code false}.
-     */
-    @Override
-    public boolean removeListener(final Presenter.Listener pListener) {
-        if (mListeners.contains(pListener)) {
-            mListeners.remove(pListener);
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public void onViewCreated(final View pView, final Bundle pInState) {

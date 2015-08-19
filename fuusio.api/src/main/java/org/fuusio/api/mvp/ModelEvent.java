@@ -5,8 +5,8 @@ import java.util.EventObject;
 /**
  * {@link ModelEvent} extends {@link  EventObject} to provide an abstract base class for implementing
  * {@link Model} events.
- * @param <T_Model> A type parameter for {@link Model}.
- * @param <T_Type> A type parameter for a type (e.g. enum type) representing Model event types.
+ * @param <T_Model> The parametrised type extending {@link Model}.
+ * @param <T_Type> The parametrised type (e.g. enum type) representing Model event types.
  */
 public abstract class ModelEvent<T_Model extends Model, T_Type> extends EventObject {
 
