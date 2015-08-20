@@ -17,7 +17,16 @@ package org.fuusio.api.app;
 
 public interface ApplicationError {
 
+    /**
+     * Return the unique id of this error.
+     * @return An {@link int} code.
+     */
     int getCode();
 
-    int getMessage();
+    /**
+     * Return the error message describing this error.
+     * @param pArgs Optional args used for formatting the error message.
+     * @return A {@link String} containing the error message.
+     */
+    String getMessage(Object... pArgs);
 }

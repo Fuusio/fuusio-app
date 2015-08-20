@@ -26,7 +26,8 @@ import org.fuusio.api.util.AbstractListenable;
 
 import java.util.ArrayList;
 
-public class AbstractPresenter<T_View extends View> extends AbstractListenable<Presenter.Listener> implements Presenter<T_View> {
+public class AbstractPresenter<T_View extends View> extends AbstractListenable<Presenter.Listener>
+        implements Presenter<T_View> {
 
     protected boolean mStopped;
     protected T_View mView;

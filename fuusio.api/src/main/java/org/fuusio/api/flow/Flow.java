@@ -65,7 +65,6 @@ public interface Flow extends Component, ScopeManager, FragmentManager.OnBackSta
      */
     boolean isActiveView(View pView);
 
-
     /**
      * Gets the {@link FlowManager} that started this {@link Flow}.
      * @return A {@link FlowManager}.
@@ -129,7 +128,7 @@ public interface Flow extends Component, ScopeManager, FragmentManager.OnBackSta
      * This method is invoked by {@link Flow#start(Bundle)} when this {@link Flow} is started.
      * @param pParams A {@link Bundle} containing parameters for starting the {@link Flow}.
      */
-    void onStart(final Bundle pParams);
+    void onStart(Bundle pParams);
 
     /**
      * This method is invoked by {@link Flow#stop()} when this {@link Flow} is  stopped.

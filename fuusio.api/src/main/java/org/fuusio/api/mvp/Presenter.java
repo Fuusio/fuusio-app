@@ -19,9 +19,9 @@ import org.fuusio.api.component.Component;
 import org.fuusio.api.util.Listenable;
 
 /**
- * {@link Presenter} is interface for Presenter components in a MVP architectural pattern
- * implementation. By default, a {@link Presenter} is a listener for {@link View} events via the
- * {@linl View.Listener} interface.
+ * {@link Presenter} is the interface to be implemented by Presenter components of a MVP
+ * architectural pattern implementation. By default, a {@link Presenter} implementation is also
+ * a listener for {@link View} events via the {@link View.Listener} interface.
  * @param <T_View> The parametrised type extending {@link View}.
  */
 public interface Presenter<T_View extends View> extends Component, Listenable<Presenter.Listener>, View.Listener {
@@ -60,12 +60,32 @@ public interface Presenter<T_View extends View> extends Component, Listenable<Pr
 
     interface Listener {
 
+        /**
+         * Invoked by a {@link Presenter} when it is started. Typically a {@link Presenter} is
+         * started when its {@link View} is started.
+         * @param pPresenter The started {@link Presenter}.
+         */
         void onPresenterStarted(Presenter pPresenter);
 
+        /**
+         * Invoked by a {@link Presenter} when it is resumed. Typically a {@link Presenter} is
+         * resumed when its {@link View} is resumed.
+         * @param pPresenter The resumed {@link Presenter}.
+         */
         void onPresenterResumed(Presenter pPresenter);
 
+        /**
+         * Invoked by a {@link Presenter} when it is paused. Typically a {@link Presenter} is
+         * paused when its {@link View} is paused.
+         * @param pPresenter The paused {@link Presenter}.
+         */
         void onPresenterPaused(Presenter pPresenter);
 
+        /**
+         * Invoked by a {@link Presenter} when it is stopped. Typically a {@link Presenter} is
+         * stopped when its {@link View} is stopped.
+         * @param pPresenter The stopped {@link Presenter}.
+         */
         void onPresenterStopped(Presenter pPresenter);
     }
 }

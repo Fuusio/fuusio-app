@@ -18,10 +18,10 @@ package org.fuusio.api.mvp;
 import android.os.Bundle;
 
 import org.fuusio.api.component.Component;
-import org.fuusio.api.util.Listenable;
 
 /**
- * {@link View} is interface for View components in a MVP architectural pattern implementation.
+ * {@link View} is the interface to be implemented by View components of a MVP
+ * architectural pattern implementation.
  * @param <T_Presenter> The parametrised type extending {@link Presenter}.
  */
 public interface View<T_Presenter extends Presenter> extends Component {
@@ -30,14 +30,45 @@ public interface View<T_Presenter extends Presenter> extends Component {
 
     interface Listener {
 
+        /**
+         * Invoked by a {@link View} implementation when it is created,
+         * e.g. on {@link ViewFragment#onViewCreated(android.view.View, Bundle)}.
+         *
+         * @param pView A {@link View}
+         * @param pInState {@lin Bundle} containing the initial state.
+         */
         void onViewCreated(View pView, Bundle pInState);
 
-        void onViewStart(View pView);
-
+        /**
+         * Invoked by a {@link View} implementation when it is resumed,
+         * e.g. on {@link ViewFragment#onResume()}.
+         *
+         * @param pView A {@link View}
+         */
         void onViewResume(View pView);
 
+        /**
+         * Invoked by a {@link View} implementation when it is paused,
+         * e.g. on {@link ViewFragment#onPause()}.
+         *
+         * @param pView A {@link View}
+         */
         void onViewPause(View pView);
 
+        /**
+         * Invoked by a {@link View} implementation when it is started,
+         * e.g. on {@link ViewFragment#onStart()}.
+         *
+         * @param pView A {@link View}
+         */
+        void onViewStart(View pView);
+
+        /**
+         * Invoked by a {@link View} implementation when it is stopped,
+         * e.g. on {@link ViewFragment#onStop()}.
+         *
+         * @param pView A {@link View}
+         */
         void onViewStop(View pView);
     }
 }
