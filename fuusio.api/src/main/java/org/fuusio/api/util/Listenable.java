@@ -18,7 +18,8 @@ package org.fuusio.api.util;
 import java.util.List;
 
 /**
- * {@link Listenable} provides an interface for classes that have listeners.
+ * {@link Listenable} defines an interface for objects that can have listeners for listening their
+ * events.
  */
 public interface Listenable<T_Listener> {
 
@@ -28,5 +29,5 @@ public interface Listenable<T_Listener> {
 
     boolean removeListener(T_Listener pListener);
 
-    void removeAllListeners();
+    void clearListeners();
 }

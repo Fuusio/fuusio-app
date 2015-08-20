@@ -19,6 +19,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 
 import org.fuusio.api.dependency.ApplicationScope;
@@ -49,6 +50,14 @@ public abstract class FuusioApplication extends Application {
      */
     public int getPropertyId() {
         return -1;
+    }
+
+    /**
+     * Gets the {@link Resources}.
+     * @return A {@link Resources}.
+     */
+    public static Resources getApplicationResources() {
+        return sInstance.getResources();
     }
 
     /**

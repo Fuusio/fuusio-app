@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@link AbstractListenable} provides an abstract base class for implementing interface
- * {@link Listenable}.
+ * {@link AbstractListenable} is an abstract base class for concrete implementations of
+ * {@link Listenable} interface.
  */
 public abstract class AbstractListenable<T_Listener> implements Listenable<T_Listener> {
 
@@ -46,15 +46,11 @@ public abstract class AbstractListenable<T_Listener> implements Listenable<T_Lis
 
     @Override
     public boolean removeListener(final T_Listener pListener) {
-        if (mListeners.contains(pListener)) {
-            mListeners.remove(pListener);
-            return true;
-        }
-        return false;
+        return mListeners.remove(pListener);
     }
 
     @Override
-    public void removeAllListeners() {
+    public void clearListeners() {
         mListeners.clear();
     }
 }

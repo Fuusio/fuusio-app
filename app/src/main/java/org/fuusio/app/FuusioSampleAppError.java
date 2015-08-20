@@ -1,5 +1,7 @@
 package org.fuusio.app;
 
+import android.content.res.Resources;
+
 import org.fuusio.api.app.ApplicationError;
 
 public enum FuusioSampleAppError implements ApplicationError {
@@ -16,18 +18,27 @@ public enum FuusioSampleAppError implements ApplicationError {
 	ERROR_UNKNOWN(Integer.MAX_VALUE, R.string.error_unknown_error);
 	
 	private final int mCode;
-	private final int mMessage;
-	
-	private FuusioSampleAppError(final int pCode, final int pMessage) {
+	private final int mMessageResId;
+
+	String mMessage;
+
+	private FuusioSampleAppError(final int pCode, final int pMessageResId) {
 		mCode = pCode;
-		mMessage = pMessage;
+		mMessageResId = pMessageResId;
 	}
 
-	public final int getCode() {
+	@Override
+	public int getCode() {
 		return mCode;
 	}
 
-	public final int getMessage() {
+	@Override
+	public String getMessage(final Object... pArgs) {
+
+		if (mMessage == null) {
+			final Resources resources = FuusioSampleApp.getApplicationResources();
+			mMessage = resources.getString(mMessageResId, pArgs);
+		}
 		return mMessage;
-	}	
+	}
 }
