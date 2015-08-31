@@ -37,7 +37,7 @@ public class HttpParams {
     }
 
     public HttpParams(final String pParamsEncoding) {
-        mKeyValues = new ArrayList<KeyValue<String, String>>();
+        mKeyValues = new ArrayList<>();
         mParamsEncoding = pParamsEncoding;
     }
 

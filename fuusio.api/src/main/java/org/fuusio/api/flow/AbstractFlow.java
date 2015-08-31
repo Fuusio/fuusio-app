@@ -318,16 +318,13 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, ScopeMan
 
     @Override
     public void onPresenterResumed(final Presenter pPresenter) {
-        pPresenter.addListener(this);
     }
 
     @Override
     public void onPresenterPaused(final Presenter pPresenter) {
-        pause();
     }
 
     @Override
     public void onPresenterStopped(final Presenter pPresenter) {
-        pPresenter.removeListener(this);
     }
 }

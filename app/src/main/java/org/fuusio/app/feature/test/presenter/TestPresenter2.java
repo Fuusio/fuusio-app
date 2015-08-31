@@ -5,7 +5,7 @@ import org.fuusio.app.feature.test.view.TestView2;
 
 import org.fuusio.api.mvp.Presenter;
 
-public interface TestPresenter2 extends Presenter<TestView2> {
+public interface TestPresenter2 extends Presenter<TestView2, Presenter.Listener> {
 
     void onButtonClicked();
 }

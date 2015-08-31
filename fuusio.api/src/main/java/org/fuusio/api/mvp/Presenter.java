@@ -24,7 +24,7 @@ import org.fuusio.api.util.Listenable;
  * a listener for {@link View} events via the {@link View.Listener} interface.
  * @param <T_View> The parametrised type extending {@link View}.
  */
-public interface Presenter<T_View extends View> extends Component, Listenable<Presenter.Listener>, View.Listener {
+public interface Presenter<T_View extends View, T_Listener extends Presenter.Listener> extends Component, Listenable<T_Listener>, View.Listener {
 
     /**
      * Return the {@link View} of this {@link Presenter}.

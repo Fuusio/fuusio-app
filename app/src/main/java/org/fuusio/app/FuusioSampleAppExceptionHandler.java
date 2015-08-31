@@ -4,7 +4,8 @@ import org.fuusio.api.app.ApplicationExceptionHandler;
 
 public class FuusioSampleAppExceptionHandler extends ApplicationExceptionHandler<FuusioSampleAppError> {
 
-	private FuusioSampleAppExceptionHandler() {
+	private FuusioSampleAppExceptionHandler(final Thread.UncaughtExceptionHandler pDefaultHandler) {
+        super(pDefaultHandler);
 	}
 
     @Override

@@ -17,27 +17,21 @@ package org.fuusio.api.mvp;
 
 import android.os.Bundle;
 
-import org.fuusio.api.plugin.InjectorProvider;
-import org.fuusio.api.plugin.Plugin;
-import org.fuusio.api.plugin.PluginBus;
-import org.fuusio.api.plugin.PluginComponent;
-import org.fuusio.api.plugin.PluginInjector;
 import org.fuusio.api.util.AbstractListenable;
 
-import java.util.ArrayList;
-
-public class AbstractPresenter<T_View extends View> extends AbstractListenable<Presenter.Listener>
-        implements Presenter<T_View> {
+/**
+ * {@link AbstractPresenter} extends {@link AbstractListenable} to provide an abstract base class
+ * for concrete implementations of {@link Presenter}s.
+ * @param <T_View> The parametrised type extended  from {@link View}.
+ * @param <T_Listener> The parametrised type extended  from {@link Presenter.Listener}.
+ */
+public class AbstractPresenter<T_View extends View, T_Listener extends Presenter.Listener> extends AbstractListenable<T_Listener>
+        implements Presenter<T_View, T_Listener> {
 
     protected boolean mStopped;
     protected T_View mView;
 
     protected AbstractPresenter() {
-        this(null);
-    }
-
-    protected AbstractPresenter(final T_View pView) {
-        setView(pView);
         mStopped = false;
     }
 
@@ -109,36 +103,31 @@ public class AbstractPresenter<T_View extends View> extends AbstractListenable<P
     }
 
 
+    @SuppressWarnings("unchecked")
     @Override
     public void onViewCreated(final View pView, final Bundle pInState) {
-        // Do nothing by default
+        setView((T_View)pView);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void onViewResume(final View pView) {
-        if (pView == mView) {
-            resume();
-        }
+        setView((T_View)pView);
+        resume();
     }
 
     @Override
     public void onViewPause(final View pView) {
-        if (pView == mView) {
-            pause();
-        }
+        pause();
     }
 
     @Override
     public void onViewStart(final View pView) {
-        if (pView == mView) {
-            start();
-        }
+        start();
     }
 
     @Override
     public void onViewStop(final View pView) {
-        if (pView == mView) {
-            stop();
-        }
+        stop();
     }
 }

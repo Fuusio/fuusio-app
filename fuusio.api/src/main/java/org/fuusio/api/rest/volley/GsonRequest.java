@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Marko Salmela.
+ * Copyright (C) 2014 - 2015 Marko Salmela.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

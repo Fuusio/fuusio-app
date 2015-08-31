@@ -111,7 +111,7 @@ public class FlowManager {
      * @return A {@link Flow}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends Flow> T createFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer, final Bundle pParams) {
+    public static <T extends Flow> T createFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer, final Bundle pParams) {
 
         T flow = getMockFlow(pFlowClass);
 

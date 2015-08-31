@@ -23,13 +23,12 @@ import org.fuusio.api.mvp.View;
  * {@link PluginPresenter} extends {@link AbstractPresenter} to provide an abstract base class
  * for concrete {@link Presenter} implementations that can be used as {@link Plugin}s.
  */
-public abstract class PluginPresenter<T_View extends View> extends AbstractPresenter<T_View>
+public abstract class PluginPresenter<T_View extends View, T_Listener extends Presenter.Listener> extends AbstractPresenter<T_View, T_Listener>
         implements Plugin, InjectorProvider {
 
     protected boolean mPlugged;
 
-    protected PluginPresenter(final T_View pView) {
-        setView(pView);
+    protected PluginPresenter() {
     }
 
     @Override

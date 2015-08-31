@@ -155,7 +155,7 @@ public abstract class DependencyScope {
                     throw new IllegalStateException("The given dependency object is not an instance of: " + mDependencyType.getName());
                 }
             } else {
-                throw new IllegalStateException("The method DependencyScope#cache(Object) is meant to be used only in method DependencyScope#getDependency()");
+                throw new IllegalStateException("The method DependencyScope#dependency(Object) is meant to be used only in method DependencyScope#getDependency()");
             }
         } else {
             throw new IllegalArgumentException("Parameter may not be null");
@@ -175,7 +175,7 @@ public abstract class DependencyScope {
             mDependencies.put(pDependencyType, pDependency);
             return (T) pDependency;
         } else {
-            throw new IllegalArgumentException("Parameter may not be null");
+            throw new IllegalArgumentException("Parameter 'pDependency' may not be null");
         }
     }
 
@@ -342,18 +342,18 @@ public abstract class DependencyScope {
     /**
      * This method is invoked by {@link Dependency} when this {@link DependencyScope} is activated
      * for the given {@link ScopeManager}.
-     * @param pProvider A {@link ScopeManager}.
+     * @param pManager A {@link ScopeManager}.
      */
-    public void onActivated(final ScopeManager pProvider) {
+    public void onActivated(final ScopeManager pManager) {
         // By default do nothing
     }
 
     /**
      * This method is invoked by {@link Dependency} when this {@link DependencyScope} is deactivated
      * for the given {@link ScopeManager}.
-     * @param pProvider A {@link ScopeManager}.
+     * @param pManager A {@link ScopeManager}.
      */
-    public void onDeactivated(final ScopeManager pProvider) {
+    public void onDeactivated(final ScopeManager pManager) {
         // By default do nothing
     }
 

@@ -20,8 +20,7 @@ public class HomeDependencyScope extends DependencyScope {
     protected <T> T getDependency() {
 
         if (type(HomePresenter.class)) {
-            final HomeView view = Dependency.get(HomeView.class);
-            return dependency(new HomePresenterImpl(view));
+            return dependency(new HomePresenterImpl());
         } else if (type(HomeView.class)) {
             return dependency(mActivity);
         }
