@@ -10,28 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d396865-16ab-442a-aef0-341369e64e82" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/AbstractFlow.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/AbstractFlow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractPresenter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/AbstractRequest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/AbstractRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScope.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowManager.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleAppExceptionHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleAppExceptionHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/GsonRequest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/GsonRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/HomeDependencyScope.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/HomeDependencyScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/presenter/HomePresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/presenter/HomePresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/presenter/HomePresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/presenter/HomePresenterImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/HttpParams.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/HttpParams.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/JsonRequest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/JsonRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PluginPresenter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PluginPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Presenter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Presenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/RestClient.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/RestClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/dependency/TestPresenter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/dependency/TestPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/flow/TestPresenter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/flow/TestPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter1.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter1Impl.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter1Impl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter2.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter2Impl.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter2Impl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractModel.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Model.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Model.java" />
     </list>
     <ignored path="fuusio-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,18 +31,7 @@
     <favorites_list name="fuusio-app" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="TestPresenter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/flow/TestPresenter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11312217">
-              <caret line="19" column="77" selection-start-line="19" selection-start-column="77" selection-end-line="19" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -2376,8 +2345,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestFragment2.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestFragment1.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ModelEvent.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractModel.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Model.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewActivity.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowFragment.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowActivity.java" />
@@ -2419,6 +2386,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter1Impl.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/dependency/TestPresenter.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/flow/TestPresenter.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Model.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractModel.java" />
       </list>
     </option>
   </component>
@@ -2477,7 +2446,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="fuusio.api" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2487,7 +2456,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="fuusio.api" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2501,7 +2470,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="fuusio.api" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2509,7 +2478,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="api" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2519,7 +2488,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="fuusio.api" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2527,11 +2496,11 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="api" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="feature" />
+              <option name="myItemId" value="mvp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2760,7 +2729,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="1433" height="807" extended-state="1" />
+    <frame x="-1" y="23" width="1433" height="807" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2823,13 +2792,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowFragmentContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/view/HomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2895,13 +2857,6 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.113464445">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowActivity.java">
@@ -3215,6 +3170,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11312217">
           <caret line="19" column="77" selection-start-line="19" selection-start-column="77" selection-end-line="19" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11312217">
+          <caret line="19" column="112" selection-start-line="19" selection-start-column="112" selection-end-line="19" selection-end-column="112" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20361991">
+          <caret line="24" column="111" selection-start-line="24" selection-start-column="111" selection-end-line="24" selection-end-column="111" />
           <folding />
         </state>
       </provider>

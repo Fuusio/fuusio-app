@@ -22,7 +22,7 @@ import org.fuusio.api.util.Listenable;
  * {@link Model} is interface for Model components in a MVP architectural pattern implementation.
  * @param <T_EventType> The parametrised model event type.
  */
-public interface Model<T_EventType> extends Component, Listenable<Model.Listener> {
+public interface Model<T_EventType, T_Listener extends Model.Listener> extends Component, Listenable<T_Listener> {
 
     interface Listener {
 

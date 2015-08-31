@@ -17,7 +17,7 @@ package org.fuusio.api.mvp;
 
 import org.fuusio.api.util.AbstractListenable;
 
-public class AbstractModel<T_EventType> extends AbstractListenable<Model.Listener> implements Model<T_EventType> {
+public class AbstractModel<T_EventType, T_Listener extends Model.Listener> extends AbstractListenable<T_Listener> implements Model<T_EventType, T_Listener> {
 
     protected ModelEvent createEvent(final T_EventType pType) {
         return null;
