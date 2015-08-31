@@ -20,25 +20,19 @@ import android.os.Bundle;
 import org.fuusio.api.mvp.ViewFragment;
 import org.fuusio.api.mvp.Presenter;
 
-public abstract class FlowFragment<T_Presenter extends Presenter> extends ViewFragment<T_Presenter> {
+public abstract class FlowFragment<T_Presenter extends Presenter> extends ViewFragment<T_Presenter> implements FlowView<T_Presenter> {
 
     private Flow mFlow;
 
     protected FlowFragment() {
     }
 
-    /**
-     * Gets the {@link Flow} that controls this {@link FlowFragment}.
-     * @return A {@link Flow}.
-     */
-    public final Flow getFlow() {
+    @Override
+    public Flow getFlow() {
         return mFlow;
     }
 
-    /**
-     * Sets the {@link Flow} that controls this {@link FlowFragment}.
-     * @param pFlow A {@link Flow}.
-     */
+    @Override
     public void setFlow(final Flow pFlow) {
         mFlow = pFlow;
     }
