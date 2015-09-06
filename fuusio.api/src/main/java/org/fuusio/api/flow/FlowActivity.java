@@ -1,10 +1,13 @@
 package org.fuusio.api.flow;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.mvp.Presenter;
+import org.fuusio.api.mvp.View;
 import org.fuusio.api.mvp.ViewActivity;
 
 /**
@@ -13,11 +16,12 @@ import org.fuusio.api.mvp.ViewActivity;
  * events of an {@link Activity} and can control UI control logic according to the events.
  * @param <T_Flow> A type parameter for {@link Flow}.
  */
-public abstract class FlowActivity<T_Flow extends Flow, T_Presenter extends Presenter> extends ViewActivity<T_Presenter> {
+public abstract class FlowActivity<T_Flow extends Flow, T_Presenter extends Presenter> extends ViewActivity<T_Presenter> implements FlowFragmentContainer {
 
     protected T_Flow mFlow;
+    protected Class<T_Flow> mFlowClass;
 
-    public final T_Flow getFLow() {
+    public final T_Flow getFlow() {
         return mFlow;
     }
 
@@ -26,14 +30,42 @@ public abstract class FlowActivity<T_Flow extends Flow, T_Presenter extends Pres
     }
 
     @Override
-    protected void onCreate(final Bundle pSavedState) {
-        super.onCreate(pSavedState);
+    public Context getContext() {
+        return this;
+    }
 
-        mFlow = createFlow(pSavedState);
+    @Override
+    protected void onCreate(final Bundle pInState) {
+        super.onCreate(pInState);
+
+        mFlow = createFlow(pInState);
         D.activateScope(mFlow);
     }
 
-    protected abstract T_Flow createFlow(final Bundle pSavedState);
+    /**
+     * Sets the {@link Class} for creating the {@link Flow} in method
+     * {@link FlowActivity#setFlowClass(Class)}.
+     * @param pFlowClass A {@link Class}.
+     */
+    protected void setFlowClass(final Class<T_Flow> pFlowClass) {
+        mFlowClass = pFlowClass;
+    }
+
+    /**
+     * Creates the {@link Flow} for this {@link FlowActivity}. This method can be overridden in
+     * concrete implementations of {@link FlowActivity} if method {@link FlowActivity} used.
+     * @param pInState
+     * @return
+     */
+    protected T_Flow createFlow(final Bundle pInState) {
+
+        T_Flow flow = null;
+
+        if (mFlowClass != null) {
+            flow = FlowManager.createFlow(mFlowClass, this, pInState);
+        }
+        return flow;
+    }
 
     @Override
     protected void onStart() {

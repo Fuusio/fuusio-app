@@ -121,23 +121,23 @@ public abstract class ViewFragment<T_Presenter extends Presenter> extends Fragme
     /**
      * Binds the given {@link ViewBinding} to the specified {@link android.view.View}.
      * @param pViewId A view id in a layout XML specifying the target {@link android.view.View}.
-     * @param pDelegate An {@link ViewBinding}.
+     * @param pBinding An {@link ViewBinding}.
      * @return The found and bound {@link android.view.View}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends android.view.View> T bind(final int pViewId, final ViewBinding<T> pDelegate) {
-        return mDelegateManager.bind(pViewId, pDelegate);
+    public <T extends android.view.View> T bind(final int pViewId, final ViewBinding<T> pBinding) {
+        return mDelegateManager.bind(pViewId, pBinding);
     }
 
     /**
      * Binds the given {@link AdapterViewBinding} to the specified {@link AdapterView}.
      * @param pViewId A view id in a layout XML specifying the target {@link AdapterView}.
-     * @param pDelegate An {@link AdapterViewBinding}.
+     * @param pBinding An {@link AdapterViewBinding}.
      * @param pAdapter An {@link AdapterViewBinding.Adapter} that is assigned to {@link AdapterViewBinding}.
      * @return The found and bound {@link AdapterView}.
      */
     @SuppressWarnings("unchecked")
-    public AdapterView bind(final int pViewId, final AdapterViewBinding<?> pDelegate, final AdapterViewBinding.Adapter<?> pAdapter) {
-        return mDelegateManager.bind(pViewId, pDelegate, pAdapter);
+    public AdapterView bind(final int pViewId, final AdapterViewBinding<?> pBinding, final AdapterViewBinding.Adapter<?> pAdapter) {
+        return mDelegateManager.bind(pViewId, pBinding, pAdapter);
     }
 }

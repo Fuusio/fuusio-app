@@ -18,9 +18,11 @@ package org.fuusio.api.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -90,10 +92,6 @@ public class AppToolkit {
 
     public static DisplayMetrics getDisplayMetrics() {
         return sApplication.getResources().getDisplayMetrics();
-    }
-
-    public static Drawable getDrawable(final int pResId) {
-        return sApplication.getResources().getDrawable(pResId);
     }
 
     public static String getString(final int pResId) {
@@ -228,13 +226,12 @@ public class AppToolkit {
 
     public static boolean isNetworkAvailable() {
         final Context context = getApplicationContext();
-        final ConnectivityManager connectivity = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager manager = (ConnectivityManager) context .getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if (connectivity == null) {
+        if (manager == null) {
             L.wtf(AppToolkit.class, "isNetworkAvailable()", "Network access not allowed");
         } else {
-            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            NetworkInfo[] info = manager.getAllNetworkInfo();
 
             if (info != null) {
                 for (int i = 0; i < info.length; i++) {
@@ -242,6 +239,19 @@ public class AppToolkit {
                         return true;
                     }
                 }
+            }
+        }
+        return false;
+    }
+
+    public static boolean isPackageInstalled(final String pPackageName) {
+        final Context context = getApplicationContext();
+        final PackageManager manager = context.getPackageManager();
+        final List<ApplicationInfo> infos = manager.getInstalledApplications(PackageManager.GET_META_DATA);
+
+        for (final ApplicationInfo info : infos) {
+            if (pPackageName.equalsIgnoreCase(info.packageName)) {
+                return true;
             }
         }
         return false;

@@ -44,7 +44,7 @@ public enum ExecutionState {
 
     private final String mLabel;
 
-    private ExecutionState(final String pLabel) {
+    ExecutionState(final String pLabel) {
         mLabel = pLabel;
     }
 

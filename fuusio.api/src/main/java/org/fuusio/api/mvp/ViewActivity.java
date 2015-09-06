@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import org.fuusio.api.binding.AdapterViewBinding;
 import org.fuusio.api.binding.ViewBinding;
 import org.fuusio.api.binding.ViewBindingManager;
+import org.fuusio.api.util.ActivityState;
 
 /**
  * {@link ViewActivity} provides an abstract base class for concrete {@link AppCompatActivity}
@@ -32,14 +33,13 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
     implements View<T_Presenter> {
 
     private final ViewBindingManager mDelegateManager;
+    private final ActivityState mState;
 
     protected T_Presenter mPresenter;
-    protected boolean mRestarted;
-    protected boolean mPaused;
 
     protected ViewActivity() {
-        mRestarted = false;
         mDelegateManager = new ViewBindingManager(this);
+        mState = new ActivityState(this);
     }
 
     /**
@@ -53,8 +53,9 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
     @Override
     protected void onStart() {
         super.onStart();
+        mState.onStart();
 
-        if (!mRestarted) {
+        if (!mState.isRestarted()) {
             createBindings();
         }
 
@@ -67,17 +68,17 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
     @Override
     protected void onResume() {
         super.onResume();
+        mState.onResume();
 
         if (mPresenter != null) {
             mPresenter.onViewResume(this);
         }
-
-        mPaused = false;
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        mState.onStop();
 
         if (mPresenter != null) {
             mPresenter.onViewStop(this);
@@ -87,23 +88,23 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
     @Override
     protected void onPause() {
         super.onPause();
+        mState.onPause();
 
         if (mPresenter != null) {
             mPresenter.onViewPause(this);
         }
-
-        mPaused = true;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mState.onDestroy();
         mDelegateManager.dispose();
     }
     @Override
     protected void onRestart() {
         super.onRestart();
-        mRestarted = true;
+        mState.onRestart();
     }
 
     /**
@@ -120,7 +121,7 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
      * @return A {@code boolean}.
      */
     public boolean isPaused() {
-        return mPaused;
+        return mState.isPaused();
     }
 
     /**
@@ -128,7 +129,7 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
      * @return A {@code boolean}.
      */
     public boolean isRestarted() {
-        return mRestarted;
+        return mState.isRestarted();
     }
 
     /**
@@ -162,23 +163,23 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
     /**
      * Binds the given {@link ViewBinding} to the specified {@link android.view.View}.
      * @param pViewId A view id in a layout XML specifying the target {@link android.view.View}.
-     * @param pDelegate An {@link ViewBinding}.
+     * @param pBinding An {@link ViewBinding}.
      * @return The found and bound {@link android.view.View}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends android.view.View> T bind(final int pViewId, final ViewBinding<T> pDelegate) {
-        return mDelegateManager.bind(pViewId, pDelegate);
+    public <T extends android.view.View> T bind(final int pViewId, final ViewBinding<T> pBinding) {
+        return mDelegateManager.bind(pViewId, pBinding);
     }
 
     /**
      * Binds the given {@link AdapterViewBinding} to the specified {@link AdapterView}.
      * @param pViewId A view id in a layout XML specifying the target {@link AdapterView}.
-     * @param pDelegate An {@link AdapterViewBinding}.
+     * @param pBinding An {@link AdapterViewBinding}.
      * @param pAdapter An {@link AdapterViewBinding.Adapter} that is assigned to {@link AdapterViewBinding}.
      * @return The found and bound {@link AdapterView}.
      */
     @SuppressWarnings("unchecked")
-    public AdapterView bind(final int pViewId, final AdapterViewBinding<?> pDelegate, final AdapterViewBinding.Adapter<?> pAdapter) {
-        return mDelegateManager.bind(pViewId, pDelegate, pAdapter);
+    public AdapterView bind(final int pViewId, final AdapterViewBinding<?> pBinding, final AdapterViewBinding.Adapter<?> pAdapter) {
+        return mDelegateManager.bind(pViewId, pBinding, pAdapter);
     }
 }

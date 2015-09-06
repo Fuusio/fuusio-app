@@ -24,6 +24,7 @@ import android.preference.PreferenceManager;
 
 import org.fuusio.api.dependency.ApplicationScope;
 import org.fuusio.api.util.AppToolkit;
+import org.fuusio.api.util.UIToolkit;
 
 public abstract class FuusioApplication extends Application {
 
@@ -34,6 +35,8 @@ public abstract class FuusioApplication extends Application {
     protected FuusioApplication() {
         sInstance = this;
         mDependencyScope = createDependencyScope();
+        AppToolkit.setApplication(this);
+        UIToolkit.setApplication(this);
     }
 
     @SuppressWarnings("unchecked")
