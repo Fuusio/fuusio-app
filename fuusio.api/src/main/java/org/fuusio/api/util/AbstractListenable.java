@@ -50,7 +50,7 @@ public abstract class AbstractListenable<T_Listener> implements Listenable<T_Lis
     }
 
     @Override
-    public void clearListeners() {
+    public void removeAllListeners() {
         mListeners.clear();
     }
 }

@@ -29,5 +29,5 @@ public interface Listenable<T_Listener> {
 
     boolean removeListener(T_Listener pListener);
 
-    void clearListeners();
+    void removeAllListeners();
 }

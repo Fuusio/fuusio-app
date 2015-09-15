@@ -48,7 +48,6 @@ public abstract class FuusioApplication extends Application {
 
     /**
      * Gets the Google Analytics Property ID.
-     *
      * @return The property ID as an {@code int} value.
      */
     public int getPropertyId() {
@@ -119,33 +118,4 @@ public abstract class FuusioApplication extends Application {
         AppToolkit.setApplication(this);
         readPreferences();
     }
-
-
-
-    /*
-    public void handleNetworkNotAvailable() {
-        final Activity activity = getForegroundActivity();
-        handleNetworkNotAvailable(activity);
-    }
-
-    public void handleNetworkNotAvailable(final Context pActivity) {
-        if (pActivity == null) {
-            // TODO context = getApplicationContext().getOrCreate;
-        }
-        final AlertDialog.Builder builder = new AlertDialog.Builder(pActivity);
-        // TODO builder.setTitle(R.string.title_server_connection_error);
-        // TODO builder.setIcon(R.drawable.ic_dialog_alert);
-        // TODO builder.setPositiveButton(R.string.button_ok, this);
-        // TODO builder.setMessage(R.string.text_network_not_available);
-        // final AlertDialog dialog = builder.show();
-        // mAlertDialog = dialog;
-
-        pActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                builder.show();
-            }
-        });
-    }*/
-
 }

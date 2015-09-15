@@ -15,11 +15,6 @@
  */
 package org.fuusio.api.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.List;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -29,7 +24,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -39,6 +33,11 @@ import android.os.Build;
 import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.View;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.List;
 
 public class AppToolkit {
 
@@ -226,12 +225,12 @@ public class AppToolkit {
 
     public static boolean isNetworkAvailable() {
         final Context context = getApplicationContext();
-        final ConnectivityManager manager = (ConnectivityManager) context .getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (manager == null) {
             L.wtf(AppToolkit.class, "isNetworkAvailable()", "Network access not allowed");
         } else {
-            NetworkInfo[] info = manager.getAllNetworkInfo();
+            final NetworkInfo[] info = manager.getAllNetworkInfo();
 
             if (info != null) {
                 for (int i = 0; i < info.length; i++) {

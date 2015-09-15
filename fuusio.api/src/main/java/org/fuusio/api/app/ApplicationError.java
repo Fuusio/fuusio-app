@@ -18,7 +18,7 @@ package org.fuusio.api.app;
 public interface ApplicationError {
 
     /**
-     * Return the unique id of this error.
+     * Return the unique code for this error.
      * @return An {@link int} code.
      */
     int getCode();
