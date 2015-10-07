@@ -65,7 +65,6 @@ public class ModelObjectTableDescriptor implements TableDescriptor {
 				return columnDescriptor;
 			}
 		}
-		
 		return null;
 	}
 

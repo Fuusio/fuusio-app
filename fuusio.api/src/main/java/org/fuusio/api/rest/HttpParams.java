@@ -15,11 +15,14 @@
  */
 package org.fuusio.api.rest;
 
+import android.util.Log;
+
 import org.fuusio.api.util.KeyValue;
 import org.fuusio.api.util.L;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -97,6 +100,35 @@ public class HttpParams {
             return encodedParams.toString().getBytes(pParamsEncoding);
         } catch (final UnsupportedEncodingException pException) {
             final RuntimeException runtimeException = new RuntimeException("Encoding not supported: " + pParamsEncoding, pException);
+            L.wtf(this, "encodeParameters", runtimeException);
+            throw runtimeException;
+        }
+    }
+
+    public void encodeParameters(final StringBuilder pEncodedParams) {
+        encodeParameters(pEncodedParams, mParamsEncoding);
+    }
+
+    public void encodeParameters(final StringBuilder pEncodedParams, final String paramsEncoding) {
+        boolean firstParameter = true;
+
+        try {
+            for (final KeyValue<String, String> keyValue : mKeyValues) {
+                final String key = URLEncoder.encode(keyValue.getKey(), paramsEncoding);
+                final String value = URLEncoder.encode(keyValue.getValue(), paramsEncoding);
+
+                if (!firstParameter) {
+                    pEncodedParams.append('&');
+                } else {
+                    firstParameter = false;
+                }
+
+                pEncodedParams.append(key);
+                pEncodedParams.append('=');
+                pEncodedParams.append(value);
+            }
+        } catch (final UnsupportedEncodingException pException) {
+            final RuntimeException runtimeException = new RuntimeException("Encoding not supported: " + paramsEncoding, pException);
             L.wtf(this, "encodeParameters", runtimeException);
             throw runtimeException;
         }

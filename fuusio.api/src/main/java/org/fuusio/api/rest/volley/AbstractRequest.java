@@ -69,6 +69,19 @@ public abstract class AbstractRequest<T_Response extends Object> extends Request
         mParams.add(pKey, pValue);
     }
 
+    public void addParam(final String pKey, final boolean pValue) {
+        addParam(pKey, Boolean.toString(pValue));
+    }
+
+    public void addParam(final String pKey, final float pValue) {
+        addParam(pKey, Float.toString(pValue));
+    }
+
+    public void addParam(final String pKey, final int pValue) {
+        addParam(pKey, Integer.toString(pValue));
+    }
+
+
     @Override
     public byte[] getBody() throws AuthFailureError {
         if (mParams != null && mParams.getSize() > 0) {

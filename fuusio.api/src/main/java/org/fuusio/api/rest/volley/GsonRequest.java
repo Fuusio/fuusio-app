@@ -15,7 +15,6 @@
  */
 package org.fuusio.api.rest.volley;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
@@ -26,7 +25,6 @@ import com.google.gson.Gson;
 import org.fuusio.api.util.L;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Map;
 
 public class GsonRequest<T> extends AbstractRequest<T> {
 

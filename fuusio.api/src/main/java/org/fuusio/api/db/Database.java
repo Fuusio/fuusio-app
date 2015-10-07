@@ -112,15 +112,15 @@ public abstract class Database<T_DatabaseHelper extends DatabaseHelper> {
     @SuppressWarnings("unchecked")
 	public static <T> T fromString(final String pString) throws IOException, ClassNotFoundException {
         final byte [] data = Base64.decode(pString, Base64.DEFAULT);
-        ObjectInputStream inputStream = new ObjectInputStream(new ByteArrayInputStream(data));
-        T object  = (T)inputStream.readObject();
+        final ObjectInputStream inputStream = new ObjectInputStream(new ByteArrayInputStream(data));
+        final T object  = (T)inputStream.readObject();
         inputStream.close();
         return object;
     }
 
     public static String toString(final Serializable pObject) throws IOException {
-        ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
-        ObjectOutputStream outputStream = new ObjectOutputStream(byteOutputStream);
+        final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+        final ObjectOutputStream outputStream = new ObjectOutputStream(byteOutputStream);
         outputStream.writeObject(pObject);
         outputStream.close();
         return new String(Base64.encodeToString(byteOutputStream.toByteArray(), Base64.DEFAULT));
@@ -146,7 +146,7 @@ public abstract class Database<T_DatabaseHelper extends DatabaseHelper> {
         final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
        
 		try {
-			ObjectOutputStream outputStream = new ObjectOutputStream(byteOutputStream);
+			final ObjectOutputStream outputStream = new ObjectOutputStream(byteOutputStream);
 		    outputStream.writeObject(pObject);
 		    outputStream.close();			 
 		} catch (final IOException pException) {
