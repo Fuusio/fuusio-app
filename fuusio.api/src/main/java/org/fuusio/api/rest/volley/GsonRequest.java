@@ -29,8 +29,9 @@ import java.io.UnsupportedEncodingException;
 public class GsonRequest<T> extends AbstractRequest<T> {
 
     private final Gson mGson;
-    private final String mRequestBody;
     private final Class<T> mResponseClass;
+
+    private String mRequestBody;
 
     public GsonRequest(final String pUrl, final Class pResponseClass,
                        final Response.Listener pListener, final Response.ErrorListener pErrorListener){
@@ -46,7 +47,7 @@ public class GsonRequest<T> extends AbstractRequest<T> {
                              final Response.Listener pListener, final Response.ErrorListener pErrorListener){
         super(pMethod, pUrl, pListener, pErrorListener);
 
-        mGson = new Gson();
+        mGson = createGson();
         mResponseClass = pResponseClass;
 
         if (pBody!=null){
@@ -56,15 +57,24 @@ public class GsonRequest<T> extends AbstractRequest<T> {
         }
     }
 
+    protected Gson createGson() {
+        return new Gson();
+    }
+
     @Override
     public byte[] getBody(){
         try {
             return mRequestBody == null? null : mRequestBody.getBytes(PROTOCOL_CHARSET);
-        } catch (final UnsupportedEncodingException pException){
-            L.wtf(this, "getBody", pException);
+        } catch (UnsupportedEncodingException e){
+            L.wtf(this, "getBody", e);
             VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, PROTOCOL_CHARSET);
             return null;
         }
+    }
+
+    @Override
+    public void setBody(final Object pBody) {
+        mRequestBody = (pBody != null) ? mGson.toJson(pBody) : null;
     }
 
     @Override

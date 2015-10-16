@@ -22,9 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 
-import org.fuusio.api.rest.HttpHeaders;
-import org.fuusio.api.rest.HttpParams;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,13 +30,12 @@ import java.util.Map;
  * provides additional framework support for using Volley to implement Rest communication.
  * @param <T_Response> The generic type of the response object.
  */
-public abstract class AbstractRequest<T_Response extends Object> extends Request<T_Response> {
+public abstract class AbstractRequest<T_Response> extends Request<T_Response> {
 
     protected static final String PROTOCOL_CHARSET = "utf-8";
 
-    protected final HttpHeaders mHeaders;
+    protected final Map<String, String> mHeaders;
 
-    protected HttpParams mParams;
     protected Response.Listener<T_Response> mResponseListener;
 
     protected AbstractRequest(final String pUrl, final Listener<T_Response> pResponseListener, final ErrorListener pErrorListener) {
@@ -48,7 +45,7 @@ public abstract class AbstractRequest<T_Response extends Object> extends Request
     protected AbstractRequest(final int pMethod, String pUrl, final Listener<T_Response> pResponseListener, final ErrorListener pErrorListener) {
         super(pMethod, pUrl, pErrorListener);
         mResponseListener = pResponseListener;
-        mHeaders = new HttpHeaders();
+        mHeaders = new HashMap<>();
     }
 
     @Override
@@ -61,49 +58,21 @@ public abstract class AbstractRequest<T_Response extends Object> extends Request
         }
     }
 
-    public void addParam(final String pKey, final String pValue) {
-
-        if (mParams != null) {
-            mParams = new HttpParams(getParamsEncoding());
-        }
-        mParams.add(pKey, pValue);
-    }
-
-    public void addParam(final String pKey, final boolean pValue) {
-        addParam(pKey, Boolean.toString(pValue));
-    }
-
-    public void addParam(final String pKey, final float pValue) {
-        addParam(pKey, Float.toString(pValue));
-    }
-
-    public void addParam(final String pKey, final int pValue) {
-        addParam(pKey, Integer.toString(pValue));
-    }
-
-
-    @Override
-    public byte[] getBody() throws AuthFailureError {
-        if (mParams != null && mParams.getSize() > 0) {
-            return mParams.encodeParameters(getParamsEncoding());
-        }
-        return null;
-    }
+    public abstract void setBody(Object pBody);
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
         if (mHeaders != null) {
-            return mHeaders.getMap();
+            return mHeaders;
         }
         return null;
     }
 
-    public void setParams(final HttpParams pParams) {
-        mParams = pParams;
+    public void setHeaders(final Map<String, String> headers) {
+        mHeaders.clear();
+        if (headers != null) {
+            mHeaders.putAll(headers);
+        }
     }
 
-    public void setHeaders(final HttpHeaders pHeaders) {
-        mHeaders.clear();
-        mHeaders.addAll(pHeaders);
-    }
 }

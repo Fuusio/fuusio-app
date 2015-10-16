@@ -44,22 +44,26 @@ public class HttpParams {
         mParamsEncoding = pParamsEncoding;
     }
 
-    public final List<KeyValue<String, String>> getKeyValues() {
+    public List<KeyValue<String, String>> getKeyValues() {
         return mKeyValues;
     }
 
-    public final HttpParams add(final String pParameter, final String pValue) {
+    public HttpParams add(final String pParameter, final String pValue) {
         mKeyValues.add(new KeyValue<String, String>(pParameter, pValue));
         return this;
     }
 
-    public final void addAll(final HttpParams pParams) {
+    public void addAll(final HttpParams pParams) {
         if (pParams != null) {
             mKeyValues.addAll(pParams.mKeyValues);
         }
     }
 
-    public final Map<String, String> getMap() {
+    public void clear() {
+        mKeyValues.clear();
+    }
+
+    public Map<String, String> getMap() {
         final Map<String, String> map = new HashMap<String, String>();
 
         for (final KeyValue<String, String> keyValue : mKeyValues) { // TODO Deal with multiple key occurrences

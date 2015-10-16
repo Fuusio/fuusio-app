@@ -15,9 +15,11 @@
  */
 package org.fuusio.api.rest;
 
-public interface RestListener<T_Response> {
+import com.android.volley.VolleyError;
+
+public interface RequestListener<T_Response> {
 
     void onResponse(T_Response pResponse);
 
-    void onError(RequestError pError);
+    void onError(VolleyError pError);
 }

@@ -53,4 +53,9 @@ public abstract class AbstractListenable<T_Listener> implements Listenable<T_Lis
     public void removeAllListeners() {
         mListeners.clear();
     }
+
+    @Override
+    public boolean hasListeners() {
+        return !mListeners.isEmpty();
+    }
 }

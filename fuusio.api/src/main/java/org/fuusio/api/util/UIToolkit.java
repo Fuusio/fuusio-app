@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import org.fuusio.api.app.FuusioApplication;
+import org.fuusio.api.graphics.BitmapManager;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -502,7 +502,7 @@ public class UIToolkit {
             bitmap = BitmapFactory.decodeStream(inputStream);
 
             if (pUseCache) {
-                BitmapCache.addBitmap(pResId, bitmap);
+                BitmapManager.addBitmap(pResId, bitmap);
             }
         }
 
@@ -524,7 +524,7 @@ public class UIToolkit {
 	            bitmap = BitmapFactory.decodeStream(inputStream);
 	
 	            if (pUseCache) {
-	                BitmapCache.addBitmap(pResId, bitmap);
+	                BitmapManager.addBitmap(pResId, bitmap);
 	            }
 	        }
         }
@@ -533,7 +533,7 @@ public class UIToolkit {
     }
 
     public static Bitmap getCachedBitmap(final int pResId) {
-        return BitmapCache.getBitmap(pResId);
+        return BitmapManager.getBitmap(pResId);
     }
 
     public static File getApplicationDirectory() {

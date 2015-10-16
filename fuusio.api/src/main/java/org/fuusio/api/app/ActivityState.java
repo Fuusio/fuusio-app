@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.fuusio.api.util;
+package org.fuusio.api.app;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import org.fuusio.api.util.LifecycleState;
 
 /**
  * {@link ActivityState} represents the current state of an {@link Activity}.
@@ -24,13 +26,13 @@ import android.os.Bundle;
 public class ActivityState {
 
     private final Activity mActivity;
-    private boolean mRestarted;
     private LifecycleState mLifecycleState;
+    private boolean mRestarted;
 
     public ActivityState(final Activity pActivity) {
         mActivity = pActivity;
-        mRestarted = false;
         mLifecycleState = LifecycleState.DORMANT;
+        mRestarted = false;
     }
 
     public boolean isCreated() {

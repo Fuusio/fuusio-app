@@ -34,6 +34,8 @@ import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import org.fuusio.api.graphics.BitmapManager;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -121,7 +123,7 @@ public class AppToolkit {
             bitmap = BitmapFactory.decodeStream(inputStream);
 
             if (pUseCache) {
-                BitmapCache.addBitmap(pResId, bitmap);
+                BitmapManager.addBitmap(pResId, bitmap);
             }
         }
 
@@ -142,7 +144,7 @@ public class AppToolkit {
             bitmap = BitmapFactory.decodeStream(inputStream);
 
             if (pUseCache) {
-                BitmapCache.addBitmap(pResId, bitmap);
+                BitmapManager.addBitmap(pResId, bitmap);
             }
         }
 
@@ -173,7 +175,7 @@ public class AppToolkit {
     }
 
     public static Bitmap getCachedBitmap(final int pResId) {
-        return BitmapCache.getBitmap(pResId);
+        return BitmapManager.getBitmap(pResId);
     }
 
     public static File getApplicationDirectory() {

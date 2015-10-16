@@ -21,7 +21,7 @@ import android.widget.AdapterView;
 import org.fuusio.api.binding.AdapterViewBinding;
 import org.fuusio.api.binding.ViewBinding;
 import org.fuusio.api.binding.ViewBindingManager;
-import org.fuusio.api.util.ActivityState;
+import org.fuusio.api.app.ActivityState;
 
 /**
  * {@link ViewActivity} provides an abstract base class for concrete {@link AppCompatActivity}

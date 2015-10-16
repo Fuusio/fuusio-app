@@ -18,8 +18,7 @@ package org.fuusio.api.rest;
 import org.fuusio.api.component.Component;
 
 /**
- * {@link RestService} define an interface for components that provide an API for some RESTFul
- * services.
+ * {@link RestService} defines an interface for components that implement and provide a REST API.
  */
 public interface RestService extends Component {
 }

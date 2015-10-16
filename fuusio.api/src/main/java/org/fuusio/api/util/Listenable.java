@@ -30,4 +30,6 @@ public interface Listenable<T_Listener> {
     boolean removeListener(T_Listener pListener);
 
     void removeAllListeners();
+
+    boolean hasListeners();
 }

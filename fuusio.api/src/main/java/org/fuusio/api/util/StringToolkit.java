@@ -397,7 +397,11 @@ public class StringToolkit {
         return pString.length() > pLength ? pString.substring(0, pLength) : pString;
     }
 
-    public static String reverse(final String pLetters) {
-        return new StringBuilder(pLetters).reverse().toString();
+    public static String reverse(final String pString) {
+        return new StringBuilder(pString).reverse().toString();
+    }
+
+    public static boolean isEmpty(final String pString) {
+        return (pString == null || pString.isEmpty());
     }
 }

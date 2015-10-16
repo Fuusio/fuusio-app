@@ -15,17 +15,31 @@
  */
 package org.fuusio.api.rest;
 
+import com.android.volley.Request;
+
 /**
  * {@link HttpMethod} defines an enumerated type for representing HTTP methods.
  */
 public enum HttpMethod {
 
-    UNKNOWN("Unknown"), GET("Get"), POST("Post"), PUT("Put"), DELETE("Delete"), TRACE("Trace");
+    GET("GET", Request.Method.GET),
+    POST("POST", Request.Method.POST),
+    PUT("PUT", Request.Method.PUT),
+    DELETE("DELETE", Request.Method.DELETE),
+    HEAD("HEAD", Request.Method.HEAD),
+    OPTIONS("OPTIONS", Request.Method.OPTIONS),
+    TRACE("TRACE", Request.Method.TRACE);
 
+    private final int mCode;
     private final String mName;
 
-    HttpMethod(final String pName) {
+    HttpMethod(final String pName, final int pCode) {
         mName = pName;
+        mCode = pCode;
+    }
+
+    public int getMethodCode() {
+        return mCode;
     }
 
     public final String getName() {

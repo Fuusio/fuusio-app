@@ -46,4 +46,9 @@ public class JsonRequest extends AbstractRequest<JsonElement> {
             return Response.error(new ParseError(pException));
         }
     }
+
+    @Override
+    public void setBody(final Object pBody) {
+        // Do nothing
+    }
 }
