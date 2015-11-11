@@ -23,14 +23,14 @@ public class TouchManager {
     private final Vector2D[] mPoints;
     private final Vector2D[] mPreviousPoints;
 
-    public TouchManager(final int pMaxTouchPoints) {
-        mMaxTouchPoints = pMaxTouchPoints;
-        mPoints = new Vector2D[pMaxTouchPoints];
-        mPreviousPoints = new Vector2D[pMaxTouchPoints];
+    public TouchManager(final int maxTouchPoints) {
+        mMaxTouchPoints = maxTouchPoints;
+        mPoints = new Vector2D[maxTouchPoints];
+        mPreviousPoints = new Vector2D[maxTouchPoints];
     }
 
-    public boolean isPressed(final int pIndex) {
-        return (mPoints[pIndex] != null);
+    public boolean isPressed(final int index) {
+        return (mPoints[index] != null);
     }
 
     public int getPressCount() {
@@ -44,52 +44,52 @@ public class TouchManager {
         return count;
     }
 
-    public Vector2D moveDelta(final int pIndex) {
+    public Vector2D moveDelta(final int index) {
 
-        if (isPressed(pIndex)) {
-            final Vector2D previous = mPreviousPoints[pIndex] != null ? mPreviousPoints[pIndex]
-                    : mPoints[pIndex];
-            return Vector2D.subtract(mPoints[pIndex], previous);
+        if (isPressed(index)) {
+            final Vector2D previous = mPreviousPoints[index] != null ? mPreviousPoints[index]
+                    : mPoints[index];
+            return Vector2D.subtract(mPoints[index], previous);
         } else {
             return new Vector2D();
         }
     }
 
-    private static Vector2D getVector(final Vector2D pVector1, final Vector2D pVector2) {
-        if (pVector1 == null || pVector2 == null) {
+    private static Vector2D getVector(final Vector2D vector1, final Vector2D vector2) {
+        if (vector1 == null || vector2 == null) {
             throw new RuntimeException("Can't do this on nulls");
         }
 
-        return Vector2D.subtract(pVector2, pVector1);
+        return Vector2D.subtract(vector2, vector1);
     }
 
-    public Vector2D getPoint(final int pIndex) {
-        return mPoints[pIndex] != null ? mPoints[pIndex] : new Vector2D();
+    public Vector2D getPoint(final int index) {
+        return mPoints[index] != null ? mPoints[index] : new Vector2D();
     }
 
-    public Vector2D getPreviousPoint(final int pIndex) {
-        return mPreviousPoints[pIndex] != null ? mPreviousPoints[pIndex] : new Vector2D();
+    public Vector2D getPreviousPoint(final int index) {
+        return mPreviousPoints[index] != null ? mPreviousPoints[index] : new Vector2D();
     }
 
-    public Vector2D getVector(final int pIndexA, final int pIndexB) {
-        return getVector(mPoints[pIndexA], mPoints[pIndexB]);
+    public Vector2D getVector(final int indexA, final int indexB) {
+        return getVector(mPoints[indexA], mPoints[indexB]);
     }
 
-    public Vector2D getPreviousVector(final int pIndexA, final int pIndexB) {
-        if (mPreviousPoints[pIndexA] == null || mPreviousPoints[pIndexB] == null) {
-            return getVector(mPoints[pIndexA], mPoints[pIndexB]);
+    public Vector2D getPreviousVector(final int indexA, final int indexB) {
+        if (mPreviousPoints[indexA] == null || mPreviousPoints[indexB] == null) {
+            return getVector(mPoints[indexA], mPoints[indexB]);
         } else {
-            return getVector(mPreviousPoints[pIndexA], mPreviousPoints[pIndexB]);
+            return getVector(mPreviousPoints[indexA], mPreviousPoints[indexB]);
         }
     }
 
-    public void update(final MotionEvent pEvent) {
+    public void update(final MotionEvent event) {
 
-        final int action = pEvent.getAction() & MotionEvent.ACTION_MASK;
+        final int action = event.getAction() & MotionEvent.ACTION_MASK;
 
         if (action == MotionEvent.ACTION_POINTER_UP || action == MotionEvent.ACTION_UP) {
 
-            final int index = pEvent.getAction() >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
+            final int index = event.getAction() >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
 
             if (index < mMaxTouchPoints) {
                 mPreviousPoints[index] = null;
@@ -98,13 +98,13 @@ public class TouchManager {
             }
         } else {
 
-            final int pointerCount = pEvent.getPointerCount();
+            final int pointerCount = event.getPointerCount();
 
             for (int i = 0; i < mMaxTouchPoints; ++i) {
 
                 if (i < pointerCount) {
-                    final int index = pEvent.getPointerId(i);
-                    final Vector2D newPoint = new Vector2D(pEvent.getX(i), pEvent.getY(i));
+                    final int index = event.getPointerId(i);
+                    final Vector2D newPoint = new Vector2D(event.getX(i), event.getY(i));
 
                     if (mPoints[index] == null) {
                         mPoints[index] = newPoint;

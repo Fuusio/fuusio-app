@@ -45,10 +45,10 @@ public class AbstractPresenter<T_View extends View, T_Listener extends Presenter
 
     /**
      * Set the {@link View} of this {@link Presenter}.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      */
-    public void setView(final T_View pView) {
-        mView = pView;
+    public void setView(final T_View view) {
+        mView = view;
     }
 
     /**
@@ -105,29 +105,29 @@ public class AbstractPresenter<T_View extends View, T_Listener extends Presenter
 
     @SuppressWarnings("unchecked")
     @Override
-    public void onViewCreated(final View pView, final Bundle pInState) {
-        setView((T_View)pView);
+    public void onViewCreated(final View view, final Bundle inState) {
+        setView((T_View)view);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public void onViewResume(final View pView) {
-        setView((T_View)pView);
+    public void onViewResume(final View view) {
+        setView((T_View)view);
         resume();
     }
 
     @Override
-    public void onViewPause(final View pView) {
+    public void onViewPause(final View view) {
         pause();
     }
 
     @Override
-    public void onViewStart(final View pView) {
+    public void onViewStart(final View view) {
         start();
     }
 
     @Override
-    public void onViewStop(final View pView) {
+    public void onViewStop(final View view) {
         stop();
     }
 }

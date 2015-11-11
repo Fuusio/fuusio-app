@@ -28,8 +28,8 @@ public interface Model<T_EventType, T_Listener extends Model.Listener> extends C
 
         /**
          * Invoked when the {@link Model} has changed as specified by the given {@link ModelEvent}.
-         * @param pEvent A {@link ModelEvent}.
+         * @param event A {@link ModelEvent}.
          */
-        void onModelChanged(ModelEvent pEvent);
+        void onModelChanged(ModelEvent event);
     }
 }

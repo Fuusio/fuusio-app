@@ -36,10 +36,10 @@ public enum Alignment {
     /**
      * Constructs a new instance of {@code Alignment} with the given displayable label.
      * 
-     * @param pLabel A {@link String} for displayable label.
+     * @param label A {@link String} for displayable label.
      */
-    private Alignment(final String pLabel) {
-        mLabel = pLabel;
+    Alignment(final String label) {
+        mLabel = label;
     }
 
     /**

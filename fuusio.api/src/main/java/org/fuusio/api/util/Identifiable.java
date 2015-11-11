@@ -21,10 +21,10 @@ public interface Identifiable {
 
     int getId();
 
-    void setId(int pId);
+    void setId(int id);
 
     String getName();
 
-    void setName(String pName);
+    void setName(String name);
 
 }

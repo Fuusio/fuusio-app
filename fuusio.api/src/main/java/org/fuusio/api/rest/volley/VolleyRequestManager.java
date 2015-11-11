@@ -26,6 +26,7 @@ public class VolleyRequestManager implements RequestManager<VolleyRestRequest<Ab
     private ImageLoader mImageLoader;
     private RequestQueue mRequestQueue;
     private UrlStack mUrlStack;
+
     public VolleyRequestManager() {
         mImageLoader = createImageLoader();
         mUrlStack = new UrlStack();
@@ -33,9 +34,15 @@ public class VolleyRequestManager implements RequestManager<VolleyRestRequest<Ab
     }
 
     protected ImageLoader createImageLoader() {
+        mImageCache = createImageCache();
+        return new ImageLoader(mRequestQueue, mImageCache);
+    }
+
+    protected ImageLoader.ImageCache createImageCache() {
+
         mBitmapManager = D.get(BitmapManager.class);
 
-        mImageCache = new ImageLoader.ImageCache() {
+        return new ImageLoader.ImageCache() {
             @Override
             public Bitmap getBitmap(final String pKey) {
                 return mBitmapManager.getBitmap(pKey);
@@ -46,8 +53,6 @@ public class VolleyRequestManager implements RequestManager<VolleyRestRequest<Ab
                 mBitmapManager.addBitmap(pKey, pBitmap);
             }
         };
-
-        return new ImageLoader(mRequestQueue, mImageCache);
     }
 
     protected ImageLoader getImageLoader() {

@@ -26,63 +26,63 @@ public class Insets {
         this(0, 0, 0, 0);
     }
 
-    public Insets(final int pTop, final int pLeft, final int pBottom, final int pRight) {
-        mTop = pTop;
-        mLeft = pLeft;
-        mBottom = pBottom;
-        mRight = pRight;
+    public Insets(final int top, final int left, final int bottom, final int right) {
+        mTop = top;
+        mLeft = left;
+        mBottom = bottom;
+        mRight = right;
     }
 
-    public Insets(final Insets pSource) {
-        mTop = pSource.mTop;
-        mLeft = pSource.mLeft;
-        mBottom = pSource.mBottom;
-        mRight = pSource.mRight;
+    public Insets(final Insets source) {
+        mTop = source.mTop;
+        mLeft = source.mLeft;
+        mBottom = source.mBottom;
+        mRight = source.mRight;
     }
 
     public final int getBottom() {
         return mBottom;
     }
 
-    public void setBottom(final int pBottom) {
-        mBottom = pBottom;
+    public void setBottom(final int bottom) {
+        mBottom = bottom;
     }
 
     public final int getLeft() {
         return mLeft;
     }
 
-    public void setLeft(final int pLeft) {
-        mLeft = pLeft;
+    public void setLeft(final int left) {
+        mLeft = left;
     }
 
     public int getRight() {
         return mRight;
     }
 
-    public void setRight(final int pRight) {
-        mRight = pRight;
+    public void setRight(final int right) {
+        mRight = right;
     }
 
     public final int getTop() {
         return mTop;
     }
 
-    public void setTop(final int pTop) {
-        mTop = pTop;
+    public void setTop(final int top) {
+        mTop = top;
     }
 
-    public void set(final int pTop, final int pLeft, final int pBottom, final int pRight) {
-        mTop = pTop;
-        mLeft = pLeft;
-        mBottom = pBottom;
-        mRight = pRight;
+    public void set(final int top, final int left, final int bottom, final int right) {
+        mTop = top;
+        mLeft = left;
+        mBottom = bottom;
+        mRight = right;
     }
 
-    public void set(final Insets pInsets) {
-        mTop = pInsets.mTop;
-        mLeft = pInsets.mLeft;
-        mBottom = pInsets.mBottom;
-        mRight = pInsets.mRight;
+    public void set(final Insets insets) {
+        mTop = insets.mTop;
+        mLeft = insets.mLeft;
+        mBottom = insets.mBottom;
+        mRight = insets.mRight;
     }
 }

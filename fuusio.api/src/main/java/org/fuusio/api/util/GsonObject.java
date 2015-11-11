@@ -31,13 +31,13 @@ public abstract class GsonObject {
         return gson.toJson(this);
     }
 
-    public static <T extends GsonObject> T fromJson(final String pJsonString, final Class<T> pClass) {
+    public static <T extends GsonObject> T fromJson(final String jsonString, final Class<T> objectClass) {
         final Gson gson = new Gson();
-        return gson.fromJson(pJsonString, pClass);
+        return gson.fromJson(jsonString, objectClass);
 
     }
 
-    public static <T extends GsonObject> T fromJson(final JsonObject pJsonObject, final Class<T> pClass) {
-        return GsonObject.fromJson(pJsonObject.toString(), pClass);
+    public static <T extends GsonObject> T fromJson(final JsonObject jsonObject, final Class<T> objectClass) {
+        return GsonObject.fromJson(jsonObject.toString(), objectClass);
     }
 }

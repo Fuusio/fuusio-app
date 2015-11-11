@@ -21,12 +21,12 @@ public final class ObjectToolkit {
         // No instances.
     }
 
-    public static <T> Class<T> getClass(final Object pObject) {
-        return (Class<T>) pObject.getClass();
+    public static <T> Class<T> getClass(final Object object) {
+        return (Class<T>) object.getClass();
     }
 
-    public static String getHumanReadableClassName(final Object pObject) {
-        final Class<Object> objectClass = getClass(pObject);
+    public static String getHumanReadableClassName(final Object object) {
+        final Class<Object> objectClass = getClass(object);
         String className = objectClass.getSimpleName();
 
         if (objectClass.isMemberClass()) {

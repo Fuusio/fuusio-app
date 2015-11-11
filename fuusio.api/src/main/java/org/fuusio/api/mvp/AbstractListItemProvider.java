@@ -34,13 +34,13 @@ public abstract class AbstractListItemProvider implements ListItemProvider {
     }
 
     @Override
-    public boolean isEnabled(final int pPosition) {
+    public boolean isEnabled(final int position) {
         return areAllItemsEnabled();
     }
 
     @Override
-    public long getItemId(final int pPosition) {
-        return pPosition;
+    public long getItemId(final int position) {
+        return position;
     }
 
     @Override
@@ -54,22 +54,22 @@ public abstract class AbstractListItemProvider implements ListItemProvider {
     }
 
     @Override
-    public void remove(final int pPosition) {
+    public void remove(final int position) {
     }
 
     @Override
-    public boolean canDismiss(final int pPosition) {
+    public boolean canDismiss(final int position) {
         return false;
     }
 
     @Override
-    public void registerDataSetObserver(final DataSetObserver pObserver) {
-        mObservers.add(pObserver);
+    public void registerDataSetObserver(final DataSetObserver observer) {
+        mObservers.add(observer);
     }
 
     @Override
-    public void unregisterDataSetObserver(final DataSetObserver pObserver) {
-        mObservers.remove(pObserver);
+    public void unregisterDataSetObserver(final DataSetObserver observer) {
+        mObservers.remove(observer);
     }
 
     @Override

@@ -33,7 +33,7 @@ public abstract class FuusioApplication extends Application {
     protected final ApplicationScope mDependencyScope;
 
     protected FuusioApplication() {
-        sInstance = this;
+        setInstance(this);
         mDependencyScope = createDependencyScope();
         AppToolkit.setApplication(this);
         UIToolkit.setApplication(this);
@@ -42,6 +42,10 @@ public abstract class FuusioApplication extends Application {
     @SuppressWarnings("unchecked")
     public static <T extends FuusioApplication> T getInstance() {
         return (T)sInstance;
+    }
+
+    private static void setInstance(final FuusioApplication pInstance) {
+        sInstance = pInstance;
     }
 
     protected abstract ApplicationScope createDependencyScope();

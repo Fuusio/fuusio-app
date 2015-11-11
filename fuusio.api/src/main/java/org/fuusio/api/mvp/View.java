@@ -26,7 +26,30 @@ import org.fuusio.api.component.Component;
  */
 public interface View<T_Presenter extends Presenter> extends Component {
 
+    /**
+     * Gets the {@link Presenter} assigned for this {@link View}.
+     * @return A {@link Presenter}.
+     */
     T_Presenter getPresenter();
+
+
+    /**
+     * Gets the {@link ViewState} of this {@link View}.
+     * @return An {@link ViewState}.
+     */
+    ViewState getState();
+
+    /**
+     * Test if this {@link View} has been paused.
+     * @return A {@code boolean}.
+     */
+    boolean isPaused();
+
+    /**
+     * Test if this {@link View} has been restarted.
+     * @return A {@code boolean}.
+     */
+    boolean isRestarted();
 
     interface Listener {
 
@@ -34,41 +57,41 @@ public interface View<T_Presenter extends Presenter> extends Component {
          * Invoked by a {@link View} implementation when it is created,
          * e.g. on {@link ViewFragment#onViewCreated(android.view.View, Bundle)}.
          *
-         * @param pView A {@link View}
-         * @param pInState {@lin Bundle} containing the initial state.
+         * @param view A {@link View}
+         * @param inState {@lin Bundle} containing the initial state.
          */
-        void onViewCreated(View pView, Bundle pInState);
+        void onViewCreated(View view, Bundle inState);
 
         /**
          * Invoked by a {@link View} implementation when it is resumed,
          * e.g. on {@link ViewFragment#onResume()}.
          *
-         * @param pView A {@link View}
+         * @param view A {@link View}
          */
-        void onViewResume(View pView);
+        void onViewResume(View view);
 
         /**
          * Invoked by a {@link View} implementation when it is paused,
          * e.g. on {@link ViewFragment#onPause()}.
          *
-         * @param pView A {@link View}
+         * @param view A {@link View}
          */
-        void onViewPause(View pView);
+        void onViewPause(View view);
 
         /**
          * Invoked by a {@link View} implementation when it is started,
          * e.g. on {@link ViewFragment#onStart()}.
          *
-         * @param pView A {@link View}
+         * @param view A {@link View}
          */
-        void onViewStart(View pView);
+        void onViewStart(View view);
 
         /**
          * Invoked by a {@link View} implementation when it is stopped,
          * e.g. on {@link ViewFragment#onStop()}.
          *
-         * @param pView A {@link View}
+         * @param view A {@link View}
          */
-        void onViewStop(View pView);
+        void onViewStop(View view);
     }
 }

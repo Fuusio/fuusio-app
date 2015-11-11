@@ -44,8 +44,8 @@ public enum ExecutionState {
 
     private final String mLabel;
 
-    ExecutionState(final String pLabel) {
-        mLabel = pLabel;
+    ExecutionState(final String label) {
+        mLabel = label;
     }
 
     public String getLabel() {

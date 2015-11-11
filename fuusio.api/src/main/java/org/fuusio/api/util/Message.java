@@ -24,13 +24,13 @@ public class Message {
     private final int mId;
     private final Object[] mArgs;
 
-    private Message(final int pId, final Object[] pArgs) {
-        mId = pId;
-        mArgs = pArgs;
+    private Message(final int id, final Object[] args) {
+        mId = id;
+        mArgs = args;
     }
 
-    public static Message create(final int pId, final Object... pArgs) {
-        return new Message(pId, pArgs);
+    public static Message create(final int id, final Object... args) {
+        return new Message(id, args);
     }
 
     public final int getId() {

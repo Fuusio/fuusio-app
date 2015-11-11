@@ -19,12 +19,12 @@ import org.fuusio.api.util.AbstractListenable;
 
 public class AbstractModel<T_EventType, T_Listener extends Model.Listener> extends AbstractListenable<T_Listener> implements Model<T_EventType, T_Listener> {
 
-    protected ModelEvent createEvent(final T_EventType pType) {
+    protected ModelEvent createEvent(final T_EventType type) {
         return null;
     }
 
-    protected void notifyModelChanged(final T_EventType pType) {
-        final ModelEvent event = createEvent(pType);
+    protected void notifyModelChanged(final T_EventType type) {
+        final ModelEvent event = createEvent(type);
 
         if (event != null) {
             for (final Listener listener : mListeners) {

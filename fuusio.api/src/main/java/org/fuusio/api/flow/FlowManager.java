@@ -20,7 +20,7 @@ import android.os.Bundle;
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.dependency.Dependency;
 import org.fuusio.api.dependency.DependencyScope;
-import org.fuusio.api.dependency.ScopeManager;
+import org.fuusio.api.dependency.DependencyScopeOwner;
 
 import java.lang.reflect.Constructor;
 
@@ -29,7 +29,7 @@ public class FlowManager {
     private static final String POSTFIX_IMPL = "Impl";
 
     private static FlowManager sInstance = null;
-    private static ScopeManager sTestScopeManager = null;
+    private static DependencyScopeOwner sTestScopeManager = null;
 
     private Flow mActiveFlow;
 
@@ -49,11 +49,11 @@ public class FlowManager {
     }
 
     /**
-     * Sets a {@link ScopeManager} that is used to provide a {@link DependencyScope} for testing
+     * Sets a {@link DependencyScopeOwner} that is used to provide a {@link DependencyScope} for testing
      * purposes.
-     * @param pProvider A {@link ScopeManager}.
+     * @param pProvider A {@link DependencyScopeOwner}.
      */
-    public static void setTestScopeProvider(final ScopeManager pProvider) {
+    public static void setTestScopeProvider(final DependencyScopeOwner pProvider) {
         sTestScopeManager = pProvider;
     }
 
@@ -102,7 +102,7 @@ public class FlowManager {
 
     /**
      * Creates the specified {@link Flow}, but does not start it. If the flow is
-     * a {@link ScopeManager} its {@link FlowScope} is added to cache of
+     * a {@link DependencyScopeOwner} its {@link FlowScope} is added to cache of
      * {@link DependencyScope}s.
      * @param pFlowClass A {@link Flow}
      * @param pContainer A {@link FlowFragmentContainer}.

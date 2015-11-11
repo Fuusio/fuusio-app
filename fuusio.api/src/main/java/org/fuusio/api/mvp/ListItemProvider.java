@@ -21,27 +21,27 @@ public interface ListItemProvider {
 
     boolean areAllItemsEnabled();
 
-    boolean isEnabled(int pPosition);
+    boolean isEnabled(int position);
 
     int getCount();
 
-    Object getItem(int pPosition);
+    Object getItem(int position);
 
-    long getItemId(int pPosition);
+    long getItemId(int position);
 
     boolean hasStableIds();
 
     boolean isEmpty();
 
-    void registerDataSetObserver(DataSetObserver pObserver);
+    void registerDataSetObserver(DataSetObserver observer);
 
-    void unregisterDataSetObserver(DataSetObserver pObserver);
+    void unregisterDataSetObserver(DataSetObserver observer);
 
-    void initializeItemView(ListItemView pItemView, int pPosition);
+    void initializeItemView(ListItemView itemView, int position);
 
-    void remove(int pPosition);
+    void remove(int position);
 
-    boolean canDismiss(int pPosition);
+    boolean canDismiss(int position);
 
     void notifyDataChanged();
 

@@ -33,8 +33,8 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
     protected T_ListItemProvider mItemProvider;
     protected int mUndoPosition;
 
-    protected DelegatedListAdapter(final Context pContext) {
-        mContext = pContext;
+    protected DelegatedListAdapter(final Context context) {
+        mContext = context;
         mItemViews = new HashMap<>();
         mUndoPosition = -1;
     }
@@ -43,8 +43,8 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
         return mContext;
     }
 
-    public void setItemProvider(final T_ListItemProvider pItemProvider) {
-        mItemProvider = pItemProvider;
+    public void setItemProvider(final T_ListItemProvider itemProvider) {
+        mItemProvider = itemProvider;
     }
 
     @Override
@@ -53,18 +53,18 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
     }
 
     @Override
-    public boolean isEnabled(final int pPosition) {
-        return mItemProvider.isEnabled(pPosition);
+    public boolean isEnabled(final int position) {
+        return mItemProvider.isEnabled(position);
     }
 
     @Override
-    public void registerDataSetObserver(final DataSetObserver pObserver) {
-        mItemProvider.registerDataSetObserver(pObserver);
+    public void registerDataSetObserver(final DataSetObserver observer) {
+        mItemProvider.registerDataSetObserver(observer);
     }
 
     @Override
-    public void unregisterDataSetObserver(final DataSetObserver pObserver) {
-        mItemProvider.unregisterDataSetObserver(pObserver);
+    public void unregisterDataSetObserver(final DataSetObserver observer) {
+        mItemProvider.unregisterDataSetObserver(observer);
     }
 
     @Override
@@ -73,18 +73,18 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
     }
 
     @Override
-    public Object getItem(final int pPosition) {
+    public Object getItem(final int position) {
 
-        if (pPosition == mUndoPosition) {
+        if (position == mUndoPosition) {
             return UNDO_ITEM;
         } else {
-            return mItemProvider.getItem(pPosition);
+            return mItemProvider.getItem(position);
         }
     }
 
     @Override
-    public long getItemId(final int pPosition) {
-        return mItemProvider.getItemId(pPosition);
+    public long getItemId(final int position) {
+        return mItemProvider.getItemId(position);
     }
 
     @Override
@@ -93,18 +93,18 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
     }
 
     @Override
-    public android.view.View getView(final int pPosition, final android.view.View pConvertView, final ViewGroup pParent) {
+    public android.view.View getView(final int position, final android.view.View convertView, final ViewGroup parent) {
         ListItemView itemView = null;
 
-        if (pConvertView == null) {
-            itemView = createItemView(pPosition);
+        if (convertView == null) {
+            itemView = createItemView(position);
             itemView.getInflatedView().setTag(itemView);
         } else {
-            itemView = (ListItemView)pConvertView.getTag();
+            itemView = (ListItemView)convertView.getTag();
         }
 
-        if (pPosition != mUndoPosition) {
-            mItemProvider.initializeItemView(itemView, pPosition);
+        if (position != mUndoPosition) {
+            mItemProvider.initializeItemView(itemView, position);
         }
 
         return itemView.getInflatedView();
@@ -112,13 +112,13 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
 
     /**
      * Constructs and appropriate {@link ListItemView} for the given item position.
-     * @param pPosition The item position on list.
+     * @param position The item position on list.
      * @returnA {@link ListItemView}.
      */
-    protected abstract ListItemView createItemView(final int pPosition);
+    protected abstract ListItemView createItemView(final int position);
 
     @Override
-    public abstract int getItemViewType(final int pPosition);
+    public abstract int getItemViewType(final int position);
 
     @Override
     public abstract int getViewTypeCount();
@@ -132,15 +132,15 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
         return mUndoPosition;
     }
 
-    public void remove(final int pPosition) {
+    public void remove(final int position) {
 
-        int position = pPosition;
+        int removePosition = position;
 
         if (mUndoPosition >= 0) {
             commitRemove();
 
             if (mUndoPosition < position) {
-                position--;
+                removePosition--;
             }
         }
 
@@ -152,8 +152,8 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
         mItemProvider.notifyDataChanged();
     }
 
-    public boolean canDismiss(final int pPosition) {
-        return mItemProvider.canDismiss(pPosition);
+    public boolean canDismiss(final int position) {
+        return mItemProvider.canDismiss(position);
     }
 
     public void undoRemove() {
@@ -172,14 +172,14 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
     }
 
     @Override
-    public void onScrollStateChanged(final AbsListView pView, final int pScrollState) {
+    public void onScrollStateChanged(final AbsListView view, final int scrollState) {
         if (mUndoPosition >= 0) {
             commitRemove();
         }
     }
 
     @Override
-    public void onScroll(final AbsListView pView, final int pFirstVisibleItem, final int pVisibleItemCount, final int pTotalItemCount) {
+    public void onScroll(final AbsListView view, final int firstVisibleItem, final int  visibleItemCount, final int totalItemCount) {
         if (mUndoPosition >= 0) {
             commitRemove();
         }

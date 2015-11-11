@@ -17,17 +17,17 @@ package org.fuusio.api.util;
 
 public class ByteToolkit {
 
-    public static byte[] concatenate(final byte[]... pByteArrays) {
+    public static byte[] concatenate(final byte[]... byteArrays) {
         int length = 0;
 
-        for (final byte[] array : pByteArrays) {
+        for (final byte[] array : byteArrays) {
             length += array.length;
         }
 
         final byte[] concatenatedArray = new byte[length];
         int index = 0;
 
-        for (final byte[] array : pByteArrays) {
+        for (final byte[] array : byteArrays) {
             System.arraycopy(array, 0, concatenatedArray, index, array.length);
             index += array.length;
         }

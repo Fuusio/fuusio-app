@@ -71,8 +71,8 @@ public class Countries {
         }
 
         @Override
-        public int compare(final Country pCountry1, final Country pCountry2) {
-            return mComparator.compare(pCountry1.getName(), pCountry2.getName());
+        public int compare(final Country country1, final Country country2) {
+            return mComparator.compare(country1.getName(), country2.getName());
         }
     }
 }

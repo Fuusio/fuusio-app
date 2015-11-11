@@ -16,16 +16,16 @@
 package org.fuusio.api.dependency;
 
 /**
- * An interface for objects that provide a {@link DependencyScope}s. Object implementing this
- * interface typically also manage the lifecycle of the {@link DependencyScope} they provide
+ * An interface for objects that provide and own a {@link DependencyScope}s. Object implementing
+ * this interface typically also manage the lifecycle of the {@link DependencyScope} they provide
  * by activating and deactivating it.
  */
-public interface ScopeManager {
+public interface DependencyScopeOwner {
 
     /**
-     * Gets the {@link DependencyScope} provide by this {@link ScopeManager}.
+     * Gets the {@link DependencyScope} provide by this {@link DependencyScopeOwner}.
      * @param <T> The generic return type of {@link DependencyScope}.
      * @return A {@link DependencyScope}.
      */
-    public <T extends DependencyScope> T getDependencyScope();
+    <T extends DependencyScope> T getDependencyScope();
 }

@@ -53,15 +53,15 @@ public class LogFile {
 		mUseInternalDirectory = true;
 	}
 	
-	private LogFile(final boolean pUseInternalDirectory) {
+	private LogFile(final boolean useInternalDirectory) {
 		this();
-		mUseInternalDirectory = pUseInternalDirectory;
+		mUseInternalDirectory = useInternalDirectory;
 	}
 	
-	private LogFile(final Date pCreatedDate, final boolean pUseInternalDirectory) {
-		this(pUseInternalDirectory);
+	private LogFile(final Date createdDate, final boolean useInternalDirectory) {
+		this(useInternalDirectory);
 		
-		mCreatedDate = pCreatedDate;
+		mCreatedDate = createdDate;
 		mErrorCount = 0;
 		mTimeFormat =  new SimpleDateFormat(TIME_FORMAT);
 	}
@@ -84,24 +84,24 @@ public class LogFile {
 	
 	@SuppressLint("SimpleDateFormat")
 	@SuppressWarnings("resource")
-	public static LogFile start(final Context pContext, final String mAppName) {
-		return start(pContext, mAppName, true);
+	public static LogFile start(final Context context, final String appName) {
+		return start(context, appName, true);
 	}
 	
 	@SuppressLint("SimpleDateFormat")
 	@SuppressWarnings("resource")
-	public static LogFile start(final Context pContext, final String mAppName, final boolean pUseInternalDirectory) {
+	public static LogFile start(final Context context, final String appName, final boolean useInternalDirectory) {
 
 		final Date createdDate = new Date();
 		final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 		final StringBuilder fileName = new StringBuilder(PREFIX_LOG_FILE);
-		fileName.append(mAppName);
+		fileName.append(appName);
 		fileName.append("_");
 		fileName.append(dateFormat.format(createdDate));
 		fileName.append(".txt");
 		
 		
-		final File directory = pUseInternalDirectory ? pContext.getFilesDir() : Environment.getExternalStorageDirectory();
+		final File directory = useInternalDirectory ? context.getFilesDir() : Environment.getExternalStorageDirectory();
 		final File outputFile = new File(directory, fileName.toString());
 		//FileWriter writer = null;
 		
@@ -114,7 +114,7 @@ public class LogFile {
 			}
 		}
 		
-		final LogFile logFile = new LogFile(createdDate, pUseInternalDirectory);
+		final LogFile logFile = new LogFile(createdDate, useInternalDirectory);
 		logFile.mFile = outputFile;
 		logFile.mWriter = null;
 		L.setLogFile(logFile);
@@ -142,39 +142,39 @@ public class LogFile {
 		return false;
 	}
 	
-    public void info(final String pTag, final String pMessage) {
-    	write(TYPE_INFO, pTag, pMessage);
+    public void info(final String tag, final String message) {
+    	write(TYPE_INFO, tag, message);
     }
     
-    public void debug(final String pTag, final String pMessage) {
-    	write(TYPE_DEBUG, pTag, pMessage);
+    public void debug(final String tag, final String message) {
+    	write(TYPE_DEBUG, tag, message);
     }
 
-    public void error(final String pTag, final String pMessage) {
+    public void error(final String tag, final String message) {
     	mErrorCount++;
-    	write(TYPE_ERROR, pTag, pMessage);
+    	write(TYPE_ERROR, tag, message);
     }
     
-    public void warning(final String pTag, final String pMessage) {
-    	write(TYPE_WARNING, pTag, pMessage);
+    public void warning(final String tag, final String message) {
+    	write(TYPE_WARNING, tag, message);
     }
 
-    public void wtf(final String pTag, final String pMessage) {
+    public void wtf(final String tag, final String message) {
     	mErrorCount++;
-    	write(TYPE_WTF, pTag, pMessage);
+    	write(TYPE_WTF, tag, message);
     }
     
-    protected synchronized void write(final String mType, final String pTag, final String pMessage) {
+    protected synchronized void write(final String type, final String tag, final String message) {
     	if (mFile != null) {
 	    	try {
 	    		mWriter = new FileWriter(mFile, true);
 	    		
 	    		mWriter.append(mTimeFormat.format(new Date()));
 	    		mWriter.append(" ");
-	   			mWriter.append(mType);
-				mWriter.append(pTag);
+	   			mWriter.append(type);
+				mWriter.append(tag);
 				mWriter.append(" : ");
-				mWriter.append(pMessage);
+				mWriter.append(message);
 				mWriter.append("\n");
 				mWriter.flush();
 				mWriter.close();

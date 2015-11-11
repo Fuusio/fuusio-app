@@ -13,9 +13,9 @@ public abstract class ModelEvent<T_Model extends Model, T_Type> extends EventObj
     private final long mTimeStamp;
     private final T_Type mType;
 
-    protected ModelEvent(final T_Model pModel, final T_Type pType) {
-        super(pModel);
-        mType = pType;
+    protected ModelEvent(final T_Model model, final T_Type type) {
+        super(model);
+        mType = type;
         mTimeStamp = System.currentTimeMillis();
     }
 

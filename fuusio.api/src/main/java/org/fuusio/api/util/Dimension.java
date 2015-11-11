@@ -24,9 +24,9 @@ public class Dimension {
         this(0, 0);
     }
 
-    public Dimension(final int pWidth, final int pHeight) {
-        mWidth = pWidth;
-        mHeight = pHeight;
+    public Dimension(final int width, final int height) {
+        mWidth = width;
+        mHeight = height;
     }
 
     public Dimension(final Dimension pSource) {
@@ -39,25 +39,25 @@ public class Dimension {
     }
 
 
-    public void setHeight(final int pHeight) {
-        mHeight = pHeight;
+    public void setHeight(final int height) {
+        mHeight = height;
     }
 
     public final int getWidth() {
         return mWidth;
     }
 
-    public void setWidth(final int pWidth) {
-        mWidth = pWidth;
+    public void setWidth(final int width) {
+        mWidth = width;
     }
 
-    public void set(final int pWidth, final int pHeight) {
-        mWidth = pWidth;
-        mHeight = pHeight;
+    public void set(final int width, final int height) {
+        mWidth = width;
+        mHeight = height;
     }
 
-    public void set(final Dimension pValue) {
-        mWidth = pValue.mWidth;
-        mHeight = pValue.mHeight;
+    public void set(final Dimension value) {
+        mWidth = value.mWidth;
+        mHeight = value.mHeight;
     }
 }

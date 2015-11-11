@@ -26,10 +26,10 @@ public class Dependency {
 
     /**
      * A {@link HashMap} containing the activated {@link DependencyScope}s using method
-     * {@link Dependency#activateScope(ScopeManager)}. Even if there can be multiple
+     * {@link Dependency#activateScope(DependencyScopeOwner)}. Even if there can be multiple
      * activated {@link DependencyScope}s only one of them can be the active one.
      */
-    private final static HashMap<ScopeManager, DependencyScope> sDependencyScopes = new HashMap<>();
+    private final static HashMap<DependencyScopeOwner, DependencyScope> sDependencyScopes = new HashMap<>();
 
     /**
      * The currently active {@link DependencyScope}.
@@ -37,27 +37,27 @@ public class Dependency {
     private static DependencyScope sActiveScope = null;
 
     /**
-     * Adds the {@link DependencyScope} managed by the given {@link ScopeManager} to
+     * Adds the {@link DependencyScope} managed by the given {@link DependencyScopeOwner} to
      * the map of current {@link DependencyScope}s.
-     * @param pProvider A {@link ScopeManager}
+     * @param owner A {@link DependencyScopeOwner}
      * @return A {@link DependencyScope}.
      */
-    public static DependencyScope addScope(final ScopeManager pProvider) {
+    public static DependencyScope addScope(final DependencyScopeOwner owner) {
 
-        final DependencyScope scope = pProvider.getDependencyScope();
-        sDependencyScopes.put(pProvider, scope);
-        scope.addDependant(pProvider);
+        final DependencyScope scope = owner.getDependencyScope();
+        sDependencyScopes.put(owner, scope);
+        scope.addDependant(owner);
         return scope;
     }
 
     /**
-     * Gets a {@link DependencyScope} managed by the given {@link ScopeManager}.
-     * @param pProvider A {@link ScopeManager}.
+     * Gets a {@link DependencyScope} managed by the given {@link DependencyScopeOwner}.
+     * @param owner A {@link DependencyScopeOwner}.
      * @param <T> A type parameter for casting the requested dependency to expected type.
      * @return A {@link DependencyScope}. May return {@code null}.
      */
-    public static <T extends DependencyScope> T getScope(final ScopeManager pProvider) {
-        return (T)sDependencyScopes.get(pProvider);
+    public static <T extends DependencyScope> T getScope(final DependencyScopeOwner owner) {
+        return (T)sDependencyScopes.get(owner);
     }
 
     /**
@@ -71,19 +71,19 @@ public class Dependency {
     }
 
     /**
-     * Activates a {@link DependencyScope} for the given {@link ScopeManager}.
+     * Activates a {@link DependencyScope} for the given {@link DependencyScopeOwner}.
      * The active {@link DependencyScope} is used for resolving dependencies. Setting the currently
      * active {@link DependencyScope} is not thread safe. Therefore this method can be invoked
      * only from the Main UI thread.
-     * @param pProvider A {@link ScopeManager}.
+     * @param owner A {@link DependencyScopeOwner}.
      */
-    public static void activateScope(final ScopeManager pProvider) {
+    public static void activateScope(final DependencyScopeOwner owner) {
 
-        DependencyScope scope = sDependencyScopes.get(pProvider);
+        DependencyScope scope = sDependencyScopes.get(owner);
 
         if (scope == null) {
-            scope = addScope(pProvider);
-            scope.setManager(pProvider);
+            scope = addScope(owner);
+            scope.setManager(owner);
         }
 
         if (sActiveScope != scope) {
@@ -94,7 +94,7 @@ public class Dependency {
 
             if (scope != null) {
                 sActiveScope = scope;
-                sActiveScope.onActivated(pProvider);
+                sActiveScope.onActivated(owner);
             } else {
                 sActiveScope = null;
             }
@@ -102,21 +102,21 @@ public class Dependency {
     }
 
     /**
-     * Deactivates a {@link DependencyScope} managed by the given {@link ScopeManager}.
+     * Deactivates a {@link DependencyScope} managed by the given {@link DependencyScopeOwner}.
      * When a {@link DependencyScope} is deactivated it is also disposed if disposing is allowed
      * for the deactivated {@link DependencyScope}.
-     * @param pProvider A {@link ScopeManager}.
+     * @param owner A {@link DependencyScopeOwner}.
      */
-    public static void deactivateScope(final ScopeManager pProvider) {
+    public static void deactivateScope(final DependencyScopeOwner owner) {
 
-        final DependencyScope scope = pProvider.getDependencyScope();
+        final DependencyScope scope = owner.getDependencyScope();
 
         if (scope.isDisposable()) {
-            sDependencyScopes.remove(pProvider);
+            sDependencyScopes.remove(owner);
             scope.dispose();
         }
 
-        scope.onDeactivated(pProvider);
+        scope.onDeactivated(owner);
 
         if (scope == sActiveScope) {
             sActiveScope = null;
@@ -126,80 +126,80 @@ public class Dependency {
     /**
      * Gets a requested dependency of the specified type. The dependency is requested from
      * the currently active {@link DependencyScope}.
-     * @param pDependencyType A {@link Class} specifying the type of the requested dependency.
+     * @param dependencyType A {@link Class} specifying the type of the requested dependency.
      * @param <T> A type parameter for casting the requested dependency to expected type.
      * @return The requested dependency. If {@code null} is returned, it indicates an error in
      * an {@link DependencyScope} implementation.
      */
-    public static <T> T get(final Class<T> pDependencyType) {
-        return sActiveScope.getDependency(pDependencyType, null, false);
+    public static <T> T get(final Class<T> dependencyType) {
+        return sActiveScope.getDependency(dependencyType, null, false);
     }
 
     /**
      * Gets a requested dependency of the specified type. The dependency is requested from
      * the currently active {@link DependencyScope}.
-     * @param pDependencyType A {@link Class} specifying the type of the requested dependency.
-     * @param pDependant The object requesting the requested. This parameter is required when the requesting object
+     * @param dependencyType A {@link Class} specifying the type of the requested dependency.
+     * @param dependant The object requesting the requested. This parameter is required when the requesting object
      *                is also a requested within the object graph represented by the active {@link Dependency}.
      * @param <T> A type parameter for casting the requested dependency to expected type.
      * @return The requested dependency. If {@code null} is returned, it indicates an error in
      * an {@link DependencyScope} implementation.
      */
-    public static <T> T get(final Class<T> pDependencyType,final Object pDependant) {
-        return sActiveScope.getDependency(pDependencyType, pDependant, false);
+    public static <T> T get(final Class<T> dependencyType,final Object dependant) {
+        return sActiveScope.getDependency(dependencyType, dependant, false);
     }
 
     /**
      * Gets a requested dependency of the specified type. The dependency is requested from
      * the currently active {@link DependencyScope}. If no requested dependency instance exists,
      * a new instance is created.
-     * @param pDependencyType A {@link Class} specifying the type of the requested dependency.
+     * @param dependencyType A {@link Class} specifying the type of the requested dependency.
      * @param <T> A type parameter for casting the requested dependency to expected type.
      * @return The requested dependency. If {@code null} is returned, it indicates an error in
      * an {@link DependencyScope} implementation.
      */
-    public static <T> T getOrCreate(final Class<T> pDependencyType) {
-        return sActiveScope.getDependency(pDependencyType, null, true);
+    public static <T> T getOrCreate(final Class<T> dependencyType) {
+        return sActiveScope.getDependency(dependencyType, null, true);
     }
 
     /**
      * Gets a requested dependency of the specified type. The dependency is requested from
      * the currently active {@link DependencyScope}. If no requested dependency instance exists,
      * a new instance is created.
-     * @param pDependencyType A {@link Class} specifying the type of the requested dependency.
-     * @param pDependant The object requesting the requested. This parameter is required when the requesting object
+     * @param dependencyType A {@link Class} specifying the type of the requested dependency.
+     * @param dependant The object requesting the requested. This parameter is required when the requesting object
      *                is also a requested within the object graph represented by the active {@link Dependency}.
      * @param <T> A type parameter for casting the requested dependency to expected type.
      * @return The requested dependency. If {@code null} is returned, it indicates an error in
      * an {@link DependencyScope} implementation.
      */
-    public static <T> T getOrCreate(final Class<T> pDependencyType, final Object pDependant) {
-        return sActiveScope.getDependency(pDependencyType, pDependant, true);
+    public static <T> T getOrCreate(final Class<T> dependencyType, final Object dependant) {
+        return sActiveScope.getDependency(dependencyType, dependant, true);
     }
 
     /**
      * Creates a new instance of the requested dependency type. The currently active
      * {@link DependencyScope} is requested to create the instance.
-     * @param pDependencyType A {@link Class} specifying the type of the requested dependency.
+     * @param dependencyType A {@link Class} specifying the type of the requested dependency.
      * @param <T> A type parameter for casting the requested dependency to expected type.
      * @return The requested dependency. If {@code null} is returned, it indicates an error in
      * an {@link DependencyScope} implementation.
      */
-    public static <T> T create(final Class<T> pDependencyType) {
-        return sActiveScope.createDependency(pDependencyType, null);
+    public static <T> T create(final Class<T> dependencyType) {
+        return sActiveScope.createDependency(dependencyType, null);
     }
 
     /**
      * Creates a new instance of the requested dependency type. The currently active
      * {@link DependencyScope} is requested to create the instance.
-     * @param pDependencyType A {@link Class} specifying the type of the requested dependency.
-     * @param pDependant The object requesting the requested. This parameter is required when the requesting object
+     * @param dependencyType A {@link Class} specifying the type of the requested dependency.
+     * @param dependant The object requesting the requested. This parameter is required when the requesting object
      *                is also a requested within the object graph represented by the active {@link Dependency}.
      * @param <T> A type parameter for casting the requested dependency to expected type.
      * @return The requested dependency. If {@code null} is returned, it indicates an error in
      * an {@link DependencyScope} implementation.
      */
-    public static <T> T create(final Class<T> pDependencyType, final Object pDependant) {
-        return sActiveScope.createDependency(pDependencyType, pDependant);
+    public static <T> T create(final Class<T> dependencyType, final Object dependant) {
+        return sActiveScope.createDependency(dependencyType, dependant);
     }
 }

@@ -34,9 +34,9 @@ public interface Presenter<T_View extends View, T_Listener extends Presenter.Lis
 
     /**
      * Set the {@link View} of this {@link Presenter}.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      */
-    void setView(T_View pView);
+    void setView(T_View view);
 
     /**
      * Invoked to start this {@link Presenter}.
@@ -63,29 +63,29 @@ public interface Presenter<T_View extends View, T_Listener extends Presenter.Lis
         /**
          * Invoked by a {@link Presenter} when it is started. Typically a {@link Presenter} is
          * started when its {@link View} is started.
-         * @param pPresenter The started {@link Presenter}.
+         * @param presenter The started {@link Presenter}.
          */
-        void onPresenterStarted(Presenter pPresenter);
+        void onPresenterStarted(Presenter presenter);
 
         /**
          * Invoked by a {@link Presenter} when it is resumed. Typically a {@link Presenter} is
          * resumed when its {@link View} is resumed.
-         * @param pPresenter The resumed {@link Presenter}.
+         * @param presenter The resumed {@link Presenter}.
          */
-        void onPresenterResumed(Presenter pPresenter);
+        void onPresenterResumed(Presenter presenter);
 
         /**
          * Invoked by a {@link Presenter} when it is paused. Typically a {@link Presenter} is
          * paused when its {@link View} is paused.
-         * @param pPresenter The paused {@link Presenter}.
+         * @param presenter The paused {@link Presenter}.
          */
-        void onPresenterPaused(Presenter pPresenter);
+        void onPresenterPaused(Presenter presenter);
 
         /**
          * Invoked by a {@link Presenter} when it is stopped. Typically a {@link Presenter} is
          * stopped when its {@link View} is stopped.
-         * @param pPresenter The stopped {@link Presenter}.
+         * @param presenter The stopped {@link Presenter}.
          */
-        void onPresenterStopped(Presenter pPresenter);
+        void onPresenterStopped(Presenter presenter);
     }
 }

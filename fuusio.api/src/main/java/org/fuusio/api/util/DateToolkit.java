@@ -30,46 +30,46 @@ public class DateToolkit {
     public final static String SIMPLE = "MM/dd/yyyy hh:mm:ss a";
 
     @SuppressLint("SimpleDateFormat")
-    public static String format(final String pFormat, final Date pDate) {
-        final SimpleDateFormat dateFormat = new SimpleDateFormat(pFormat);
-        return dateFormat.format(pDate);
+    public static String format(final String format, final Date date) {
+        final SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.format(date);
     }
 
-    public static String format(final Date pDate) {
-        return format(DEFAULT, pDate);
+    public static String format(final Date date) {
+        return format(DEFAULT, date);
     }
 
-    public static String formatISO8601(final Date pDate) {
-        return format(ISO8601, pDate);
+    public static String formatISO8601(final Date date) {
+        return format(ISO8601, date);
     }
 
-    public static String formatISO8601NoMilliseconds(final Date pDate) {
-        return format(ISO8601_NOMS, pDate);
+    public static String formatISO8601NoMilliseconds(final Date date) {
+        return format(ISO8601_NOMS, date);
     }
 
-    public static String formatRFC822(final Date pDate) {
-        return format(RFC822, pDate);
+    public static String formatRFC822(final Date date) {
+        return format(RFC822, date);
     }
 
-    public static Date parse(final String pDate) throws ParseException {
-        return parse(DEFAULT, pDate);
+    public static Date parse(final String date) throws ParseException {
+        return parse(DEFAULT, date);
     }
 
     @SuppressLint("SimpleDateFormat")
-    public static Date parse(final String pFormat, final String pDate) throws ParseException {
-        final SimpleDateFormat dateFormat = new SimpleDateFormat(pFormat);
-        return dateFormat.parse(pDate);
+    public static Date parse(final String format, final String date) throws ParseException {
+        final SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.parse(date);
     }
 
-    public static Date parseISO8601(final String pDate) throws ParseException {
-        return parse(ISO8601, pDate);
+    public static Date parseISO8601(final String date) throws ParseException {
+        return parse(ISO8601, date);
     }
 
-    public static Date parseISO8601NoMilliseconds(final String pDate) throws ParseException {
-        return parse(ISO8601_NOMS, pDate);
+    public static Date parseISO8601NoMilliseconds(final String date) throws ParseException {
+        return parse(ISO8601_NOMS, date);
     }
 
-    public static Date parseRFC822(final String pDate) throws ParseException {
-        return parse(RFC822, pDate);
+    public static Date parseRFC822(final String date) throws ParseException {
+        return parse(RFC822, date);
     }
 }

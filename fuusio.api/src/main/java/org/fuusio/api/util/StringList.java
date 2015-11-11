@@ -30,29 +30,29 @@ public class StringList extends ArrayList<String> {
         return writeToString(DEFAULT_DELIMITER);
     }
 
-    public String writeToString(final String pDelimiter) {
+    public String writeToString(final String delimiter) {
         final StringBuilder builder = new StringBuilder();
 
         for (final String item : this) {
             if (builder.length() > 0) {
-                builder.append(pDelimiter);
+                builder.append(delimiter);
             }
             builder.append(item);
         }
         return builder.toString();
     }
 
-    public void readFromString(final String pString) {
-        readFromString(pString, DEFAULT_DELIMITER);
+    public void readFromString(final String string) {
+        readFromString(string, DEFAULT_DELIMITER);
     }
 
-    public void readFromString(final String pString, final String pDelimiter) {
+    public void readFromString(final String string, final String delimiter) {
 
         clear();
 
-        if (pString != null) {
-            final String string = pString.trim();
-            final StringTokenizer t = new StringTokenizer(string, pDelimiter);
+        if (string != null) {
+            final String trimmedString = string.trim();
+            final StringTokenizer t = new StringTokenizer(trimmedString, delimiter);
 
             while (t.hasMoreTokens()) {
                 add(t.nextToken());

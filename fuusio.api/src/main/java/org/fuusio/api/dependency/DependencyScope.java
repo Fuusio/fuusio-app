@@ -49,9 +49,9 @@ public abstract class DependencyScope {
     protected DependencyScope mMockedScope;
 
     /**
-     * The {@link ScopeManager} that manages this {@link DependencyScope}.
+     * The {@link DependencyScopeOwner} that manages this {@link DependencyScope}.
      */
-    private ScopeManager mScopeManager;
+    private DependencyScopeOwner mScopeManager;
 
     /**
      * A helper field for storing the currently requested type of dependency.
@@ -64,18 +64,18 @@ public abstract class DependencyScope {
     }
 
     /**
-     * Get the {@link ScopeManager} that manages the lifecycle this {@link DependencyScope}.
-     * @return A {@link ScopeManager}.
+     * Get the {@link DependencyScopeOwner} that manages the lifecycle this {@link DependencyScope}.
+     * @return A {@link DependencyScopeOwner}.
      */
-    public final ScopeManager getManager() {
+    public final DependencyScopeOwner getManager() {
         return mScopeManager;
     }
 
     /**
-     * Set the {@link ScopeManager} that manages the lifecycle this {@link DependencyScope}.
-     * @param pManager A {@link ScopeManager}.
+     * Set the {@link DependencyScopeOwner} that manages the lifecycle this {@link DependencyScope}.
+     * @param pManager A {@link DependencyScopeOwner}.
      */
-    protected void setManager(final ScopeManager pManager) {
+    protected void setManager(final DependencyScopeOwner pManager) {
         mScopeManager = pManager;
     }
 
@@ -341,19 +341,19 @@ public abstract class DependencyScope {
 
     /**
      * This method is invoked by {@link Dependency} when this {@link DependencyScope} is activated
-     * for the given {@link ScopeManager}.
-     * @param pManager A {@link ScopeManager}.
+     * for the given {@link DependencyScopeOwner}.
+     * @param pManager A {@link DependencyScopeOwner}.
      */
-    public void onActivated(final ScopeManager pManager) {
+    public void onActivated(final DependencyScopeOwner pManager) {
         // By default do nothing
     }
 
     /**
      * This method is invoked by {@link Dependency} when this {@link DependencyScope} is deactivated
-     * for the given {@link ScopeManager}.
-     * @param pManager A {@link ScopeManager}.
+     * for the given {@link DependencyScopeOwner}.
+     * @param pManager A {@link DependencyScopeOwner}.
      */
-    public void onDeactivated(final ScopeManager pManager) {
+    public void onDeactivated(final DependencyScopeOwner pManager) {
         // By default do nothing
     }
 

@@ -26,6 +26,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcManager;
@@ -34,19 +35,21 @@ import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import org.fuusio.api.dependency.D;
 import org.fuusio.api.graphics.BitmapManager;
+import org.fuusio.api.graphics.BitmapManagerImpl;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppToolkit {
 
-    private static Application sApplication = null;
-
     private static final String PREFIX_EDIT = "edit_";
-    private static final int PROPERTY_NAME_BEGIN_INDEX = PREFIX_EDIT.length();
+    
+    private static Application sApplication = null;
 
     public static Application getApplication() {
         return sApplication;
@@ -56,35 +59,35 @@ public class AppToolkit {
         return sApplication.getApplicationContext();
     }
 
-    public static void setApplication(final Application pApplication) {
-        sApplication = pApplication;
-        UIToolkit.setApplication(pApplication);
+    public static void setApplication(final Application application) {
+        sApplication = application;
+        UIToolkit.setApplication(application);
     }
 
-    public static String getStringResource(final int pStringResId) {
-        return sApplication.getString(pStringResId);
+    public static String getStringResource(final int resId) {
+        return sApplication.getString(resId);
     }
 
-    public static String getPropertyName(final View pView) {
-        final Resources resources = pView.getResources();
-        final String resourceName = resources.getResourceEntryName(pView.getId());
+    public static String getPropertyName(final View view) {
+        final Resources resources = view.getResources();
+        final String resourceName = resources.getResourceEntryName(view.getId());
 
         if (resourceName != null && resourceName.startsWith(PREFIX_EDIT)) {
-            return resourceName.substring(PROPERTY_NAME_BEGIN_INDEX);
+            return resourceName.substring(PREFIX_EDIT.length());
         }
         return null;
     }
 
-    public static boolean getBoolean(final int pResId) {
-        return sApplication.getResources().getBoolean(pResId);
+    public static boolean getBoolean(final int resId) {
+        return sApplication.getResources().getBoolean(resId);
     }
 
-    public static int getColor(final int pResId) {
-        return sApplication.getResources().getColor(pResId);
+    public static int getColor(final int resId) {
+        return sApplication.getResources().getColor(resId);
     }
 
-    public static int getInteger(final int pResId) {
-        return sApplication.getResources().getInteger(pResId);
+    public static int getInteger(final int resId) {
+        return sApplication.getResources().getInteger(resId);
     }
 
     public static LocationManager getLocationManager() {
@@ -95,66 +98,70 @@ public class AppToolkit {
         return sApplication.getResources().getDisplayMetrics();
     }
 
-    public static String getString(final int pResId) {
-        return sApplication.getString(pResId);
+    public static String getString(final int resId) {
+        return sApplication.getString(resId);
     }
 
-    public static String getString(final int pResId, final Object... pFormatArgs) {
-        return sApplication.getString(pResId, pFormatArgs);
+    public static String getString(final int resId, final Object... formatArgs) {
+        return sApplication.getString(resId, formatArgs);
     }
 
-    public static String[] getStringArray(final int pResId) {
-        return sApplication.getResources().getStringArray(pResId);
+    public static String[] getStringArray(final int resId) {
+        return sApplication.getResources().getStringArray(resId);
     }
 
-    public static Bitmap getBitmap(final int pResId) {
-        return getBitmap(pResId, true);
+    public static Bitmap getBitmap(final int resId) {
+        return getBitmap(resId, true);
     }
 
-    public static Bitmap getBitmap(final int pResId, final boolean pUseCache) {
+    private static BitmapManager getBitmapManager() {
+        return D.get(BitmapManager.class);
+    }
+
+    public static Bitmap getBitmap(final int resId, final boolean useCache) {
         Bitmap bitmap = null;
 
-        if (pUseCache) {
-            bitmap = getCachedBitmap(pResId);
+        if (useCache) {
+            bitmap = getCachedBitmap(resId);
         }
 
         if (bitmap == null) {
-            final InputStream inputStream = sApplication.getResources().openRawResource(pResId);
+            final InputStream inputStream = sApplication.getResources().openRawResource(resId);
             bitmap = BitmapFactory.decodeStream(inputStream);
 
-            if (pUseCache) {
-                BitmapManager.addBitmap(pResId, bitmap);
+            if (useCache) {
+                getBitmapManager().addBitmap(resId, bitmap);
             }
         }
 
         return bitmap;
     }
 
-    public static Bitmap loadBitmap(final int pResId, final boolean pUseCache) {
+    public static Bitmap loadBitmap(final int resId, final boolean useCache) {
         Bitmap bitmap = null;
 
-        if (pUseCache) {
-            bitmap = getCachedBitmap(pResId);
+        if (useCache) {
+            bitmap = getCachedBitmap(resId);
         }
 
         final Context context = sApplication.getApplicationContext();
 
         if (bitmap == null) {
-            final InputStream inputStream = context.getResources().openRawResource(pResId);
+            final InputStream inputStream = context.getResources().openRawResource(resId);
             bitmap = BitmapFactory.decodeStream(inputStream);
 
-            if (pUseCache) {
-                BitmapManager.addBitmap(pResId, bitmap);
+            if (useCache) {
+                getBitmapManager().addBitmap(resId, bitmap);
             }
         }
 
         return bitmap;
     }
 
-    public static Bitmap loadBitmap(final String pFilepath) {
+    public static Bitmap loadBitmap(final String filepath) {
         Bitmap bitmap = null;
 
-        final File file = new File(pFilepath);
+        final File file = new File(filepath);
 
         if (file.exists() && file.canRead()) {
 
@@ -174,8 +181,8 @@ public class AppToolkit {
         return bitmap;
     }
 
-    public static Bitmap getCachedBitmap(final int pResId) {
-        return BitmapManager.getBitmap(pResId);
+    public static Bitmap getCachedBitmap(final int resId) {
+        return  getBitmapManager().getBitmap(resId);
     }
 
     public static File getApplicationDirectory() {
@@ -206,19 +213,13 @@ public class AppToolkit {
         return null;
     }
 
-    public static Vibrator getVibrator() {
-        return (Vibrator) sApplication.getSystemService(Context.VIBRATOR_SERVICE);
-    }
-
     public static Resources getResources() {
         return sApplication.getResources();
     }
 
-
     public static boolean hasNfc() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
-            final NfcManager manager = (NfcManager) getApplicationContext().getSystemService(
-                    Context.NFC_SERVICE);
+            final NfcManager manager = D.get(NfcManager.class);
             final NfcAdapter adapter = manager.getDefaultAdapter();
             return (adapter != null && adapter.isEnabled());
         }
@@ -226,17 +227,17 @@ public class AppToolkit {
     }
 
     public static boolean isNetworkAvailable() {
-        final Context context = getApplicationContext();
-        final ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager manager = D.get(ConnectivityManager.class);
 
         if (manager == null) {
             L.wtf(AppToolkit.class, "isNetworkAvailable()", "Network access not allowed");
         } else {
-            final NetworkInfo[] info = manager.getAllNetworkInfo();
+            final Network[] networks = manager.getAllNetworks();
 
-            if (info != null) {
-                for (int i = 0; i < info.length; i++) {
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+            if (networks != null) {
+                for (final Network network : networks) {
+                    final NetworkInfo info = manager.getNetworkInfo(network);
+                    if (info.getState() == NetworkInfo.State.CONNECTED) {
                         return true;
                     }
                 }
@@ -245,13 +246,33 @@ public class AppToolkit {
         return false;
     }
 
-    public static boolean isPackageInstalled(final String pPackageName) {
-        final Context context = getApplicationContext();
-        final PackageManager manager = context.getPackageManager();
+    public static List<Network> getAvailableNetworks() {
+        final ArrayList<Network> availableNetworks = new ArrayList<>();
+        final ConnectivityManager manager = D.get(ConnectivityManager.class);
+
+        if (manager == null) {
+            L.wtf(AppToolkit.class, "isNetworkAvailable()", "Network access not allowed");
+        } else {
+            final Network[] networks = manager.getAllNetworks();
+
+            if (networks != null) {
+                for (final Network network : networks) {
+                    final NetworkInfo info = manager.getNetworkInfo(network);
+                    if (info.getState() == NetworkInfo.State.CONNECTED) {
+                        availableNetworks.add(network);
+                    }
+                }
+            }
+        }
+        return availableNetworks;
+    }
+
+    public static boolean isPackageInstalled(final String packageName) {
+        final PackageManager manager = D.get(PackageManager.class);
         final List<ApplicationInfo> infos = manager.getInstalledApplications(PackageManager.GET_META_DATA);
 
         for (final ApplicationInfo info : infos) {
-            if (pPackageName.equalsIgnoreCase(info.packageName)) {
+            if (packageName.equalsIgnoreCase(info.packageName)) {
                 return true;
             }
         }

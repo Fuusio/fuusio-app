@@ -19,7 +19,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
 import org.fuusio.api.component.Component;
-import org.fuusio.api.dependency.ScopeManager;
+import org.fuusio.api.dependency.DependencyScopeOwner;
 import org.fuusio.api.mvp.View;
 
 import java.util.List;
@@ -29,7 +29,7 @@ import java.util.List;
  * and Presenter according to received user interaction events. A concrete {@link Flow} implementation
  * also provides a {@link FlowScope} for dependency injection.
  */
-public interface Flow extends Component, ScopeManager, FragmentManager.OnBackStackChangedListener {
+public interface Flow extends Component, DependencyScopeOwner, FragmentManager.OnBackStackChangedListener {
 
     /**
      * Gets the currently active Views.

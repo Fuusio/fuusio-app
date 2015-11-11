@@ -35,9 +35,9 @@ public enum Direction {
     private final float mDegrees;
     private final String mLabel;
 
-    Direction(final String pLabel, final float pDegrees) {
-        mLabel = pLabel;
-        mDegrees = pDegrees;
+    Direction(final String label, final float degrees) {
+        mLabel = label;
+        mDegrees = degrees;
     }
 
     public String getLabel() {

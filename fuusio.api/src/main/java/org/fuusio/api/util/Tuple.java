@@ -20,24 +20,24 @@ public class Tuple<T_Value> {
     public T_Value mValue1;
     public T_Value mValue2;
 
-    public Tuple(final T_Value pValue1, final T_Value pValue2) {
-        mValue1 = pValue1;
-        mValue2 = pValue2;
+    public Tuple(final T_Value value1, final T_Value value2) {
+        mValue1 = value1;
+        mValue2 = value2;
     }
 
     public final T_Value getValue1() {
         return mValue1;
     }
 
-    public void setValue1(final T_Value pValue) {
-        mValue1 = pValue;
+    public void setValue1(final T_Value value) {
+        mValue1 = value;
     }
 
     public final T_Value getValue2() {
         return mValue2;
     }
 
-    public void setValue2(final T_Value pValue) {
-        mValue2 = pValue;
+    public void setValue2(final T_Value value) {
+        mValue2 = value;
     }
 }

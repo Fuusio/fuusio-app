@@ -36,17 +36,17 @@ public abstract class AbstractListenable<T_Listener> implements Listenable<T_Lis
     }
 
     @Override
-    public boolean addListener(final T_Listener pListener) {
-        if (!mListeners.contains(pListener)) {
-            mListeners.add(pListener);
+    public boolean addListener(final T_Listener listener) {
+        if (!mListeners.contains(listener)) {
+            mListeners.add(listener);
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean removeListener(final T_Listener pListener) {
-        return mListeners.remove(pListener);
+    public boolean removeListener(final T_Listener listener) {
+        return mListeners.remove(listener);
     }
 
     @Override

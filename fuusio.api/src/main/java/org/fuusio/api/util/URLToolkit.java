@@ -25,21 +25,21 @@ public class URLToolkit {
 
     private static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
-    public static String encode(final String pFormat, final Charset pCharset, final Object... pArgs) {
-        final String data = String.format(pFormat, pArgs);
+    public static String encode(final String format, final Charset charset, final Object... args) {
+        final String data = String.format(format, args);
         try {
-            return URLEncoder.encode(data, pCharset.name());
+            return URLEncoder.encode(data, charset.name());
         } catch (UnsupportedEncodingException e) {
             L.wtf(URLToolkit.class, "encode", e.getMessage());
         }
         return null;
     }
 
-    public static String encode(final String pFormat, final Object... pArgs) {
-        return encode(pFormat, DEFAULT_CHARSET, pArgs);
+    public static String encode(final String format, final Object... args) {
+        return encode(format, DEFAULT_CHARSET, args);
     }
 
-    public static boolean isValidUrl(final String pUrlString) {
-        return URLUtil.isValidUrl(pUrlString);
+    public static boolean isValidUrl(final String urlString) {
+        return URLUtil.isValidUrl(urlString);
     }
 }

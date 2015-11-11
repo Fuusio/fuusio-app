@@ -21,11 +21,13 @@ import android.app.AlarmManager;
 import android.app.Application;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.hardware.SensorManager;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.nfc.NfcManager;
 import android.os.BatteryManager;
+import android.os.Vibrator;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
@@ -40,8 +42,8 @@ public abstract class ApplicationScope extends DependencyScope {
 
     private final Application mApplication;
 
-    protected ApplicationScope(final Application pApplication) {
-        mApplication = pApplication;
+    protected ApplicationScope(final Application application) {
+        mApplication = application;
         sInstance = this;
     }
 
@@ -67,7 +69,7 @@ public abstract class ApplicationScope extends DependencyScope {
             return dependency(mApplication.getApplicationContext());
         } else if (type(AccountManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.ACCOUNT_SERVICE));
-        }else if (type(ActivityManager.class)) {
+        } else if (type(ActivityManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE));
         } else if (type(AlarmManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.ALARM_SERVICE));
@@ -83,8 +85,12 @@ public abstract class ApplicationScope extends DependencyScope {
             return dependency(getApplicationContext().getSystemService(Context.LOCATION_SERVICE));
         } else if (type(NfcManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.NFC_SERVICE));
+        } else if (type(PackageManager.class)) {
+            return dependency(getApplicationContext().getPackageManager());
         } else if (type(SensorManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.SENSOR_SERVICE));
+        } else if (type(Vibrator.class)) {
+            return dependency(getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE));
         } else if (type(WindowManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
         }

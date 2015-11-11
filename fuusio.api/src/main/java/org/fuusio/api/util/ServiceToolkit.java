@@ -19,13 +19,14 @@ import android.app.ActivityManager;
 import android.app.Service;
 import android.content.Context;
 
+import org.fuusio.api.dependency.D;
+
 public class ServiceToolkit {
 
-    public static boolean isServiceRunning(final Class<Service> pServiceClass) {
+    public static boolean isServiceRunning(final Class<Service> serviceClass) {
 
-        final Context context = AppToolkit.getApplicationContext();
-        final ActivityManager manager = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
-        final String className = pServiceClass.getName();
+        final ActivityManager manager = D.get(ActivityManager.class);
+        final String className = serviceClass.getName();
 
         for (final ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
             if (className.equals(service.service.getClassName())) {

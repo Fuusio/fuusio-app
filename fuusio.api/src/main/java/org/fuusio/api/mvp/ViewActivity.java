@@ -21,7 +21,6 @@ import android.widget.AdapterView;
 import org.fuusio.api.binding.AdapterViewBinding;
 import org.fuusio.api.binding.ViewBinding;
 import org.fuusio.api.binding.ViewBindingManager;
-import org.fuusio.api.app.ActivityState;
 
 /**
  * {@link ViewActivity} provides an abstract base class for concrete {@link AppCompatActivity}
@@ -32,23 +31,33 @@ import org.fuusio.api.app.ActivityState;
 public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCompatActivity
     implements View<T_Presenter> {
 
-    private final ViewBindingManager mDelegateManager;
-    private final ActivityState mState;
+    private final ViewBindingManager mBindingManager;
+    private final ViewState mState;
 
     protected T_Presenter mPresenter;
 
     protected ViewActivity() {
-        mDelegateManager = new ViewBindingManager(this);
-        mState = new ActivityState(this);
+        mBindingManager = new ViewBindingManager(this);
+        mState = new ViewState(this);
     }
 
     /**
      * Gets the {@link Presenter} assigned for this {@link ViewActivity}.
      * @return A {@link Presenter}.
      */
+    @Override
     public T_Presenter getPresenter() {
+        if (mPresenter == null) {
+            mPresenter = getPresenterDependency();
+        }
         return mPresenter;
     }
+
+    /**
+     * This method has to implemented by concrete implementations of this class.
+     * @return A {@link Presenter}.
+     */
+    protected abstract T_Presenter getPresenterDependency();
 
     @Override
     protected void onStart() {
@@ -99,7 +108,7 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
     protected void onDestroy() {
         super.onDestroy();
         mState.onDestroy();
-        mDelegateManager.dispose();
+        mBindingManager.dispose();
     }
     @Override
     protected void onRestart() {
@@ -109,25 +118,24 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
 
     /**
      * Tests if the given {@link View} can be shown.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      * @return A {@code boolean}.
      */
-    public boolean canShowView(View pView) {
+    public boolean canShowView(View view) {
         return !isPaused();
     }
 
-    /**
-     * Test if this {@link ViewActivity} has been paused.
-     * @return A {@code boolean}.
-     */
+    @Override
+    public ViewState getState() {
+        return mState;
+    }
+
+    @Override
     public boolean isPaused() {
         return mState.isPaused();
     }
 
-    /**
-     * Test if this {@link ViewActivity} has been restarted.
-     * @return A {@code boolean}.
-     */
+    @Override
     public boolean isRestarted() {
         return mState.isRestarted();
     }
@@ -142,44 +150,44 @@ public abstract class ViewActivity<T_Presenter extends Presenter> extends AppCom
 
     /**
      * Looks up and returns a {@link android.view.View} with the given layout id.
-     * @param pViewId A view id used in a layout XML resource.
+     * @param viewId A view id used in a layout XML resource.
      * @return The found {@link android.view.View}.
      */
-    public <T extends android.view.View> T getView(final int pViewId) {
-        return (T)findViewById(pViewId);
+    public <T extends android.view.View> T getView(final int viewId) {
+        return (T)findViewById(viewId);
     }
 
     /**
      * Creates and binds a {@link ViewBinding} to a {@link android.view.View} specified by the given view id.
-     * @param pViewId A view id used in a layout XML resource.
+     * @param viewId A view id used in a layout XML resource.
      * @param <T> The parametrised type of the ViewDelagate.
      * @return The created {@link ViewBinding}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends ViewBinding<?>> T bind(final int pViewId) {
-        return mDelegateManager.bind(pViewId);
+    public <T extends ViewBinding<?>> T bind(final int viewId) {
+        return mBindingManager.bind(viewId);
     }
 
     /**
      * Binds the given {@link ViewBinding} to the specified {@link android.view.View}.
-     * @param pViewId A view id in a layout XML specifying the target {@link android.view.View}.
-     * @param pBinding An {@link ViewBinding}.
+     * @param viewId A view id in a layout XML specifying the target {@link android.view.View}.
+     * @param binding An {@link ViewBinding}.
      * @return The found and bound {@link android.view.View}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends android.view.View> T bind(final int pViewId, final ViewBinding<T> pBinding) {
-        return mDelegateManager.bind(pViewId, pBinding);
+    public <T extends android.view.View> T bind(final int viewId, final ViewBinding<T> binding) {
+        return mBindingManager.bind(viewId, binding);
     }
 
     /**
      * Binds the given {@link AdapterViewBinding} to the specified {@link AdapterView}.
-     * @param pViewId A view id in a layout XML specifying the target {@link AdapterView}.
-     * @param pBinding An {@link AdapterViewBinding}.
-     * @param pAdapter An {@link AdapterViewBinding.Adapter} that is assigned to {@link AdapterViewBinding}.
+     * @param viewId A view id in a layout XML specifying the target {@link AdapterView}.
+     * @param binding An {@link AdapterViewBinding}.
+     * @param adapter An {@link AdapterViewBinding.Adapter} that is assigned to {@link AdapterViewBinding}.
      * @return The found and bound {@link AdapterView}.
      */
     @SuppressWarnings("unchecked")
-    public AdapterView bind(final int pViewId, final AdapterViewBinding<?> pBinding, final AdapterViewBinding.Adapter<?> pAdapter) {
-        return mDelegateManager.bind(pViewId, pBinding, pAdapter);
+    public AdapterView bind(final int viewId, final AdapterViewBinding<?> binding, final AdapterViewBinding.Adapter<?> adapter) {
+        return mBindingManager.bind(viewId, binding, adapter);
     }
 }

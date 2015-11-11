@@ -44,17 +44,17 @@ public class JavaWriter {
 
         private final String mKeyword;
 
-        private Keyword(final String pKeyword) {
-            mKeyword = pKeyword;
+        private Keyword(final String keyword) {
+            mKeyword = keyword;
         }
 
         public final String toString() {
             return mKeyword;
         }
 
-        public void write(final JavaWriter pWriter) {
-            pWriter.append(mKeyword);
-            pWriter.append(" ");
+        public void write(final JavaWriter writer) {
+            writer.append(mKeyword);
+            writer.append(" ");
         }
     }
 
@@ -65,9 +65,9 @@ public class JavaWriter {
     private String mIndentation;
     private int mIndentationCount;
 
-    public JavaWriter(final Writer pWriter) {
+    public JavaWriter(final Writer writer) {
         mIndentation = INDENTATION;
-        mWriter = pWriter;
+        mWriter = writer;
         mIndentationCount = 0;
     }
 
@@ -75,70 +75,70 @@ public class JavaWriter {
         return mIndentation;
     }
 
-    public void setIndentation(final String pIndentation) {
-        mIndentation = pIndentation;
+    public void setIndentation(final String indentation) {
+        mIndentation = indentation;
     }
 
     public final int getIndentationCount() {
         return mIndentationCount;
     }
 
-    public void setIndentationCount(final int pCount) {
-        mIndentationCount = pCount;
+    public void setIndentationCount(final int count) {
+        mIndentationCount = count;
     }
 
-    public JavaWriter a(final String pString) {
+    public JavaWriter a(final String string) {
         try {
-            mWriter.append(pString);
-        } catch (final IOException pException) {
-            L.e(this, "append", pException);
+            mWriter.append(string);
+        } catch (final IOException e) {
+            L.e(this, "append", e);
         }
         return this;
     }
 
-    public JavaWriter append(final String pString) {
+    public JavaWriter append(final String string) {
         try {
-            mWriter.append(pString);
-        } catch (final IOException pException) {
-            L.e(this, "append", pException);
+            mWriter.append(string);
+        } catch (final IOException e) {
+            L.e(this, "append", e);
         }
         return this;
     }
 
-    public JavaWriter append(final boolean pValue) {
+    public JavaWriter append(final boolean value) {
         try {
-            mWriter.append(Boolean.toString(pValue));
-        } catch (final IOException pException) {
-            L.e(this, "append", pException);
+            mWriter.append(Boolean.toString(value));
+        } catch (final IOException e) {
+            L.e(this, "append", e);
         }
         return this;
     }
 
-    public JavaWriter append(final float pValue) {
+    public JavaWriter append(final float value) {
         try {
-            mWriter.append(Float.toString(pValue));
+            mWriter.append(Float.toString(value));
             mWriter.append('f');
-        } catch (final IOException pException) {
-            L.e(this, "append", pException);
+        } catch (final IOException e) {
+            L.e(this, "append", e);
         }
         return this;
     }
 
-    public JavaWriter append(final long pValue) {
+    public JavaWriter append(final long value) {
         try {
-            mWriter.append(Long.toString(pValue));
+            mWriter.append(Long.toString(value));
             mWriter.append('L');
-        } catch (final IOException pException) {
-            L.e(this, "append", pException);
+        } catch (final IOException e) {
+            L.e(this, "append", e);
         }
         return this;
     }
 
-    public JavaWriter append(final int pValue) {
+    public JavaWriter append(final int value) {
         try {
-            mWriter.append(Integer.toString(pValue));
-        } catch (final IOException pException) {
-            L.e(this, "append", pException);
+            mWriter.append(Integer.toString(value));
+        } catch (final IOException e) {
+            L.e(this, "append", e);
         }
         return this;
     }
@@ -146,8 +146,8 @@ public class JavaWriter {
     public JavaWriter space() {
         try {
             mWriter.append(" ");
-        } catch (final IOException pException) {
-            L.e(this, "space", pException);
+        } catch (final IOException e) {
+            L.e(this, "space", e);
         }
         return this;
     }
@@ -158,8 +158,8 @@ public class JavaWriter {
             for (int i = 0; i < mIndentationCount; i++) {
                 mWriter.append(mIndentation);
             }
-        } catch (final IOException pException) {
-            L.e(this, "intend", pException);
+        } catch (final IOException e) {
+            L.e(this, "intend", e);
         }
         return this;
     }
@@ -168,15 +168,15 @@ public class JavaWriter {
         return newLine(true);
     }
 
-    public JavaWriter newLine(final boolean pIndent) {
+    public JavaWriter newLine(final boolean indented) {
         try {
             mWriter.append('\n');
 
-            if (pIndent) {
+            if (indented) {
                 intend();
             }
-        } catch (final IOException pException) {
-            L.e(this, "newLine", pException);
+        } catch (final IOException e) {
+            L.e(this, "newLine", e);
         }
         return this;
     }
@@ -187,8 +187,8 @@ public class JavaWriter {
             mWriter.append('\n');
             mIndentationCount++;
             intend();
-        } catch (final IOException pException) {
-            L.e(this, "beginBlock", pException);
+        } catch (final IOException e) {
+            L.e(this, "beginBlock", e);
         }
         return this;
     }
@@ -197,19 +197,19 @@ public class JavaWriter {
         return endBlock(true);
     }
 
-    public JavaWriter endBlock(final boolean pNewLine) {
+    public JavaWriter endBlock(final boolean newLine) {
         try {
             mIndentationCount--;
             intend();
             mWriter.append('}');
 
-            if (pNewLine) {
+            if (newLine) {
                 mWriter.append('\n');
             } else {
                 mWriter.append(" ");
             }
-        } catch (final IOException pException) {
-            L.e(this, "endBlock", pException);
+        } catch (final IOException e) {
+            L.e(this, "endBlock", e);
         }
         return this;
     }
@@ -217,8 +217,8 @@ public class JavaWriter {
     public JavaWriter openParenthesis() {
         try {
             mWriter.append('(');
-        } catch (final IOException pException) {
-            L.e(this, "openParenthesis", pException);
+        } catch (final IOException e) {
+            L.e(this, "openParenthesis", e);
         }
         return this;
     }
@@ -226,8 +226,8 @@ public class JavaWriter {
     public JavaWriter closeParenthesis() {
         try {
             mWriter.append(')');
-        } catch (final IOException pException) {
-            L.e(this, "closeParenthesis", pException);
+        } catch (final IOException e) {
+            L.e(this, "closeParenthesis", e);
         }
         return this;
     }
@@ -236,44 +236,44 @@ public class JavaWriter {
         return endStatement(true);
     }
 
-    public JavaWriter endStatement(final boolean pIntend) {
+    public JavaWriter endStatement(final boolean intented) {
         try {
             mWriter.append(';');
 
             mWriter.append('\n');
-            if (pIntend) {
+            if (intented) {
                 intend();
             }
-        } catch (final IOException pException) {
-            L.e(this, "endBlock", pException);
+        } catch (final IOException e) {
+            L.e(this, "endBlock", e);
         }
         return this;
     }
 
-    public JavaWriter keyword(final Keyword pKeyword) {
-        pKeyword.write(this);
+    public JavaWriter keyword(final Keyword keyword) {
+        keyword.write(this);
         return this;
     }
 
-    public JavaWriter writeImport(final String pImport) {
+    public JavaWriter writeImport(final String packageName) {
         Keyword.KEYWORD_IMPORT.write(this);
-        append(pImport);
+        append(packageName);
         endStatement();
         return this;
     }
 
-    public JavaWriter writePackage(final String pPackageName) {
+    public JavaWriter writePackage(final String packageName) {
         Keyword.KEYWORD_PACKAGE.write(this);
-        append(pPackageName);
+        append(packageName);
         endStatement();
         return this;
     }
 
-    public JavaWriter beginClass(final String pName) {
-        return beginClass(pName, true);
+    public JavaWriter beginClass(final String name) {
+        return beginClass(name, true);
     }
 
-    public JavaWriter beginClass(final String pName, final boolean isPublic) {
+    public JavaWriter beginClass(final String name, final boolean isPublic) {
 
         if (isPublic) {
             Keyword.KEYWORD_PUBLIC.write(this);
@@ -283,7 +283,7 @@ public class JavaWriter {
         space();
         Keyword.KEYWORD_CLASS.write(this);
         space();
-        append(pName);
+        append(name);
         beginBlock();
         return this;
     }

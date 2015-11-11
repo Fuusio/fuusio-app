@@ -13,24 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.fuusio.api.app;
+package org.fuusio.api.mvp;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import org.fuusio.api.util.LifecycleState;
 
 /**
- * {@link ActivityState} represents the current state of an {@link Activity}.
+ * {@link ViewState} represents the current state of a {@link View}.
  */
-public class ActivityState {
+public class ViewState {
 
-    private final Activity mActivity;
+    private final View mView;
+    
     private LifecycleState mLifecycleState;
     private boolean mRestarted;
 
-    public ActivityState(final Activity pActivity) {
-        mActivity = pActivity;
+    public ViewState(final View view) {
+        mView = view;
         mLifecycleState = LifecycleState.DORMANT;
         mRestarted = false;
     }
@@ -60,49 +60,49 @@ public class ActivityState {
     }
 
     /**
-     * To be invoked by {@link Activity#onCreate(Bundle)}.
+     * Invoked the {@link View} is created.
      */
     public void onCreate() {
         mLifecycleState = LifecycleState.CREATED;
     }
 
     /**
-     * To be invoked by {@link Activity#onStart()}.
+     * Invoked the {@link View} is started.
      */
     public void onStart() {
         mLifecycleState = LifecycleState.STARTED;
     }
 
     /**
-     * To be invoked by {@link Activity#onRestart()}.
+     * Invoked the {@link View} is restarted.
      */
     public void onRestart() {
         mRestarted = true;
     }
 
     /**
-     * To be invoked by {@link Activity#onPause()}.
+     * Invoked the {@link View} is paused.
      */
     public void onPause() {
         mLifecycleState = LifecycleState.PAUSED;
     }
 
     /**
-     * To be invoked by {@link Activity#onResume()}.
+     * Invoked the {@link View} is resumed.
      */
     public void onResume() {
         mLifecycleState = LifecycleState.RESUMED;
     }
 
     /**
-     * To be invoked by {@link Activity#onStop()}.
+     * Invoked the {@link View} is stopped.
      */
     public void onStop() {
         mLifecycleState = LifecycleState.STOPPED;
     }
 
     /**
-     * To be invoked by {@link Activity#onDestroy()}.
+     * Invoked the {@link View} is destroyed.
      */
     public void onDestroy() {
         mLifecycleState = LifecycleState.DESTROYED;

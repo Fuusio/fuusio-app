@@ -26,9 +26,9 @@ public abstract class AbstractListItemView implements ListItemView {
 
     private View mInflatedView;
 
-    protected AbstractListItemView(final Context pContext, final int pLayoutResId) {
-        final LayoutInflater inflater = LayoutInflater.from(pContext);
-        mInflatedView = inflater.inflate(pLayoutResId, null, false);
+    protected AbstractListItemView(final Context context, final int layoutResId) {
+        final LayoutInflater inflater = LayoutInflater.from(context);
+        mInflatedView = inflater.inflate(layoutResId, null, false);
         mInflatedView.setTag(this);
     }
 
@@ -36,7 +36,7 @@ public abstract class AbstractListItemView implements ListItemView {
         return mInflatedView;
     }
 
-    protected <T extends View> T getView(final int pResId) {
-        return (T) mInflatedView.findViewById(pResId);
+    protected <T extends View> T getView(final int viewId) {
+        return (T) mInflatedView.findViewById(viewId);
     }
 }

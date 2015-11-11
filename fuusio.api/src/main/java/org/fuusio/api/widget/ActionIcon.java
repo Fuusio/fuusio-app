@@ -29,11 +29,11 @@ public class ActionIcon extends ImageView {
     private int mNormalBackground;
     private int mSelectedBackground;
 
-    public ActionIcon(final Context pContext, final Action pAction) {
-        super(pContext);
-        mAction = pAction;
+    public ActionIcon(final Context context, final Action action) {
+        super(context);
+        mAction = action;
 
-        final int resId = pAction.getDrawableResId();
+        final int resId = action.getDrawableResId();
 
         if (resId > 0) {
             mIconDrawable = getResources().getDrawable(resId);
@@ -48,18 +48,18 @@ public class ActionIcon extends ImageView {
         return mAction;
     }
 
-    public void setNormalBackground(final int pColorResId) {
-        mNormalBackground = getResources().getColor(pColorResId);
+    public void setNormalBackground(final int colorResId) {
+        mNormalBackground = getResources().getColor(colorResId);
     }
 
-    public void setSelectedBackground(final int pColorResId) {
-        mSelectedBackground = getResources().getColor(pColorResId);
+    public void setSelectedBackground(final int colorResId) {
+        mSelectedBackground = getResources().getColor(colorResId);
     }
 
     @Override
-    public void setSelected(final boolean pSelected) {
+    public void setSelected(final boolean selected) {
 
-        super.setSelected(pSelected);
-        setBackgroundColor(pSelected ? mSelectedBackground : mNormalBackground);
+        super.setSelected(selected);
+        setBackgroundColor(selected ? mSelectedBackground : mNormalBackground);
     }
 }

@@ -25,14 +25,14 @@ public class Vector2D {
     public Vector2D() {
     }
 
-    public Vector2D(final Vector2D pOther) {
-        mX = pOther.mX;
-        mY = pOther.mY;
+    public Vector2D(final Vector2D other) {
+        mX = other.mX;
+        mY = other.mY;
     }
 
-    public Vector2D(final float pX, final float pY) {
-        mX = pX;
-        mY = pY;
+    public Vector2D(final float x, final float y) {
+        mX = x;
+        mY = y;
     }
 
     public final float getX() {
@@ -47,48 +47,48 @@ public class Vector2D {
         return (float) Math.sqrt(mX * mX + mY * mY);
     }
 
-    public Vector2D set(final Vector2D pOther) {
-        mX = pOther.getX();
-        mY = pOther.getY();
+    public Vector2D set(final Vector2D other) {
+        mX = other.getX();
+        mY = other.getY();
         return this;
     }
 
-    public Vector2D set(final float pX, final float pY) {
-        mX = pX;
-        mY = pY;
+    public Vector2D set(final float x, final float y) {
+        mX = x;
+        mY = y;
         return this;
     }
 
-    public Vector2D add(final Vector2D pValue) {
-        mX += pValue.mX;
-        mY += pValue.mY;
+    public Vector2D add(final Vector2D value) {
+        mX += value.mX;
+        mY += value.mY;
         return this;
     }
 
-    public static Vector2D subtract(final Vector2D pVector1, final Vector2D pVector2) {
-        return new Vector2D(pVector1.mX - pVector2.mX, pVector1.mY - pVector2.mY);
+    public static Vector2D subtract(final Vector2D vector1, final Vector2D vector2) {
+        return new Vector2D(vector1.mX - vector2.mX, vector1.mY - vector2.mY);
     }
 
-    public static float getDistance(final Vector2D lhs, final Vector2D pVector2) {
-        final Vector2D delta = Vector2D.subtract(lhs, pVector2);
+    public static float getDistance(final Vector2D lhs, final Vector2D vector2) {
+        final Vector2D delta = Vector2D.subtract(lhs, vector2);
         return delta.getLength();
     }
 
-    public static float getSignedAngleBetween(final Vector2D pVector1, final Vector2D pVector2) {
-        final Vector2D normalized1 = getNormalized(pVector1);
-        final Vector2D normalized2 = getNormalized(pVector2);
+    public static float getSignedAngleBetween(final Vector2D vector1, final Vector2D vector2) {
+        final Vector2D normalized1 = getNormalized(vector1);
+        final Vector2D normalized2 = getNormalized(vector2);
 
         return (float) (Math.atan2(normalized2.mY, normalized2.mX) - Math.atan2(normalized1.mY,
                 normalized1.mX));
     }
 
-    public static Vector2D getNormalized(final Vector2D pVector) {
-        final float length = pVector.getLength();
+    public static Vector2D getNormalized(final Vector2D vector) {
+        final float length = vector.getLength();
 
         if (length == 0) {
             return new Vector2D();
         } else {
-            return new Vector2D(pVector.mX / length, pVector.mY / length);
+            return new Vector2D(vector.mX / length, vector.mY / length);
         }
 
     }

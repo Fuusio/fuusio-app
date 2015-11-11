@@ -9,88 +9,88 @@ public class L extends Object {
 
     private static LogFile sLogFile = null;
 
-    public static int i(final Object pObject, final String pMethod,
-                        final String pMessage) {
-        final String tag = createTag(pObject, pMethod);
+    public static int i(final Object object, final String method,
+                        final String message) {
+        final String tag = createTag(object, method);
 
         if (sLogFile != null) {
-            sLogFile.info(tag, pMessage);
+            sLogFile.info(tag, message);
         }
-        return Log.i(tag, pMessage);
+        return Log.i(tag, message);
     }
 
-    public static int d(final Object pObject, final String pMethod,
-                        final String pMessage) {
-        final String tag = createTag(pObject, pMethod);
+    public static int d(final Object object, final String method,
+                        final String message) {
+        final String tag = createTag(object, method);
 
         if (sLogFile != null) {
-            sLogFile.debug(tag, pMessage);
+            sLogFile.debug(tag, message);
         }
-        return Log.d(tag, pMessage);
+        return Log.d(tag, message);
     }
 
-    public static int e(final Object pObject, final String pMethod,
-                        final String pMessage) {
-        final String tag = createTag(pObject, pMethod);
+    public static int e(final Object object, final String method,
+                        final String message) {
+        final String tag = createTag(object, method);
 
         if (sLogFile != null) {
-            sLogFile.error(tag, pMessage);
+            sLogFile.error(tag, message);
         }
-        return Log.e(tag, pMessage);
+        return Log.e(tag, message);
     }
 
-    public static void e(final Object pObject, final String pMethod, final Exception pException) {
-        L.e(pObject, pMethod, pException.getMessage());
+    public static void e(final Object object, final String method, final Exception exception) {
+        L.e(object, method, exception.getMessage());
 
         final StringWriter stringWriter = new StringWriter();
         final PrintWriter printWriter = new  PrintWriter(stringWriter);
-        pException.printStackTrace(printWriter);
+        exception.printStackTrace(printWriter);
         printWriter.flush();
-        L.e(pObject, pMethod, printWriter.toString());
+        L.e(object, method, printWriter.toString());
         printWriter.close();
     }
 
-    public static int w(final Object pObject, final String pMethod,
-                        final String pMessage) {
-        final String tag = createTag(pObject, pMethod);
+    public static int w(final Object object, final String method,
+                        final String message) {
+        final String tag = createTag(object, method);
 
         if (sLogFile != null) {
-            sLogFile.warning(tag, pMessage);
+            sLogFile.warning(tag, message);
         }
-        return Log.w(createTag(pObject, pMethod), pMessage);
+        return Log.w(createTag(object, method), message);
     }
 
-    public static int wtf(final Object pObject, final String pMethod,
-                          final String pMessage) {
-        final String tag = createTag(pObject, pMethod);
+    public static int wtf(final Object object, final String method,
+                          final String message) {
+        final String tag = createTag(object, method);
 
         if (sLogFile != null) {
-            sLogFile.wtf(tag, pMessage);
+            sLogFile.wtf(tag, message);
         }
-        return Log.wtf(createTag(pObject, pMethod), pMessage);
+        return Log.wtf(createTag(object, method), message);
     }
 
-    public static String createTag(final Object pObject, final String pMethod) {
-        final StringBuilder tag = new StringBuilder(pObject.getClass()
+    public static String createTag(final Object object, final String method) {
+        final StringBuilder tag = new StringBuilder(object.getClass()
                 .getSimpleName());
         tag.append('.');
-        tag.append(pMethod);
+        tag.append(method);
         return tag.toString();
     }
 
-    public static void wtf(final Object pObject, final String pMethod,
-                           final Exception pException) {
-        L.wtf(pObject, pMethod, pException.getMessage());
-        pException.printStackTrace();
+    public static void wtf(final Object object, final String method,
+                           final Exception exception) {
+        L.wtf(object, method, exception.getMessage());
+        exception.printStackTrace();
     }
 
-    public static void setLogFile(final LogFile pLogFile) {
-        sLogFile = pLogFile;
+    public static void setLogFile(final LogFile logFile) {
+        sLogFile = logFile;
     }
 
-    public static void writeMessage(final String pMessage) {
+    public static void writeMessage(final String message) {
         if (sLogFile != null) {
-            sLogFile.write("", "", pMessage);
+            sLogFile.write("", "", message);
         }
     }
 }

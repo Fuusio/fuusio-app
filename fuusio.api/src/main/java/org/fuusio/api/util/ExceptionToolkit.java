@@ -29,15 +29,15 @@ public class ExceptionToolkit {
      * Asserts that the given parameter value is not {@code null}. If {@code null}, throws an
      * {@link IllegalArgumentException}.
      * 
-     * @param pParameterValue The parameter value to be tested.
-     * @param pParameterName The name of the parameter.
+     * @param parameterValue The parameter value to be tested.
+     * @param parameterName The name of the parameter.
      */
-    public static void assertParameterNotNull(final Object pParameterValue,
-            final String pParameterName) {
-        if (pParameterValue == null) {
+    public static void assertParameterNotNull(final Object parameterValue,
+            final String parameterName) {
+        if (parameterValue == null) {
             final String message = "Parameter '{0}' may not be null.";
             throw new IllegalArgumentException(StringToolkit.formatString(message,
-                    pParameterName));
+                    parameterName));
         }
     }
 
@@ -45,41 +45,41 @@ public class ExceptionToolkit {
      * Formats the given message {@link String} with given two arguments and by using the
      * {@link MessageFormat} class.
      * 
-     * @param pMessage The message to be displayed as {@link String}.
-     * @param pArgs The optional arguments for {@link MessageFormat} class.
+     * @param message The message to be displayed as {@link String}.
+     * @param args The optional arguments for {@link MessageFormat} class.
      * @return A {@link String} containing the formatted message.
      */
-    public static String formatMessageString(final String pMessage, final Object... pArgs) {
-        return StringToolkit.formatString(pMessage, pArgs);
+    public static String formatMessageString(final String message, final Object... args) {
+        return StringToolkit.formatString(message, args);
     }
 
     /**
      * Creates and throws an {@link IllegalArgumentException} with the given message.
      * 
-     * @param pMessage The message to be displayed as {@link String}.
+     * @param message The message to be displayed as {@link String}.
      */
-    public static void throwIllegalArgumentException(final String pMessage) {
-        throw new IllegalArgumentException(pMessage);
+    public static void throwIllegalArgumentException(final String message) {
+        throw new IllegalArgumentException(message);
     }
 
     /**
      * Creates and throws an {@link IllegalStateException} with the given message.
      * 
-     * @param pMessage The message to be displayed as {@link String}.
+     * @param message The message to be displayed as {@link String}.
      */
-    public static void throwIllegalStateException(final String pMessage) {
-        throw new IllegalStateException(pMessage);
+    public static void throwIllegalStateException(final String message) {
+        throw new IllegalStateException(message);
     }
 
     /**
      * Creates and throws an {@link IllegalArgumentException} with the given message and message
      * formatting arguments.
      * 
-     * @param pMessage The message to be displayed as {@link String}.
-     * @param pArgs The optional message formatting arguments.
+     * @param message The message to be displayed as {@link String}.
+     * @param args The optional message formatting arguments.
      */
-    public static void throwIllegalArgumentException(final String pMessage, final Object... pArgs) {
-        final String errorMessage = StringToolkit.formatString(pMessage, pArgs);
+    public static void throwIllegalArgumentException(final String message, final Object... args) {
+        final String errorMessage = StringToolkit.formatString(message, args);
         throw new IllegalArgumentException(errorMessage);
     }
 
@@ -87,11 +87,11 @@ public class ExceptionToolkit {
      * Creates and throws an {@link IllegalArgumentException} with the given message and message
      * formatting arguments.
      * 
-     * @param pParameterName The name of the parameter as {@link String}.
+     * @param parameterName The name of the parameter as {@link String}.
      */
-    public static void throwNullParameterException(final String pParameterName) {
+    public static void throwNullParameterException(final String parameterName) {
         final String message = "Parameter '{0}' may not be null.";
         throw new IllegalArgumentException(StringToolkit.formatString(message,
-                pParameterName));
+                parameterName));
     }
 }

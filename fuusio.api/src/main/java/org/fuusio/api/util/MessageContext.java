@@ -30,9 +30,9 @@ public class MessageContext {
     protected String mMessage;
     protected int mMessageId;
 
-    public MessageContext(final Context pContext) {
-        mContext = pContext;
-        mArgs = new ArrayList<Object>();
+    public MessageContext(final Context context) {
+        mContext = context;
+        mArgs = new ArrayList<>();
         clear();
     }
 
@@ -54,70 +54,70 @@ public class MessageContext {
     }
 
 
-    public void setMessage(final String pMessage) {
-        mMessage = pMessage;
+    public void setMessage(final String message) {
+        mMessage = message;
     }
 
-    public void setMessage(final int pStringResId) {
-        mMessageId = pStringResId;
+    public void setMessage(final int stringResId) {
+        mMessageId = stringResId;
     }
 
-    public void setMessage(final int pStringResId, final  Object... pArgs) {
-        mMessageId = pStringResId;
-        setMessageArgs(pArgs);
+    public void setMessage(final int stringResId, final  Object... args) {
+        mMessageId = stringResId;
+        setMessageArgs(args);
     }
 
 
-    public void setMessageArgs(final  Object... pArgs) {
+    public void setMessageArgs(final  Object... args) {
         mArgs.clear();
 
-        for (final Object pArg : pArgs) {
-            mArgs.add(pArg);
+        for (final Object arg : args) {
+            mArgs.add(arg);
         }
     }
 
-    public void setMessageArgs(final List<Object> pArgs) {
+    public void setMessageArgs(final List<Object> args) {
         mArgs.clear();
-        mArgs.addAll(pArgs);
+        mArgs.addAll(args);
     }
 
-    public MessageContext addMessageArg(final boolean pArg) {
-        mArgs.add(pArg);
+    public MessageContext addMessageArg(final boolean arg) {
+        mArgs.add(arg);
         return this;
     }
 
-    public MessageContext addMessageArg(final byte pArg) {
-        mArgs.add(pArg);
+    public MessageContext addMessageArg(final byte arg) {
+        mArgs.add(arg);
         return this;
     }
 
-    public MessageContext addMessageArg(final char pArg) {
-        mArgs.add(pArg);
+    public MessageContext addMessageArg(final char arg) {
+        mArgs.add(arg);
         return this;
     }
 
-    public MessageContext addMessageArg(final double pArg) {
-        mArgs.add(pArg);
+    public MessageContext addMessageArg(final double arg) {
+        mArgs.add(arg);
         return this;
     }
 
-    public MessageContext addMessageArg(final float pArg) {
-        mArgs.add(pArg);
+    public MessageContext addMessageArg(final float arg) {
+        mArgs.add(arg);
         return this;
     }
 
-    public MessageContext addMessageArg(final int pArg) {
-        mArgs.add(pArg);
+    public MessageContext addMessageArg(final int arg) {
+        mArgs.add(arg);
         return this;
     }
 
-    public MessageContext addMessageArg(final Object pArg) {
-        mArgs.add(pArg);
+    public MessageContext addMessageArg(final Object arg) {
+        mArgs.add(arg);
         return this;
     }
 
-    public MessageContext addMessageArg(final String pArg) {
-        mArgs.add(pArg);
+    public MessageContext addMessageArg(final String arg) {
+        mArgs.add(arg);
         return this;
     }
 

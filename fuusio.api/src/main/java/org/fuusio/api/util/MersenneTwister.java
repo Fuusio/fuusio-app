@@ -211,12 +211,12 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
         catch (CloneNotSupportedException e) { throw new InternalError(); } // should never happen
         }
 
-    public boolean stateEquals(Object o)
+    public boolean stateEquals(Object object)
         {
-        if (o==this) return true;
-        if (o == null || !(o instanceof MersenneTwister))
+        if (object==this) return true;
+        if (object == null || !(object instanceof MersenneTwister))
             return false;
-        MersenneTwister other = (MersenneTwister) o;
+        MersenneTwister other = (MersenneTwister) object;
         if (mti != other.mti) return false;
         for(int x=0;x<mag01.length;x++)
             if (mag01[x] != other.mag01[x]) return false;

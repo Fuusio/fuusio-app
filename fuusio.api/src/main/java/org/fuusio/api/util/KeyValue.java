@@ -20,29 +20,29 @@ public class KeyValue<T_Key, T_Value> {
     private T_Key mKey;
     private T_Value mValue;
 
-    public KeyValue(final T_Key pKey, final T_Value pValue) {
-        mKey = pKey;
-        mValue = pValue;
+    public KeyValue(final T_Key key, final T_Value value) {
+        mKey = key;
+        mValue = value;
     }
 
-    public KeyValue(final KeyValue<T_Key, T_Value> pSource) {
-        mKey = pSource.mKey;
-        mValue = pSource.mValue;
+    public KeyValue(final KeyValue<T_Key, T_Value> source) {
+        mKey = source.mKey;
+        mValue = source.mValue;
     }
 
     public final T_Key getKey() {
         return mKey;
     }
 
-    public void setKey(final T_Key pKey) {
-        mKey = pKey;
+    public void setKey(final T_Key key) {
+        mKey = key;
     }
 
     public final T_Value getValue() {
         return mValue;
     }
 
-    public void setValue(final T_Value pValue) {
-        mValue = pValue;
+    public void setValue(final T_Value value) {
+        mValue = value;
     }
 }

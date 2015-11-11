@@ -27,8 +27,8 @@ public enum LifecycleState {
 
     private final String mLabel;
 
-    LifecycleState(final String pLabel) {
-        mLabel = pLabel;
+    LifecycleState(final String label) {
+        mLabel = label;
     }
 
     public String getLabel() {

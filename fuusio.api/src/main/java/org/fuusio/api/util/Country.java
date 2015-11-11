@@ -21,10 +21,10 @@ public class Country {
     private final String mIso;
     private final String mName;
 
-    protected Country(final String pIso, final String pCode, final String pName) {
-        mIso = pIso;
-        mCode = pCode;
-        mName = pName;
+    protected Country(final String iso, final String code, final String name) {
+        mIso = iso;
+        mCode = code;
+        mName = name;
     }
 
     public final String getCode() {

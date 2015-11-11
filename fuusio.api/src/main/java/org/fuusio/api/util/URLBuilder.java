@@ -21,41 +21,41 @@ public class URLBuilder {
 
     private boolean mFirstParameter;
 
-    public URLBuilder(final String pUrl) {
-        mBuilder = new StringBuilder(pUrl);
+    public URLBuilder(final String url) {
+        mBuilder = new StringBuilder(url);
         mFirstParameter = true;
     }
 
-    public URLBuilder(final String pFormattedUrl, final Object... pArgs) {
-        mBuilder = new StringBuilder(StringToolkit.formatString(pFormattedUrl, pArgs));
+    public URLBuilder(final String formattedUrl, final Object... pArgs) {
+        mBuilder = new StringBuilder(StringToolkit.formatString(formattedUrl, pArgs));
         mFirstParameter = true;
     }
 
-    public URLBuilder p(final String pKey, final int pValue) {
-        return addParam(pKey, Integer.toString(pValue));
+    public URLBuilder p(final String key, final int value) {
+        return addParam(key, Integer.toString(value));
     }
 
-    public URLBuilder p(final String pKey, final boolean pValue) {
-        return addParam(pKey, Boolean.toString(pValue));
+    public URLBuilder p(final String key, final boolean value) {
+        return addParam(key, Boolean.toString(value));
     }
 
-    public URLBuilder p(final String pKey, final float pValue) {
-        return addParam(pKey, Float.toString(pValue));
+    public URLBuilder p(final String key, final float value) {
+        return addParam(key, Float.toString(value));
     }
 
-    public URLBuilder p(final String pKey, final double pValue) {
-        return addParam(pKey, Double.toString(pValue));
+    public URLBuilder p(final String key, final double value) {
+        return addParam(key, Double.toString(value));
     }
 
-    public URLBuilder p(final String pKey, final long pValue) {
-        return addParam(pKey, Long.toString(pValue));
+    public URLBuilder p(final String key, final long value) {
+        return addParam(key, Long.toString(value));
     }
 
-    public URLBuilder p(final String pKey, final String pValue) {
-        return addParam(pKey, pValue);
+    public URLBuilder p(final String key, final String value) {
+        return addParam(key, value);
     }
 
-    public URLBuilder addParam(final String pKey, final String pValue) {
+    public URLBuilder addParam(final String key, final String value) {
 
         if (mFirstParameter) {
             mBuilder.append('?');
@@ -64,9 +64,9 @@ public class URLBuilder {
             mBuilder.append('&');
         }
 
-        mBuilder.append(pKey);
+        mBuilder.append(key);
         mBuilder.append('=');
-        mBuilder.append(pValue);
+        mBuilder.append(value);
 
         return this;
     }
