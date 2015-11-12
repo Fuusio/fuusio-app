@@ -24,15 +24,18 @@ import android.nfc.NdefRecord;
 
 public class ParsedNdefRecord {
 
-    protected final static Charset CHARSET_UTF_8 = Charset.forName("UTF-8");
+    protected final static String ENCODING_UTF_8 = "UTF-8";
+    protected final static String ENCODING_UTF_16 = "UTF-16";
+    protected final static Charset CHARSET_UTF_8 = Charset.forName(ENCODING_UTF_8);
+    protected final static String CHARSET_NAME_US_ASCII = "US-ASCII";
 
     public boolean isSmartPoster() {
         return false;
     }
 
-    public static boolean isSmartPosterRecord(final NdefRecord pRecord) {
+    public static boolean isSmartPosterRecord(final NdefRecord record) {
         try {
-            SmartPosterRecord.parse(pRecord);
+            SmartPosterRecord.parse(record);
             return true;
         } catch (IllegalArgumentException e) {
             return false;
@@ -43,9 +46,9 @@ public class ParsedNdefRecord {
         return false;
     }
 
-    public static boolean isTextRecord(final NdefRecord pRecord) {
+    public static boolean isTextRecord(final NdefRecord record) {
         try {
-            TextRecord.parse(pRecord);
+            TextRecord.parse(record);
             return true;
         } catch (IllegalArgumentException e) {
             return false;
@@ -56,23 +59,23 @@ public class ParsedNdefRecord {
         return false;
     }
 
-    public static boolean isUriRecord(final NdefRecord pRecord) {
+    public static boolean isUriRecord(final NdefRecord record) {
         try {
-            UriRecord.parse(pRecord);
+            UriRecord.parse(record);
             return true;
         } catch (IllegalArgumentException e) {
             return false;
         }
     }
 
-    public static List<ParsedNdefRecord> parse(final NdefMessage pMessage) {
-        return getRecords(pMessage.getRecords());
+    public static List<ParsedNdefRecord> parse(final NdefMessage message) {
+        return getRecords(message.getRecords());
     }
 
-    public static List<ParsedNdefRecord> getRecords(final NdefRecord[] pRecords) {
+    public static List<ParsedNdefRecord> getRecords(final NdefRecord[] records) {
         final List<ParsedNdefRecord> elements = new ArrayList<ParsedNdefRecord>();
 
-        for (final NdefRecord record : pRecords) {
+        for (final NdefRecord record : records) {
             if (isUriRecord(record)) {
                 elements.add(UriRecord.parse(record));
             } else if (isTextRecord(record)) {

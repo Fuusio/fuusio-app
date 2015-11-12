@@ -83,22 +83,22 @@ public class CompositeDrawable extends Drawable {
      * Sets the border of this {@code CompositeDrawable} to be drawn depending on the given
      * {@code boolean} value.
      * 
-     * @param pDrawBorder The given {@code boolean} value.
+     * @param drawBorder The given {@code boolean} value.
      */
-    public void setDrawBorder(final boolean pDrawBorder) {
-        mDrawBorder = pDrawBorder;
+    public void setDrawBorder(final boolean drawBorder) {
+        mDrawBorder = drawBorder;
     }
 
     /**
      * Adds the given {@code Drawable} to {@code CompositeDrawable}.
      * 
-     * @param pDrawable The {@code Drawable} to be added.
+     * @param drawable The {@code Drawable} to be added.
      * @return The added {@code Drawable}. May return {@code null} if adding fails.
      */
-    public Drawable addDrawable(final Drawable pDrawable) {
-        if (!mComponentDrawables.contains(pDrawable)) {
-            mComponentDrawables.add(pDrawable);
-            return pDrawable;
+    public Drawable addDrawable(final Drawable drawable) {
+        if (!mComponentDrawables.contains(drawable)) {
+            mComponentDrawables.add(drawable);
+            return drawable;
         }
 
         return null;
@@ -107,10 +107,10 @@ public class CompositeDrawable extends Drawable {
     /**
      * Adds the given {@code Drawable}s to this {@code CompositeDrawable}.
      * 
-     * @param pDrawables A {@link List} of {@code Drawable}s to be added.
+     * @param drawables A {@link List} of {@code Drawable}s to be added.
      */
-    public void addDrawables(final List<Drawable> pDrawables) {
-        for (final Drawable drawable : pDrawables) {
+    public void addDrawables(final List<Drawable> drawables) {
+        for (final Drawable drawable : drawables) {
             addDrawable(drawable);
         }
     }
@@ -118,14 +118,14 @@ public class CompositeDrawable extends Drawable {
     /**
      * Inserts the given {@code Drawable} as a component painter to this {@code CompositeDrawable}.
      * 
-     * @param pDrawable The {@code Drawable} to be inserted.
-     * @param pIndex The specified index.
+     * @param drawable The {@code Drawable} to be inserted.
+     * @param index The specified index.
      * @return The inserted {@code Drawable}. May return {@code null} if inserting fails.
      */
-    public Drawable insertDrawable(final Drawable pDrawable, final int pIndex) {
-        if (!mComponentDrawables.contains(pDrawable)) {
-            mComponentDrawables.add(pIndex, pDrawable);
-            return pDrawable;
+    public Drawable insertDrawable(final Drawable drawable, final int index) {
+        if (!mComponentDrawables.contains(drawable)) {
+            mComponentDrawables.add(index, drawable);
+            return drawable;
         }
 
         return null;
@@ -134,12 +134,12 @@ public class CompositeDrawable extends Drawable {
     /**
      * Removes the given component {@code Drawable} from this {@code CompositeDrawable}.
      * 
-     * @param pDrawable The {@code Drawable} to be removed.
+     * @param drawable The {@code Drawable} to be removed.
      * @return The removed {@code Drawable}. May return {@code null} if removing fails.
      */
-    public Drawable removeDrawable(final Drawable pDrawable) {
-        mComponentDrawables.remove(pDrawable);
-        return pDrawable;
+    public Drawable removeDrawable(final Drawable drawable) {
+        mComponentDrawables.remove(drawable);
+        return drawable;
     }
 
     /**
@@ -155,7 +155,7 @@ public class CompositeDrawable extends Drawable {
      * @see android.graphics.drawable.Drawable#draw(android.graphics.Canvas)
      */
     @Override
-    public void draw(final Canvas pCanvas) {
+    public void draw(final Canvas canvas) {
 
         if (mBackgroundPainted) {
             // TODO
@@ -169,7 +169,7 @@ public class CompositeDrawable extends Drawable {
 
         for (int i = count - 1; i >= 0; i--) {
             final Drawable drawable = mComponentDrawables.get(i);
-            drawable.draw(pCanvas);
+            drawable.draw(canvas);
         }
     }
 
@@ -207,7 +207,7 @@ public class CompositeDrawable extends Drawable {
      * @see android.graphics.drawable.Drawable#setAlpha(int)
      */
     @Override
-    public void setAlpha(final int pAlpha) {
+    public void setAlpha(final int alpha) {
         // TODO Auto-generated method stub
 
     }
@@ -218,7 +218,7 @@ public class CompositeDrawable extends Drawable {
      * @see android.graphics.drawable.Drawable#setColorFilter(android.graphics.ColorFilter)
      */
     @Override
-    public void setColorFilter(final ColorFilter pFilter) {
+    public void setColorFilter(final ColorFilter filter) {
         // TODO Auto-generated method stub
 
     }

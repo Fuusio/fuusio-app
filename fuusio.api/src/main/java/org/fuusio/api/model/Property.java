@@ -104,20 +104,20 @@ public class Property {
      */
     private Method mValidator;
 
-    public Property(final String pName, final PropertyModifier... modifiers) {
+    public Property(final String name, final PropertyModifier... modifiers) {
 
         mModifiers = new HashMap<>();
         mModifiers.put(PropertyModifier.DESCRIPTOR, false);
         mModifiers.put(PropertyModifier.MODIFIABLE, true);
         mModifiers.put(PropertyModifier.SYNTHETIC, false);
         mModifiers.put(PropertyModifier.TRANSIENT, false);
-        mName = pName;
+        mName = name;
 
         for (int i = 0; i < modifiers.length; i++) {
             mModifiers.put(modifiers[i], true);
         }
 
-        mTransientExceptions = new ArrayList<Class<? extends ModelObject>>();
+        mTransientExceptions = new ArrayList<>();
         mColumnIndex = -1;
         mKey = false;        
     }
@@ -126,8 +126,8 @@ public class Property {
         return mKey;
     }
 
-    public void setKey(final boolean pKey) {
-        mKey = pKey;
+    public void setKey(final boolean key) {
+        mKey = key;
     }
     
     public final Method getGetter() {
@@ -138,12 +138,12 @@ public class Property {
 		return mColumnIndex;
 	}
 
-	public void setColumnIndex(final int pColumnIndex) {
-		mColumnIndex = pColumnIndex;
+	public void setColumnIndex(final int columnIndex) {
+		mColumnIndex = columnIndex;
 	}
 
-	public void setGetter(final Method pGetter) {
-        mGetter = pGetter;
+	public void setGetter(final Method getter) {
+        mGetter = getter;
         mType = mGetter.getReturnType();
 
         try { // TODO
@@ -160,7 +160,7 @@ public class Property {
                     }
                 }
             }
-        } catch (final Exception pException) {
+        } catch (final Exception e) {
             // TODO
         }
     }
@@ -169,42 +169,42 @@ public class Property {
         return mResetter;
     }
 
-    public void setResetter(final Method pResetter) {
-        mResetter = pResetter;
+    public void setResetter(final Method resetter) {
+        mResetter = resetter;
     }
 
     public final Method getSetter() {
         return mSetter;
     }
 
-    public void setSetter(final Method pSetter) {
-        mSetter = pSetter;
+    public void setSetter(final Method setter) {
+        mSetter = setter;
     }
 
     public final Method getValidator() {
         return mValidator;
     }
 
-    public void setValidator(final Method pValidator) {
-        mValidator = pValidator;
+    public void setValidator(final Method validator) {
+        mValidator = validator;
     }
 
     public final Method getParser() {
         return mParser;
     }
 
-    public void setParser(final Method pParser) {
-        mParser = pParser;
+    public void setParser(final Method parser) {
+        mParser = parser;
     }
 
     /**
      * Sets this {@code Property} to represent a descriptor property (i.e. the property whose value
      * is read when a {@link ModelObject} is read as a descriptor and not fully).
      * 
-     * @param pDescriptor A {@code boolean} value.
+     * @param isDescriptor A {@code boolean} value.
      */
-    public void setDescriptor(final boolean pDescriptor) {
-        mModifiers.put(PropertyModifier.DESCRIPTOR, pDescriptor);
+    public void setDescriptor(final boolean isDescriptor) {
+        mModifiers.put(PropertyModifier.DESCRIPTOR, isDescriptor);
     }
 
     /**
@@ -212,20 +212,20 @@ public class Property {
      * is dynamically computed from other property values and therefore is not persistent) depending
      * on the given {@code boolean} value.
      * 
-     * @param pSynthetic A {@code boolean} value.
+     * @param isSynthetic A {@code boolean} value.
      */
-    public void setSynthetic(final boolean pSynthetic) {
-        mModifiers.put(PropertyModifier.SYNTHETIC, pSynthetic);
+    public void setSynthetic(final boolean isSynthetic) {
+        mModifiers.put(PropertyModifier.SYNTHETIC, isSynthetic);
     }
 
     /**
      * Sets this {@code Property} to represent a transient property (i.e. the property whose value
      * is not persistent and is not stored into database).
      * 
-     * @param pTransient A {@code boolean} value.
+     * @param isTransient A {@code boolean} value.
      */
-    public void setTransient(final boolean pTransient) {
-        mModifiers.put(PropertyModifier.TRANSIENT, pTransient);
+    public void setTransient(final boolean isTransient) {
+        mModifiers.put(PropertyModifier.TRANSIENT, isTransient);
     }
 
     /**
@@ -335,14 +335,14 @@ public class Property {
     /**
      * Gets the specified property value from the given {@code ModelObject}.
      * 
-     * @param pObject A {@code ModelObject}.
+     * @param object A {@code ModelObject}.
      * @return The value as an {@code Object}.
      */
     @SuppressWarnings("unchecked")
-    public <T> T get(final ModelObject pObject) {
+    public <T> T get(final ModelObject object) {
         if (mGetter != null) {
             try {
-                return (T) mGetter.invoke(pObject);
+                return (T) mGetter.invoke(object);
             } catch (final IllegalAccessException e) {
                 L.wtf(this, "get", e.getMessage());
             } catch (final InvocationTargetException e) {
@@ -385,22 +385,22 @@ public class Property {
     /**
      * Applies the given property value to the given {@code ModelObject}.
      * 
-     * @param pObject A {@code ModelObject}.
-     * @param pValue The value as a {@code Object}.
+     * @param object A {@code ModelObject}.
+     * @param value The value as a {@code Object}.
      * @return A {@code boolean} value indicating whether set property value was actually changed.
      */
-    public boolean set(final ModelObject pObject, final Object pValue) {
+    public boolean set(final ModelObject object, final Object value) {
         if (mSetter != null) {
             try {
                 boolean changed = false;
 
                 if (mGetter != null) {
-                    final Object oldValue = get(pObject);
-                    changed = isChanged(oldValue, pValue);
+                    final Object oldValue = get(object);
+                    changed = isChanged(oldValue, value);
                 }
 
-                mSetter.invoke(pObject, pValue);
-                pObject.setChanged(changed);
+                mSetter.invoke(object, value);
+                object.setChanged(changed);
                 return true;
             } catch (final IllegalAccessException e) {
                 L.wtf(this, "set", e.getMessage());
@@ -416,23 +416,23 @@ public class Property {
         return false;
     }
 
-    public boolean setValueFromString(final ModelObject pObject, final String pValueString) {
+    public boolean setValueFromString(final ModelObject object, final String valueString) {
 
-        if (pValueString == null) {
+        if (valueString == null) {
             L.w(this, "set", "Null value detected"); // TODO
             return false;
         }
 
-        return set(pObject, convertStringToValue(pObject, pValueString, mType));
+        return set(object, convertStringToValue(object, valueString, mType));
     }
 
-    public void set(final ModelObject pObject, final String pValueName, final JSONObject pJsonObject)
+    public void set(final ModelObject object, final String valueName, final JSONObject jsonObject)
             throws JSONException {
 
         String valueString = null;
 
         try {
-            valueString = pJsonObject.getString(pValueName);
+            valueString = jsonObject.getString(valueName);
         } catch (JSONException e) {
         }
 
@@ -443,28 +443,28 @@ public class Property {
         if (mType.equals(Bitmap.class)) {
             // TODO
         } else if (mType.equals(Boolean.class) || mType.equals(Boolean.TYPE)) {
-            set(pObject, pJsonObject.getBoolean(pValueName));
+            set(object, jsonObject.getBoolean(valueName));
         } else if (mType.equals(Byte.class) || mType.equals(Byte.TYPE)) {
-            set(pObject, pJsonObject.getInt(pValueName));
+            set(object, jsonObject.getInt(valueName));
         } else if (mType.equals(Date.class)) {
             try {
                 final Date date = DateToolkit.parse(valueString);
-                set(pObject, date);
+                set(object, date);
             } catch (final Exception e) {
                 L.w(this, "set", e.getMessage());
             }
         } else if (mType.equals(Double.class) || mType.equals(Double.TYPE)) {
-            set(pObject, pJsonObject.getDouble(pValueName));
+            set(object, jsonObject.getDouble(valueName));
         } else if (mType.equals(Float.class) || mType.equals(Float.TYPE)) {
-            set(pObject, (float) pJsonObject.getDouble(pValueName));
+            set(object, (float) jsonObject.getDouble(valueName));
         } else if (mType.equals(Integer.class) || mType.equals(Integer.TYPE)) {
-            set(pObject, pJsonObject.getInt(pValueName));
+            set(object, jsonObject.getInt(valueName));
         } else if (mType.equals(Long.class) || mType.equals(Long.TYPE)) {
-            set(pObject, pJsonObject.getLong(pValueName));
+            set(object, jsonObject.getLong(valueName));
         } else if (mType.equals(Short.class) || mType.equals(Short.TYPE)) {
-            set(pObject, pJsonObject.getInt(pValueName));
+            set(object, jsonObject.getInt(valueName));
         } else if (mType.equals(String.class)) {
-            set(pObject, valueString);
+            set(object, valueString);
         } else if (mType.equals(byte[].class)) {
             throw new UnsupportedOperationException();
         }
@@ -473,23 +473,23 @@ public class Property {
     /**
      * Tests if this {@code Property} is the one specified by the given name.
      * 
-     * @param pName The name of the property,
+     * @param name The name of the property,
      * @return A {@code boolean}.
      */
-    public final boolean is(final String pName) {
-        return mName.equals(pName);
+    public final boolean is(final String name) {
+        return mName.equals(name);
     }
 
-    private boolean isChanged(final Object pOldValue, final Object pNewValue) {
-        if (pOldValue == null && pNewValue == null) {
+    private boolean isChanged(final Object oldValue, final Object newValue) {
+        if (oldValue == null && newValue == null) {
             return false;
         }
 
-        if (pOldValue == null || pNewValue == null) {
+        if (oldValue == null || newValue == null) {
             return true;
         }
 
-        return !pOldValue.equals(pNewValue);
+        return !oldValue.equals(newValue);
     }
 
     /**
@@ -535,25 +535,25 @@ public class Property {
      * value is not persistent and is not stored into database) for the specified
      * {@link ModelObject} type.
      * 
-     * @param pType A {@link Class} specifying the type of the {@link ModelObject}.
+     * @param type A {@link Class} specifying the type of the {@link ModelObject}.
      * @return A {@code boolean} value.
      */
-    public boolean isTransientFor(final Class<? extends ModelObject> pType) {
-        return mTransientExceptions.contains(pType);
+    public boolean isTransientFor(final Class<? extends ModelObject> type) {
+        return mTransientExceptions.contains(type);
     }
 
 /**
      * Tests whether the given {@code Object} represents a valid value of 
      * this {@code Property} for the given {@code ModelObject}.
      *      
-     * @param pObject A {@code ModelObject].     
-     * @param pValue The value as an {@code Object}. May be {@code null}.
+     * @param object A {@code ModelObject].     
+     * @param value The value as an {@code Object}. May be {@code null}.
      * @return A {@code boolean} value.
      */
-    public boolean validate(final ModelObject pObject, final Object pValue) {
+    public boolean validate(final ModelObject object, final Object value) {
         final Class<?> propertyType = getType();
 
-        if (pValue == null) {
+        if (value == null) {
             if (propertyType.isPrimitive()) {
                 return false;
             }
@@ -561,7 +561,7 @@ public class Property {
 
         if (mValidator != null) {
             try {
-                return (Boolean) mValidator.invoke(pObject, pValue);
+                return (Boolean) mValidator.invoke(object, value);
             } catch (final IllegalAccessException e) {
                 L.wtf(this, "validate", e.getMessage());
             } catch (final InvocationTargetException e) {
@@ -571,13 +571,13 @@ public class Property {
             }
         }
 
-        return propertyType.isAssignableFrom(pValue.getClass());
+        return propertyType.isAssignableFrom(value.getClass());
     }
 
-    public boolean validate(final ModelObject pObject, final Object pValue, final MessageContext pMessageContext) {
+    public boolean validate(final ModelObject object, final Object value, final MessageContext messageContext) {
         final Class<?> propertyType = getType();
 
-        if (pValue == null) {
+        if (value == null) {
             if (propertyType.isPrimitive()) {
                 return false;
             }
@@ -585,7 +585,7 @@ public class Property {
 
         if (mValidator != null) {
             try {
-                return (Boolean) mValidator.invoke(pObject, pValue, pMessageContext);
+                return (Boolean) mValidator.invoke(object, value, messageContext);
             } catch (final IllegalAccessException e) {
                 L.wtf(this, "validate", e.getMessage());
             } catch (final InvocationTargetException e) {
@@ -595,14 +595,14 @@ public class Property {
             }
         }
 
-        return propertyType.isAssignableFrom(pValue.getClass());
+        return propertyType.isAssignableFrom(value.getClass());
     }
 
-    public Object parse(final ModelObject pObject, final String pValueString) {
+    public Object parse(final ModelObject object, final String valueString) {
 
         if (mValidator != null) {
             try {
-                return mParser.invoke(pObject, pValueString);
+                return mParser.invoke(object, valueString);
             } catch (final IllegalAccessException e) {
                 L.wtf(this, "parse", e.getMessage());
             } catch (final InvocationTargetException e) {
@@ -615,41 +615,41 @@ public class Property {
         throw new UnsupportedOperationException();
     }
 
-    public Object convertStringToValue(final ModelObject pObject, final String pValueString, final Class<?> pType) {
+    public Object convertStringToValue(final ModelObject object, final String valueString, final Class<?> type) {
 
         if (mParser != null) {
-            return parse(pObject, pValueString);
+            return parse(object, valueString);
         }
 
-        if (pValueString == null) { // TODO Check value is allowed
+        if (valueString == null) { // TODO Check value is allowed
             return null;
         }
 
-        if (pType.equals(Bitmap.class)) {
+        if (type.equals(Bitmap.class)) {
             // TODO
-        } else if (pType.equals(Boolean.class) || pType.equals(Boolean.TYPE)) {
-            return pValueString.equalsIgnoreCase("true");
-        } else if (pType.equals(Byte.class) || pType.equals(Byte.TYPE)) {
-            return Byte.parseByte(pValueString);
-        } else if (pType.equals(Date.class)) {
+        } else if (type.equals(Boolean.class) || type.equals(Boolean.TYPE)) {
+            return valueString.equalsIgnoreCase("true");
+        } else if (type.equals(Byte.class) || type.equals(Byte.TYPE)) {
+            return Byte.parseByte(valueString);
+        } else if (type.equals(Date.class)) {
             try {
-                final Date date = DateToolkit.parse(pValueString);
+                final Date date = DateToolkit.parse(valueString);
                 return date;
             } catch (final Exception e) {
                 L.w(Property.class, "convertStringToValue", e.getMessage());
             }
-        } else if (pType.equals(Double.class) || pType.equals(Double.TYPE)) {
-            return Double.parseDouble(pValueString);
-        } else if (pType.equals(Float.class) || pType.equals(Float.TYPE)) {
-            return Float.parseFloat(pValueString);
-        } else if (pType.equals(Integer.class) || pType.equals(Integer.TYPE)) {
-            return Integer.parseInt(pValueString);
-        } else if (pType.equals(Long.class) || pType.equals(Long.TYPE)) {
-            return Long.parseLong(pValueString);
-        } else if (pType.equals(Short.class) || pType.equals(Short.TYPE)) {
-            return Short.parseShort(pValueString);
-        } else if (pType.equals(String.class)) {
-            return pValueString;
+        } else if (type.equals(Double.class) || type.equals(Double.TYPE)) {
+            return Double.parseDouble(valueString);
+        } else if (type.equals(Float.class) || type.equals(Float.TYPE)) {
+            return Float.parseFloat(valueString);
+        } else if (type.equals(Integer.class) || type.equals(Integer.TYPE)) {
+            return Integer.parseInt(valueString);
+        } else if (type.equals(Long.class) || type.equals(Long.TYPE)) {
+            return Long.parseLong(valueString);
+        } else if (type.equals(Short.class) || type.equals(Short.TYPE)) {
+            return Short.parseShort(valueString);
+        } else if (type.equals(String.class)) {
+            return valueString;
         }
 
         throw new UnsupportedOperationException();
@@ -657,25 +657,25 @@ public class Property {
     /**
      * Changes the first character of the given {@code String} to be a uppercase character.
      * 
-     * @param pString The given {@code String}. It must contain at least one character.
+     * @param string The given {@code String}. It must contain at least one character.
      * @return The modified {@code String}.
      */
-    public static String upperCaseFirstCharacter(final String pString) {
-        final char firstChar = pString.charAt(0);
+    public static String upperCaseFirstCharacter(final String string) {
+        final char firstChar = string.charAt(0);
 
         if (Character.isUpperCase(firstChar)) {
-            return pString;
+            return string;
         } else {
-            final StringBuffer buffer = new StringBuffer(pString);
+            final StringBuffer buffer = new StringBuffer(string);
             buffer.setCharAt(0, Character.toUpperCase(firstChar));
             return buffer.toString();
         }
     }
 
-    public Object read(final Cursor pCursor, final int pColumnIndex) {
+    public Object read(final Cursor pCursor, final int columnIndex) {
 
         if (mType.equals(Bitmap.class)) {
-            final byte[] imageByteArray = pCursor.getBlob(pColumnIndex);
+            final byte[] imageByteArray = pCursor.getBlob(columnIndex);
             Bitmap bitmap = null;
 
             if (imageByteArray != null) {
@@ -685,11 +685,11 @@ public class Property {
 
             return bitmap;
         } else if (mType.equals(Boolean.class) || mType.equals(Boolean.TYPE)) {
-            return (pCursor.getInt(pColumnIndex) != 0) ? true : false;
+            return (pCursor.getInt(columnIndex) != 0) ? true : false;
         } else if (mType.equals(Byte.class) || mType.equals(Byte.TYPE)) {
-            return (byte) pCursor.getInt(pColumnIndex);
+            return (byte) pCursor.getInt(columnIndex);
         } else if (mType.equals(Date.class)) {
-            String value = pCursor.getString(pColumnIndex);
+            String value = pCursor.getString(columnIndex);
 
             try {
                 return DateToolkit.parse(value);
@@ -697,27 +697,27 @@ public class Property {
                 return new Date(); // TODO
             }
         } else if (mType.equals(Double.class) || mType.equals(Double.TYPE)) {
-            return pCursor.getDouble(pColumnIndex);
+            return pCursor.getDouble(columnIndex);
         } else if (mType.equals(Float.class) || mType.equals(Float.TYPE)) {
-            return pCursor.getFloat(pColumnIndex);
+            return pCursor.getFloat(columnIndex);
         } else if (mType.equals(Integer.class) || mType.equals(Integer.TYPE)) {
-            return pCursor.getInt(pColumnIndex);
+            return pCursor.getInt(columnIndex);
         } else if (mType.equals(Long.class) || mType.equals(Long.TYPE)) {
-            return pCursor.getLong(pColumnIndex);
+            return pCursor.getLong(columnIndex);
         } else if (mType.equals(Short.class) || mType.equals(Short.TYPE)) {
-            return pCursor.getShort(pColumnIndex);
+            return pCursor.getShort(columnIndex);
         } else if (mType.equals(String.class)) {
-            return pCursor.getString(pColumnIndex);
+            return pCursor.getString(columnIndex);
         } else if (mType.equals(byte[].class)) {
-            return pCursor.getBlob(pColumnIndex);
+            return pCursor.getBlob(columnIndex);
         }
 
         return null;
     }
 
-    public void save(final ModelObject pObject, final ContentValues pValues) {
+    public void save(final ModelObject object, final ContentValues values) {
 
-        final Object value = get(pObject);
+        final Object value = get(object);
 
         if (value == null) {
             // TODO
@@ -735,33 +735,33 @@ public class Property {
                 e.printStackTrace();
             }
 
-            pValues.put(mName, blob);
+            values.put(mName, blob);
         } else if (value instanceof Boolean) {
-            pValues.put(mName, (Boolean) value);
+            values.put(mName, (Boolean) value);
         } else if (value instanceof Byte) {
-            pValues.put(mName, (Byte) value);
+            values.put(mName, (Byte) value);
         } else if (value instanceof Date) {
             final Date date = (Date) value;
-            pValues.put(mName, DateToolkit.format(date));
+            values.put(mName, DateToolkit.format(date));
         } else if (value instanceof Double) {
-            pValues.put(mName, (Double) value);
+            values.put(mName, (Double) value);
         } else if (value instanceof Float) {
-            pValues.put(mName, (Float) value);
+            values.put(mName, (Float) value);
         } else if (value instanceof Integer) {
-            pValues.put(mName, (Integer) value);
+            values.put(mName, (Integer) value);
         } else if (value instanceof Long) {
-            pValues.put(mName, (Long) value);
+            values.put(mName, (Long) value);
         } else if (value instanceof Short) {
-            pValues.put(mName, (Short) value);
+            values.put(mName, (Short) value);
         } else if (value instanceof String) {
-            pValues.put(mName, (String) value);
+            values.put(mName, (String) value);
         } else if (value instanceof byte[]) {
-            pValues.put(mName, (byte[]) value);
+            values.put(mName, (byte[]) value);
         }
     }
 
-    public void addTransitionExceptionFor(final Class<? extends ModelObject> pObjectClass) {
-        mTransientExceptions.add(pObjectClass);
+    public void addTransitionExceptionFor(final Class<? extends ModelObject> objectClass) {
+        mTransientExceptions.add(objectClass);
     }
 
 

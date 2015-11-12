@@ -17,13 +17,12 @@ package org.fuusio.api.ui.action;
 
 public abstract class UndoableAction extends Action {
 
-    protected UndoableAction(final int pIconResId) {
-        super(pIconResId);
-        // TODO Auto-generated constructor stub
+    protected UndoableAction(final int iconResId) {
+        super(iconResId);
     }
 
-    protected UndoableAction(final int pIconResId, final int textResId) {
-        super(pIconResId, textResId);
+    protected UndoableAction(final int iconResId, final int textResId) {
+        super(iconResId, textResId);
     }
 
     @Override

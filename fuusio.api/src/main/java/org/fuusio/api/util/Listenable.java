@@ -25,11 +25,11 @@ public interface Listenable<T_Listener> {
 
     List<T_Listener> getListeners();
 
-    boolean addListener(T_Listener pListener);
+    boolean addListener(T_Listener listener);
 
-    boolean removeListener(T_Listener pListener);
+    boolean removeListener(T_Listener listener);
 
     void removeAllListeners();
 
-    boolean hasListeners();
+    boolean hasAnyListeners();
 }

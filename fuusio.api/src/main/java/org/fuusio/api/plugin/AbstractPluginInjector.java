@@ -22,7 +22,7 @@ public abstract class AbstractPluginInjector implements PluginInjector {
     protected abstract Plugin[] getPlugins();
 
     @Override
-    public void onPlug(final Plugin pPlugin) {
+    public void onPlug(final Plugin plugin) {
 
         mPlugins = getPlugins();
 
@@ -36,7 +36,7 @@ public abstract class AbstractPluginInjector implements PluginInjector {
     }
 
     @Override
-    public void onUnplug(final Plugin pPlugin) {
+    public void onUnplug(final Plugin plugin) {
 
         if (mPlugins != null) {
             final int count = mPlugins.length;

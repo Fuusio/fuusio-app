@@ -26,8 +26,8 @@ import org.fuusio.api.ui.action.ActionManager;
 
 public abstract class FuusioApplicationScope extends ApplicationScope {
 
-    protected FuusioApplicationScope(final FuusioApplication pApplication) {
-        super(pApplication);
+    protected FuusioApplicationScope(final FuusioApplication application) {
+        super(application);
     }
 
     @Override

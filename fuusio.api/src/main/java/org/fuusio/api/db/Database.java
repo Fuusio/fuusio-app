@@ -37,9 +37,9 @@ public abstract class Database<T_DatabaseHelper extends DatabaseHelper> {
 	protected final T_DatabaseHelper mHelper;
 	protected boolean mOpen;
 	
-	protected Database(final Context pContext) {
-		mContext = pContext;
-		mHelper = createHelper(pContext);
+	protected Database(final Context context) {
+		mContext = context;
+		mHelper = createHelper(context);
 		mOpen = false;
 	}
 	
@@ -51,7 +51,7 @@ public abstract class Database<T_DatabaseHelper extends DatabaseHelper> {
 		return mHelper;
 	}
 	
-	protected abstract T_DatabaseHelper createHelper(final Context pContext);
+	protected abstract T_DatabaseHelper createHelper(final Context context);
 	
 	public SQLiteDatabase open() {
 	    mDb = mHelper.getWritableDatabase();
@@ -64,27 +64,27 @@ public abstract class Database<T_DatabaseHelper extends DatabaseHelper> {
 		mOpen = false;
 	}
 	
-	public static double toSqlValue(final float pValue) {
-		return pValue;
+	public static double toSqlValue(final float value) {
+		return value;
 	}
 	
-	public static int toSqlValue(final boolean pValue) {
-		return pValue ? 1 : 0;
+	public static int toSqlValue(final boolean value) {
+		return value ? 1 : 0;
 	}
 	
-	public static String toSqlValue(final Date pDate) {
-		return DateToolkit.format(pDate);
+	public static String toSqlValue(final Date date) {
+		return DateToolkit.format(date);
 	}
 
-	public static boolean toBoolean(final int pValue) {
-		return (pValue > 0);
+	public static boolean toBoolean(final int value) {
+		return (value > 0);
 	}
 	
-	public static Date toDate(final String pValue) {
+	public static Date toDate(final String value) {
 		
-		if (pValue != null) {
+		if (value != null) {
 			try {
-				return DateToolkit.parse(pValue);
+				return DateToolkit.parse(value);
 			} catch (ParseException e) {
 			}
 		}
@@ -92,15 +92,15 @@ public abstract class Database<T_DatabaseHelper extends DatabaseHelper> {
 		return null;
 	}
 	
-	public static byte[] toSqlValue(final Serializable pSerializable) {
-		return toBlob(pSerializable);
+	public static byte[] toSqlValue(final Serializable serializable) {
+		return toBlob(serializable);
 	}
 	
-	public static <T> T toSerializable(final byte[] pBlob) {
+	public static <T> T toSerializable(final byte[] blop) {
 		
-		if (pBlob != null) {
+		if (blop != null) {
 			try {
-				return fromBlob(pBlob);
+				return fromBlob(blop);
 			} catch (final Exception pException) {
 				throw new IllegalStateException();
 			}
@@ -110,29 +110,29 @@ public abstract class Database<T_DatabaseHelper extends DatabaseHelper> {
 	}
 	
     @SuppressWarnings("unchecked")
-	public static <T> T fromString(final String pString) throws IOException, ClassNotFoundException {
-        final byte [] data = Base64.decode(pString, Base64.DEFAULT);
+	public static <T> T fromString(final String string) throws IOException, ClassNotFoundException {
+        final byte [] data = Base64.decode(string, Base64.DEFAULT);
         final ObjectInputStream inputStream = new ObjectInputStream(new ByteArrayInputStream(data));
         final T object  = (T)inputStream.readObject();
         inputStream.close();
         return object;
     }
 
-    public static String toString(final Serializable pObject) throws IOException {
+    public static String toString(final Serializable object) throws IOException {
         final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
         final ObjectOutputStream outputStream = new ObjectOutputStream(byteOutputStream);
-        outputStream.writeObject(pObject);
+        outputStream.writeObject(object);
         outputStream.close();
         return new String(Base64.encodeToString(byteOutputStream.toByteArray(), Base64.DEFAULT));
     }
     
     @SuppressWarnings("unchecked")
-	public static <T> T fromBlob(final byte[] pBlob) {
+	public static <T> T fromBlob(final byte[] blop) {
        
         T object = null;
         
 		try {
-			final ObjectInputStream inputStream = new ObjectInputStream(new ByteArrayInputStream(pBlob));
+			final ObjectInputStream inputStream = new ObjectInputStream(new ByteArrayInputStream(blop));
 			object = (T)inputStream.readObject();
 			inputStream.close();
 		} catch (final Exception pException) {
@@ -142,12 +142,12 @@ public abstract class Database<T_DatabaseHelper extends DatabaseHelper> {
         return object;
     }
 
-    public static byte[] toBlob(final Serializable pObject) {
+    public static byte[] toBlob(final Serializable object) {
         final ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
        
 		try {
 			final ObjectOutputStream outputStream = new ObjectOutputStream(byteOutputStream);
-		    outputStream.writeObject(pObject);
+		    outputStream.writeObject(object);
 		    outputStream.close();			 
 		} catch (final IOException pException) {
 		}

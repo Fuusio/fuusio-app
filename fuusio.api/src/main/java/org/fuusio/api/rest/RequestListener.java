@@ -19,7 +19,7 @@ import com.android.volley.VolleyError;
 
 public interface RequestListener<T_Response> {
 
-    void onResponse(T_Response pResponse);
+    void onResponse(T_Response response);
 
-    void onError(VolleyError pError);
+    void onError(VolleyError error);
 }

@@ -20,6 +20,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
+import org.fuusio.api.util.AbstractListenable;
+
 import java.util.ArrayList;
 
 /**
@@ -38,8 +40,8 @@ public class ShakeDetector implements SensorEventListener {
     private int mAccuracy;
     private boolean mStarted;
 
-    public ShakeDetector(final SensorManager pSensorManager) {
-        mSensorManager = pSensorManager;
+    public ShakeDetector(final SensorManager sensorManager) {
+        mSensorManager = sensorManager;
         mAccelerationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mAccuracy = SensorManager.SENSOR_STATUS_ACCURACY_HIGH;
         mAccuraryListeners = new ArrayList<>();
@@ -67,47 +69,47 @@ public class ShakeDetector implements SensorEventListener {
     }
 
 
-    public void addAccuracyListener(final AccuracyListener pListener) {
-        if (!mAccuraryListeners.contains(pListener)) {
-            mAccuraryListeners.add(pListener);
+    public void addAccuracyListener(final AccuracyListener listener) {
+        if (!mAccuraryListeners.contains(listener)) {
+            mAccuraryListeners.add(listener);
         }
     }
 
-    public void removeAccuracyListener(final AccuracyListener pListener) {
-        mAccuraryListeners.remove(pListener);
+    public void removeAccuracyListener(final AccuracyListener listener) {
+        mAccuraryListeners.remove(listener);
     }
 
-    public void addGestureListener(final ShakeListener pListener) {
-        if (!mShakeListeners.contains(pListener)) {
-            mShakeListeners.add(pListener);
+    public void addShakeListener(final ShakeListener listener) {
+        if (!mShakeListeners.contains(listener)) {
+            mShakeListeners.add(listener);
         }
     }
 
-    public void removeGestureListener(final ShakeListener pListener) {
-        mShakeListeners.remove(pListener);
+    public void removeShakeListener(final ShakeListener listener) {
+        mShakeListeners.remove(listener);
     }
 
     @Override
-    public void onSensorChanged(final SensorEvent pEvent) {
+    public void onSensorChanged(final SensorEvent event) {
 
     }
 
     @Override
-    public void onAccuracyChanged(final Sensor pSensor, final int pAccuracy) {
-        if (pSensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            mAccuracy = pAccuracy;
+    public void onAccuracyChanged(final Sensor sensor, final int accuracy) {
+        if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            mAccuracy = accuracy;
 
-            if (mAccuracy != pAccuracy) {
+            if (mAccuracy != accuracy) {
                 for (final AccuracyListener listener : mAccuraryListeners) {
-                    listener.onAccuracyChanged(mAccuracy, pAccuracy);
-                    mAccuracy = pAccuracy;
+                    listener.onAccuracyChanged(mAccuracy, accuracy);
+                    mAccuracy = accuracy;
                 }
             }
         }
     }
 
     public interface AccuracyListener {
-        void onAccuracyChanged(int pNewAccuracy, int pOldAccuracy);
+        void onAccuracyChanged(int newAccuracy, int oldAccuracy);
     }
 
     public interface ShakeListener {

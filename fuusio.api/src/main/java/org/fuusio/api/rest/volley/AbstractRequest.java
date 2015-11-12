@@ -38,27 +38,27 @@ public abstract class AbstractRequest<T_Response> extends Request<T_Response> {
 
     protected Response.Listener<T_Response> mResponseListener;
 
-    protected AbstractRequest(final String pUrl, final Listener<T_Response> pResponseListener, final ErrorListener pErrorListener) {
-        this(Method.GET, pUrl, pResponseListener, pErrorListener);
+    protected AbstractRequest(final String url, final Listener<T_Response> responseListener, final ErrorListener errorListener) {
+        this(Method.GET, url, responseListener, errorListener);
     }
 
-    protected AbstractRequest(final int pMethod, String pUrl, final Listener<T_Response> pResponseListener, final ErrorListener pErrorListener) {
-        super(pMethod, pUrl, pErrorListener);
-        mResponseListener = pResponseListener;
+    protected AbstractRequest(final int pMethod, String url, final Listener<T_Response> responseListener, final ErrorListener errorListener) {
+        super(pMethod, url, errorListener);
+        mResponseListener = responseListener;
         mHeaders = new HashMap<>();
     }
 
     @Override
-    protected abstract Response<T_Response> parseNetworkResponse(NetworkResponse pResponse);
+    protected abstract Response<T_Response> parseNetworkResponse(NetworkResponse response);
 
     @Override
-    protected void deliverResponse(final T_Response pResponse) {
+    protected void deliverResponse(final T_Response response) {
         if (mResponseListener != null) {
-            mResponseListener.onResponse(pResponse);
+            mResponseListener.onResponse(response);
         }
     }
 
-    public abstract void setBody(Object pBody);
+    public abstract void setBody(Object body);
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {

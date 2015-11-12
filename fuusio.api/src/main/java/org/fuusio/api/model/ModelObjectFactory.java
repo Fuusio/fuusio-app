@@ -17,6 +17,6 @@ package org.fuusio.api.model;
 
 public interface ModelObjectFactory {
 
-    <T extends ModelObject> T createInstance(String pClassName);
-    <T extends ModelObject> T createInstance(Class<T> pClass);
+    <T extends ModelObject> T createInstance(String objectClassName);
+    <T extends ModelObject> T createInstance(Class<T> objectClass);
 }

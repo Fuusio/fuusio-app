@@ -136,10 +136,10 @@ public class TextDrawable extends Drawable {
      * Sets the drawing of this (@link TextDrawable) to be antialized depending on the given
      * {@code boolean} value.
      * 
-     * @param pAntialized A {@code boolean} value.
+     * @param antialized A {@code boolean} value.
      */
-    public void setAntialized(final boolean pAntialized) {
-        mAntialized = pAntialized;
+    public void setAntialized(final boolean antialized) {
+        mAntialized = antialized;
     }
 
     /**
@@ -154,11 +154,11 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the {@link Paint} used for drawing the background of this {@link TextDrawable}.
      * 
-     * @param pPaint A {@link Paint}.
+     * @param paint A {@link Paint}.
      */
-    public void setBackgroundPaint(final Paint pPaint) {
-        assert (pPaint != null); // TODO
-        mBackgroundPaint = pPaint;
+    public void setBackgroundPaint(final Paint paint) {
+        assert (paint != null); // TODO
+        mBackgroundPaint = paint;
         mBackgroundPaint.setStyle(Paint.Style.FILL);
     }
 
@@ -166,20 +166,20 @@ public class TextDrawable extends Drawable {
      * Sets the alpha value of the {@link Color} of the {@link Paint} used for drawing the
      * background of this {@link TextDrawable}.
      * 
-     * @param pAlpha The alpha value as an {@code int}.
+     * @param alpha The alpha value as an {@code int}.
      */
-    public void setBackgroundAlpha(final int pAlpha) {
-        mBackgroundPaint.setAlpha(pAlpha);
+    public void setBackgroundAlpha(final int alpha) {
+        mBackgroundPaint.setAlpha(alpha);
     }
 
     /**
      * Sets the {@link Color} of {@link Paint} used for drawing the background of this
      * {@link TextDrawable}.
      * 
-     * @param pColor A {@link Paint}.
+     * @param color A {@link Paint}.
      */
-    public void setBackgroundColor(final int pColor) {
-        mBackgroundPaint.setColor(pColor);
+    public void setBackgroundColor(final int color) {
+        mBackgroundPaint.setColor(color);
     }
 
     /**
@@ -195,10 +195,10 @@ public class TextDrawable extends Drawable {
      * Sets the background of this {@link TextDrawable} to be drawn depending on the given
      * {@code boolean} value.
      * 
-     * @param pIsDrawn A {@code boolean} value.
+     * @param isDrawn A {@code boolean} value.
      */
-    public void setBackgroundDrawn(final boolean pIsDrawn) {
-        mBackgroundDrawn = pIsDrawn;
+    public void setBackgroundDrawn(final boolean isDrawn) {
+        mBackgroundDrawn = isDrawn;
     }
 
     /**
@@ -213,11 +213,11 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the {@link Paint} used for filling the displayed font glyphs.
      * 
-     * @param pPaint A {@link Paint}.
+     * @param paint A {@link Paint}.
      */
-    public void setFillPaint(final Paint pPaint) {
-        assert (pPaint != null); // TODO
-        mFillPaint = pPaint;
+    public void setFillPaint(final Paint paint) {
+        assert (paint != null); // TODO
+        mFillPaint = paint;
         mFillPaint.setStyle(Paint.Style.FILL);
     }
 
@@ -225,19 +225,19 @@ public class TextDrawable extends Drawable {
      * Sets the alpha value of the {@link Color} of the {@link Paint} used filling the displayed
      * font glyphs.
      * 
-     * @param pAlpha The alpha value as an {@code int}.
+     * @param alpha The alpha value as an {@code int}.
      */
-    public void setFillAlpha(final int pAlpha) {
-        mFillPaint.setAlpha(pAlpha);
+    public void setFillAlpha(final int alpha) {
+        mFillPaint.setAlpha(alpha);
     }
 
     /**
      * Sets the {@link Color} of {@link Paint} used for filling the displayed font glyphs.
      * 
-     * @param pColor the color as an {@code int} value.
+     * @param color the color as an {@code int} value.
      */
-    public void setFillColor(final int pColor) {
-        mFillPaint.setColor(pColor);
+    public void setFillColor(final int color) {
+        mFillPaint.setColor(color);
     }
 
     /**
@@ -252,10 +252,10 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the horizontal alignment.
      * 
-     * @param pAlignment The alignment value as a {@link HorizontalAlignment}.
+     * @param alignment The alignment value as a {@link HorizontalAlignment}.
      */
-    public void setHorizontalAlignment(final HorizontalAlignment pAlignment) {
-        mHorizontalAlignment = pAlignment;
+    public void setHorizontalAlignment(final HorizontalAlignment alignment) {
+        mHorizontalAlignment = alignment;
     }
 
     /**
@@ -291,14 +291,14 @@ public class TextDrawable extends Drawable {
     }
 
     @Override
-    public void setAlpha(final int pAlpha) // TODo
+    public void setAlpha(final int alpha) // TODo
     {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void setColorFilter(final ColorFilter pColorFilter) // TODO
+    public void setColorFilter(final ColorFilter colorFilter) // TODO
     {
         // TODO Auto-generated method stub
 
@@ -317,10 +317,10 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the opacity value.
      * 
-     * @param pOpacity The opacity value as an {@code int}.
+     * @param opacity The opacity value as an {@code int}.
      */
-    public void setOpacity(final int pOpacity) {
-        mOpacity = pOpacity;
+    public void setOpacity(final int opacity) {
+        mOpacity = opacity;
     }
 
     /**
@@ -335,11 +335,11 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the {@link Paint} used for drawing the stroke that outlines the displayed font glyphs.
      * 
-     * @param pPaint A {@link Paint}.
+     * @param paint A {@link Paint}.
      */
-    public void setStrokePaint(final Paint pPaint) {
-        assert (pPaint != null); // TODO
-        mStrokePaint = pPaint;
+    public void setStrokePaint(final Paint paint) {
+        assert (paint != null); // TODO
+        mStrokePaint = paint;
         mStrokePaint.setStyle(Paint.Style.STROKE);
     }
 
@@ -347,64 +347,64 @@ public class TextDrawable extends Drawable {
      * Sets the cap parameter of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
      * 
-     * @param pCap A {@link Paint.Cap} value.
+     * @param cap A {@link Paint.Cap} value.
      */
-    public void setStrokeCap(final Paint.Cap pCap) {
-        mStrokePaint.setStrokeCap(pCap);
+    public void setStrokeCap(final Paint.Cap cap) {
+        mStrokePaint.setStrokeCap(cap);
     }
 
     /**
      * Sets the alpha value of the {@link Color} of the {@link Paint} used for drawing the stroke
      * the displayed font glyphs.
      * 
-     * @param pAlpha The alpha value as an {@code int}.
+     * @param alpha The alpha value as an {@code int}.
      */
-    public void setStrokeAlpha(final int pAlpha) {
-        mStrokePaint.setAlpha(pAlpha);
+    public void setStrokeAlpha(final int alpha) {
+        mStrokePaint.setAlpha(alpha);
     }
 
     /**
      * Sets the {@link Color} of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
      * 
-     * @param pColor the color as a {@link int} value.
+     * @param color the color as a {@link int} value.
      */
-    public void setStrokeColor(final int pColor) {
-        mStrokePaint.setColor(pColor);
+    public void setStrokeColor(final int color) {
+        mStrokePaint.setColor(color);
     }
 
-    public void setStroked(final boolean pStroked) {
-        mStroked = pStroked;
+    public void setStroked(final boolean stroked) {
+        mStroked = stroked;
     }
 
     /**
      * Sets the join parameter of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
      * 
-     * @param pJoin A {@link Paint.Join} value.
+     * @param join A {@link Paint.Join} value.
      */
-    public void setStrokeJoin(final Paint.Join pJoin) {
-        mStrokePaint.setStrokeJoin(pJoin);
+    public void setStrokeJoin(final Paint.Join join) {
+        mStrokePaint.setStrokeJoin(join);
     }
 
     /**
      * Sets the miter parameter of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
      * 
-     * @param pMiter A {@code float} value.
+     * @param miter A {@code float} value.
      */
-    public void setStrokeMiter(final float pMiter) {
-        mStrokePaint.setStrokeMiter(pMiter);
+    public void setStrokeMiter(final float miter) {
+        mStrokePaint.setStrokeMiter(miter);
     }
 
     /**
      * Sets the width parameter of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
      * 
-     * @param pWidth A {@code float} value.
+     * @param width A {@code float} value.
      */
-    public void setStrokeWidth(final float pWidth) {
-        mStrokePaint.setStrokeWidth(pWidth);
+    public void setStrokeWidth(final float width) {
+        mStrokePaint.setStrokeWidth(width);
     }
 
     /**
@@ -419,10 +419,10 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the {@link String} to be displayed.
      * 
-     * @param pText A {@link String}.
+     * @param text A {@link String}.
      */
-    public void setText(final String pText) {
-        mText = pText;
+    public void setText(final String text) {
+        mText = text;
     }
 
     /**
@@ -437,11 +437,11 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the text size.
      * 
-     * @param pSize The size as a {@link float}.
+     * @param size The size as a {@link float}.
      */
-    public void setTextSize(final float pSize) {
-        mFillPaint.setTextSize(pSize);
-        mStrokePaint.setTextSize(pSize);
+    public void setTextSize(final float size) {
+        mFillPaint.setTextSize(size);
+        mStrokePaint.setTextSize(size);
     }
 
     /**
@@ -456,11 +456,11 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the used {@link Typeface}.
      * 
-     * @param pTypeface A {@link Typeface}. May be {@link null}.
+     * @param typeface A {@link Typeface}. May be {@link null}.
      */
-    public void setTypeface(final Typeface pTypeface) {
-        mFillPaint.setTypeface(pTypeface);
-        mStrokePaint.setTypeface(pTypeface);
+    public void setTypeface(final Typeface typeface) {
+        mFillPaint.setTypeface(typeface);
+        mStrokePaint.setTypeface(typeface);
     }
 
     /**
@@ -475,10 +475,10 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the vertical alignment.
      * 
-     * @param pAlignment The alignment value as a {@link VerticalAlignment}.
+     * @param alignment The alignment value as a {@link VerticalAlignment}.
      */
-    public void setVerticalAlignment(final VerticalAlignment pAlignment) {
-        mVerticalAlignment = pAlignment;
+    public void setVerticalAlignment(final VerticalAlignment alignment) {
+        mVerticalAlignment = alignment;
     }
 
     /**
@@ -549,10 +549,10 @@ public class TextDrawable extends Drawable {
     /**
      * Draws this {@link TextDrawable} on the given {@link Canvas}.
      * 
-     * @param pCanvas A {@link Canvas}.
+     * @param canvas A {@link Canvas}.
      */
     @Override
-    public void draw(final Canvas pCanvas) {
+    public void draw(final Canvas canvas) {
         if (mText != null) {
             final Rect bounds = getBounds();
             int x = bounds.left;
@@ -591,12 +591,12 @@ public class TextDrawable extends Drawable {
 
             mFillPaint.setAntiAlias(mAntialized);
             mFillPaint.setTextAlign(mHorizontalAlignment.getPaintAlign());
-            pCanvas.drawText(mText, x, y, mFillPaint);
+            canvas.drawText(mText, x, y, mFillPaint);
 
             if (mStroked) {
                 mStrokePaint.setAntiAlias(mAntialized);
                 mStrokePaint.setTextAlign(mHorizontalAlignment.getPaintAlign());
-                pCanvas.drawText(mText, x, y, mStrokePaint);
+                canvas.drawText(mText, x, y, mStrokePaint);
             }
         }
     }

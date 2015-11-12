@@ -21,14 +21,14 @@ public abstract class RestRequest<T_Response, T_PeerRequest> {
     protected String mRelativeUrl;
     protected RequestListener<T_Response> mRequestListener;
 
-    protected RestRequest(final String pRelativeUrl, final RequestListener<T_Response> pRequestListener) {
-        this(HttpMethod.GET, pRelativeUrl, pRequestListener);
+    protected RestRequest(final String relativeUrl, final RequestListener<T_Response> requestListener) {
+        this(HttpMethod.GET, relativeUrl, requestListener);
     }
 
-    protected RestRequest(final HttpMethod pMethod, final String pRelativeUrl, final RequestListener<T_Response> pRequestListener) {
-        mMethod = pMethod;
-        mRelativeUrl = pRelativeUrl;
-        mRequestListener = pRequestListener;
+    protected RestRequest(final HttpMethod method, final String relativeUrl, final RequestListener<T_Response> requestListener) {
+        mMethod = method;
+        mRelativeUrl = relativeUrl;
+        mRequestListener = requestListener;
         mHeaders = new HttpHeaders();
         mPathParams = new HttpParams(getParamsEncoding());
         mParams = new HttpParams(getParamsEncoding());
@@ -108,7 +108,7 @@ public abstract class RestRequest<T_Response, T_PeerRequest> {
 
     protected abstract T_PeerRequest createRequest();
 
-    protected abstract void initializeRequest(T_PeerRequest pRequest);
+    protected abstract void initializeRequest(T_PeerRequest request);
 
     public boolean hasQueryParams() {
         return (mParams != null && mParams.getSize() > 0);
@@ -118,77 +118,77 @@ public abstract class RestRequest<T_Response, T_PeerRequest> {
      * Set the body of the request. The given object is assumed to be a POJO that can be converted
      * by GSON to JSON.
      *
-     * @param pBody A POJO as an {@link Object}.
+     * @param body A POJO as an {@link Object}.
      */
-    public void setBody(final Object pBody) {
-        mBody = pBody;
+    public void setBody(final Object body) {
+        mBody = body;
     }
 
     /**
      * Add the specified query parameter with the given value.
      *
-     * @param pKey The name of the parameter to be added as a {@link String}.
-     * @param pValue The value of the parameter.
+     * @param key The name of the parameter to be added as a {@link String}.
+     * @param value The value of the parameter.
      */
-    public RestRequest addParam(final String pKey, final String pValue) {
-        mParams.add(pKey, pValue);
+    public RestRequest addParam(final String key, final String value) {
+        mParams.add(key, value);
         return this;
     }
 
-    public RestRequest addParam(final String pKey, final boolean pValue) {
-        mParams.add(pKey, Boolean.toString(pValue));
+    public RestRequest addParam(final String key, final boolean value) {
+        mParams.add(key, Boolean.toString(value));
         return this;
     }
 
-    public RestRequest addParam(final String pKey, final float pValue) {
-        mParams.add(pKey, Float.toString(pValue));
+    public RestRequest addParam(final String key, final float value) {
+        mParams.add(key, Float.toString(value));
         return this;
     }
 
-    public RestRequest addParam(final String pKey, final int pValue) {
-        mParams.add(pKey, Integer.toString(pValue));
+    public RestRequest addParam(final String key, final int value) {
+        mParams.add(key, Integer.toString(value));
         return this;
     }
 
-    public RestRequest addParam(final String pKey, final long pValue) {
-        mParams.add(pKey, Long.toString(pValue));
+    public RestRequest addParam(final String key, final long value) {
+        mParams.add(key, Long.toString(value));
         return this;
     }
 
     /**
      * Add the specified path parameter with the given value.
      *
-     * @param pKey The name of the parameter to be added as a {@link String}.
-     * @param pValue The value of the parameter.
+     * @param key The name of the parameter to be added as a {@link String}.
+     * @param value The value of the parameter.
      */
-    public RestRequest addPathParam(final String pKey, final String pValue) {
-        mPathParams.add(pKey, pValue);
+    public RestRequest addPathParam(final String key, final String value) {
+        mPathParams.add(key, value);
         return this;
     }
 
-    public RestRequest addPathParam(final String pKey, final boolean pValue) {
-        mPathParams.add(pKey, Boolean.toString(pValue));
+    public RestRequest addPathParam(final String key, final boolean value) {
+        mPathParams.add(key, Boolean.toString(value));
         return this;
     }
 
-    public RestRequest addPathParam(final String pKey, final float pValue) {
-        mPathParams.add(pKey, Float.toString(pValue));
+    public RestRequest addPathParam(final String key, final float value) {
+        mPathParams.add(key, Float.toString(value));
         return this;
     }
 
-    public RestRequest addPathParam(final String pKey, final int pValue) {
-        mPathParams.add(pKey, Integer.toString(pValue));
+    public RestRequest addPathParam(final String key, final int value) {
+        mPathParams.add(key, Integer.toString(value));
         return this;
     }
 
-    public RestRequest addPathParam(final String pKey, final long pValue) {
-        mPathParams.add(pKey, Long.toString(pValue));
+    public RestRequest addPathParam(final String key, final long value) {
+        mPathParams.add(key, Long.toString(value));
         return this;
     }
 
 
-    public RestRequest addHeader(final String pField, final String pValue) {
-        mHeaders.add(pField, pValue);
+    public RestRequest addHeader(final String field, final String value) {
+        mHeaders.add(field, value);
         return this;
     }
 
@@ -200,18 +200,18 @@ public abstract class RestRequest<T_Response, T_PeerRequest> {
         return mParams;
     }
 
-    public void setParams(final HttpParams pParams) {
+    public void setParams(final HttpParams params) {
         mParams.clear();
-        mParams.addAll(pParams);
+        mParams.addAll(params);
     }
 
     public final HttpParams getPathParams() {
         return mPathParams;
     }
 
-    public void setPathParams(final HttpParams pParams) {
+    public void setPathParams(final HttpParams params) {
         mPathParams.clear();
-        mPathParams.addAll(pParams);
+        mPathParams.addAll(params);
     }
 
     public final RequestListener<T_Response> getRequestListener() {

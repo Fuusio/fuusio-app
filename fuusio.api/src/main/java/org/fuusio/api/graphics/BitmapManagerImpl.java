@@ -22,6 +22,7 @@ import java.util.HashMap;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 
+import org.fuusio.api.util.AppToolkit;
 import org.fuusio.api.util.L;
 import org.fuusio.api.util.StringToolkit;
 import org.fuusio.api.util.UIToolkit;
@@ -31,39 +32,39 @@ public class BitmapManagerImpl implements BitmapManager {
     private static final int DEFAULT_CACHE_SIZE = 50;
     private static final String NAME_DEFAULT_CACHE = "_DefaultCache";
 
-    private  HashMap<String, LruCache<String, Bitmap>> mBitmapCaches;
+    private  HashMap<String, LruCache<String, Bitmap>> mBitmacaches;
 
     public BitmapManagerImpl() {
         addCache(NAME_DEFAULT_CACHE);
-        mBitmapCaches = new HashMap<>();
+        mBitmacaches = new HashMap<>();
     }
 
-    public Bitmap getBitmap(final int pResId) {
-        return getBitmap(NAME_DEFAULT_CACHE, pResId);
+    public Bitmap getBitmap(final int resId) {
+        return getBitmap(NAME_DEFAULT_CACHE, resId);
     }
 
-    public Bitmap getBitmap(final String pCacheName, final int pResId) {
-        final LruCache<String, Bitmap> cache = mBitmapCaches.get(pCacheName);
-        final String key = Integer.toString(pResId);
+    public Bitmap getBitmap(final String cacheName, final int resId) {
+        final LruCache<String, Bitmap> cache = mBitmacaches.get(cacheName);
+        final String key = Integer.toString(resId);
         return cache.get(key);
     }
 
-    public Bitmap getBitmap(final String pKey) {
-        final LruCache<String, Bitmap> cache = mBitmapCaches.get(NAME_DEFAULT_CACHE);
-        return cache.get(pKey);
+    public Bitmap getBitmap(final String key) {
+        final LruCache<String, Bitmap> cache = mBitmacaches.get(NAME_DEFAULT_CACHE);
+        return cache.get(key);
     }
 
-    public LruCache<String, Bitmap> addCache(final String pCacheName) {
-        return addCache(pCacheName, DEFAULT_CACHE_SIZE);
+    public LruCache<String, Bitmap> addCache(final String cacheName) {
+        return addCache(cacheName, DEFAULT_CACHE_SIZE);
     }
 
-    public LruCache<String, Bitmap> addCache(final String pCacheName, final int pCacheSize) {
-        LruCache<String, Bitmap> cache = mBitmapCaches.get(pCacheName);
+    public LruCache<String, Bitmap> addCache(final String cacheName, final int cacheSize) {
+        LruCache<String, Bitmap> cache = mBitmacaches.get(cacheName);
 
         assert (cache == null);
 
-        cache = new LruCache<>(pCacheSize);
-        mBitmapCaches.put(pCacheName, cache);
+        cache = new LruCache<>(cacheSize);
+        mBitmacaches.put(cacheName, cache);
         return cache;
     }
 
@@ -71,8 +72,8 @@ public class BitmapManagerImpl implements BitmapManager {
         clearCache(NAME_DEFAULT_CACHE);
     }
 
-    public void clearCache(final String pCacheName) {
-        final LruCache<String, Bitmap> cache = mBitmapCaches.get(pCacheName);
+    public void clearCache(final String cacheName) {
+        final LruCache<String, Bitmap> cache = mBitmacaches.get(cacheName);
         final int cacheSize = cache.maxSize();
 
         assert (cache != null);
@@ -85,73 +86,72 @@ public class BitmapManagerImpl implements BitmapManager {
         return getCacheSize(NAME_DEFAULT_CACHE);
     }
 
-    public int getCacheSize(final String pCacheName) {
-        final LruCache<String, Bitmap> cache = mBitmapCaches.get(pCacheName);
+    public int getCacheSize(final String cacheName) {
+        final LruCache<String, Bitmap> cache = mBitmacaches.get(cacheName);
 
         assert (cache != null);
 
         return cache.maxSize();
     }
 
-    public void resizeCache(final String pCacheName, final int pNewSize) {
-        final LruCache<String, Bitmap> cache = mBitmapCaches.get(pCacheName);
+    public void resizeCache(final String cacheName, final int newSize) {
+        final LruCache<String, Bitmap> cache = mBitmacaches.get(cacheName);
 
         assert (cache != null);
 
-        cache.trimToSize(pNewSize);
+        cache.trimToSize(newSize);
     }
 
-    public void removeCache(final String pCacheName) {
-        final LruCache<String, Bitmap> cache = mBitmapCaches.get(pCacheName);
+    public void removeCache(final String cacheName) {
+        final LruCache<String, Bitmap> cache = mBitmacaches.get(cacheName);
 
         assert (cache != null);
 
-        mBitmapCaches.remove(pCacheName);
+        mBitmacaches.remove(cacheName);
     }
 
     public void clearAllCaches() {
-        for (final String key : mBitmapCaches.keySet()) {
+        for (final String key : mBitmacaches.keySet()) {
             clearCache(key);
         }
     }
 
     public void dispose() {
         clearAllCaches();
-        mBitmapCaches.clear();
+        mBitmacaches.clear();
     }
 
-    public void addBitmap(final int pResId, final Bitmap pBitmap) {
-        addBitmap(pResId, NAME_DEFAULT_CACHE, pBitmap);
+    public void addBitmap(final int resId, final Bitmap bitmap) {
+        addBitmap(resId, NAME_DEFAULT_CACHE, bitmap);
     }
 
-    public void addBitmap(final String pKey, final Bitmap pBitmap) {
-        addBitmap(pKey, NAME_DEFAULT_CACHE, pBitmap);
+    public void addBitmap(final String key, final Bitmap bitmap) {
+        addBitmap(key, NAME_DEFAULT_CACHE, bitmap);
     }
 
-    public void addBitmap(final int pResId, final String pCacheName, final Bitmap pBitmap) {
-        final String key = Integer.toString(pResId);
-        addBitmap(key, pCacheName, pBitmap, false);
+    public void addBitmap(final int resId, final String cacheName, final Bitmap bitmap) {
+        final String key = Integer.toString(resId);
+        addBitmap(key, cacheName, bitmap, false);
     }
 
-    public void addBitmap(final String pKey, final String pCacheName, final Bitmap pBitmap) {
-        addBitmap(pKey, pCacheName, pBitmap, true);
+    public void addBitmap(final String key, final String cacheName, final Bitmap bitmap) {
+        addBitmap(key, cacheName, bitmap, true);
     }
 
-    private void addBitmap(final String pKey, final String pCacheName, final Bitmap pBitmap,
-            final boolean pUseFileCaching) {
-        LruCache<String, Bitmap> cache = mBitmapCaches.get(pCacheName);
+    private void addBitmap(final String key, final String cacheName, final Bitmap bitmap, final boolean useFileCaching) {
+        LruCache<String, Bitmap> cache = mBitmacaches.get(cacheName);
 
         if (cache == null) {
-            cache = addCache(pCacheName);
+            cache = addCache(cacheName);
         }
 
-        cache.put(pKey, pBitmap);
+        cache.put(key, bitmap);
 
-        if (pUseFileCaching) {
-            final File applicationDirectory = UIToolkit.getApplicationDirectory();
+        if (useFileCaching) {
+            final File applicationDirectory = AppToolkit.getApplicationDirectory();
             final StringBuilder path = new StringBuilder(applicationDirectory.getAbsolutePath());
             path.append("/");
-            path.append(StringToolkit.encodeFileName(pCacheName));
+            path.append(StringToolkit.encodeFileName(cacheName));
 
             final File cacheDirectory = new File(path.toString());
 
@@ -162,11 +162,11 @@ public class BitmapManagerImpl implements BitmapManager {
             assert (cacheDirectory.exists() && cacheDirectory.canWrite());
 
             path.append("/");
-            path.append(StringToolkit.encodeFileName(pKey));
+            path.append(StringToolkit.encodeFileName(key));
 
             try {
                 final FileOutputStream outputStream = new FileOutputStream(path.toString());
-                pBitmap.compress(Bitmap.CompressFormat.PNG, 90, outputStream);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 90, outputStream);
             } catch (final Exception e) {
                 L.wtf(BitmapManagerImpl.class, "", e.toString());
             }

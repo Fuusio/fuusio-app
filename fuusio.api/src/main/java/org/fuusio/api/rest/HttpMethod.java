@@ -33,9 +33,9 @@ public enum HttpMethod {
     private final int mCode;
     private final String mName;
 
-    HttpMethod(final String pName, final int pCode) {
-        mName = pName;
-        mCode = pCode;
+    HttpMethod(final String name, final int code) {
+        mName = name;
+        mCode = code;
     }
 
     public int getMethodCode() {

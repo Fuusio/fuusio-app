@@ -28,27 +28,27 @@ import java.io.UnsupportedEncodingException;
 
 public class JsonRequest extends AbstractRequest<JsonElement> {
 
-    public JsonRequest(final String pUrl, final Listener<JsonElement> pResponseListener, final ErrorListener pErrorListener) {
-        super(pUrl, pResponseListener, pErrorListener);
+    public JsonRequest(final String url, final Listener<JsonElement> responseListener, final ErrorListener errorListener) {
+        super(url, responseListener, errorListener);
     }
 
-    public JsonRequest(final int pMethod, String pUrl, final Listener<JsonElement> pResponseListener, final ErrorListener pErrorListener) {
-        super(pMethod, pUrl, pResponseListener, pErrorListener);
+    public JsonRequest(final int pMethod, String url, final Listener<JsonElement> responseListener, final ErrorListener errorListener) {
+        super(pMethod, url, responseListener, errorListener);
     }
 
     @Override
-    protected Response<JsonElement> parseNetworkResponse(final NetworkResponse pResponse) {
+    protected Response<JsonElement> parseNetworkResponse(final NetworkResponse response) {
         try {
-            final String jsonString = new String(pResponse.data, HttpHeaderParser.parseCharset(pResponse.headers));
+            final String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
             final JsonElement jsonElement = new JsonParser().parse(jsonString);
-            return Response.success(jsonElement, HttpHeaderParser.parseCacheHeaders(pResponse));
+            return Response.success(jsonElement, HttpHeaderParser.parseCacheHeaders(response));
         } catch (final UnsupportedEncodingException pException) {
             return Response.error(new ParseError(pException));
         }
     }
 
     @Override
-    public void setBody(final Object pBody) {
+    public void setBody(final Object body) {
         // Do nothing
     }
 }

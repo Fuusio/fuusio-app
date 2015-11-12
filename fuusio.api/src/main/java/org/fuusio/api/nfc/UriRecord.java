@@ -15,7 +15,6 @@
  */
 package org.fuusio.api.nfc;
 
-import java.nio.charset.Charset;
 import java.util.Arrays;
 
 import android.net.Uri;
@@ -28,8 +27,6 @@ import com.google.common.collect.ImmutableBiMap;
 import org.fuusio.api.util.ByteToolkit;
 
 public class UriRecord extends ParsedNdefRecord {
-
-    public static final String RECORD_TYPE = "UriRecord";
 
     private static final String TAG = "UriRecord";
     private static final byte[] EMPTY = new byte[0];
@@ -59,8 +56,8 @@ public class UriRecord extends ParsedNdefRecord {
 
     private final Uri mUri;
 
-    private UriRecord(final Uri pUri) {
-        mUri = Preconditions.checkNotNull(pUri);
+    private UriRecord(final Uri uri) {
+        mUri = Preconditions.checkNotNull(uri);
     }
 
     public Uri getUri() {
@@ -73,30 +70,30 @@ public class UriRecord extends ParsedNdefRecord {
      * 
      * @throws IllegalArgumentException if the NdefRecord is not a record containing a URI.
      */
-    public static UriRecord parse(final NdefRecord pRecord) {
-        final short tnf = pRecord.getTnf();
+    public static UriRecord parse(final NdefRecord record) {
+        final short tnf = record.getTnf();
 
         if (tnf == NdefRecord.TNF_WELL_KNOWN) {
-            return parseWellKnown(pRecord);
+            return parseWellKnown(record);
         } else if (tnf == NdefRecord.TNF_ABSOLUTE_URI) {
-            return parseAbsolute(pRecord);
+            return parseAbsolute(record);
         }
         throw new IllegalArgumentException("Unknown TNF " + tnf);
     }
 
     /** Parse and absolute URI record */
-    private static UriRecord parseAbsolute(final NdefRecord pRecord) {
-        final byte[] payload = pRecord.getPayload();
-        final Uri uri = Uri.parse(new String(payload, Charset.forName("UTF-8")));
+    private static UriRecord parseAbsolute(final NdefRecord record) {
+        final byte[] payload = record.getPayload();
+        final Uri uri = Uri.parse(new String(payload, CHARSET_UTF_8));
         return new UriRecord(uri);
     }
 
     /**
      * Parse an well known URI record
      * */
-    private static UriRecord parseWellKnown(final NdefRecord pRecord) {
-        Preconditions.checkArgument(Arrays.equals(pRecord.getType(), NdefRecord.RTD_URI));
-        final byte[] payload = pRecord.getPayload();
+    private static UriRecord parseWellKnown(final NdefRecord record) {
+        Preconditions.checkArgument(Arrays.equals(record.getType(), NdefRecord.RTD_URI));
+        final byte[] payload = record.getPayload();
         /*
          * payload[0] contains the URI Identifier Code, per the NFC Forum
          * "URI Record Type Definition" section 3.2.2.

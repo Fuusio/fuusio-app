@@ -7,27 +7,27 @@ import java.util.Collection;
 
 public interface ModelObjectContext {
 
-    Property getProperty(Class<? extends ModelObject> pObjectClass, String propertyName);
+    Property getProperty(Class<? extends ModelObject> objectClass, String propertyName);
 
-    Collection<Property> getProperties(Class<? extends ModelObject> pObjectClass);
+    Collection<Property> getProperties(Class<? extends ModelObject> objectClass);
 
     ContentResolver getContentResolver();
 
-    Collection<Property> getDescriptorProperties(ModelObject pObject);
+    Collection<Property> getDescriptorProperties(ModelObject object);
 
-    ModelObjectMetaInfo getMetaInfo(Class<? extends ModelObject> pObjectClass);
+    ModelObjectMetaInfo getMetaInfo(Class<? extends ModelObject> objectClass);
 
-    <T extends ModelObject> T getObject(Class<T> pObjectClass, long pId);
+    <T extends ModelObject> T getObject(Class<T> objectClass, long id);
 
-    <T extends ModelObject> T createInstance(String pClassName);
+    <T extends ModelObject> T createInstance(String className);
 
-    <T extends ModelObject> T createInstance(Class<T> pClass);
+    <T extends ModelObject> T createInstance(Class<T> objectClass);
 
-    ModelObjectMetaInfo registerObjectClass(Class<? extends ModelObject> pObjectClass);
+    ModelObjectMetaInfo registerObjectClass(Class<? extends ModelObject> objectClass);
 
-    boolean exists(Class<? extends ModelObject> pObjectClass, long pId);
+    boolean exists(Class<? extends ModelObject> objectClass, long id);
 
-    boolean existsInDatabase(Uri pUri, long pId);
+    boolean existsInDatabase(Uri uri, long id);
 
-    void notifyModelObjectChanged(ModelObject pObject);
+    void notifyModelObjectChanged(ModelObject object);
 }

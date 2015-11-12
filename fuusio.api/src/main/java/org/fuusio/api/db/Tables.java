@@ -22,9 +22,9 @@ public enum Tables implements TableDescriptor, TablesDescriptor {
 	private final String mName;
 	private final ColumnDescriptor[] mColumnDescriptors;
 	
-	private Tables(final String pName, final ColumnDescriptor[] pColumnDescriptors) {
-		mName = pName;
-		mColumnDescriptors = pColumnDescriptors;
+	private Tables(final String name, final ColumnDescriptor[] columnDescriptors) {
+		mName = name;
+		mColumnDescriptors = columnDescriptors;
 	}
 
 	public final ColumnDescriptor[] getColumnDescriptors() {

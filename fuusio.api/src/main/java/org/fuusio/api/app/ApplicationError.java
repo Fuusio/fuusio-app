@@ -25,8 +25,8 @@ public interface ApplicationError {
 
     /**
      * Return the error message describing this error.
-     * @param pArgs Optional args used for formatting the error message.
+     * @param args Optional args used for formatting the error message.
      * @return A {@link String} containing the error message.
      */
-    String getMessage(Object... pArgs);
+    String getMessage(Object... args);
 }

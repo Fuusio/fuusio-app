@@ -39,31 +39,31 @@ public interface Flow extends Component, DependencyScopeOwner, FragmentManager.O
 
     /**
      * Adds the given {@link View} to the set of active Views.
-     * @param pView A {@link View} to be added.
+     * @param view A {@link View} to be added.
      * @return The given {@link View} if it was not already in the set of active Views.
      */
-    View addActiveView(View pView);
+    View addActiveView(View view);
 
     /**
      * Removes the given {@link View} from the set of active Views.
-     * @param pView A {@link View} to be removed.
+     * @param view A {@link View} to be removed.
      * @return The given {@link View} if it was included in the set of active Views.
      */
-    View removeActiveView(View pView);
+    View removeActiveView(View view);
 
     /**
      * A {@link Flow} implementation can use this method to activate i.e. to make visible the given
      * {@link View}.
-     * @param pView A {@link View} to be activated. May not be {@link null}.
+     * @param view A {@link View} to be activated. May not be {@link null}.
      */
-    void activateView(View pView);
+    void activateView(View view);
 
     /**
      * Tests if the given {@link View} is currently active one.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      * @return A {@code boolean} value.
      */
-    boolean isActiveView(View pView);
+    boolean isActiveView(View view);
 
     /**
      * Gets the {@link FlowManager} that started this {@link Flow}.
@@ -73,9 +73,9 @@ public interface Flow extends Component, DependencyScopeOwner, FragmentManager.O
 
     /**
      * Sets the {@link FlowManager} that started this {@link Flow}.
-     * @param pManager A {@link FlowManager}.
+     * @param manager A {@link FlowManager}.
      */
-    void setFlowManager(FlowManager pManager);
+    void setFlowManager(FlowManager manager);
 
     /**
      * This method is invoked to pause this {@link Flow}.
@@ -95,9 +95,9 @@ public interface Flow extends Component, DependencyScopeOwner, FragmentManager.O
     /**
      * This method is invoked to start this {@link Flow}. The method is not intended to be invoked
      * directly by a developer, but via invoking {@link FlowManager#startFlow(Flow, Bundle)}.
-     * @param pParams A {@link Bundle} containing parameters for starting the {@link Flow}.
+     * @param params A {@link Bundle} containing parameters for starting the {@link Flow}.
      */
-    void start(final Bundle pParams);
+    void start(final Bundle params);
 
     /**
      * This method is invoked to stop this {@link Flow}.
@@ -126,9 +126,9 @@ public interface Flow extends Component, DependencyScopeOwner, FragmentManager.O
 
     /**
      * This method is invoked by {@link Flow#start(Bundle)} when this {@link Flow} is started.
-     * @param pParams A {@link Bundle} containing parameters for starting the {@link Flow}.
+     * @param params A {@link Bundle} containing parameters for starting the {@link Flow}.
      */
-    void onStart(Bundle pParams);
+    void onStart(Bundle params);
 
     /**
      * This method is invoked by {@link Flow#stop()} when this {@link Flow} is  stopped.
@@ -164,7 +164,7 @@ public interface Flow extends Component, DependencyScopeOwner, FragmentManager.O
 
     /**
      * Invoked when the given {@link View} has been brought back to foreground and resumed.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      */
-    void onNavigatedBackTo(View pView);
+    void onNavigatedBackTo(View view);
 }

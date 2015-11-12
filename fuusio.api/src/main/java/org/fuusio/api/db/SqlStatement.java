@@ -41,20 +41,20 @@ public class SqlStatement {
         return this;
     }
     
-    public SqlStatement append(final String pString) {
-        mBuilder.append(pString);
+    public SqlStatement append(final String stringValue) {
+        mBuilder.append(stringValue);
         mBuilder.append(' ');
         return this;
     }
 
-    public SqlStatement add(final int pInt) {
-        mBuilder.append(Integer.toString(pInt));
+    public SqlStatement add(final int intValue) {
+        mBuilder.append(Integer.toString(intValue));
         mBuilder.append(' ');
         return this;
     }
 
-    public SqlStatement add(final float pFloat) {
-        mBuilder.append(Float.toString(pFloat));
+    public SqlStatement add(final float floatValue) {
+        mBuilder.append(Float.toString(floatValue));
         mBuilder.append(' ');
         return this;
     }
@@ -74,44 +74,44 @@ public class SqlStatement {
         return this;
     }
 
-    public static SqlStatement newCreateTable(final String pTableName) {
+    public static SqlStatement newCreateTable(final String tableName) {
         final SqlStatement statement = new SqlStatement();
         statement.mClosingParenthesisNeeded = true;
         statement.append(CREATE_TABLE);
-        statement.append(pTableName);
+        statement.append(tableName);
         statement.openParenthesis();
         return statement;
     }
 
-    public static SqlStatement newCreateTable(final String pTableName, final TableDescriptor pTableDescriptor) {
+    public static SqlStatement newCreateTable(final String tableName, final TableDescriptor tableDescriptor) {
         final SqlStatement statement = new SqlStatement();
         statement.mClosingParenthesisNeeded = true;
         statement.append(CREATE_TABLE);
-        statement.append(pTableName);
+        statement.append(tableName);
         statement.openParenthesis();
         
-        for (final ColumnDescriptor columnDescriptor : pTableDescriptor.getColumnDescriptors()) {
+        for (final ColumnDescriptor columnDescriptor : tableDescriptor.getColumnDescriptors()) {
         	statement.addColumn(columnDescriptor);
         }
         
         return statement;
     }
     
-    public SqlStatement addIntegerColumn(final String pColumnName) {
-        return addIntegerColumn(pColumnName, false);
+    public SqlStatement addIntegerColumn(final String columnName) {
+        return addIntegerColumn(columnName, false);
     }
 
-    public SqlStatement addColumn(final ColumnDescriptor pDescriptor) {
+    public SqlStatement addColumn(final ColumnDescriptor descriptor) {
 
         if (mFirstColumn) {
             mFirstColumn = false;
             append(",");
         }
 
-        append(pDescriptor.getName());
-        append(pDescriptor.getSqlType());
+        append(descriptor.getName());
+        append(descriptor.getSqlType());
 
-        if (pDescriptor.isKey()) {
+        if (descriptor.isKey()) {
             append(PRIMARY_KEY);
         }
 
@@ -119,43 +119,43 @@ public class SqlStatement {
     }
     
         
-    public SqlStatement addIntegerColumn(final String pColumnName, final boolean pPrimaryKey) {
+    public SqlStatement addIntegerColumn(final String columnName, final boolean primaryKey) {
 
         if (mFirstColumn) {
             mFirstColumn = false;
             append(",");
         }
 
-        append(pColumnName);
+        append(columnName);
         append(ColumnDataType.INTEGER.getSqlType());
 
-        if (pPrimaryKey) {
+        if (primaryKey) {
             append(PRIMARY_KEY);
         }
 
         return this;
     }
 
-    public SqlStatement addRealColumn(final String pColumnName) {
+    public SqlStatement addRealColumn(final String columnName) {
 
         if (mFirstColumn) {
             mFirstColumn = false;
             append(",");
         }
 
-        append(pColumnName);
+        append(columnName);
         append(ColumnDataType.REAL.getSqlType());
         return this;
     }
 
-    public SqlStatement addTextColumn(final String pColumnName) {
+    public SqlStatement addTextColumn(final String columnName) {
 
         if (mFirstColumn) {
             mFirstColumn = false;
             mBuilder.append(",");
         }
 
-        append(pColumnName);
+        append(columnName);
         append(ColumnDataType.TEXT.getSqlType());
         return this;
     }
@@ -177,24 +177,24 @@ public class SqlStatement {
         return mStatementString;
     }
 
-    public SqlStatement addPrimaryKeyColumn(final String pColumnName) {
-        return addIntegerColumn(pColumnName, true);
+    public SqlStatement addPrimaryKeyColumn(final String columnName) {
+        return addIntegerColumn(columnName, true);
     }
 
 	public final String execute() {
 		return toString();
 	}
 
-	public static SqlStatement create(final TableDescriptor pTableDescriptor) {
-		return newCreateTable(pTableDescriptor.getName(), pTableDescriptor);
+	public static SqlStatement create(final TableDescriptor tableDescriptor) {
+		return newCreateTable(tableDescriptor.getName(), tableDescriptor);
 	}
 	
-	public static String[] whereArgs(final Object... pValues) {
-		final int count = pValues.length;
+	public static String[] whereArgs(final Object... values) {
+		final int count = values.length;
 		final String[] wheraArgs = new String[count];
 		
 		for (int  i = count - 1; i >= 0; i--) {
-			wheraArgs[i] = (pValues[i] != null) ? pValues[i].toString() : null;
+			wheraArgs[i] = (values[i] != null) ? values[i].toString() : null;
 		}
     	return wheraArgs;
     }	

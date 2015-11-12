@@ -39,17 +39,17 @@ public class HttpParams {
         this(DEFAULT_ENCODING);
     }
 
-    public HttpParams(final String pParamsEncoding) {
+    public HttpParams(final String paramsEncoding) {
         mKeyValues = new ArrayList<>();
-        mParamsEncoding = pParamsEncoding;
+        mParamsEncoding = paramsEncoding;
     }
 
     public List<KeyValue<String, String>> getKeyValues() {
         return mKeyValues;
     }
 
-    public HttpParams add(final String pParameter, final String pValue) {
-        mKeyValues.add(new KeyValue<String, String>(pParameter, pValue));
+    public HttpParams add(final String key, final String value) {
+        mKeyValues.add(new KeyValue<>(key, value));
         return this;
     }
 
@@ -64,7 +64,7 @@ public class HttpParams {
     }
 
     public Map<String, String> getMap() {
-        final Map<String, String> map = new HashMap<String, String>();
+        final Map<String, String> map = new HashMap<>();
 
         for (final KeyValue<String, String> keyValue : mKeyValues) { // TODO Deal with multiple key occurrences
             map.put(keyValue.getKey(), keyValue.getValue());
@@ -81,15 +81,15 @@ public class HttpParams {
         return encodeParameters(mParamsEncoding);
     }
 
-    public byte[] encodeParameters(final String pParamsEncoding) {
+    public byte[] encodeParameters(final String paramsEncoding) {
         final StringBuilder encodedParams = new StringBuilder();
 
         boolean firstParameter = true;
 
         try {
             for (final KeyValue<String, String> keyValue : mKeyValues) {
-                final String key = URLEncoder.encode(keyValue.getKey(), pParamsEncoding);
-                final String value = URLEncoder.encode(keyValue.getValue(), pParamsEncoding);
+                final String key = URLEncoder.encode(keyValue.getKey(), paramsEncoding);
+                final String value = URLEncoder.encode(keyValue.getValue(), paramsEncoding);
 
                 if (!firstParameter) {
                     encodedParams.append('&');
@@ -101,19 +101,19 @@ public class HttpParams {
                 encodedParams.append('=');
                 encodedParams.append(value);
             }
-            return encodedParams.toString().getBytes(pParamsEncoding);
+            return encodedParams.toString().getBytes(paramsEncoding);
         } catch (final UnsupportedEncodingException pException) {
-            final RuntimeException runtimeException = new RuntimeException("Encoding not supported: " + pParamsEncoding, pException);
+            final RuntimeException runtimeException = new RuntimeException("Encoding not supported: " + paramsEncoding, pException);
             L.wtf(this, "encodeParameters", runtimeException);
             throw runtimeException;
         }
     }
 
-    public void encodeParameters(final StringBuilder pEncodedParams) {
-        encodeParameters(pEncodedParams, mParamsEncoding);
+    public void encodeParameters(final StringBuilder encodedParams) {
+        encodeParameters(encodedParams, mParamsEncoding);
     }
 
-    public void encodeParameters(final StringBuilder pEncodedParams, final String paramsEncoding) {
+    public void encodeParameters(final StringBuilder encodedParams, final String paramsEncoding) {
         boolean firstParameter = true;
 
         try {
@@ -122,17 +122,17 @@ public class HttpParams {
                 final String value = URLEncoder.encode(keyValue.getValue(), paramsEncoding);
 
                 if (!firstParameter) {
-                    pEncodedParams.append('&');
+                    encodedParams.append('&');
                 } else {
                     firstParameter = false;
                 }
 
-                pEncodedParams.append(key);
-                pEncodedParams.append('=');
-                pEncodedParams.append(value);
+                encodedParams.append(key);
+                encodedParams.append('=');
+                encodedParams.append(value);
             }
-        } catch (final UnsupportedEncodingException pException) {
-            final RuntimeException runtimeException = new RuntimeException("Encoding not supported: " + paramsEncoding, pException);
+        } catch (final UnsupportedEncodingException e) {
+            final RuntimeException runtimeException = new RuntimeException("Encoding not supported: " + paramsEncoding, e);
             L.wtf(this, "encodeParameters", runtimeException);
             throw runtimeException;
         }

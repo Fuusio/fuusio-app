@@ -22,9 +22,9 @@ public class PropertyColumnDescriptor implements ColumnDescriptor {
 	private final Property mProperty;
 	private final ColumnDataType mColumnType;
 	
-	public PropertyColumnDescriptor(final Property pProperty) {
-		mProperty = pProperty;
-		mColumnType = ColumnDataType.getForProperty(pProperty);
+	public PropertyColumnDescriptor(final Property property) {
+		mProperty = property;
+		mColumnType = ColumnDataType.getForProperty(property);
 	}
 	
 	@Override

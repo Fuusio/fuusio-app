@@ -33,25 +33,25 @@ public class GsonRequest<T> extends AbstractRequest<T> {
 
     private String mRequestBody;
 
-    public GsonRequest(final String pUrl, final Class pResponseClass,
-                       final Response.Listener pListener, final Response.ErrorListener pErrorListener){
-        this(Method.GET, pUrl, null, pResponseClass, pListener, pErrorListener);
+    public GsonRequest(final String url, final Class responseClass,
+                       final Response.Listener listener, final Response.ErrorListener errorListener){
+        this(Method.GET, url, null, responseClass, listener, errorListener);
     }
 
-    public GsonRequest(final int pMethod, final String pUrl, final Class pResponseClass,
-                       final Response.Listener pListener, final Response.ErrorListener pErrorListener){
-        this(pMethod, pUrl, null, pResponseClass, pListener, pErrorListener);
+    public GsonRequest(final int pMethod, final String url, final Class responseClass,
+                       final Response.Listener listener, final Response.ErrorListener errorListener){
+        this(pMethod, url, null, responseClass, listener, errorListener);
     }
 
-    public GsonRequest(final int pMethod, final String pUrl, final Object pBody, final Class pResponseClass,
-                             final Response.Listener pListener, final Response.ErrorListener pErrorListener){
-        super(pMethod, pUrl, pListener, pErrorListener);
+    public GsonRequest(final int pMethod, final String url, final Object body, final Class responseClass,
+                             final Response.Listener listener, final Response.ErrorListener errorListener){
+        super(pMethod, url, listener, errorListener);
 
         mGson = createGson();
-        mResponseClass = pResponseClass;
+        mResponseClass = responseClass;
 
-        if (pBody!=null){
-            mRequestBody = mGson.toJson(pBody);
+        if (body!=null){
+            mRequestBody = mGson.toJson(body);
         } else {
             mRequestBody = null;
         }
@@ -73,15 +73,15 @@ public class GsonRequest<T> extends AbstractRequest<T> {
     }
 
     @Override
-    public void setBody(final Object pBody) {
-        mRequestBody = (pBody != null) ? mGson.toJson(pBody) : null;
+    public void setBody(final Object body) {
+        mRequestBody = (body != null) ? mGson.toJson(body) : null;
     }
 
     @Override
-    protected Response parseNetworkResponse(final NetworkResponse pResponse){
+    protected Response parseNetworkResponse(final NetworkResponse response){
         try{
-            final String jsonString = new String(pResponse.data, HttpHeaderParser.parseCharset(pResponse.headers));
-            return Response.success(mGson.fromJson(jsonString, mResponseClass), HttpHeaderParser.parseCacheHeaders(pResponse));
+            final String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+            return Response.success(mGson.fromJson(jsonString, mResponseClass), HttpHeaderParser.parseCacheHeaders(response));
         } catch (final UnsupportedEncodingException pException){
             return Response.error(new ParseError(pException));
         }

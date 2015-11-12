@@ -74,23 +74,23 @@ public class VolleyRequestManager implements RequestManager<VolleyRestRequest<Ab
     /**
      * Executes the given {@link RestRequest} by constructing it and by adding it to the request queue.
      *
-     * @param pRequest A {@link RestRequest}.
+     * @param request A {@link RestRequest}.
      * @return The {@link RestRequest}.
      */
     @Override
-    public <T extends VolleyRestRequest<AbstractRequest>> T execute(final VolleyRestRequest<AbstractRequest> pRequest) {
-        pRequest.constructRequest();
+    public <T extends VolleyRestRequest<AbstractRequest>> T execute(final VolleyRestRequest<AbstractRequest> request) {
+        request.constructRequest();
 
-        final AbstractRequest peerRequest = pRequest.getPeerRequest();
+        final AbstractRequest peerRequest = request.getPeerRequest();
         peerRequest.setRetryPolicy(createRetryPolicy());
         getRequestQueue().add(peerRequest);
-        return (T)pRequest;
+        return (T)request;
     }
 
     @Override
-    public void cancelPendingRequests(final Object pTag) {
+    public void cancelPendingRequests(final Object tag) {
         if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(pTag);
+            mRequestQueue.cancelAll(tag);
         }
     }
 
@@ -98,7 +98,7 @@ public class VolleyRequestManager implements RequestManager<VolleyRestRequest<Ab
     public void cancelAllRequests() {
         mRequestQueue.cancelAll(new RequestQueue.RequestFilter() {
             @Override
-            public boolean apply(final Request<?> pRequest) {
+            public boolean apply(final Request<?> request) {
                 return true;
             }
         });

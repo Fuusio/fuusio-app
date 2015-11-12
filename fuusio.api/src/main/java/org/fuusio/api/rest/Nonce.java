@@ -25,12 +25,12 @@ public class Nonce {
 
     /**
      * Generates a nonce string using the given time stamp as a seed.
-     * @param pTimeStamp A time stamp as a {@link String}.
+     * @param timeStamp A time stamp as a {@link String}.
      * @return A nonce {@link String}.
      */
-    public String generate(final String pTimeStamp) {
+    public String generate(final String timeStamp) {
         final Random random = new Random(System.currentTimeMillis());
-        final String message = pTimeStamp + Integer.toString(random.nextInt());
+        final String message = timeStamp + Integer.toString(random.nextInt());
 
         try {
             final MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
@@ -58,11 +58,11 @@ public class Nonce {
 
     /**
      * Generates a nonce string using a time stamp as a seed.
-     * @param pTimeStamp A time stamp.
+     * @param timeStamp A time stamp.
      * @return A nonce {@link String}.
      */
-    public String generate(final long pTimeStamp) {
-        final String timeStampString = Long.toString(pTimeStamp);
+    public String generate(final long timeStamp) {
+        final String timeStampString = Long.toString(timeStamp);
         final int endIndex = timeStampString.length() - 3;
         return generate(timeStampString.substring(0, endIndex));
     }

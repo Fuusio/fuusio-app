@@ -27,8 +27,8 @@ public class Models<T_Model extends Model> extends Model {
         this(null);
 	}
 	
-	public Models(final Model pContainerModel) {
-        mContainerModel = pContainerModel;
+	public Models(final Model containerModel) {
+        mContainerModel = containerModel;
 		mModels = new ArrayList<>();
 	}
 
@@ -36,29 +36,29 @@ public class Models<T_Model extends Model> extends Model {
 		return mContainerModel;
 	}
 
-	public T_Model addModel(final T_Model pModel) {
-		if (!mModels.contains(pModel)) {
-			mModels.add(pModel);
-			return pModel;
+	public T_Model addModel(final T_Model model) {
+		if (!mModels.contains(model)) {
+			mModels.add(model);
+			return model;
 		}
 		return null;
 	}
 	
-	public T_Model removeModel(final T_Model pModel) {
-		if (mModels.contains(pModel)) {
-			mModels.remove(pModel);
-			return pModel;
+	public T_Model removeModel(final T_Model model) {
+		if (mModels.contains(model)) {
+			mModels.remove(model);
+			return model;
 		}
 		return null;
 	}
 	
-	public T_Model getModelAt(final int pIndex) {
-		return mModels.get(pIndex);
+	public T_Model getModelAt(final int index) {
+		return mModels.get(index);
 	}
 	
-	public T_Model getModelWithName(final String pName) {
+	public T_Model getModelWithName(final String name) {
 		for (final T_Model model : mModels) {
-			if (pName.equalsIgnoreCase(model.getName())) {
+			if (name.equalsIgnoreCase(model.getName())) {
 				return model;
 			}
 		}
@@ -73,14 +73,14 @@ public class Models<T_Model extends Model> extends Model {
 		return mModels;
 	}
 	
-	public void setModels(final List<T_Model> pModels) {
+	public void setModels(final List<T_Model> models) {
 		mModels.clear();
-		mModels.addAll(pModels);
+		mModels.addAll(models);
 	}
 	
-	public boolean hasModelWithName(final String pName) {
+	public boolean hasModelWithName(final String name) {
 		for (final T_Model model : mModels) {
-			if (pName.equalsIgnoreCase(model.getName())) {
+			if (name.equalsIgnoreCase(model.getName())) {
 				return true;
 			}
 		}

@@ -38,18 +38,18 @@ public class PluginBus {
 	}
 
     @SuppressWarnings("unused")
-    public static void setGlobalInjector(final PluginInjector pInjector) {
-        sGlobalInjector = pInjector;
+    public static void setGlobalInjector(final PluginInjector injector) {
+        sGlobalInjector = injector;
     }
 
     @SuppressWarnings("unused")
-    public <T extends Plugin> List<T> getPlugins(final Class<? extends PluginInterface> pPluginInterface, final String pPlugName) {
+    public <T extends Plugin> List<T> getPlugins(final Class<? extends PluginInterface> pluginInterface, final String plugName) {
         PluginInvocationHandler handler = null;
 
-        final HashMap<String,PluginInvocationHandler> handlers = mInvocationHandlers.get(pPluginInterface);
+        final HashMap<String,PluginInvocationHandler> handlers = mInvocationHandlers.get(pluginInterface);
 
         if (handlers != null) {
-            handler = handlers.get(pPlugName);
+            handler = handlers.get(plugName);
         }
 
         if (handler != null) {
@@ -67,33 +67,33 @@ public class PluginBus {
 		return sInstance;
 	}
 
-    public static <T extends PluginInterface> T getPlug(final Class<T> pPluginInterface) {
-        return sInstance.doGetPlug(pPluginInterface, Plugin.DEFAULT_PLUG_NAME);
+    public static <T extends PluginInterface> T getPlug(final Class<T> pluginInterface) {
+        return sInstance.doGetPlug(pluginInterface, Plugin.DEFAULT_PLUG_NAME);
     }
 
-    public static <T extends PluginInterface> T getPlug(final Class<T> pPluginInterface, final String pPlugName) {
-        return sInstance.doGetPlug(pPluginInterface, pPlugName);
+    public static <T extends PluginInterface> T getPlug(final Class<T> pluginInterface, final String plugName) {
+        return sInstance.doGetPlug(pluginInterface, plugName);
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends PluginInterface> T doGetPlug(final Class<T> pPluginInterface, final String pPlugName) {
+    public <T extends PluginInterface> T doGetPlug(final Class<T> pluginInterface, final String plugName) {
 
-        final ClassLoader classLoader = pPluginInterface.getClassLoader();
-        HashMap<String,PluginInvocationHandler> handlers = mInvocationHandlers.get(pPluginInterface);
+        final ClassLoader classLoader = pluginInterface.getClassLoader();
+        HashMap<String,PluginInvocationHandler> handlers = mInvocationHandlers.get(pluginInterface);
 
         if (handlers == null) {
             handlers = new HashMap<>();
-            mInvocationHandlers.put(pPluginInterface, handlers);
+            mInvocationHandlers.put(pluginInterface, handlers);
         }
 
-        PluginInvocationHandler handler = handlers.get(pPlugName);
+        PluginInvocationHandler handler = handlers.get(plugName);
         Proxy proxy;
 
         if (handler == null) {
-            handler = new PluginInvocationHandler(pPluginInterface, this);
-            handlers.put(pPlugName, handler);
+            handler = new PluginInvocationHandler(pluginInterface, this);
+            handlers.put(plugName, handler);
 
-            final Class<?>[] interfaceClasses = {pPluginInterface};
+            final Class<?>[] interfaceClasses = {pluginInterface};
             proxy = (Proxy)Proxy.newProxyInstance(classLoader, interfaceClasses, handler);
             handler.setProxy(proxy);
         } else {
@@ -103,32 +103,32 @@ public class PluginBus {
         return (T)proxy;
     }
 
-    public static void plug(final Plugin pPlugin) {
-        sInstance.doPlug(pPlugin, true);
+    public static void plug(final Plugin plugin) {
+        sInstance.doPlug(plugin, true);
     }
 
-    public static void plug(final Plugin pPlugin, final boolean pUseAnnotations) {
-        sInstance.doPlug(pPlugin, pUseAnnotations);
+    public static void plug(final Plugin plugin, final boolean useAnnotations) {
+        sInstance.doPlug(plugin, useAnnotations);
     }
 
-	private void doPlug(final Plugin pPlugin, final boolean pUseAnnotations) {
+	private void doPlug(final Plugin plugin, final boolean useAnnotations) {
 
-        if (mPlugins.contains(pPlugin)) {
+        if (mPlugins.contains(plugin)) {
             return;
         }
 
-        final Class<? extends Plugin> pluginClass = pPlugin.getClass();
+        final Class<? extends Plugin> pluginClass = plugin.getClass();
 		final ClassLoader classLoader = pluginClass.getClassLoader();
-        final PluginInjector injector = (sGlobalInjector != null) ? sGlobalInjector : getInjector(pPlugin);
+        final PluginInjector injector = (sGlobalInjector != null) ? sGlobalInjector : getInjector(plugin);
 
         if (injector != null) {
-            injector.onPlug(pPlugin);
+            injector.onPlug(plugin);
         }
 
-		final List<Class<? extends PluginInterface>> pluginInterfaces = getPluginInterfaces(pPlugin);
+		final List<Class<? extends PluginInterface>> pluginInterfaces = getPluginInterfaces(plugin);
 
-        if (pUseAnnotations) {
-            final List<PlugDescriptor> descriptors = getPlugDescriptors(pPlugin);
+        if (useAnnotations) {
+            final List<PlugDescriptor> descriptors = getPlugDescriptors(plugin);
 
             for (final PlugDescriptor descriptor : descriptors) {
                 final String plugName = descriptor.getName();
@@ -159,7 +159,7 @@ public class PluginBus {
 
                 try {
                     field.setAccessible(true);
-                    field.set(pPlugin, proxy);
+                    field.set(plugin, proxy);
                 } catch (final Exception e) {
                     throw new RuntimeException("Failed to assign to plugin field: " + field.getName());
                 }
@@ -167,7 +167,7 @@ public class PluginBus {
         }
 		
 		for (final Class<? extends PluginInterface> pluginInterface : pluginInterfaces) {
-			final String plugName = pPlugin.getPlugName();
+			final String plugName = plugin.getPlugName();
 			final PlugDescriptor descriptor = new PlugDescriptor(null, plugName, pluginInterface);
             descriptor.setCreated(false);
 
@@ -190,25 +190,25 @@ public class PluginBus {
                 handler.setProxy(proxy);
 			}
 			
-			handler.plug(pPlugin);
+			handler.plug(plugin);
 		}
 
-        mPlugins.add(pPlugin);
-        pPlugin.onPlugged(this);
+        mPlugins.add(plugin);
+        plugin.onPlugged(this);
 	}
 
-    private PluginInjector getInjector(final Plugin pPlugin) {
+    private PluginInjector getInjector(final Plugin plugin) {
 
-        if (pPlugin instanceof InjectorProvider) {
-            return ((InjectorProvider)pPlugin).getInjector();
+        if (plugin instanceof InjectorProvider) {
+            return ((InjectorProvider)plugin).getInjector();
         } else {
             return null;
         }
     }
 
     @SuppressWarnings("unchecked")
-	private List<PlugDescriptor> getPlugDescriptors(final Plugin pPlugin) {
-		final Class<?> pluginClass = pPlugin.getClass();
+	private List<PlugDescriptor> getPlugDescriptors(final Plugin plugin) {
+		final Class<?> pluginClass = plugin.getClass();
 		final List<PlugDescriptor> fields = new ArrayList<>();
 
         collectPlugFields(pluginClass, fields);
@@ -217,10 +217,10 @@ public class PluginBus {
 	}
 
     @SuppressWarnings("unchecked")
-    private void collectPlugFields(final Class<?> pClass, final List<PlugDescriptor> pDescriptors) {
+    private void collectPlugFields(final Class<?> plugClass, final List<PlugDescriptor> descriptors) {
 
-        if (Plugin.class.isAssignableFrom(pClass)) {
-            final Field[] fields = pClass.getDeclaredFields();
+        if (Plugin.class.isAssignableFrom(plugClass)) {
+            final Field[] fields = plugClass.getDeclaredFields();
 
             for (final Field field : fields) {
                 final Plugin.Plug plug = field.getAnnotation(Plugin.Plug.class);
@@ -230,33 +230,33 @@ public class PluginBus {
                     final Class<? extends PluginInterface> fieldType = (Class<? extends PluginInterface>) field.getType();
                     final PlugDescriptor descriptor = new PlugDescriptor(field, plugName, fieldType);
                     descriptor.setCreated(plug.create());
-                    pDescriptors.add(descriptor);
+                    descriptors.add(descriptor);
                 }
             }
 
-            collectPlugFields(pClass.getSuperclass(), pDescriptors);
+            collectPlugFields(plugClass.getSuperclass(), descriptors);
         }
     }
 
-    public static void unplug(final Plugin pPlugin) {
-        sInstance.doUnplug(pPlugin);
+    public static void unplug(final Plugin plugin) {
+        sInstance.doUnplug(plugin);
     }
 
 	@SuppressWarnings("static-access")
-	private void doUnplug(final Plugin pPlugin) {
+	private void doUnplug(final Plugin plugin) {
 
-        if (!mPlugins.contains(pPlugin)) {
+        if (!mPlugins.contains(plugin)) {
             return;
         }
 
-        final PluginInjector injector = (sGlobalInjector != null) ? sGlobalInjector : getInjector(pPlugin);
+        final PluginInjector injector = (sGlobalInjector != null) ? sGlobalInjector : getInjector(plugin);
 
         if (injector != null) {
-            injector.onUnplug(pPlugin);
+            injector.onUnplug(plugin);
         }
 
-		final List<Class<? extends PluginInterface>> pluginInterfaces = getPluginInterfaces(pPlugin);
-		final List<PlugDescriptor> descriptors = getPlugDescriptors(pPlugin);
+		final List<Class<? extends PluginInterface>> pluginInterfaces = getPluginInterfaces(plugin);
+		final List<PlugDescriptor> descriptors = getPlugDescriptors(plugin);
 		final List<PluginInvocationHandler> removedHandlers = new ArrayList<>();
 
 		for (final Class<? extends PluginInterface> pluginInterface : pluginInterfaces) {
@@ -264,7 +264,7 @@ public class PluginBus {
             final Collection<PluginInvocationHandler> handlers = mInvocationHandlers.get(pluginInterface).values();
 
 			for (final PluginInvocationHandler handler : handlers) {
-				handler.unplug(pPlugin);
+				handler.unplug(plugin);
 
                 if (handler.getPluginCount() == 0) {
                     removedHandlers.add(handler);
@@ -278,7 +278,7 @@ public class PluginBus {
             try {
 				field = descriptor.getField();
 				field.setAccessible(true);
-				field.set(pPlugin, null);
+				field.set(plugin, null);
 			} catch (final Exception pException) {
                 throw new RuntimeException("Failed to assign to plugin field.");
 			}
@@ -288,44 +288,44 @@ public class PluginBus {
             removeInvocationHandler(handler);
         }
 
-        mPlugins.remove(pPlugin);
-        pPlugin.onUnplugged(this);
+        mPlugins.remove(plugin);
+        plugin.onUnplugged(this);
 	}
 
-	private List<Class<? extends PluginInterface>> getPluginInterfaces(final Plugin pPlugin) {
-		final Class<?> pluginClass = pPlugin.getClass();
+	private List<Class<? extends PluginInterface>> getPluginInterfaces(final Plugin plugin) {
+		final Class<?> pluginClass = plugin.getClass();
 		final List<Class<? extends PluginInterface>> pluginInterfaces = new ArrayList<>();
         collectPluginInterfaces(pluginClass, pluginInterfaces);
 		return pluginInterfaces;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void collectPluginInterfaces(final Class<?> pPluginClass, List<Class<? extends PluginInterface>> pPluginInterfaces) {
+	private void collectPluginInterfaces(final Class<?> pluginClass, List<Class<? extends PluginInterface>> pluginInterfaces) {
 		
-		final Class<?>[] implementedInterfaces = pPluginClass.getInterfaces();
+		final Class<?>[] implementedInterfaces = pluginClass.getInterfaces();
 
 		for (final Class<?> implementedInterface : implementedInterfaces) {
 			if (PluginInterface.class.isAssignableFrom(implementedInterface)) {
-				if (!pPluginInterfaces.contains(implementedInterface)) {
-					pPluginInterfaces.add((Class<? extends PluginInterface>)implementedInterface);
+				if (!pluginInterfaces.contains(implementedInterface)) {
+					pluginInterfaces.add((Class<? extends PluginInterface>)implementedInterface);
 				}
 			}
 		}
 		
-		final Class<?> superClass = pPluginClass.getSuperclass();
+		final Class<?> superClass = pluginClass.getSuperclass();
 		
 		if (!Object.class.equals(superClass)) {
-			collectPluginInterfaces(superClass, pPluginInterfaces);
+			collectPluginInterfaces(superClass, pluginInterfaces);
 		}
 	}
 	
-	public void removeInvocationHandler(final PluginInvocationHandler pHandler) {
-		final HashMap<String,PluginInvocationHandler> handlers = mInvocationHandlers.get(pHandler.getPluginInterface());
+	public void removeInvocationHandler(final PluginInvocationHandler removedHandler) {
+		final HashMap<String,PluginInvocationHandler> handlers = mInvocationHandlers.get(removedHandler.getPluginInterface());
 
         for (final String key : handlers.keySet()) {
             final PluginInvocationHandler handler = handlers.get(key);
 
-            if (handler == pHandler) {
+            if (handler == removedHandler) {
                 handlers.remove(key);
                 break;
             }

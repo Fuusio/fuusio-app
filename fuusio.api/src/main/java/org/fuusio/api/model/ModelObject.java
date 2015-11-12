@@ -54,17 +54,17 @@ public abstract class ModelObject extends Observable implements Observer {
         mInitialized = false;
     }
 
-    protected ModelObject(final ModelObject pSource) {
+    protected ModelObject(final ModelObject source) {
         this();
-        mContext = pSource.mContext;
+        mContext = source.mContext;
     }
 
     public final ModelObjectContext getContext() {
         return mContext;
     }
 
-    public void setContext(final ModelObjectContext pContext) {
-        mContext = pContext;
+    public void setContext(final ModelObjectContext context) {
+        mContext = context;
     }
 
     public <T extends ModelObject> T copy() {
@@ -85,17 +85,17 @@ public abstract class ModelObject extends Observable implements Observer {
         return mChanged;
     }
 
-    public void setChanged(final boolean pChanged) {
-        mChanged = pChanged;
+    public void setChanged(final boolean changed) {
+        mChanged = changed;
     }
 
-    public int getColumnIndex(final String pPropertyName) {
+    public int getColumnIndex(final String propertyName) {
 
-        if (KEY_ID.equals(pPropertyName)) {
+        if (KEY_ID.equals(propertyName)) {
             return 0;
-        } else if (KEY_CLASS.equals(pPropertyName)) {
+        } else if (KEY_CLASS.equals(propertyName)) {
             return 1;
-        } else if (KEY_PROPERTIES.equals(pPropertyName)) {
+        } else if (KEY_PROPERTIES.equals(propertyName)) {
             return 2;
         }
         return -1;
@@ -120,8 +120,8 @@ public abstract class ModelObject extends Observable implements Observer {
     }
 
     @PropertySetter(property = "Id")
-    public final void setId(final long pId) {
-        mId = pId;
+    public final void setId(final long id) {
+        mId = id;
     }
 
     public final boolean isInitialized() {
@@ -132,26 +132,26 @@ public abstract class ModelObject extends Observable implements Observer {
         mInitialized = pInitialized;
     }
 
-    public final <T> T get(final String pPropertyName) {
-        final Property property = mContext.getProperty(getClass(), pPropertyName);
+    public final <T> T get(final String propertyName) {
+        final Property property = mContext.getProperty(getClass(), propertyName);
         return property.get(this);
     }
 
-    public final <T> T get(final Property pProperty) {
-        return pProperty.get(this);
+    public final <T> T get(final Property property) {
+        return property.get(this);
     }
 
-    public void set(final String pPropertyName, final Object pPropertyValue) {
-        final Property property = mContext.getProperty(getClass(), pPropertyName);
-        property.set(this, pPropertyValue);
+    public void set(final String propertyName, final Object propertyValue) {
+        final Property property = mContext.getProperty(getClass(), propertyName);
+        property.set(this, propertyValue);
     }
 
-    public void set(final Property property, final Object pPropertyValue) {
-        property.set(this, pPropertyValue);
+    public void set(final Property property, final Object propertyValue) {
+        property.set(this, propertyValue);
     }
 
-    public final Property getProperty(final String pPropertyName) {
-        return mContext.getProperty(getClass(), pPropertyName);
+    public final Property getProperty(final String propertyName) {
+        return mContext.getProperty(getClass(), propertyName);
     }
 
     public final Collection<Property> getProperties() {
@@ -162,12 +162,12 @@ public abstract class ModelObject extends Observable implements Observer {
         return mContext.existsInDatabase(getContentUri(), getId());
     }
 
-    public boolean existsInDatabase(final long pId) {
-        return mContext.existsInDatabase(getContentUri(), pId);
+    public boolean existsInDatabase(final long id) {
+        return mContext.existsInDatabase(getContentUri(), id);
     }
 
-    public boolean readFromDatabase(final long pId) {
-        final Uri uri = ContentUris.withAppendedId(getContentUri(), pId);
+    public boolean readFromDatabase(final long id) {
+        final Uri uri = ContentUris.withAppendedId(getContentUri(), id);
         final ContentResolver resolver = mContext.getContentResolver();
         final ContentProviderClient providerClient = resolver.acquireContentProviderClient(uri);
 
@@ -198,13 +198,12 @@ public abstract class ModelObject extends Observable implements Observer {
         return true;
     }
 
-    protected void readProperty(final Property pProperty, final Cursor pCursor,
-            final int pColumnIndex) {
-        final Object value = pProperty.read(pCursor, pColumnIndex);
-        pProperty.set(this, value);
+    protected void readProperty(final Property property, final Cursor cursor, final int columnIndex) {
+        final Object value = property.read(cursor, columnIndex);
+        property.set(this, value);
     }
 
-    public boolean saveToDatabase(final long pId) {
+    public boolean saveToDatabase(final long id) {
 
         if (!isInitialized()) {
             L.wtf(this, "saveToDatabase", "ModelObject is not initialized");
@@ -224,20 +223,19 @@ public abstract class ModelObject extends Observable implements Observer {
             }
         }
 
-        final NotifyingAsyncQueryHandler handler = new NotifyingAsyncQueryHandler(
-                mContext.getContentResolver(), null);
+        final NotifyingAsyncQueryHandler handler = new NotifyingAsyncQueryHandler(mContext.getContentResolver(), null);
         handler.startInsert(getContentUri(), values);
         return true;
     }
 
-    public void copyPropertiesFrom(final ModelObject pOther) {
-        for (final Property property : pOther.getProperties()) {
+    public void copyPropertiesFrom(final ModelObject other) {
+        for (final Property property : other.getProperties()) {
             final String propertyName = property.getName();
-            this.set(propertyName, property.get(pOther));
+            this.set(propertyName, property.get(other));
         }
     }
 
-    protected void saveProperty(final Property pProperty, final ContentValues pValues) {
+    protected void saveProperty(final Property property, final ContentValues values) {
         // By default do nothing
     }
 
@@ -249,7 +247,7 @@ public abstract class ModelObject extends Observable implements Observer {
     }
 
     @Override
-    public void update(final Observable pObservable, final Object pData) {
+    public void update(final Observable observable, final Object data) {
         setChanged();
         notifyObservers(this);
     }
@@ -258,9 +256,9 @@ public abstract class ModelObject extends Observable implements Observer {
         return true;
     }
 
-    public void getContentValues(final ContentValues pValues) {
-        pValues.put(KEY_ID, getId());
-        pValues.put(KEY_CLASS, getClass().getName());
+    public void getContentValues(final ContentValues values) {
+        values.put(KEY_ID, getId());
+        values.put(KEY_CLASS, getClass().getName());
 
         JSONObject propertiesObject = null;
 
@@ -273,10 +271,10 @@ public abstract class ModelObject extends Observable implements Observer {
 
         final String propertiesString = propertiesObject.toString();
 
-        pValues.put(KEY_PROPERTIES, propertiesString);
+        values.put(KEY_PROPERTIES, propertiesString);
     }
 
-    public String getString(final int pResId) {
-        return ModelObjectManager.getString(pResId);
+    public String getString(final int resId) {
+        return ModelObjectManager.getString(resId);
     }
 }

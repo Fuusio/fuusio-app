@@ -24,8 +24,8 @@ public class TextViewBinding extends ViewBinding<TextView> implements TextWatche
 
     private boolean mValidValue;
 
-    public TextViewBinding(final TextView pView) {
-        super(pView);
+    public TextViewBinding(final TextView view) {
+        super(view);
         mValidValue = true;
     }
 
@@ -35,67 +35,67 @@ public class TextViewBinding extends ViewBinding<TextView> implements TextWatche
 
     /**
      * Set text of the bound {@link TextView}.
-     * @param pText A {@link String} containing the text.
+     * @param text A {@link String} containing the text.
      */
-    public void setText(final String pText) {
-        mView.setText(pText);
+    public void setText(final String text) {
+        mView.setText(text);
     }
 
     @Override
-    public final boolean canBind(final View pView) {
-        return (pView instanceof TextView);
+    public final boolean canBind(final View view) {
+        return (view instanceof TextView);
     }
 
     /**
      * TODO
-     * @param pView
+     * @param view
      */
     @Override
-    protected final void attachListeners(final TextView pView) {
-        super.attachListeners(pView);
-        pView.addTextChangedListener(this);
+    protected final void attachListeners(final TextView view) {
+        super.attachListeners(view);
+        view.addTextChangedListener(this);
     }
 
     /**
      * TODO
-     * @param pView
+     * @param view
      */
     @Override
-    protected final void detachListeners(final TextView pView) {
-        super.detachListeners(pView);
-        pView.removeTextChangedListener(this);
+    protected final void detachListeners(final TextView view) {
+        super.detachListeners(view);
+        view.removeTextChangedListener(this);
     }
 
     @Override
-    public final void beforeTextChanged(final CharSequence pSequence, final int pStart, final int pCount, final int pAfter) {
-        textChanging(pSequence.toString(), pStart, pCount, pAfter);
+    public final void beforeTextChanged(final CharSequence sequence, final int start, final int count, final int after) {
+        textChanging(sequence.toString(), start, count, after);
     }
 
     @Override
-    public final void onTextChanged(final CharSequence pSequence, final int pStart, final int pBefore, final int pCount) {
+    public final void onTextChanged(final CharSequence sequence, final int start, final int before, final int count) {
         mErrorMessage.clear();
 
-        mValidValue = isValidValue(pSequence.toString());
+        mValidValue = isValidValue(sequence.toString());
 
         if (mValidValue) {
-            textChanged(pSequence.toString(), pStart, pBefore, pCount);
+            textChanged(sequence.toString(), start, before, count);
         } else {
             // TODO
         }
     }
 
     @Override
-    public final void afterTextChanged(final Editable pEditable) {
+    public final void afterTextChanged(final Editable editable) {
 
-        final String text = pEditable.toString();
+        final String text = editable.toString();
         mValidValue = isValidValue(text);
 
         if (mValidValue) {
 
             setValue(text);
 
-            editableCommitted(pEditable);
-            textCommitted(pEditable.toString());
+            editableCommitted(editable);
+            textCommitted(editable.toString());
         } else {
             // TODO
         }
@@ -104,44 +104,44 @@ public class TextViewBinding extends ViewBinding<TextView> implements TextWatche
      * This method should be overridden for delegating {@link TextWatcher#afterTextChanged(Editable)}
      * events with {@link Editable} parameter.
      */
-    protected void editableCommitted(final Editable pEditable) {
+    protected void editableCommitted(final Editable editable) {
     }
 
     /**
      * This method should be overridden for delegating {@link TextWatcher#afterTextChanged(Editable)}
      * events with {@link String} parameter.
      */
-    protected void textCommitted(final String pText) {
+    protected void textCommitted(final String text) {
     }
 
     /**
      * This method should be overridden for delegating {@link TextWatcher#beforeTextChanged(CharSequence, int, int, int)} events.
      */
-    protected void textChanging(final String pText, final int pStart, final int pCount, final int pAfter) {
+    protected void textChanging(final String text, final int start, final int count, final int after) {
     }
 
     /**
      * This method should be overridden for delegating {@link TextWatcher#onTextChanged(CharSequence, int, int, int)} events.
      */
-    protected void textChanged(final CharSequence pSequence, final int pStart, final int pBefore, final int pCount) {
+    protected void textChanged(final CharSequence sequence, final int start, final int before, final int count) {
     }
 
     /**
      * Sets the given value via this {@link TextViewBinding} to target.
-     * @param pText A {@link String} representing the value.
+     * @param text A {@link String} representing the value.
      * @return The value as an {@link Object}. By default this value is {@code null}.
      */
-    protected Object setValue(final String pText) {
+    protected Object setValue(final String text) {
         // Do nothing by default
         return null;
     }
 
     /**
      * Tests if the given text represents a valid input value for the assigned {@link View}.
-     * @param pText The input value given as a {@link String}.
+     * @param text The input value given as a {@link String}.
      * @return A {@code boolean} value.
      */
-    protected boolean isValidValue(final String pText) {
+    protected boolean isValidValue(final String text) {
         return true;
     }
 }

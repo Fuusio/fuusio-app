@@ -27,36 +27,36 @@ public abstract class ApplicationExceptionHandler<T_ApplicationError extends App
 
     private final Thread.UncaughtExceptionHandler mDefaultHandler;
 
-	protected ApplicationExceptionHandler(Thread.UncaughtExceptionHandler pDefaultHandler) {
+	protected ApplicationExceptionHandler(Thread.UncaughtExceptionHandler defaultHandler) {
         sInstance = this;
-        mDefaultHandler = pDefaultHandler;
+        mDefaultHandler = defaultHandler;
 	}
 	
 	@Override
-	public void uncaughtException(final Thread pThread, final Throwable pException) {
-		createLogEntryFor(pThread, getUnknownError(), pException);
+	public void uncaughtException(final Thread thread, final Throwable throwable) {
+		createLogEntryFor(thread, getUnknownError(), throwable);
 	}
 	
-	public static void createLogEntryFor(final Object pObject, final Throwable pException) {
-		createLogEntryFor(pObject, getUnknownError(), pException);
+	public static void createLogEntryFor(final Object object, final Throwable throwable) {
+		createLogEntryFor(object, getUnknownError(), throwable);
 	}
 
-	public static void createLogEntryFor(final Object pObject, final String pMessage) {
-		createLogEntryFor(pObject, getUnknownError(), pMessage);
+	public static void createLogEntryFor(final Object object, final String message) {
+		createLogEntryFor(object, getUnknownError(), message);
 	}
 	
-	public static void createLogEntryFor(final Object pObject, final ApplicationError pError, final String pMessage) {
-		if (pMessage != null) {
-			L.wtf(pObject, "ERROR - Error:", pMessage);			
+	public static void createLogEntryFor(final Object object, final ApplicationError error, final String message) {
+		if (message != null) {
+			L.wtf(object, "ERROR - Error:", message);			
 		}
 	}
 
-	public static void createLogEntryFor(final Object pObject, final ApplicationError pError, final Throwable pException) {
-		if (pException != null) {
-			final String stackTrace = Log.getStackTraceString(pException); 
+	public static void createLogEntryFor(final Object object, final ApplicationError error, final Throwable throwable) {
+		if (throwable != null) {
+			final String stackTrace = Log.getStackTraceString(throwable); 
 			
-			L.wtf(pObject, "ERROR - UncaughtException", pException.getMessage());
-			L.wtf(pObject, "ERROR - Stack Trace", stackTrace);				
+			L.wtf(object, "ERROR - UncaughtException", throwable.getMessage());
+			L.wtf(object, "ERROR - Stack Trace", stackTrace);				
 		}
 	}
 

@@ -28,18 +28,18 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
 
     private Adapter mAdapter;
 
-    public AdapterViewBinding(final Adapter<T_Item> pAdapter) {
-        setAdapter(pAdapter);
+    public AdapterViewBinding(final Adapter<T_Item> adapter) {
+        setAdapter(adapter);
     }
 
-    public AdapterViewBinding(final Adapter<T_Item> pAdapter, final AdapterView pView) {
-        super(pView);
-        setAdapter(pAdapter);
+    public AdapterViewBinding(final Adapter<T_Item> adapter, final AdapterView view) {
+        super(view);
+        setAdapter(adapter);
     }
 
     @Override
-    public final void setView(final AdapterView pView) {
-        super.setView(pView);
+    public final void setView(final AdapterView view) {
+        super.setView(view);
 
         if (mAdapter != null) {
             mView.setAdapter(mAdapter);
@@ -57,10 +57,10 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
 
     /**
      * Sets the {@link Adapter}.
-     * @param pAdapter An {@link Adapter}.
+     * @param adapter An {@link Adapter}.
      */
-    public final void setAdapter(final Adapter<?> pAdapter) {
-        mAdapter = pAdapter;
+    public final void setAdapter(final Adapter<?> adapter) {
+        mAdapter = adapter;
 
         if (mAdapter != null && mView != null) {
             mAdapter.setView(mView);
@@ -82,22 +82,22 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
     }
 
     @Override
-    public final boolean canBind(final View pView) {
-        return (pView instanceof AdapterView);
+    public final boolean canBind(final View view) {
+        return (view instanceof AdapterView);
     }
 
     @Override
-    protected final void attachListeners(final AdapterView pView) {
-        super.attachListeners(pView);
-        pView.setOnItemSelectedListener(this);
-        pView.setOnItemClickListener(this);
+    protected final void attachListeners(final AdapterView view) {
+        super.attachListeners(view);
+        view.setOnItemSelectedListener(this);
+        view.setOnItemClickListener(this);
     }
 
     @Override
-    protected final void detachListeners(final AdapterView pView) {
-        super.detachListeners(pView);
-        pView.setOnItemSelectedListener(null);
-        pView.setOnItemClickListener(null);
+    protected final void detachListeners(final AdapterView view) {
+        super.detachListeners(view);
+        view.setOnItemSelectedListener(null);
+        view.setOnItemClickListener(null);
     }
 
     /**
@@ -112,7 +112,7 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
         private AdapterView mView;
 
         protected Adapter() {
-            mItems = new ArrayList<T_Item>();
+            mItems = new ArrayList<>();
         }
 
         @Override
@@ -121,19 +121,19 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
         }
 
         @Override
-        public Object getItem(final int pPosition) {
-            return mItems.get(pPosition);
+        public Object getItem(final int position) {
+            return mItems.get(position);
         }
 
         @Override
-        public long getItemId(final int pPosition) {
-            return pPosition;
+        public long getItemId(final int position) {
+            return position;
         }
 
 
-        public void setItems(final List<T_Item> pItems) {
+        public void setItems(final List<T_Item> items) {
             mItems.clear();
-            mItems.addAll(pItems);
+            mItems.addAll(items);
 
             mView.post(new Runnable() {
 
@@ -147,37 +147,37 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
         }
 
         @Override
-        public abstract View getView(final int pPosition, final View pConvertView, final ViewGroup pParent);
+        public abstract View getView(final int position, final View convertView, final ViewGroup parent);
 
-        public void setView(final AdapterView pView) {
-            mView = pView;
+        public void setView(final AdapterView view) {
+            mView = view;
         }
 
     }
 
     @Override
-    public final void onItemSelected(final AdapterView<?> pParent, final View pView, final int pPosition, final long pId) {
-        final Object selectedItem = pParent.getItemAtPosition(pPosition);
+    public final void onItemSelected(final AdapterView<?> parent, final View view, final int position, final long id) {
+        final Object selectedItem = parent.getItemAtPosition(position);
         itemSelected(selectedItem);
-        itemSelected(pParent, pView, pPosition, pId);
+        itemSelected(parent, view, position, id);
     }
 
     @Override
-    public final void onNothingSelected(final AdapterView<?> pParent) {
+    public final void onNothingSelected(final AdapterView<?> parent) {
         nothingSelected();
     }
 
     /**
      * This method should be overridden for dispatching {@link android.widget.AdapterView.OnItemSelectedListener#onItemSelected(android.widget.AdapterView, android.view.View, int, long)} events.
      */
-    protected void itemSelected(final Object pItem) {
+    protected void itemSelected(final Object item) {
 
     }
 
     /**
      * This method should be overridden for dispatching {@link android.widget.AdapterView.OnItemSelectedListener#onItemSelected(android.widget.AdapterView, android.view.View, int, long)} events.
      */
-    protected void itemSelected(final AdapterView<?> pParent, final View pView, final int pPosition, final long pId) {
+    protected void itemSelected(final AdapterView<?> parent, final View view, final int position, final long id) {
 
     }
 
@@ -189,22 +189,22 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
     }
 
     @Override
-    public final void onItemClick(final AdapterView<?> pParent, final View pView, final int pPosition, final long pId) {
-        final Object clickedItem = pParent.getItemAtPosition(pPosition);
+    public final void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+        final Object clickedItem = parent.getItemAtPosition(position);
         itemClicked(clickedItem);
-        itemClicked(pParent, pView, pPosition, pId);
+        itemClicked(parent, view, position, id);
     }
 
     /**
      * This method should be overridden for dispatching {@link android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)} events.
      */
-    protected void itemClicked(final Object pItem) {
+    protected void itemClicked(final Object item) {
     }
 
     /**
      * This method should be overridden for dispatching {@link android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)} events.
      */
-    protected void itemClicked(final AdapterView<?> pParent, final View pView, final int pPosition, final long pId) {
+    protected void itemClicked(final AdapterView<?> parent, final View view, final int position, final long id) {
     }
 
 }

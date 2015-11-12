@@ -20,21 +20,29 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import org.fuusio.api.dependency.ApplicationScope;
+import org.fuusio.api.dependency.DependencyScope;
+import org.fuusio.api.dependency.DependencyScopeCache;
+import org.fuusio.api.dependency.DependencyScopeOwner;
 import org.fuusio.api.util.AppToolkit;
 import org.fuusio.api.util.UIToolkit;
 
-public abstract class FuusioApplication extends Application {
+public abstract class FuusioApplication extends Application implements Application.ActivityLifecycleCallbacks {
 
     private static FuusioApplication sInstance = null;
 
     protected final ApplicationScope mDependencyScope;
+    protected final DependencyScopeCache mDependencyScopeCache;
+
+    protected Activity mForegroundActivity;
 
     protected FuusioApplication() {
         setInstance(this);
         mDependencyScope = createDependencyScope();
+        mDependencyScopeCache = createDependencyScopeCache();
         AppToolkit.setApplication(this);
         UIToolkit.setApplication(this);
     }
@@ -44,14 +52,19 @@ public abstract class FuusioApplication extends Application {
         return (T)sInstance;
     }
 
-    private static void setInstance(final FuusioApplication pInstance) {
-        sInstance = pInstance;
+    private static void setInstance(final FuusioApplication instance) {
+        sInstance = instance;
     }
 
     protected abstract ApplicationScope createDependencyScope();
 
+
+    protected DependencyScopeCache createDependencyScopeCache() {
+        return new DependencyScopeCache(this);
+    }
+
     /**
-     * Gets the Google Analytics Property ID.
+     * Return the Google Analytics Property ID.
      * @return The property ID as an {@code int} value.
      */
     public int getPropertyId() {
@@ -59,15 +72,24 @@ public abstract class FuusioApplication extends Application {
     }
 
     /**
-     * Gets the {@link Resources}.
+     * Return the {@link Resources}.
      * @return A {@link Resources}.
      */
     public static Resources getApplicationResources() {
         return sInstance.getResources();
     }
 
+
     /**
-     * Gets the {@link SharedPreferences}.
+     * Return the {@link Activity} that is currently in foreground.
+     * @return An {@link Activity}. May return {@code null}.
+     */
+    public Activity getForegroundActivity() {
+        return mForegroundActivity;
+    }
+
+    /**
+     * Return the {@link SharedPreferences}.
      * @return A {@link SharedPreferences}.
      */
     public SharedPreferences getPreferences() {
@@ -85,9 +107,9 @@ public abstract class FuusioApplication extends Application {
     /**
      * Invoked by {@link FuusioApplication#readPreferences()}. This method should be overridden
      * in extended classes.
-     * @param pPreferences A {@link SharedPreferences} for reading the preferences.
+     * @param preferences A {@link SharedPreferences} for reading the preferences.
      */
-    protected void onReadPreferences(final SharedPreferences pPreferences) {
+    protected void onReadPreferences(final SharedPreferences preferences) {
         // Do nothing by default
     }
 
@@ -104,15 +126,15 @@ public abstract class FuusioApplication extends Application {
     /**
      * Invoked by {@link FuusioApplication#writePreferences()}. This method should be overridden
      * in extended classes.
-     * @param pPreferences A {@link SharedPreferences} for reading the preferences.
+     * @param preferences A {@link SharedPreferences} for reading the preferences.
      */
-    protected void onWritePreferences(final SharedPreferences pPreferences) {
+    protected void onWritePreferences(final SharedPreferences preferences) {
         // Do nothing by default
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends FuusioApplication> T getApplication(final Activity pActivity) {
-        return (T)pActivity.getApplicationContext();
+    public static <T extends FuusioApplication> T getApplication(final Activity activity) {
+        return (T)activity.getApplicationContext();
     }
 
     @SuppressLint("NewApi")
@@ -121,5 +143,49 @@ public abstract class FuusioApplication extends Application {
         super.onCreate();
         AppToolkit.setApplication(this);
         readPreferences();
+    }
+
+    @Override
+    public void onActivityCreated(final Activity activity, final Bundle inState) {
+        // Do nothing by default
+    }
+
+    @Override
+    public void onActivityStarted(final Activity activity) {
+        // Do nothing by default
+    }
+
+    @Override
+    public void onActivityResumed(final Activity activity) {
+        mForegroundActivity = activity;
+    }
+
+    @Override
+    public void onActivityPaused(final Activity activity) {
+        if (activity == mForegroundActivity) {
+            mForegroundActivity = null;
+        }
+    }
+
+    @Override
+    public void onActivityStopped(final Activity activity) {
+        // Do nothing by default
+    }
+
+    @Override
+    public void onActivitySaveInstanceState(final Activity activity, final Bundle outState) {
+        // Do nothing by default
+    }
+
+    @Override
+    public void onActivityDestroyed(final Activity activity) {
+        if (activity instanceof DependencyScopeOwner) {
+            final DependencyScopeOwner owner = (DependencyScopeOwner) activity;
+            final DependencyScope scope = owner.getDependencyScope();
+
+            if (scope != null && scope.isDisposable()) {
+                mDependencyScopeCache.removeDependencyScope(owner);
+            }
+        }
     }
 }

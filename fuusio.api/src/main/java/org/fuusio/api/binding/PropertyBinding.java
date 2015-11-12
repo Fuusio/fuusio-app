@@ -26,8 +26,8 @@ public class PropertyBinding extends TextViewBinding {
     private ModelObject mModelObject;
     private Property mProperty;
 
-    public PropertyBinding(final TextView pView) {
-        super(pView);
+    public PropertyBinding(final TextView view) {
+        super(view);
     }
 
     /**
@@ -40,10 +40,10 @@ public class PropertyBinding extends TextViewBinding {
 
     /**
      * Sets the assigned {@link ModelObject} that owns the target {@link Property}.
-     * @param pModelObject A {@link ModelObject}
+     * @param object A {@link ModelObject}
      */
-    public void setModelObject(final ModelObject pModelObject) {
-        mModelObject = pModelObject;
+    public void setModelObject(final ModelObject object) {
+        mModelObject = object;
     }
 
     /**
@@ -56,29 +56,29 @@ public class PropertyBinding extends TextViewBinding {
 
     /**
      * Sets the target {@link Property}.
-     * @param pProperty A {@link Property}
+     * @param property A {@link Property}
      */
-    public void setProperty(final Property pProperty) {
-        mProperty = pProperty;
+    public void setProperty(final Property property) {
+        mProperty = property;
     }
 
     /**
      * Sets the given value via this {@link TextViewBinding} to target.
-     * @param pText A {@link String} representing the value.
+     * @param text A {@link String} representing the value.
      */
-    protected final Object setValue(final String pText) {
-        final Object value = mProperty.convertStringToValue(mModelObject, pText, mProperty.getType());
+    protected final Object setValue(final String text) {
+        final Object value = mProperty.convertStringToValue(mModelObject, text, mProperty.getType());
         mProperty.set(mModelObject, value);
         return value;
     }
 
     /**
      * Tests if the given text represents a valid input value for the assigned {@link View}.
-     * @param pText The input value given as a {@link String}.
+     * @param text The input value given as a {@link String}.
      * @return A {@code boolean} value.
      */
-    protected boolean isValidValue(final String pText) {
-        final Object value = mProperty.convertStringToValue(mModelObject, pText, mProperty.getType());
+    protected boolean isValidValue(final String text) {
+        final Object value = mProperty.convertStringToValue(mModelObject, text, mProperty.getType());
         return mProperty.validate(mModelObject, value, mErrorMessage);
     }
 }

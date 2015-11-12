@@ -152,17 +152,17 @@ public class StretchableBitmap {
      * Constructs a new instance of {@link StretchableBitmap} with the given skin {@link Bitmap} and
      * layout specification.
      * 
-     * @param pBitmap An {@link Bitmap}.
+     * @param bitmap An {@link Bitmap}.
      * @param columnsSpec A {@link String} specifying the layout columns.
      * @param rowsSpec A {@link String} specifying the layout rows.
      */
-    public StretchableBitmap(final Bitmap pBitmap, final String columnsSpec, final String rowsSpec) {
+    public StretchableBitmap(final Bitmap bitmap, final String columnsSpec, final String rowsSpec) {
         mImageSize = new Dimension();
         mMaximumSize = new Dimension();
         mMinimumSize = new Dimension();
         mFillOffset = new Dimension();
         mStateBitmaps = new SparseArray<Bitmap>();
-        setStateImage(pBitmap, DEFAULT_STATE);
+        setStateImage(bitmap, DEFAULT_STATE);
         setupLayout(columnsSpec, rowsSpec);
     }
 
@@ -241,20 +241,20 @@ public class StretchableBitmap {
     /**
      * Sets the skin image for the specified state.
      * 
-     * @param pBitmap The skin image as an {@link Bitmap}. May be {@link null}. If null the
+     * @param bitmap The skin image as an {@link Bitmap}. May be {@link null}. If null the
      *        specified state is set not to have a skin image specific for the given state.
-     * @param pState An {@link int} index specifying the state.
+     * @param state An {@link int} index specifying the state.
      */
-    public void setStateImage(final Bitmap pBitmap, final int pState) {
-        if (pBitmap != null) {
-            mStateBitmaps.put(pState, pBitmap);
+    public void setStateImage(final Bitmap bitmap, final int state) {
+        if (bitmap != null) {
+            mStateBitmaps.put(state, bitmap);
 
             if (mImageSize.mWidth == 0 || mImageSize.mHeight == 0) {
-                mImageSize.mWidth = pBitmap.getWidth();
-                mImageSize.mHeight = pBitmap.getHeight();
+                mImageSize.mWidth = bitmap.getWidth();
+                mImageSize.mHeight = bitmap.getHeight();
             }
         } else {
-            mStateBitmaps.remove(pState);
+            mStateBitmaps.remove(state);
         }
     }
 
@@ -288,11 +288,11 @@ public class StretchableBitmap {
     /**
      * Layouts this {@link StretchableBitmap} for the given size.
      * 
-     * @param pSize A {@link Dimension} specifying the size.
+     * @param size A {@link Dimension} specifying the size.
      */
-    public void doLayout(final Dimension pSize) {
-        int width = pSize.mWidth - mMinimumSize.mWidth;
-        int height = pSize.mHeight - mMinimumSize.mHeight;
+    public void doLayout(final Dimension size) {
+        int width = size.mWidth - mMinimumSize.mWidth;
+        int height = size.mHeight - mMinimumSize.mHeight;
 
         if (width < 0) {
             width = 0;
@@ -315,8 +315,8 @@ public class StretchableBitmap {
         }
 
         final Point offset = new Point();
-        offset.x = pSize.mWidth - mMinimumSize.mWidth - mResizableColumns * mFillOffset.mWidth;
-        offset.y = pSize.mHeight - mMinimumSize.mHeight - mResizableRows * mFillOffset.mHeight;
+        offset.x = size.mWidth - mMinimumSize.mWidth - mResizableColumns * mFillOffset.mWidth;
+        offset.y = size.mHeight - mMinimumSize.mHeight - mResizableRows * mFillOffset.mHeight;
 
         int x = 0;
 
@@ -400,14 +400,14 @@ public class StretchableBitmap {
      * Sets up the layout for this {@link StretchableBitmap} according to the given rows and columns
      * specifications.
      * 
-     * @param pColumnsSpec A {@link String} containing the specifications for rows. The
+     * @param columnsSpec A {@link String} containing the specifications for rows. The
      *        specification consists number of tokens separated by spaces.
-     * @param pRowsSpec A {@link String} containing the specifications for rows. The specification
+     * @param rowsSpec A {@link String} containing the specifications for rows. The specification
      *        consists number of tokens separated by spaces.
      */
-    protected void setupLayout(final String pColumnsSpec, final String pRowsSpec) {
-        final StringTokenizer columnTokenizer = new StringTokenizer(pColumnsSpec, " ");
-        final StringTokenizer rowTokenizer = new StringTokenizer(pRowsSpec, " ");
+    protected void setupLayout(final String columnsSpec, final String rowsSpec) {
+        final StringTokenizer columnTokenizer = new StringTokenizer(columnsSpec, " ");
+        final StringTokenizer rowTokenizer = new StringTokenizer(rowsSpec, " ");
         mRows = rowTokenizer.countTokens();
         mColumns = columnTokenizer.countTokens();
 
@@ -459,7 +459,7 @@ public class StretchableBitmap {
                         minimumWidth = initialWidth;
                         maximumWidth = initialWidth;
                     } catch (Exception e) {
-                        Object[] args = { token, pColumnsSpec };
+                        Object[] args = { token, columnsSpec };
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER,
                                 args);
                     }
@@ -473,7 +473,7 @@ public class StretchableBitmap {
                     try {
                         minimumWidth = Integer.parseInt(valueString);
                     } catch (Exception e) {
-                        final Object[] args = { token, pColumnsSpec };
+                        final Object[] args = { token, columnsSpec };
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER,
                                 args);
                     }
@@ -483,7 +483,7 @@ public class StretchableBitmap {
                     try {
                         initialWidth = Integer.parseInt(valueString);
                     } catch (Exception e) {
-                        final Object[] args = { token, pColumnsSpec };
+                        final Object[] args = { token, columnsSpec };
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER,
                                 args);
                     }
@@ -493,12 +493,12 @@ public class StretchableBitmap {
                     try {
                         maximumWidth = Integer.parseInt(valueString);
                     } catch (Exception e) {
-                        final Object[] args = { token, pColumnsSpec };
+                        final Object[] args = { token, columnsSpec };
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER,
                                 args);
                     }
                 } else {
-                    final Object[] args = { token, pColumnsSpec };
+                    final Object[] args = { token, columnsSpec };
                     ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER, args);
                 }
 
@@ -527,7 +527,7 @@ public class StretchableBitmap {
                             minimumHeight = initialHeight;
                             maximumHeight = initialHeight;
                         } catch (Exception e) {
-                            final Object[] args = { token, pRowsSpec };
+                            final Object[] args = { token, rowsSpec };
                             ExceptionToolkit.throwIllegalArgumentException(INVALID_ROW_SPECIFIER,
                                     args);
                         }
@@ -541,7 +541,7 @@ public class StretchableBitmap {
                         try {
                             minimumHeight = Integer.parseInt(valueString);
                         } catch (Exception e) {
-                            final Object[] args = { token, pRowsSpec };
+                            final Object[] args = { token, rowsSpec };
                             ExceptionToolkit.throwIllegalArgumentException(INVALID_ROW_SPECIFIER,
                                     args);
                         }
@@ -551,7 +551,7 @@ public class StretchableBitmap {
                         try {
                             initialHeight = Integer.parseInt(valueString);
                         } catch (Exception e) {
-                            final Object[] args = { token, pRowsSpec };
+                            final Object[] args = { token, rowsSpec };
                             ExceptionToolkit.throwIllegalArgumentException(INVALID_ROW_SPECIFIER,
                                     args);
                         }
@@ -561,12 +561,12 @@ public class StretchableBitmap {
                         try {
                             maximumHeight = Integer.parseInt(valueString);
                         } catch (Exception e) {
-                            final Object[] args = { token, pRowsSpec };
+                            final Object[] args = { token, rowsSpec };
                             ExceptionToolkit.throwIllegalArgumentException(
                                     INVALID_COLUMN_SPECIFIER, args);
                         }
                     } else {
-                        final Object[] args = { token, pRowsSpec };
+                        final Object[] args = { token, rowsSpec };
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_ROW_SPECIFIER, args);
                     }
 

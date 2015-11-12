@@ -35,12 +35,11 @@ public class SmartPosterRecord extends ParsedNdefRecord {
     private final UriRecord mUriRecord;
     private final String mType;
 
-    private SmartPosterRecord(final UriRecord pUri, final TextRecord pTitle,
-            final RecommendedAction pAction, final String pType) {
-        mAction = Preconditions.checkNotNull(pAction);
-        mUriRecord = Preconditions.checkNotNull(pUri);
-        mTitleRecord = pTitle;
-        mType = pType;
+    private SmartPosterRecord(final UriRecord uri, final TextRecord title, final RecommendedAction action, final String type) {
+        mAction = Preconditions.checkNotNull(action);
+        mUriRecord = Preconditions.checkNotNull(uri);
+        mTitleRecord = title;
+        mType = type;
     }
 
     public final RecommendedAction getAction() {
@@ -59,25 +58,25 @@ public class SmartPosterRecord extends ParsedNdefRecord {
         return mUriRecord;
     }
 
-    public static SmartPosterRecord parse(final NdefRecord pRecord) {
-        Preconditions.checkArgument(pRecord.getTnf() == NdefRecord.TNF_WELL_KNOWN);
-        Preconditions.checkArgument(Arrays.equals(pRecord.getType(), NdefRecord.RTD_SMART_POSTER));
+    public static SmartPosterRecord parse(final NdefRecord record) {
+        Preconditions.checkArgument(record.getTnf() == NdefRecord.TNF_WELL_KNOWN);
+        Preconditions.checkArgument(Arrays.equals(record.getType(), NdefRecord.RTD_SMART_POSTER));
         try {
-            final NdefMessage subRecords = new NdefMessage(pRecord.getPayload());
+            final NdefMessage subRecords = new NdefMessage(record.getPayload());
             return parse(subRecords.getRecords());
         } catch (final FormatException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
-    public static SmartPosterRecord parse(final NdefRecord[] pRecordsRaw) {
+    public static SmartPosterRecord parse(final NdefRecord[] recordsRaw) {
         try {
-            final Iterable<ParsedNdefRecord> records = getRecords(pRecordsRaw);
+            final Iterable<ParsedNdefRecord> records = getRecords(recordsRaw);
             final UriRecord uri = Iterables.getOnlyElement(Iterables.filter(records,
                     UriRecord.class));
             final TextRecord title = getFirstIfExists(records, TextRecord.class);
-            final RecommendedAction action = parseRecommendedAction(pRecordsRaw);
-            final String type = parseType(pRecordsRaw);
+            final RecommendedAction action = parseRecommendedAction(recordsRaw);
+            final String type = parseType(recordsRaw);
             return new SmartPosterRecord(uri, title, action, type);
         } catch (final NoSuchElementException e) {
             throw new IllegalArgumentException(e);
@@ -93,8 +92,8 @@ public class SmartPosterRecord extends ParsedNdefRecord {
      * Returns the first element of {@code elements} which is an instance of {@code type}, or
      * {@code null} if no such element exists.
      */
-    private static <T> T getFirstIfExists(final Iterable<?> pElements, final Class<T> pType) {
-        final Iterable<T> filtered = Iterables.filter(pElements, pType);
+    private static <T> T getFirstIfExists(final Iterable<?> elements, final Class<T> type) {
+        final Iterable<T> filtered = Iterables.filter(elements, type);
         T instance = null;
 
         if (!Iterables.isEmpty(filtered)) {
@@ -105,8 +104,10 @@ public class SmartPosterRecord extends ParsedNdefRecord {
 
     private enum RecommendedAction {
 
-        UNKNOWN((byte) -1), DO_ACTION((byte) 0), SAVE_FOR_LATER((byte) 1), OPEN_FOR_EDITING(
-                (byte) 2);
+        UNKNOWN((byte) -1), //
+        DO_ACTION((byte) 0), //
+        SAVE_FOR_LATER((byte) 1), //
+        OPEN_FOR_EDITING((byte) 2);
 
         private static final ImmutableMap<Byte, RecommendedAction> LOOKUP;
 
@@ -122,8 +123,8 @@ public class SmartPosterRecord extends ParsedNdefRecord {
 
         private final byte mAction;
 
-        private RecommendedAction(final byte pAction) {
-            mAction = pAction;
+        private RecommendedAction(final byte action) {
+            mAction = action;
         }
 
         private byte getByte() {
@@ -131,9 +132,9 @@ public class SmartPosterRecord extends ParsedNdefRecord {
         }
     }
 
-    private static NdefRecord getByType(final byte[] pType, final NdefRecord[] pRecords) {
-        for (final NdefRecord record : pRecords) {
-            if (Arrays.equals(pType, record.getType())) {
+    private static NdefRecord getByType(final byte[] type, final NdefRecord[] records) {
+        for (final NdefRecord record : records) {
+            if (Arrays.equals(type, record.getType())) {
                 return record;
             }
         }
@@ -142,8 +143,8 @@ public class SmartPosterRecord extends ParsedNdefRecord {
 
     private static final byte[] ACTION_RECORD_TYPE = new byte[] { 'a', 'c', 't' };
 
-    private static RecommendedAction parseRecommendedAction(final NdefRecord[] pRecords) {
-        final NdefRecord record = getByType(ACTION_RECORD_TYPE, pRecords);
+    private static RecommendedAction parseRecommendedAction(final NdefRecord[] records) {
+        final NdefRecord record = getByType(ACTION_RECORD_TYPE, records);
 
         if (record == null) {
             return RecommendedAction.UNKNOWN;
@@ -159,8 +160,8 @@ public class SmartPosterRecord extends ParsedNdefRecord {
 
     private static final byte[] TYPE_TYPE = new byte[] { 't' };
 
-    private static String parseType(final NdefRecord[] pRecords) {
-        final NdefRecord type = getByType(TYPE_TYPE, pRecords);
+    private static String parseType(final NdefRecord[] records) {
+        final NdefRecord type = getByType(TYPE_TYPE, records);
 
         if (type == null) {
             return null;

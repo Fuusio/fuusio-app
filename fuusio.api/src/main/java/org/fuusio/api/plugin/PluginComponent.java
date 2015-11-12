@@ -27,8 +27,8 @@ public abstract class PluginComponent implements Plugin, InjectorProvider {
         this(Plugin.DEFAULT_PLUG_NAME);
     }
 
-    protected PluginComponent(final String pPlugName) {
-        mPlugName = pPlugName;
+    protected PluginComponent(final String plugName) {
+        mPlugName = plugName;
     }
 
     public String getPlugName() {
@@ -39,9 +39,9 @@ public abstract class PluginComponent implements Plugin, InjectorProvider {
         return null;
     }
 
-    public void onPlugged(final PluginBus pBus) {
+    public void onPlugged(final PluginBus bus) {
     }
 
-    public void onUnplugged(final PluginBus pBus) {
+    public void onUnplugged(final PluginBus bus) {
     }
 }

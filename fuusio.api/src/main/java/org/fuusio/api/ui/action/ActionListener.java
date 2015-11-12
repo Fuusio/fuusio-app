@@ -17,5 +17,5 @@ package org.fuusio.api.ui.action;
 
 public interface ActionListener {
 
-    boolean actionPerformed(Action pAction, ActionContext pContext);
+    boolean actionPerformed(Action action, ActionContext context);
 }

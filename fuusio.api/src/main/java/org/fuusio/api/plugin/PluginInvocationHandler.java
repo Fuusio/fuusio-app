@@ -40,10 +40,10 @@ public class PluginInvocationHandler implements InvocationHandler {
     protected int mPluginCount;
     protected Proxy mProxy;
 
-    public PluginInvocationHandler(final Class<? extends PluginInterface> pPluginInterface, final PluginBus pPluginBus) {
+    public PluginInvocationHandler(final Class<? extends PluginInterface> pluginInterface, final PluginBus pluginBus) {
         mMainLooper = Looper.getMainLooper();
-        mPluginInterface = pPluginInterface;
-        mPluginBus = pPluginBus;
+        mPluginInterface = pluginInterface;
+        mPluginBus = pluginBus;
         mPlugins = new ArrayList<>();
         mPluginCount = 0;
     }
@@ -70,12 +70,12 @@ public class PluginInvocationHandler implements InvocationHandler {
 		return mProxy;
 	}
 	
-	public void setProxy(final Proxy pProxy) {
-		mProxy = pProxy;
+	public void setProxy(final Proxy proxy) {
+		mProxy = proxy;
 	}
 
 	@Override
-	public Object invoke(final Object pProxy, final Method pMethod, final Object[] pArgs)
+	public Object invoke(final Object proxy, final Method pMethod, final Object[] args)
 			throws Throwable {
 		
 		Object returnValue = null;
@@ -83,7 +83,7 @@ public class PluginInvocationHandler implements InvocationHandler {
         if (Looper.myLooper() == mMainLooper) {
             for (int i = mPluginCount - 1; i >= 0; i--) {
                 try {
-                    returnValue = pMethod.invoke(mPlugins.get(i), pArgs);
+                    returnValue = pMethod.invoke(mPlugins.get(i), args);
                 } catch (final Exception e) {
                     throw new RuntimeException("Failed to invoke method: " + pMethod.getName() + ". Reason: " + e.getMessage());
                 }
@@ -97,7 +97,7 @@ public class PluginInvocationHandler implements InvocationHandler {
                 public void run() {
                     for (int i = mPluginCount - 1; i >= 0; i--) {
                         try {
-                            pMethod.invoke(mPlugins.get(i), pArgs);
+                            pMethod.invoke(mPlugins.get(i), args);
                         } catch (final Exception e) {
                             throw new RuntimeException("Failed to invoke method: " + pMethod.getName() + ". Reason: " + e.getMessage());
                         }
@@ -108,16 +108,16 @@ public class PluginInvocationHandler implements InvocationHandler {
 		return returnValue;
 	}
 	
-	public void plug(final Plugin pPlugin) {
-		if (!mPlugins.contains(pPlugin)) {
-			mPlugins.add(pPlugin);
+	public void plug(final Plugin plugin) {
+		if (!mPlugins.contains(plugin)) {
+			mPlugins.add(plugin);
 			mPluginCount = mPlugins.size();
 		}
 	}
 
-	public void unplug(final Plugin pPlugin) {
-		if (mPlugins.contains(pPlugin)) {
-			mPlugins.remove(pPlugin);
+	public void unplug(final Plugin plugin) {
+		if (mPlugins.contains(plugin)) {
+			mPlugins.remove(plugin);
 			mPluginCount = mPlugins.size();
 		}
 	}

@@ -65,8 +65,8 @@ public enum HeaderRequestField {
 
     private final String mName;
 
-    HeaderRequestField(final String pName) {
-        mName = pName;
+    HeaderRequestField(final String name) {
+        mName = name;
     }
 
     public final String getName() {

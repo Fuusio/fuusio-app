@@ -35,15 +35,14 @@ public class TextRecord extends ParsedNdefRecord {
         mText = Preconditions.checkNotNull(text);
     }
 
-    public static NdefRecord newTextRecord(final String pText, final Locale pLocale,
-            final boolean pEncodeInUtf8) {
-        final byte[] langBytes = pLocale.getLanguage().getBytes(Charset.forName("US-ASCII"));
+    public static NdefRecord newTextRecord(final String text, final Locale locale, final boolean encodeInUtf8) {
+        final byte[] langBytes = locale.getLanguage().getBytes(Charset.forName(CHARSET_NAME_US_ASCII));
 
-        final Charset utfEncoding = pEncodeInUtf8 ? CHARSET_UTF_8 : Charset
-                .forName("UTF-16");
-        final byte[] textBytes = pText.getBytes(utfEncoding);
+        final Charset utfEncoding = encodeInUtf8 ? CHARSET_UTF_8 : Charset
+                .forName(ENCODING_UTF_16);
+        final byte[] textBytes = text.getBytes(utfEncoding);
 
-        final int utfBit = pEncodeInUtf8 ? 0 : (1 << 7);
+        final int utfBit = encodeInUtf8 ? 0 : (1 << 7);
         final char status = (char) (utfBit + langBytes.length);
 
         final byte[] data = new byte[1 + langBytes.length + textBytes.length];
@@ -63,11 +62,11 @@ public class TextRecord extends ParsedNdefRecord {
         return mText;
     }
 
-    public static TextRecord parse(final NdefRecord pRecord) {
-        Preconditions.checkArgument(pRecord.getTnf() == NdefRecord.TNF_WELL_KNOWN);
-        Preconditions.checkArgument(Arrays.equals(pRecord.getType(), NdefRecord.RTD_TEXT));
+    public static TextRecord parse(final NdefRecord record) {
+        Preconditions.checkArgument(record.getTnf() == NdefRecord.TNF_WELL_KNOWN);
+        Preconditions.checkArgument(Arrays.equals(record.getType(), NdefRecord.RTD_TEXT));
         try {
-            byte[] payload = pRecord.getPayload();
+            byte[] payload = record.getPayload();
             /*
              * payload[0] contains the "Status Byte Encodings" field, per the NFC Forum
              * "Text Record Type Definition" section 3.2.1.
@@ -81,11 +80,10 @@ public class TextRecord extends ParsedNdefRecord {
              * 
              * Bits 5 to 0 are the length of the IANA language code.
              */
-            final String textEncoding = ((payload[0] & 0200) == 0) ? "UTF-8" : "UTF-16";
+            final String textEncoding = ((payload[0] & 0200) == 0) ? ENCODING_UTF_8 : ENCODING_UTF_16;
             final int languageCodeLength = payload[0] & 0077;
-            final String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
-            final String text = new String(payload, languageCodeLength + 1, payload.length
-                    - languageCodeLength - 1, textEncoding);
+            final String languageCode = new String(payload, 1, languageCodeLength, CHARSET_NAME_US_ASCII);
+            final String text = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
             return new TextRecord(languageCode, text);
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalArgumentException(e);

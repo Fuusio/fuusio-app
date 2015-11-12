@@ -48,15 +48,15 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
 
     /**
      * Construct a new instance of {@link AbstractFlow} with the given {@link FlowFragmentContainer}.
-     * @param pContainer A {@link FlowFragmentContainer}.
-     * @param pParams A {@link Bundle} containing parameters for starting the {@link Flow}.
+     * @param container A {@link FlowFragmentContainer}.
+     * @param params A {@link Bundle} containing parameters for starting the {@link Flow}.
      */
-    protected AbstractFlow(final FlowFragmentContainer pContainer, final Bundle pParams) {
-        mFragmentContainer = pContainer;
-        mParams = pParams;
+    protected AbstractFlow(final FlowFragmentContainer container, final Bundle params) {
+        mFragmentContainer = container;
+        mParams = params;
         mActiveViews = new ArrayList<>();
         mBackStackSize = 0;
-        mContext = pContainer.getContext();
+        mContext = container.getContext();
     }
 
     @Override
@@ -80,38 +80,38 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
     /**
      * Adds the given {@link View} to the set of currently active Views. This method is
      * meant to be used only by the Flow Framework.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      */
     @Override
-    public final View addActiveView(final View pView) {
-        if (!mActiveViews.contains(pView)) {
-            mActiveViews.add(pView);
-            return pView;
+    public final View addActiveView(final View view) {
+        if (!mActiveViews.contains(view)) {
+            mActiveViews.add(view);
+            return view;
         }
         return null;
     }
     /**
      * Removes the given {@link View} from the set of currently active Views. This method
      * is meant to be used only by the Flow Framework.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      */
     @Override
-    public final View removeActiveView(final View pView) {
-        if (mActiveViews.contains(pView)) {
-            mActiveViews.remove(pView);
-            return pView;
+    public final View removeActiveView(final View view) {
+        if (mActiveViews.contains(view)) {
+            mActiveViews.remove(view);
+            return view;
         }
         return null;
     }
 
     /**
      * Tests if the given {@link View} is currently active one.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      * @return A {@code boolean} value.
      */
     @Override
-    public boolean isActiveView(final View pView) {
-        return mActiveViews.contains(pView);
+    public boolean isActiveView(final View view) {
+        return mActiveViews.contains(view);
     }
 
     @Override
@@ -132,24 +132,24 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
 
     @SuppressWarnings("unchecked")
     @Override
-    public void activateView(final View pView) {
+    public void activateView(final View view) {
 
-        if (!mFragmentContainer.canShowView(pView)) {
+        if (!mFragmentContainer.canShowView(view)) {
             return;
         }
 
-        final Class<? extends View> viewClass = getClass(pView);
-        getDependencyScope().cache(viewClass, pView);
+        final Class<? extends View> viewClass = getClass(view);
+        getDependencyScope().cache(viewClass, view);
 
-        if (pView instanceof FlowFragment) {
-            final FlowFragment fragment = (FlowFragment) pView;
+        if (view instanceof FlowFragment) {
+            final FlowFragment fragment = (FlowFragment) view;
             fragment.setFlow(this);
             mFragmentContainer.showFlowFragment(this, fragment, fragment.getTag());
         } else {
             throw new IllegalStateException("Fragment has to be derived from org.fuusio.api.flow.FlowFragment class");
         }
 
-        final Presenter presenter = pView.getPresenter();
+        final Presenter presenter = view.getPresenter();
         presenter.addListener(this);
 
         if (presenter instanceof ActionContext) {
@@ -159,7 +159,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
     }
 
     @Override
-    public void onNavigatedBackTo(final View pView) {
+    public void onNavigatedBackTo(final View view) {
         // Do nothing by default
     }
 
@@ -195,9 +195,9 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
         }
     }
 
-    protected static Class<? extends View> getClass(final View pView) {
+    protected static Class<? extends View> getClass(final View view) {
 
-        final Class viewClass = pView.getClass();
+        final Class viewClass = view.getClass();
 
         if (viewClass.isInterface() && View.class.isAssignableFrom(viewClass)) {
             return viewClass;
@@ -229,12 +229,12 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
     }
 
     @Override
-    public final void start(final Bundle pParams) {
+    public final void start(final Bundle params) {
         final FragmentManager manager = mFragmentContainer.getSupportFragmentManager();
         manager.addOnBackStackChangedListener(this);
         Dependency.activateScope(this);
 
-        onStart(pParams);
+        onStart(params);
     }
 
     @Override
@@ -275,7 +275,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
     }
 
     @Override
-    public void onStart(final Bundle pParams) {
+    public void onStart(final Bundle params) {
         // Do nothing by default
     }
 
@@ -313,18 +313,18 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
     }
 
     @Override
-    public void onPresenterStarted(final Presenter pPresenter) {
+    public void onPresenterStarted(final Presenter presenter) {
     }
 
     @Override
-    public void onPresenterResumed(final Presenter pPresenter) {
+    public void onPresenterResumed(final Presenter presenter) {
     }
 
     @Override
-    public void onPresenterPaused(final Presenter pPresenter) {
+    public void onPresenterPaused(final Presenter presenter) {
     }
 
     @Override
-    public void onPresenterStopped(final Presenter pPresenter) {
+    public void onPresenterStopped(final Presenter presenter) {
     }
 }

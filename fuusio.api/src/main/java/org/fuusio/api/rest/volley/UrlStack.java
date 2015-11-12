@@ -23,13 +23,14 @@ import javax.net.ssl.X509TrustManager;
 
 /**
  * {@link UrlStack} extends {@link HurlStack} for implementing certificate pinning and for
- * replacing the deprecated HTTP client with {@linkOkHttpClient} from Square.
+ * replacing the deprecated HTTP client with {@link OkHttpClient} from Square.
  */
 public class UrlStack extends HurlStack {
 
     private static final String PREFIX_SHA1 = "sha1/";
 
     private final OkUrlFactory mUrlFactory;
+
     private OkHttpClient mHttpClient;
 
     public UrlStack() {
@@ -43,8 +44,8 @@ public class UrlStack extends HurlStack {
     }
 
     @Override
-    protected HttpURLConnection createConnection(final URL pUrl) throws IOException {
-        return mUrlFactory.open(pUrl);
+    protected HttpURLConnection createConnection(final URL url) throws IOException {
+        return mUrlFactory.open(url);
     }
 
     protected String getHostName() {
@@ -61,11 +62,11 @@ public class UrlStack extends HurlStack {
             final TrustManager[] trustAllCerts = new TrustManager[]{
                     new X509TrustManager() {
                         @Override
-                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        public void checkClientTrusted(final java.security.cert.X509Certificate[] chain, final String authType) throws CertificateException {
                         }
 
                         @Override
-                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        public void checkServerTrusted(final java.security.cert.X509Certificate[] chain, final String authType) throws CertificateException {
                         }
 
                         @Override

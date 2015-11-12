@@ -19,5 +19,5 @@ public interface ChildModel<T_Parent extends Model> {
 
     T_Parent getParent();
 
-    void setParent(T_Parent pParent);
+    void setParent(T_Parent parent);
 }

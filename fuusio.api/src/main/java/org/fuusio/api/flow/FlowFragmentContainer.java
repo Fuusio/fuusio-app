@@ -35,10 +35,10 @@ public interface FlowFragmentContainer {
 
     /**
      * Tests if the given {@link View} can be shown.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      * @return A {@code boolean}.
      */
-    boolean canShowView(View pView);
+    boolean canShowView(View view);
 
     /**
      * Gets the {@link FragmentManager} that manages {@link android.app.Fragment}s.
@@ -56,10 +56,10 @@ public interface FlowFragmentContainer {
      * Shows the given {@link FlowFragment} which is managed by the given {@link Flow}. Each shown
      * {@link FlowFragment} instance has to be supplied with a tag that can be used to retrieve
      * the instance later on.
-     * @param pFlow A {@link Flow}. May not be {@code null}.
-     * @param pFragment A {@link FlowFragment}. May not be {@code null}.
-     * @param pFragmentTag A {@link String} used as a tag to identify the {@link FlowFragment}.
+     * @param flow A {@link Flow}. May not be {@code null}.
+     * @param fragment A {@link FlowFragment}. May not be {@code null}.
+     * @param fragmentTag A {@link String} used as a tag to identify the {@link FlowFragment}.
      *                     In most cases tag can be simply the class name of the  {@link FlowFragment}.
      */
-    void showFlowFragment(Flow pFlow, FlowFragment pFragment, String pFragmentTag);
+    void showFlowFragment(Flow flow, FlowFragment fragment, String fragmentTag);
 }

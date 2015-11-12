@@ -21,11 +21,11 @@ public interface ParentModel<T_Child extends Model> {
 
     List<T_Child> getModels();
 
-    void setModels(List<T_Child> pModels);
+    void setModels(List<T_Child> models);
 
-    void addModel(T_Child pModel);
+    void addModel(T_Child model);
 
-    void removeModel(T_Child pModel);
+    void removeModel(T_Child model);
 
-    boolean hasModelWithName(String pName);
+    boolean hasModelWithName(String name);
 }

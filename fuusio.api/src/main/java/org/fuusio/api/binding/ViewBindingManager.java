@@ -34,43 +34,43 @@ public class ViewBindingManager {
     private final HashMap<Integer, ViewBinding<?>> mBindingsCache;
     private final Activity mActivity;
 
-    public ViewBindingManager(final ViewFragment pFragment) {
-        this(pFragment.getActivity());
+    public ViewBindingManager(final ViewFragment fragment) {
+        this(fragment.getActivity());
     }
 
-    public ViewBindingManager(final Activity pActivity) {
+    public ViewBindingManager(final Activity activity) {
         mBindingsCache = new HashMap<>();
-        mActivity = pActivity;
+        mActivity = activity;
     }
 
     /**
      * Looks up and returns a {@link View} with the given layout id.
-     * @param pViewId A view id used in a layout XML resource.
+     * @param viewId A view id used in a layout XML resource.
      * @return The found {@link View}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends View> T getView(final int pViewId) {
-        return (T)mActivity.findViewById(pViewId);
+    public <T extends View> T getView(final int viewId) {
+        return (T)mActivity.findViewById(viewId);
     }
 
     /**
      * Gets a {@link ViewBinding} for the specified {@link View}.
-     * @param pViewId A view id used in a layout XML resource.
+     * @param viewId A view id used in a layout XML resource.
      * @return The found {@link View}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends ViewBinding> T getBinding(final int pViewId) {
-        T binding = (T) mBindingsCache.get(pViewId);
+    public <T extends ViewBinding> T getBinding(final int viewId) {
+        T binding = (T) mBindingsCache.get(viewId);
 
         if (binding == null) {
-            final View view = getView(pViewId);
+            final View view = getView(viewId);
 
             if (view instanceof TextView) {
                 binding = (T) new TextViewBinding((TextView) view);
             } else {
                 throw new IllegalStateException("View of type: " + view.getClass().getName() + " is not supported.");
             }
-            mBindingsCache.put(pViewId, binding);
+            mBindingsCache.put(viewId, binding);
         }
         return binding;
     }
@@ -84,13 +84,13 @@ public class ViewBindingManager {
 
     /**
      * Creates and binds a {@link ViewBinding} to a {@link View} specified by the given view id.
-     * @param pViewId A view id used in a layout XML resource.
+     * @param viewId A view id used in a layout XML resource.
      * @param <T> The parametrised type of the ViewDelagate.
      * @return The created {@link ViewBinding}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends ViewBinding<?>> T bind(final int pViewId) {
-        final View view = getView(pViewId);
+    public <T extends ViewBinding<?>> T bind(final int viewId) {
+        final View view = getView(viewId);
         ViewBinding<?> binding;
 
         if (view instanceof AdapterView) {
@@ -99,46 +99,46 @@ public class ViewBindingManager {
             binding = new TextViewBinding((TextView)view);
         }
 
-        mBindingsCache.put(pViewId, binding);
+        mBindingsCache.put(viewId, binding);
         return (T)binding;
     }
 
     /**
      * Binds the given {@link ViewBinding} to the specified {@link View}.
-     * @param pViewId A view id in a layout XML specifying the target {@link View}.
-     * @param pBinding An {@link ViewBinding}.
+     * @param viewId A view id in a layout XML specifying the target {@link View}.
+     * @param binding An {@link ViewBinding}.
      * @return The found and bound {@link View}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends View> T bind(final int pViewId, final ViewBinding<T> pBinding) {
-        final T view = getView(pViewId);
+    public <T extends View> T bind(final int viewId, final ViewBinding<T> binding) {
+        final T view = getView(viewId);
 
-        if (pBinding.canBind(view)) {
-            pBinding.setView(view);
-            mBindingsCache.put(pViewId, pBinding);
+        if (binding.canBind(view)) {
+            binding.setView(view);
+            mBindingsCache.put(viewId, binding);
         } else {
-            throw new IllegalStateException("No View with id: " + Integer.toString(pViewId) + " compatible with the given ViewBinding was found");
+            throw new IllegalStateException("No View with id: " + Integer.toString(viewId) + " compatible with the given ViewBinding was found");
         }
         return view;
     }
 
     /**
      * Binds the given {@link AdapterViewBinding} to the specified {@link AdapterView}.
-     * @param pViewId A view id in a layout XML specifying the target {@link AdapterView}.
-     * @param pBinding An {@link AdapterViewBinding}.
-     * @param pAdapter An {@link AdapterViewBinding.Adapter} that is assigned to {@link AdapterViewBinding}.
+     * @param viewId A view id in a layout XML specifying the target {@link AdapterView}.
+     * @param binding An {@link AdapterViewBinding}.
+     * @param adapter An {@link AdapterViewBinding.Adapter} that is assigned to {@link AdapterViewBinding}.
      * @return The found and bound {@link AdapterView}.
      */
     @SuppressWarnings("unchecked")
-    public <T extends AdapterView> T bind(final int pViewId, final AdapterViewBinding<?> pBinding, final AdapterViewBinding.Adapter<?> pAdapter) {
-        final T view = getView(pViewId);
+    public <T extends AdapterView> T bind(final int viewId, final AdapterViewBinding<?> binding, final AdapterViewBinding.Adapter<?> adapter) {
+        final T view = getView(viewId);
 
-        if (pBinding.canBind(view)) {
-            pBinding.setAdapter(pAdapter);
-            pBinding.setView(view);
-            mBindingsCache.put(pViewId, pBinding);
+        if (binding.canBind(view)) {
+            binding.setAdapter(adapter);
+            binding.setView(view);
+            mBindingsCache.put(viewId, binding);
         } else {
-            throw new IllegalStateException("No View with id: " + Integer.toString(pViewId) + " compatible with the given ViewBinding was found");
+            throw new IllegalStateException("No View with id: " + Integer.toString(viewId) + " compatible with the given ViewBinding was found");
         }
         return view;
     }

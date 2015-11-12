@@ -70,11 +70,11 @@ public class StateBitmapDrawable extends Drawable {
     /**
      * Constructs a new instance of {@code StateImagePainter} with the give state bitmaps.
      * 
-     * @param pStateImages The state mBitmaps as an array of {@link Bitmap}s.
+     * @param stateImages The state mBitmaps as an array of {@link Bitmap}s.
      */
 
-    public StateBitmapDrawable(final Bitmap[] pStateImages) {
-        setStateBitmaps(pStateImages);
+    public StateBitmapDrawable(final Bitmap[] stateImages) {
+        setStateBitmaps(stateImages);
     }
 
     /**
@@ -94,16 +94,16 @@ public class StateBitmapDrawable extends Drawable {
     }
 
     /**
-     * Sets the mBitmap of this {@code ImagePainter}.
+     * Sets the bitmap of this {@code ImagePainter}.
      * 
-     * @param mBitmap The mBitmap as an {@code Bitmap}.
+     * @param bitmap The bitmap as an {@code Bitmap}.
      */
 
-    public void setImage(Bitmap mBitmap) {
-        if (mBitmap != null) {
+    public void setImage(final Bitmap bitmap) {
+        if (bitmap != null) {
             for (int i = 0; i < mStateBitmaps.length; i++) {
-                if (mBitmap == mStateBitmaps[i]) {
-                    this.mBitmap = mBitmap;
+                if (bitmap == mStateBitmaps[i]) {
+                    mBitmap = bitmap;
                     setDrawableState(i);
                     break;
                 }
@@ -150,10 +150,10 @@ public class StateBitmapDrawable extends Drawable {
     /**
      * Sets the state mBitmaps of this {@code StateImagePainter}.
      * 
-     * @param pStateBitmaps The state mBitmaps as an array of {@code Images}.
+     * @param stateBitmaps The state mBitmaps as an array of {@code Images}.
      */
-    public void setStateBitmaps(final Bitmap[] pStateBitmaps) {
-        mStateBitmaps = pStateBitmaps;
+    public void setStateBitmaps(final Bitmap[] stateBitmaps) {
+        mStateBitmaps = stateBitmaps;
         mState = 0;
     }
 
@@ -163,7 +163,7 @@ public class StateBitmapDrawable extends Drawable {
      * @see android.graphics.drawable.Drawable#draw(android.graphics.Canvas)
      */
     @Override
-    public void draw(final Canvas pCanvas) {
+    public void draw(final Canvas canvas) {
         if (mState >= 0 && mState < mStateBitmaps.length) {
             mBitmap = mStateBitmaps[mState];
             // TODO super.paintNode(context);
@@ -187,7 +187,7 @@ public class StateBitmapDrawable extends Drawable {
      * @see android.graphics.drawable.Drawable#setAlpha(int)
      */
     @Override
-    public void setAlpha(final int pAlpha) {
+    public void setAlpha(final int alpha) {
         // TODO Auto-generated method stub
 
     }
@@ -198,7 +198,7 @@ public class StateBitmapDrawable extends Drawable {
      * @see android.graphics.drawable.Drawable#setColorFilter(android.graphics.ColorFilter)
      */
     @Override
-    public void setColorFilter(final ColorFilter pCf) {
+    public void setColorFilter(final ColorFilter filter) {
         // TODO Auto-generated method stub
 
     }

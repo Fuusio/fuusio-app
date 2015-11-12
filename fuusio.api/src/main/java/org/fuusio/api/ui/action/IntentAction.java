@@ -23,18 +23,18 @@ public class IntentAction extends Action {
 
     protected Class<? extends Activity> mActivityClass;
 
-    public IntentAction(final int pTextResId, final Class<? extends Activity> pActivityClass) {
-        this(0, pTextResId, pActivityClass);
+    public IntentAction(final int textResId, final Class<? extends Activity> activityClass) {
+        this(0, textResId, activityClass);
     }
 
-    public IntentAction(final int pIconResId, final int pTextResId,
-            final Class<? extends Activity> pActivityClass) {
-        super(pIconResId, pTextResId);
-        setActivityClass(pActivityClass);
+    public IntentAction(final int iconResId, final int textResId,
+            final Class<? extends Activity> activityClass) {
+        super(iconResId, textResId);
+        setActivityClass(activityClass);
     }
 
-    public IntentAction(final int pIconResId, final int pTextResId) {
-        super(pIconResId, pTextResId);
+    public IntentAction(final int iconResId, final int textResId) {
+        super(iconResId, textResId);
         // TODO Auto-generated constructor stub
     }
 
@@ -42,13 +42,13 @@ public class IntentAction extends Action {
         return mActivityClass;
     }
 
-    public void setActivityClass(final Class<? extends Activity> pActivityClass) {
-        mActivityClass = pActivityClass;
+    public void setActivityClass(final Class<? extends Activity> activityClass) {
+        mActivityClass = activityClass;
     }
 
     @Override
-    public boolean execute(final ActionContext pActionContext) {
-        final Context context = pActionContext.getContext();
+    public boolean execute(final ActionContext actionContext) {
+        final Context context = actionContext.getContext();
         final Intent intent = new Intent(context, mActivityClass);
         context.startActivity(intent);
         return true;

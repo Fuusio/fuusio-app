@@ -96,10 +96,10 @@ public enum Anchor {
     /**
      * Constructs a new instance of {@code Anchor} with the given displayable label.
      * 
-     * @param pLabel A {@link String} for displayable label.
+     * @param label A {@link String} for displayable label.
      */
-    Anchor(final String pLabel) {
-        mLabel = pLabel;
+    Anchor(final String label) {
+        mLabel = label;
     }
 
     /**

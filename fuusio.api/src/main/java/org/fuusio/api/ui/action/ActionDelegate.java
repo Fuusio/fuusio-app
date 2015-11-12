@@ -17,5 +17,5 @@ package org.fuusio.api.ui.action;
 
 public interface ActionDelegate {
 
-    public boolean executeAction(Action pAction);
+    public boolean executeAction(Action action);
 }

@@ -42,31 +42,31 @@ public abstract class Model extends ModelObject {
         mModifiable = true;
     }
 
-    protected Model(final String pName) {
+    protected Model(final String name) {
         this();
-        mName = pName;
+        mName = name;
     }
 
     @Override
-    public int getColumnIndex(final String pPropertyName) {
+    public int getColumnIndex(final String propertyName) {
 
-        if (KEY_CREATED_DATE.equals(pPropertyName)) {
+        if (KEY_CREATED_DATE.equals(propertyName)) {
             return 3;
-        } else if (KEY_NAME.equals(pPropertyName)) {
+        } else if (KEY_NAME.equals(propertyName)) {
             return 4;
-        } else if (KEY_PROPERTIES.equals(pPropertyName)) {
+        } else if (KEY_PROPERTIES.equals(propertyName)) {
             return 5;
         } else {
-            return super.getColumnIndex(pPropertyName);
+            return super.getColumnIndex(propertyName);
         }
     }
 
     @Override
-    public void getContentValues(final ContentValues pValues) {
-        super.getContentValues(pValues);
+    public void getContentValues(final ContentValues values) {
+        super.getContentValues(values);
 
-    	pValues.put(KEY_NAME, getName());
-    	pValues.put(KEY_CREATED_DATE, DateToolkit.format(getCreatedDate()));
+    	values.put(KEY_NAME, getName());
+    	values.put(KEY_CREATED_DATE, DateToolkit.format(getCreatedDate()));
     }
 
     @PropertyGetter(property = "CreatedDate", isDescriptor = true)
@@ -75,16 +75,16 @@ public abstract class Model extends ModelObject {
     }
 
     @PropertySetter(property = "CreatedDate")
-    public void setCreatedDate(final Date pDate) {
-        mCreatedDate = pDate;
+    public void setCreatedDate(final Date date) {
+        mCreatedDate = date;
     }
 
     public boolean isDescriptor() {
         return mDescriptor;
     }
 
-    public void setDescriptor(final boolean pDescriptor) {
-        mDescriptor = pDescriptor;
+    public void setDescriptor(final boolean descriptor) {
+        mDescriptor = descriptor;
     }
 
     // OPTION @PropertyGetter(property = "Modifiable", isDescriptor = true)
@@ -93,8 +93,8 @@ public abstract class Model extends ModelObject {
     }
 
     // OPTION @PropertySetter(property = "Modifiable")
-    public void setModifiable(final boolean pModifiable) {
-        mModifiable = pModifiable;
+    public void setModifiable(final boolean modifiable) {
+        mModifiable = modifiable;
     }
 
     public String getModelTypeName() {
@@ -107,8 +107,8 @@ public abstract class Model extends ModelObject {
     }
 
     @PropertySetter(property = "Name")
-    public void setName(final String pName) {
-        mName = pName;
+    public void setName(final String name) {
+        mName = name;
     }
 
     @PropertyGetter(property = "Namespace", isDescriptor = true)
@@ -117,8 +117,8 @@ public abstract class Model extends ModelObject {
     }
 
     @PropertySetter(property = "Namespace")
-    public void setNamespace(final String pNamespace) {
-    	mNamespace = pNamespace;
+    public void setNamespace(final String namespace) {
+    	mNamespace = namespace;
     }    
     /*
      * OPTION
@@ -126,8 +126,8 @@ public abstract class Model extends ModelObject {
      * @PropertyGetter(property = "Namespace", isDescriptor = true) public String getNamespace()
      * { return mNamespace; }
      * 
-     * @PropertySetter(property = "Namespace") public void setNamespace(final String pNamespace)
-     * { mNamespace = pNamespace; }
+     * @PropertySetter(property = "Namespace") public void setNamespace(final String namespace)
+     * { mNamespace = namespace; }
      */
     /*
     @SuppressWarnings("unchecked")
@@ -143,8 +143,8 @@ public abstract class Model extends ModelObject {
         return mRemovable;
     }
 
-    public void setRemovable(final boolean pRemovable) {
-        mRemovable = pRemovable;
+    public void setRemovable(final boolean removable) {
+        mRemovable = removable;
     }
 
     public String getFullyQualifiedName() {

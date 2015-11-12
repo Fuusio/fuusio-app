@@ -27,29 +27,29 @@ public class JSONModelWriter {
 
     private final ModelObjectContext mObjectContext;
 
-    public JSONModelWriter(final ModelObjectContext pObjectContext) {
-        mObjectContext = pObjectContext;
+    public JSONModelWriter(final ModelObjectContext objectContext) {
+        mObjectContext = objectContext;
     }
 
-    public JSONObject writeModel(final Model pModel) throws JSONException {
-        final JSONObject serializedObject = writeModelObject(pModel);
+    public JSONObject writeModel(final Model model) throws JSONException {
+        final JSONObject serializedObject = writeModelObject(model);
         // DEBUG final String jsonString = serializedObject.toString(4); // DEBUG
         return serializedObject;
     }
 
-    private JSONObject writeModelObject(final ModelObject pModelObject) throws JSONException {
-        final Class<? extends ModelObject> modelObjectClass = pModelObject.getClass();
+    private JSONObject writeModelObject(final ModelObject object) throws JSONException {
+        final Class<? extends ModelObject> objectClass = object.getClass();
         final JSONObject serializedObject = new JSONObject();
 
-        serializedObject.put(ModelObject.KEY_CLASS, pModelObject.getClass().getName());
+        serializedObject.put(ModelObject.KEY_CLASS, object.getClass().getName());
 
         final JSONObject propertiesObject = new JSONObject();
 
         serializedObject.put(ModelObject.KEY_PROPERTIES, propertiesObject);
 
-        for (final Property property : mObjectContext.getProperties(pModelObject.getClass())) {
-            if (!property.isTransientFor(modelObjectClass)) {
-                final Object value = property.get(pModelObject);
+        for (final Property property : mObjectContext.getProperties(object.getClass())) {
+            if (!property.isTransientFor(objectClass)) {
+                final Object value = property.get(object);
                 writeValue(value, property, propertiesObject);
             }
         }
@@ -57,73 +57,73 @@ public class JSONModelWriter {
         return serializedObject;
     }
 
-    protected void writeValue(final Object pValue, final Property pProperty,
-            final JSONObject pPropertyObject) throws JSONException {
-        final Class<?> valueType = pProperty.getType();
-        final String key = pProperty.getName();
+    protected void writeValue(final Object value, final Property property, final JSONObject propertyObject)
+            throws JSONException {
+        final Class<?> valueType = property.getType();
+        final String key = property.getName();
 
-        writeValue(key, pValue, valueType, pPropertyObject);
+        writeValue(key, value, valueType, propertyObject);
     }
 
-    protected void writeValue(final String pKey, final Object pValue,
-            final Class<?> pValueType, final JSONObject pPropertyObject) throws JSONException {
+    protected void writeValue(final String key, final Object value, final Class<?> valueType, final JSONObject propertyObject)
+            throws JSONException {
 
-        if (pValue == null) {
-            pPropertyObject.put(pKey, null);
+        if (value == null) {
+            propertyObject.put(key, null);
             return;
         }
 
-        if (pValueType.equals(Boolean.class) || pValueType.equals(Boolean.TYPE)) {
-            pPropertyObject.put(pKey, pValue);
-        } else if (pValueType.equals(Byte.class) || pValueType.equals(Byte.TYPE)) {
-            pPropertyObject.put(pKey, pValue);
-        } else if (pValueType.equals(Date.class)) {
+        if (valueType.equals(Boolean.class) || valueType.equals(Boolean.TYPE)) {
+            propertyObject.put(key, value);
+        } else if (valueType.equals(Byte.class) || valueType.equals(Byte.TYPE)) {
+            propertyObject.put(key, value);
+        } else if (valueType.equals(Date.class)) {
             try {
-                final Date date = (Date) pValue;
-                pPropertyObject.put(pKey, DateToolkit.formatRFC822(date));
+                final Date date = (Date) value;
+                propertyObject.put(key, DateToolkit.formatRFC822(date));
             } catch (final Exception pException) {
                 pException.printStackTrace();
             }
-        } else if (pValueType.equals(Double.class) || pValueType.equals(Double.TYPE)) {
-            pPropertyObject.put(pKey, pValue);
-        } else if (pValueType.equals(Float.class) || pValueType.equals(Float.TYPE)) {
-            pPropertyObject.put(pKey, pValue);
-        } else if (pValueType.equals(Integer.class) || pValueType.equals(Integer.TYPE)) {
-            pPropertyObject.put(pKey, pValue);
-        } else if (pValueType.equals(Long.class) || pValueType.equals(Long.TYPE)) {
-            pPropertyObject.put(pKey, pValue);
-        } else if (pValueType.equals(Short.class) || pValueType.equals(Short.TYPE)) {
-            pPropertyObject.put(pKey, pValue);
-        } else if (pValueType.equals(String.class)) {
-            pPropertyObject.put(pKey, pValue.toString());
-        } else if (pValueType.isEnum()) {
-            final String valueString = getEnumValueString(pValueType, pValue);
-            pPropertyObject.put(pKey, valueString);
-        } else if (HashMap.class.isAssignableFrom(pValueType)) {
-            pPropertyObject.put(pKey, writeHashMap((HashMap<?, ?>) pValue));
-        } else if (HashMap.class.isAssignableFrom(pValueType)) {
-            pPropertyObject.put(pKey, writeHashMap((HashMap<?, ?>) pValue));
-        } else if (pValueType.isArray()) {
-            final Class<?> componentType = pValueType.getComponentType();
-            final Object[] values = (Object[]) pValue;
+        } else if (valueType.equals(Double.class) || valueType.equals(Double.TYPE)) {
+            propertyObject.put(key, value);
+        } else if (valueType.equals(Float.class) || valueType.equals(Float.TYPE)) {
+            propertyObject.put(key, value);
+        } else if (valueType.equals(Integer.class) || valueType.equals(Integer.TYPE)) {
+            propertyObject.put(key, value);
+        } else if (valueType.equals(Long.class) || valueType.equals(Long.TYPE)) {
+            propertyObject.put(key, value);
+        } else if (valueType.equals(Short.class) || valueType.equals(Short.TYPE)) {
+            propertyObject.put(key, value);
+        } else if (valueType.equals(String.class)) {
+            propertyObject.put(key, value.toString());
+        } else if (valueType.isEnum()) {
+            final String valueString = getEnumValueString(valueType, value);
+            propertyObject.put(key, valueString);
+        } else if (HashMap.class.isAssignableFrom(valueType)) {
+            propertyObject.put(key, writeHashMap((HashMap<?, ?>) value));
+        } else if (HashMap.class.isAssignableFrom(valueType)) {
+            propertyObject.put(key, writeHashMap((HashMap<?, ?>) value));
+        } else if (valueType.isArray()) {
+            final Class<?> componentType = valueType.getComponentType();
+            final Object[] values = (Object[]) value;
             final JSONArray jsonArray = writeArray(values, componentType);
-            pPropertyObject.put(pKey, jsonArray);
-        } else if (ModelObject.class.isAssignableFrom(pValueType)) {
-            final ModelObject modelObject = (ModelObject) pValue;
-            pPropertyObject.put(pKey, writeModelObject(modelObject));
+            propertyObject.put(key, jsonArray);
+        } else if (ModelObject.class.isAssignableFrom(valueType)) {
+            final ModelObject object = (ModelObject) value;
+            propertyObject.put(key, writeModelObject(object));
         } else {
             throw new UnsupportedOperationException();
         }
     }
 
-    private JSONArray writeArray(final Object[] pValues, final Class<?> pComponentType) {
+    private JSONArray writeArray(final Object[] values, final Class<?> componentType) {
         final JSONArray array = new JSONArray();
 
-        if (pValues != null) {
-            final int count = pValues.length;
+        if (values != null) {
+            final int count = values.length;
 
             for (int i = 0; i < count; i++) {
-                final Object valueObject = writeValue(pValues[i], pComponentType);
+                final Object valueObject = writeValue(values[i], componentType);
                 array.put(valueObject);
             }
         }
@@ -131,39 +131,39 @@ public class JSONModelWriter {
         return array;
     }
 
-    private Object writeValue(final Object pValue, final Class<?> pValueType) {
+    private Object writeValue(final Object value, final Class<?> valueType) {
 
-        if (pValueType.equals(Boolean.class) || pValueType.equals(Boolean.TYPE)) {
-            return pValue;
-        } else if (pValueType.equals(Byte.class) || pValueType.equals(Byte.TYPE)) {
-            return pValue;
-        } else if (pValueType.equals(Date.class)) {
+        if (valueType.equals(Boolean.class) || valueType.equals(Boolean.TYPE)) {
+            return value;
+        } else if (valueType.equals(Byte.class) || valueType.equals(Byte.TYPE)) {
+            return value;
+        } else if (valueType.equals(Date.class)) {
             try {
-                final Date date = (Date) pValue;
+                final Date date = (Date) value;
                 return DateToolkit.formatRFC822(date);
             } catch (final Exception pException) {
                 pException.printStackTrace();
             }
-        } else if (pValueType.equals(Double.class) || pValueType.equals(Double.TYPE)) {
-            return pValue;
-        } else if (pValueType.equals(Float.class) || pValueType.equals(Float.TYPE)) {
-            return pValue;
-        } else if (pValueType.equals(Integer.class) || pValueType.equals(Integer.TYPE)) {
-            return pValue;
-        } else if (pValueType.equals(Long.class) || pValueType.equals(Long.TYPE)) {
-            return pValue;
-        } else if (pValueType.equals(Short.class) || pValueType.equals(Short.TYPE)) {
-            return pValue;
-        } else if (pValueType.equals(String.class)) {
-            return pValue.toString();
-        } else if (pValueType.isEnum()) {
-            return getEnumValueString(pValueType, pValue);
-        } else if (pValueType.isEnum()) {
-            return getEnumValueString(pValueType, pValue);
-        } else if (ModelObject.class.isAssignableFrom(pValueType)) {
-            final ModelObject modelObject = (ModelObject) pValue;
+        } else if (valueType.equals(Double.class) || valueType.equals(Double.TYPE)) {
+            return value;
+        } else if (valueType.equals(Float.class) || valueType.equals(Float.TYPE)) {
+            return value;
+        } else if (valueType.equals(Integer.class) || valueType.equals(Integer.TYPE)) {
+            return value;
+        } else if (valueType.equals(Long.class) || valueType.equals(Long.TYPE)) {
+            return value;
+        } else if (valueType.equals(Short.class) || valueType.equals(Short.TYPE)) {
+            return value;
+        } else if (valueType.equals(String.class)) {
+            return value.toString();
+        } else if (valueType.isEnum()) {
+            return getEnumValueString(valueType, value);
+        } else if (valueType.isEnum()) {
+            return getEnumValueString(valueType, value);
+        } else if (ModelObject.class.isAssignableFrom(valueType)) {
+            final ModelObject object = (ModelObject) value;
             try {
-                return writeModelObject(modelObject);
+                return writeModelObject(object);
             } catch (final JSONException pException) {
                 pException.printStackTrace();
             }
@@ -173,14 +173,14 @@ public class JSONModelWriter {
         return null;
     }
 
-    private Object writeHashMap(final HashMap<?, ?> pHashMap) throws JSONException {
+    private Object writeHashMap(final HashMap<?, ?> hashMap) throws JSONException {
 
         final JSONObject serializedObject = new JSONObject();
 
-        serializedObject.put(ModelObject.KEY_CLASS, pHashMap.getClass().getName());
+        serializedObject.put(ModelObject.KEY_CLASS, hashMap.getClass().getName());
 
-        for (final Object key : pHashMap.keySet()) {
-            final Object value = pHashMap.get(key);
+        for (final Object key : hashMap.keySet()) {
+            final Object value = hashMap.get(key);
             final Class<?> valueType = (value != null) ? value.getClass() : null;
             writeValue(key.toString(), value, valueType, serializedObject);
         }
@@ -188,19 +188,19 @@ public class JSONModelWriter {
         return serializedObject;
     }
 
-    private String getEnumValueString(final Class<?> pEnumType, final Object pValue) {
-        final Enum<?> enumValue = (Enum<?>) pValue;
+    private String getEnumValueString(final Class<?> enumType, final Object value) {
+        final Enum<?> enumValue = (Enum<?>) value;
         return enumValue.name();
     }
 
-    public JSONObject writePropertiesObject(final ModelObject pObject) throws JSONException {
+    public JSONObject writePropertiesObject(final ModelObject object) throws JSONException {
 
-        final Class<? extends ModelObject> objectClass = pObject.getClass();
+        final Class<? extends ModelObject> objectClass = object.getClass();
         final JSONObject propertiesObject = new JSONObject();
 
-        for (final Property property : mObjectContext.getProperties(pObject.getClass())) {
+        for (final Property property : mObjectContext.getProperties(object.getClass())) {
             if (!property.isTransientFor(objectClass)) {
-                final Object value = property.get(pObject);
+                final Object value = property.get(object);
                 writeValue(value, property, propertiesObject);
             }
         }

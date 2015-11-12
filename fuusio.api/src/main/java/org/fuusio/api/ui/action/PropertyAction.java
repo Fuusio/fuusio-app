@@ -30,16 +30,16 @@ public class PropertyAction extends UndoableAction {
     private long mObjectId;
 
 
-    public PropertyAction(final Property pProperty, final ModelObjectContext pObjectContext) {
+    public PropertyAction(final Property property, final ModelObjectContext objectContext) {
         super(-1, -1);
-        mProperty = pProperty;
-        mObjectContext = pObjectContext;
+        mProperty = property;
+        mObjectContext = objectContext;
     }
 
-    public boolean set(final ModelObject pModelObject, final Object pNewValue) {
-        mObjectClass = pModelObject.getClass();
-        mObjectId = pModelObject.getId();
-        mNewValue = pNewValue;
+    public boolean set(final ModelObject modelObject, final Object newValue) {
+        mObjectClass = modelObject.getClass();
+        mObjectId = modelObject.getId();
+        mNewValue = newValue;
 
         final ActionManager actionManager = D.get(ActionManager.class);
         return actionManager.executeAction(this);
@@ -51,14 +51,14 @@ public class PropertyAction extends UndoableAction {
      * @see org.fuusio.api.ui.action.Action#execute(android.app.Activity)
      */
     @Override
-    public boolean execute(final ActionContext pActionContext) {
+    public boolean execute(final ActionContext actionContext) {
         final ModelObject modelObject = mObjectContext.getObject(mObjectClass, mObjectId);
         // return mProperty.set(modelObject, mNewValue);
         return mProperty.set(modelObject, mNewValue.toString());
     }
 
     @Override
-    public boolean undo(final ActionContext pActionContext) {
+    public boolean undo(final ActionContext actionContext) {
         final ModelObject modelObject = mObjectContext.getObject(mObjectClass, mObjectId);
         return mProperty.set(modelObject, mOldValue.toString());
     }

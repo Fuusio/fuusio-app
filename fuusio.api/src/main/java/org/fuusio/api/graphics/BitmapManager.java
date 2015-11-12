@@ -28,37 +28,37 @@ import java.util.HashMap;
 
 public interface BitmapManager {
 
-    Bitmap getBitmap(int pResId);
+    Bitmap getBitmap(int resId);
 
-    Bitmap getBitmap(String pCacheName, int pResId);
+    Bitmap getBitmap(String cacheName, int resId);
 
-    Bitmap getBitmap(String pKey);
+    Bitmap getBitmap(String key);
 
-    LruCache<String, Bitmap> addCache(String pCacheName);
+    LruCache<String, Bitmap> addCache(String cacheName);
 
-    LruCache<String, Bitmap> addCache(String pCacheName, int pCacheSize);
+    LruCache<String, Bitmap> addCache(String cacheName, int cacheSize);
 
     void clearCache();
 
-    void clearCache(String pCacheName);
+    void clearCache(String cacheName);
 
     int getCacheSize();
 
-    int getCacheSize(String pCacheName);
+    int getCacheSize(String cacheName);
 
-    void resizeCache(String pCacheName, int pNewSize);
+    void resizeCache(String cacheName, int newSize);
 
-    void removeCache(String pCacheName);
+    void removeCache(String cacheName);
 
     void clearAllCaches();
 
     void dispose();
     
-    void addBitmap(int pResId, Bitmap pBitmap);
+    void addBitmap(int resId, Bitmap bitmap);
 
-    void addBitmap(String pKey, Bitmap pBitmap);
+    void addBitmap(String key, Bitmap bitmap);
     
-    void addBitmap(int pResId, String pCacheName, Bitmap pBitmap);
+    void addBitmap(int resId, String cacheName, Bitmap bitmap);
 
-    void addBitmap(String pKey, String pCacheName, Bitmap pBitmap);
+    void addBitmap(String key, String cacheName, Bitmap bitmap);
 }

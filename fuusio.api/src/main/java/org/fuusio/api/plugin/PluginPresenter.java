@@ -65,12 +65,12 @@ public abstract class PluginPresenter<T_View extends View, T_Listener extends Pr
     }
 
     @Override
-    public void onPlugged(final PluginBus pBus) {
+    public void onPlugged(final PluginBus bus) {
         // Do nothing by default
     }
 
     @Override
-    public void onUnplugged(final PluginBus pBus) {
+    public void onUnplugged(final PluginBus bus) {
         // Do nothing by default
     }
 }

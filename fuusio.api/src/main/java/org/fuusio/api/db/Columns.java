@@ -25,16 +25,16 @@ public enum Columns implements ColumnDescriptor {
 	private final ColumnDataType mType;
 	private final boolean mKey;
 	
-	private Columns(final String pLabel, final String pName, final int pIndex, final ColumnDataType pType) {
-		this(pLabel, pName, pIndex, pType, false);
+	private Columns(final String label, final String name, final int index, final ColumnDataType type) {
+		this(label, name, index, type, false);
 	}
 	
-	private Columns(final String pLabel, final String pName, final int pIndex, final ColumnDataType pType, final boolean pKey) {
-		mLabel = pLabel;
-		mName = pName;
-		mIndex = pIndex;
-		mType = pType;
-		mKey = pKey;
+	private Columns(final String label, final String name, final int index, final ColumnDataType type, final boolean key) {
+		mLabel = label;
+		mName = name;
+		mIndex = index;
+		mType = type;
+		mKey = key;
 	}
 
 	public static ColumnDescriptor[] getAllColumns() {

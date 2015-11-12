@@ -26,12 +26,12 @@ public class VolleyRequestError extends RequestError {
 
     private final HttpHeaders mHeaders;
 
-    public VolleyRequestError(final VolleyError pError) {
-        mException = pError.getCause();
-        mMessage = pError.getMessage();
-        mNetworkTime = pError.getNetworkTimeMs();
-        mStatusCode = pError.networkResponse.statusCode;
-        mHeaders = new HttpHeaders(pError.networkResponse.headers);
+    public VolleyRequestError(final VolleyError error) {
+        mException = error.getCause();
+        mMessage = error.getMessage();
+        mNetworkTime = error.getNetworkTimeMs();
+        mStatusCode = error.networkResponse.statusCode;
+        mHeaders = new HttpHeaders(error.networkResponse.headers);
     }
 
     public final HttpHeaders getHeaders() {

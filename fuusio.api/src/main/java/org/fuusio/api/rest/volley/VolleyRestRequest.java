@@ -22,20 +22,20 @@ public abstract class VolleyRestRequest<T_Response> extends RestRequest<T_Respon
     protected final Response.ErrorListener mErrorListener;
     protected final Response.Listener<T_Response> mResponseListener;
 
-    protected VolleyRestRequest(final String pRelativeUrl, final RequestListener<T_Response> pRequestListener) {
-        this(HttpMethod.GET, pRelativeUrl, pRequestListener);
+    protected VolleyRestRequest(final String relativeUrl, final RequestListener<T_Response> requestListener) {
+        this(HttpMethod.GET, relativeUrl, requestListener);
     }
 
-    protected VolleyRestRequest(final HttpMethod pMethod, final String pRelativeUrl, final RequestListener<T_Response> pRequestListener) {
-        super(pMethod, pRelativeUrl, pRequestListener);
+    protected VolleyRestRequest(final HttpMethod method, final String relativeUrl, final RequestListener<T_Response> requestListener) {
+        super(method, relativeUrl, requestListener);
 
 
-        mErrorListener = createErrorListener(pRequestListener);
-        mResponseListener = createResponseListener(pRequestListener);
+        mErrorListener = createErrorListener(requestListener);
+        mResponseListener = createResponseListener(requestListener);
     }
 
-    protected void initializeRequest(AbstractRequest<T_Response> pRequest) {
-        pRequest.setTag(getClass().getSimpleName());
+    protected void initializeRequest(AbstractRequest<T_Response> request) {
+        request.setTag(getClass().getSimpleName());
 
         // If GET method we set the params that are used to define query params. If in rare case
         // where POST method has query params (in addition to body) the query params are handled in
@@ -47,35 +47,35 @@ public abstract class VolleyRestRequest<T_Response> extends RestRequest<T_Respon
 
         // If POST method then add the body
         if (isPost()) {
-            pRequest.setBody(mBody);
+            request.setBody(mBody);
         }
 
         // Set the headers
-        pRequest.setHeaders(getHeaders().getMap());
+        request.setHeaders(getHeaders().getMap());
     }
 
     protected final AbstractRequest<T_Response> createRequest() {
         return createRequest(mResponseListener, mErrorListener);
     }
-    protected abstract AbstractRequest<T_Response> createRequest(Response.Listener<T_Response> pResponseListener, Response.ErrorListener pErrorListener);
+    protected abstract AbstractRequest<T_Response> createRequest(Response.Listener<T_Response> responseListener, Response.ErrorListener errorListener);
 
-    protected Response.Listener<T_Response> createResponseListener(final RequestListener<T_Response> pRequestListener) {
+    protected Response.Listener<T_Response> createResponseListener(final RequestListener<T_Response> requestListener) {
         return new Response.Listener<T_Response>() {
             @Override
-            public void onResponse(final T_Response pResponse) {
+            public void onResponse(final T_Response response) {
                 Log.d("VolleyRestRequest", "onResponse");
-                pRequestListener.onResponse(pResponse);
+                requestListener.onResponse(response);
             }
         };
     }
 
-    protected Response.ErrorListener createErrorListener(final RequestListener<T_Response> pRequestListener) {
+    protected Response.ErrorListener createErrorListener(final RequestListener<T_Response> requestListener) {
         return new Response.ErrorListener() {
 
             @Override
-            public void onErrorResponse(final VolleyError pError) {
+            public void onErrorResponse(final VolleyError error) {
                 Log.d("VolleyRestRequest", "onError");
-                pRequestListener.onError(pError);
+                requestListener.onError(error);
             }
         };
     }

@@ -106,10 +106,10 @@ public class CellLayout {
      * Constructs a new instance of {@link CellLayout} for managing the layout of the given
      * {@link View}.
      * 
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      */
-    public CellLayout(final View pView) {
-        mLayoutOwner = pView;
+    public CellLayout(final View view) {
+        mLayoutOwner = view;
         mInsets = new Insets(0, 0, 0, 0);
         mDynamicallyResized = false;
         mInvalidated = false;
@@ -153,13 +153,13 @@ public class CellLayout {
     /**
      * Sets the layout insets that are used for defining top, left, bottom, and right margins.
      * 
-     * @param pInsets An {@link Insets}.
+     * @param insets An {@link Insets}.
      */
-    public void setLayoutInsets(final Insets pInsets) {
-        mInsets.mTop = pInsets.mTop;
-        mInsets.mLeft = pInsets.mLeft;
-        mInsets.mBottom = pInsets.mBottom;
-        mInsets.mRight = pInsets.mRight;
+    public void setLayoutInsets(final Insets insets) {
+        mInsets.mTop = insets.mTop;
+        mInsets.mLeft = insets.mLeft;
+        mInsets.mBottom = insets.mBottom;
+        mInsets.mRight = insets.mRight;
     }
 
     /**
@@ -197,11 +197,11 @@ public class CellLayout {
      * Creates a new instance of {@link CellLayout} for managing the layout of the given
      * {@link View}.
      * 
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      * @return The created {@link CellLayout}.
      */
-    public static CellLayout create(final View pView) {
-        return create(pView, false);
+    public static CellLayout create(final View view) {
+        return create(view, false);
     }
 
     /**
@@ -209,13 +209,13 @@ public class CellLayout {
      * {@link View}. The given {@code boolean} flag specifies whether the {@link View} is
      * dynamically resized according to calculated preferred layout size.
      * 
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      * @param pDynamicallyResized A {@code boolean} flag specifying whether the {@link View} is
      *        dynamically resized.
      * @return The created {@link CellLayout}.
      */
-    public static CellLayout create(final View pView, final boolean pDynamicallyResized) {
-        final CellLayout layout = new CellLayout(pView);
+    public static CellLayout create(final View view, final boolean pDynamicallyResized) {
+        final CellLayout layout = new CellLayout(view);
         layout.setDynamicallyResized(pDynamicallyResized);
         return layout;
     }
@@ -234,10 +234,10 @@ public class CellLayout {
      * Invalidates the layout for the given {@link View}, indicating that if this
      * {@link CellLayout} has cached information it should be discarded.
      * 
-     * @param pView The {@link View} to be isInvalidated.
+     * @param view The {@link View} to be isInvalidated.
      */
-    public void invalidateLayout(final View pView) {
-        if (pView != mLayoutOwner) {
+    public void invalidateLayout(final View view) {
+        if (view != mLayoutOwner) {
             return;
         }
 
@@ -254,10 +254,10 @@ public class CellLayout {
     /**
      * Lays out the given {@link View}.
      * 
-     * @param pView The {@link View} to be laid out.
+     * @param view The {@link View} to be laid out.
      */
-    public void layoutView(final View pView) {
-        if (pView != mLayoutOwner) {
+    public void layoutView(final View view) {
+        if (view != mLayoutOwner) {
             return;
         }
 
@@ -277,8 +277,8 @@ public class CellLayout {
                 mRootCell.setSize(mPreferredLayoutSize.mWidth, mPreferredLayoutSize.mHeight);
                 // TODO view.setSize( preferredLayoutSize );
             } else {
-                int width = pView.getMeasuredWidth();
-                int height = pView.getMeasuredHeight();
+                int width = view.getMeasuredWidth();
+                int height = view.getMeasuredHeight();
 
                 if (width == 0) {
                     width = 320;
@@ -307,13 +307,13 @@ public class CellLayout {
      * Calculates the maximum size dimensions for the specified View, given the components it
      * contains.
      * 
-     * @param pView The {@link View} to be laid out.
+     * @param view The {@link View} to be laid out.
      * @return The maximum layout size as a {@link Dimension}.
      */
-    public Dimension maximumLayoutSize(final View pView) {
-        if (pView == mLayoutOwner) {
+    public Dimension maximumLayoutSize(final View view) {
+        if (view == mLayoutOwner) {
             if (mMaximumLayoutSize == null) {
-                layoutView(pView);
+                layoutView(view);
             }
 
             return mMaximumLayoutSize;
@@ -326,13 +326,13 @@ public class CellLayout {
      * Calculates the minimum size dimensions for the specified {@link View}, given the components
      * it contains.
      * 
-     * @param pView The {@link View} to be laid out.
+     * @param view The {@link View} to be laid out.
      * @return The minimum layout size as a {@link Dimension}.
      */
-    public Dimension minimumLayoutSize(final View pView) {
-        if (pView == mLayoutOwner) {
+    public Dimension minimumLayoutSize(final View view) {
+        if (view == mLayoutOwner) {
             if (mMinimumLayoutSize == null) {
-                layoutView(pView);
+                layoutView(view);
             }
 
             return mMinimumLayoutSize;

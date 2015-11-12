@@ -33,8 +33,8 @@ public abstract class FlowFragment<T_Presenter extends Presenter> extends ViewFr
     }
 
     @Override
-    public void setFlow(final Flow pFlow) {
-        mFlow = pFlow;
+    public void setFlow(final Flow flow) {
+        mFlow = flow;
     }
 
     /**

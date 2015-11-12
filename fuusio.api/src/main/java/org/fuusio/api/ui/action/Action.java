@@ -35,53 +35,53 @@ public class Action {
     protected int mOrder;
     protected int mTextResId;
 
-    public Action(final int pDrawableResId) {
-        this(null, -1, pDrawableResId, 0);
+    public Action(final int drawableResId) {
+        this(null, -1, drawableResId, 0);
     }
 
-    public Action(final int pDrawableResId, final int pTextResId) {
-        this(null, -1, pDrawableResId, pTextResId);
+    public Action(final int drawableResId, final int textResId) {
+        this(null, -1, drawableResId, textResId);
     }
 
-    public Action(final ActionListener pListener, final int pDrawableResId) {
-        this(pListener, -1, pDrawableResId, 0);
+    public Action(final ActionListener listener, final int drawableResId) {
+        this(listener, -1, drawableResId, 0);
     }
 
-    public Action(final ActionListener pListener, final int pId, final int pDrawableResId) {
-        this(pListener, pId, pDrawableResId, 0);
+    public Action(final ActionListener listener, final int id, final int drawableResId) {
+        this(listener, id, drawableResId, 0);
     }
 
-    public Action(final ActionListener pListener, final int pId, final int pDrawableResId,
-            final int pTextResId) {
+    public Action(final ActionListener listener, final int pId, final int drawableResId,
+            final int textResId) {
         mId = pId;
-        mDrawableResId = pDrawableResId;
-        mTextResId = pTextResId;
+        mDrawableResId = drawableResId;
+        mTextResId = textResId;
         mEnabled = true;
-        setListener(pListener);
+        setListener(listener);
     }
 
     public final ActionDelegate getDelegate() {
         return mDelegate;
     }
 
-    public void setDelegate(final ActionDelegate pDelegate) {
-        mDelegate = pDelegate;
+    public void setDelegate(final ActionDelegate delegate) {
+        mDelegate = delegate;
     }
 
     public boolean isEnabled() {
         return mEnabled;
     }
 
-    public void setEnabled(final boolean pEnabled) {
-        mEnabled = pEnabled;
+    public void setEnabled(final boolean enabled) {
+        mEnabled = enabled;
     }
 
     public int getDrawableResId() {
         return mDrawableResId;
     }
 
-    public void setDrawableResId(final int pResId) {
-        mDrawableResId = pResId;
+    public void setDrawableResId(final int resId) {
+        mDrawableResId = resId;
     }
 
     public int getId() {
@@ -96,23 +96,23 @@ public class Action {
         return mOrder;
     }
 
-    public void setOrder(final int pOrder) {
-        mOrder = pOrder;
+    public void setOrder(final int order) {
+        mOrder = order;
     }
 
     public final ActionListener getListener() {
         return mListener;
     }
 
-    public void setListener(final ActionListener pListener) {
-        mListener = pListener;
+    public void setListener(final ActionListener listener) {
+        mListener = listener;
     }
 
-    public String getText(final Context pContext) {
+    public String getText(final Context context) {
         final int textResId = getTextResId();
 
         if (textResId > 0) {
-            return pContext.getString(textResId);
+            return context.getString(textResId);
         }
         return null;
     }
@@ -140,7 +140,7 @@ public class Action {
         return executed;
     }
 
-    public void onClick(final View pView) {
+    public void onClick(final View view) {
         final ActionManager actionManager = D.get(ActionManager.class);
         execute(actionManager.getActiveActionContext());
     }
@@ -149,13 +149,13 @@ public class Action {
         return false;
     }
 
-    public boolean undo(final ActionContext pActionContext) {
+    public boolean undo(final ActionContext actionContext) {
         assert (false);
         return false;
     }
 
-    public MenuItem createMenuItem(final Menu pMenu) {
-        mMenuItem = pMenu.add(Menu.NONE, getId(), mOrder, mTextResId);
+    public MenuItem createMenuItem(final Menu menu) {
+        mMenuItem = menu.add(Menu.NONE, getId(), mOrder, mTextResId);
         mMenuItem.setIcon(mDrawableResId);
         return mMenuItem;
     }

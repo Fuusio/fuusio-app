@@ -69,8 +69,8 @@ public enum HeaderResponseField {
 
     private final String mName;
 
-    HeaderResponseField(final String pName) {
-        mName = pName;
+    HeaderResponseField(final String name) {
+        mName = name;
     }
 
     public final String getName() {

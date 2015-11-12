@@ -27,7 +27,7 @@ import org.fuusio.api.mvp.ViewFragment;
 public class Binding extends TextViewBinding {
 
     @SuppressWarnings("unchecked")
-    public Binding(final ViewFragment pFragment, final int pViewId) {
-        super((TextView)pFragment.getView(pViewId));
+    public Binding(final ViewFragment fragment, final int viewId) {
+        super((TextView)fragment.getView(viewId));
     }
 }

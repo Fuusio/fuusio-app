@@ -108,14 +108,14 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * This constructor is to be used by a concrete implementation of {@link StateMachine}.
-     * @param pInitialStateClass The {@link Class} of a state that is the initial state to be entered
+     * @param initialStateClass The {@link Class} of a state that is the initial state to be entered
      *                           at top-level when the represented state machine is started.
      */
     @SuppressWarnings("unchecked")
-    protected StateMachine(final Class<? extends T_State> pInitialStateClass) {
+    protected StateMachine(final Class<? extends T_State> initialStateClass) {
         this();
 
-        mInitialStateClass = pInitialStateClass;
+        mInitialStateClass = initialStateClass;
 
         // We initialise these two field only in this constructor
         mStateMachine = (T_State)this;
@@ -127,16 +127,16 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * This constructor is to be used by all actual state classes which are extended from the concrete
      * implementation of this {@link StateMachine}. The class providing a concrete implementation
-     * @param pSuperStateClass The {@link Class} of a state that is the super state of the state using
+     * @param superStateClass The {@link Class} of a state that is the super state of the state using
      *                         this constructor.
-     * @param pInitialStateClass The {@link Class} of a state that is the initial state to be entered
+     * @param initialStateClass The {@link Class} of a state that is the initial state to be entered
      *                           at top-level when the represented state machine is started.
      */
-    protected StateMachine(final Class<? extends T_State> pSuperStateClass, final Class<? extends T_State> pInitialStateClass) {
+    protected StateMachine(final Class<? extends T_State> superStateClass, final Class<? extends T_State> initialStateClass) {
         this();
 
-        mInitialStateClass = pInitialStateClass;
-        mSuperStateClass = pSuperStateClass;
+        mInitialStateClass = initialStateClass;
+        mSuperStateClass = superStateClass;
     }
 
     /**
@@ -154,10 +154,10 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Set the controllable object that is controlled by this {@link StateMachine}.
-     * @param pControllable  A controllable object.
+     * @param controllable  A controllable object.
      */
-    public void setControllable(final T_Controllable pControllable) {
-        mControllable = pControllable;
+    public void setControllable(final T_Controllable controllable) {
+        mControllable = controllable;
     }
 
     /**
@@ -180,10 +180,10 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Sets the current state of this {@link StateMachine} or state.
-     * @param pState A state object representing the new current state.
+     * @param state A state object representing the new current state.
      */
-    protected final void setCurrentState(final T_State pState) {
-        mCurrentState = pState;
+    protected final void setCurrentState(final T_State state) {
+        mCurrentState = state;
     }
 
     /**
@@ -205,104 +205,104 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Gets an instance of the specified state.
-     * @param pStateClass A state object {@link Class}.
+     * @param stateClass A state object {@link Class}.
      * @return A state object. May not return {@code null}.
      */
     @SuppressWarnings("unchecked")
-    protected final T_State getState(final Class<? extends T_State> pStateClass) {
+    protected final T_State getState(final Class<? extends T_State> stateClass) {
 
         if (isStateMachine()) {
-            T_State state = mStateCache.get(pStateClass);
+            T_State state = mStateCache.get(stateClass);
 
             if (state == null) {
                 try {
-                    state = pStateClass.newInstance();
+                    state = stateClass.newInstance();
 
                     state.mStateMachine = this.mStateMachine;
                     state.mSuperState = getState(state.mSuperStateClass);
                     state.mSuperState.mSubStates.add(state);
 
-                    mStateCache.put(pStateClass, state);
+                    mStateCache.put(stateClass, state);
 
                 } catch (final Exception pException) {
                 }
             }
             return state;
         } else {
-            return (T_State)getStateMachine().getState(pStateClass);
+            return (T_State)getStateMachine().getState(stateClass);
         }
     }
 
     /**
      * Causes transition from the current state to the specified state.
-     * @param pStateClass A {@link Class} specifying the target state for the state transition.
+     * @param stateClass A {@link Class} specifying the target state for the state transition.
      * @return The current state.
      */
-    protected final T_State toState(final Class<? extends T_State> pStateClass) {
-        return toState(pStateClass, 0);
+    protected final T_State toState(final Class<? extends T_State> stateClass) {
+        return toState(stateClass, 0);
     }
 
     /**
      * Causes transition from the current state to the specified state optionally via an entry point
-     * @param pStateClass A {@link Class} specifying the target state for the state transition.
-     * @param pEntryPoint A {@code int} value specifying if the optional entry point. Value zero
+     * @param stateClass A {@link Class} specifying the target state for the state transition.
+     * @param entryPoint A {@code int} value specifying if the optional entry point. Value zero
      *                    represents a non entry point.
      * @return The current state.
      */
-    protected final T_State toState(final Class<? extends T_State> pStateClass, final int pEntryPoint) {
+    protected final T_State toState(final Class<? extends T_State> stateClass, final int entryPoint) {
 
         if (isStateMachine()) {
             final T_State currentState = getCurrentState();
 
             if (currentState != null) {
 
-                if (currentState.getClass().equals(pStateClass)) {
+                if (currentState.getClass().equals(stateClass)) {
                     onError(currentState, Error.ERROR_STATE_REENTERED);
                     return currentState;
                 }
             }
 
-            T_State newState = getState(pStateClass);
+            T_State newState = getState(stateClass);
             setCurrentState(newState);
 
             if (currentState != null && !newState.isSuperState(currentState)) {
                 currentState.exit(newState);
             }
 
-            return (T_State)newState.enter(pEntryPoint);
+            return (T_State)newState.enter(entryPoint);
         } else {
-            return (T_State) getStateMachine().toState(pStateClass, pEntryPoint);
+            return (T_State) getStateMachine().toState(stateClass, entryPoint);
         }
     }
 
     /**
      * Causes transition from the current state to the specified history state via a deep or
      * shallow history point.
-     * @param pStateClass A {@link Class} specifying the target state for the state transition.
-     * @param pDeepHistory A {@code boolean} value specifying if the state is entered via a deep
+     * @param stateClass A {@link Class} specifying the target state for the state transition.
+     * @param deepHistory A {@code boolean} value specifying if the state is entered via a deep
      *                     history point instead of shallow history point.
      * @return The current state.
      */
-    protected final T_State toHistoryState(final Class<? extends T_State> pStateClass, final boolean pDeepHistory) {
+    protected final T_State toHistoryState(final Class<? extends T_State> stateClass, final boolean deepHistory) {
 
         if (isStateMachine()) {
             final T_State oldCurrentState = getCurrentState();
 
             if (oldCurrentState != null) {
 
-                if (oldCurrentState.getClass().equals(pStateClass)) {
+                if (oldCurrentState.getClass().equals(stateClass)) {
                     onError(oldCurrentState, Error.ERROR_STATE_REENTERED);
                     return oldCurrentState;
                 }
             }
 
-            T_State newCurrentState = getState(pStateClass);
+            T_State newCurrentState = getState(stateClass);
 
             if (oldCurrentState != null && !newCurrentState.isSuperState(oldCurrentState)) {
                 oldCurrentState.exit(newCurrentState);
             }
 
-            if (pDeepHistory) {
+            if (deepHistory) {
                 newCurrentState = (T_State) newCurrentState.enterDeepHistory();
             } else {
                 newCurrentState = (T_State) newCurrentState.enterShallowHistory();
@@ -311,39 +311,39 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
             mCurrentState = newCurrentState;
             return mCurrentState;
         } else {
-            return (T_State) getStateMachine().toHistoryState(pStateClass, pDeepHistory);
+            return (T_State) getStateMachine().toHistoryState(stateClass, deepHistory);
         }
     }
 
     /**
      * Enters the represented by this instance of {@link StateMachine}. If the state is entered via
      * an entry point the index of the entry point has to be given and it has to be greater than zero.
-     * @param pEntryPoint The index of the entry point to be entered. Value zero represents a non
+     * @param entryPoint The index of the entry point to be entered. Value zero represents a non
      *                    entry point.
      * @return The current state.
      */
-    protected final T_State enter(final int pEntryPoint) {
+    protected final T_State enter(final int entryPoint) {
         onEnter();
 
-        if (pEntryPoint == 0) {
+        if (entryPoint == 0) {
             if (mInitialStateClass != null) {
                 return toState(mInitialStateClass);
             } else {
                 return (T_State) this;
             }
         } else {
-            return enterEntryPoint(pEntryPoint);
+            return enterEntryPoint(entryPoint);
         }
     }
 
     /**
      * Enters the specified entry point. If a state implementation has one or more entry points, it
      * has to override this method.
-     * @param pEntryPoint The index of the entry point to be entered.
+     * @param entryPoint The index of the entry point to be entered.
      * @return The current state after entering the deep history point.
      */
-    protected T_State enterEntryPoint(final int pEntryPoint) {
-        throw new IllegalStateException(Error.ERROR_UNHANDLED_ENTRY_POINT.getDescription(pEntryPoint, getClass().getSimpleName()));
+    protected T_State enterEntryPoint(final int entryPoint) {
+        throw new IllegalStateException(Error.ERROR_UNHANDLED_ENTRY_POINT.getDescription(entryPoint, getClass().getSimpleName()));
     }
 
     /**
@@ -383,9 +383,9 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Invoked to exit the state  represented by this instance of {@link StateMachine}. The state
      * machine will enter the given new target state.
-     * @param pNewState A new target state.
+     * @param newState A new target state.
      */
-    protected final void exit(final T_State pNewState) {
+    protected final void exit(final T_State newState) {
 
         if (!isStateMachine()) {
             onExit();
@@ -394,9 +394,9 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
                 mSuperState.mCurrentState = this;
             }
 
-            if (pNewState != mSuperState) {
-                if (!mSuperState.isStateMachine() && !mSuperState.isSuperStateFor(pNewState)) {
-                    mSuperState.exit(pNewState);
+            if (newState != mSuperState) {
+                if (!mSuperState.isStateMachine() && !mSuperState.isSuperStateFor(newState)) {
+                    mSuperState.exit(newState);
                 }
             }
         }
@@ -418,12 +418,12 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Invoked when the specified error has occurred while in the given state.
-     * @param pState A state object.
-     * @param pError An {@link Error} value specifying the occurred error.
+     * @param state A state object.
+     * @param error An {@link Error} value specifying the occurred error.
      */
-    protected final void onError(final T_State pState, final Error pError) {
-        final Object[] args = {pState};
-        final String message = pError.getDescription(args);
+    protected final void onError(final T_State state, final Error error) {
+        final Object[] args = {state};
+        final String message = error.getDescription(args);
         L.wtf(this, "onError", message);
     }
 
@@ -431,13 +431,13 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
      /**
      * Invoked when the specified error has occurred while in the named event has been received in
      * the given state.
-     * @param pState A state object.
-     * @param pError An {@link Error} value specifying the occurred error.
-     * @param pEventName The name of an event.
+     * @param state A state object.
+     * @param error An {@link Error} value specifying the occurred error.
+     * @param eventName The name of an event.
      */
-    protected final void onError(final T_State pState, final Error pError, final String pEventName) {
-        final Object[] args = {pEventName, pState};
-        final String message = pError.getDescription(args);
+    protected final void onError(final T_State state, final Error error, final String eventName) {
+        final Object[] args = {eventName, state};
+        final String message = error.getDescription(args);
         L.wtf(this, "onError", message);
     }
 
@@ -539,21 +539,21 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Tests if the given state object is a direct or an indirect super state of the state
      * represented by this instance of {@link StateMachine}.
-     * @param pState A state object to be tested.
+     * @param state A state object to be tested.
      * @return A {@code boolean} value.
      */
-    protected boolean isSuperState(final T_State pState) {
+    protected boolean isSuperState(final T_State state) {
 
-        if (pState != null) {
+        if (state != null) {
 
-            if (pState == this) {
+            if (state == this) {
                 return false;
             }
 
-            if (pState == mSuperState) {
+            if (state == mSuperState) {
                 return true;
             } else if (mSuperState != null) {
-                return mSuperState.isSuperState(pState);
+                return mSuperState.isSuperState(state);
             }
         }
         return false;
@@ -562,16 +562,16 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Tests if the state object represented by this instance of {@link StateMachine} is a direct or
      * an indirect super state of the given state.
-     * @param pState A state object to be tested.
+     * @param state A state object to be tested.
      * @return A {@code boolean} value.
      */
-    protected final boolean isSuperStateFor(final T_State pState) {
-        if (pState.isStateMachine()) {
+    protected final boolean isSuperStateFor(final T_State state) {
+        if (state.isStateMachine()) {
             return false;
-        } else if (this == pState.getSuperState()) {
+        } else if (this == state.getSuperState()) {
             return true;
         } else {
-            return isSuperStateFor((T_State) pState.getSuperState());
+            return isSuperStateFor((T_State) state.getSuperState());
         }
     }
 

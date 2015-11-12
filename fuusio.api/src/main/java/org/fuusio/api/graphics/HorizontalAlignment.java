@@ -62,13 +62,13 @@ public enum HorizontalAlignment {
      * Constructs a new instance of {@code HorizontalAlignment} with the given displayable label and
      * {@link Paint.Align} value.
      * 
-     * @param pLabel A {@link String} for displayable label.
-     * @param pPaintAlign The {@link Paint.Align} value.
+     * @param label A {@link String} for displayable label.
+     * @param paintAlign The {@link Paint.Align} value.
      */
 
-    HorizontalAlignment(final String pLabel, final Paint.Align pPaintAlign) {
-        mLabel = pLabel;
-        mPaintAlign = pPaintAlign;
+    HorizontalAlignment(final String label, final Paint.Align paintAlign) {
+        mLabel = label;
+        mPaintAlign = paintAlign;
     }
 
     /**

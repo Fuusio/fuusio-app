@@ -117,10 +117,10 @@ public abstract class LayoutCell {
     /**
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
      * 
-     * @param pLayout A {@link CellLayout}.
+     * @param layout A {@link CellLayout}.
      */
-    protected LayoutCell(final CellLayout pLayout) {
-        mLayout = pLayout;
+    protected LayoutCell(final CellLayout layout) {
+        mLayout = layout;
         mFixedSize = new Dimension();
         mHeightResizePolicy = ResizePolicy.FIXED;
         mInsets = new Insets(0, 0, 0, 0);
@@ -138,13 +138,13 @@ public abstract class LayoutCell {
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
      * TODO
      * 
-     * @param pLayout A {@link CellLayout}.
+     * @param layout A {@link CellLayout}.
      * @param pWidthResizePolicy The horizontal {@link ResizePolicy}.
      * @param pHeightResizePolicy The vertical {@link ResizePolicy}.
      */
-    protected LayoutCell(final CellLayout pLayout, final ResizePolicy pWidthResizePolicy,
+    protected LayoutCell(final CellLayout layout, final ResizePolicy pWidthResizePolicy,
             final ResizePolicy pHeightResizePolicy) {
-        this(pLayout);
+        this(layout);
         mWidthResizePolicy = pWidthResizePolicy;
         mHeightResizePolicy = pHeightResizePolicy;
     }
@@ -153,12 +153,12 @@ public abstract class LayoutCell {
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
      * TODO
      * 
-     * @param pLayout A {@link CellLayout}.
+     * @param layout A {@link CellLayout}.
      * @param pWidth The width of the {@link LayoutCell}.
      * @param pHeight The height of the {@link LayoutCell}.
      */
-    protected LayoutCell(final CellLayout pLayout, final int pWidth, final int pHeight) {
-        this(pLayout);
+    protected LayoutCell(final CellLayout layout, final int pWidth, final int pHeight) {
+        this(layout);
         mSize.mWidth = pWidth;
         mSize.mHeight = pHeight;
     }
@@ -167,13 +167,13 @@ public abstract class LayoutCell {
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
      * TODO
      * 
-     * @param pLayout A {@link CellLayout}.
+     * @param layout A {@link CellLayout}.
      * @param pWidthResizePolicy The horizontal {@link ResizePolicy}.
      * @param pHeight The height of the {@link LayoutCell}.
      */
-    protected LayoutCell(final CellLayout pLayout, final ResizePolicy pWidthResizePolicy,
+    protected LayoutCell(final CellLayout layout, final ResizePolicy pWidthResizePolicy,
             final int pHeight) {
-        this(pLayout);
+        this(layout);
         mWidthResizePolicy = pWidthResizePolicy;
         mSize.mHeight = pHeight;
     }
@@ -182,13 +182,13 @@ public abstract class LayoutCell {
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
      * TODO
      * 
-     * @param pLayout A {@link CellLayout}.
+     * @param layout A {@link CellLayout}.
      * @param pWidth The width of the {@link LayoutCell}.
      * @param pHeightResizePolicy The vertical {@link ResizePolicy} to be added.
      */
-    protected LayoutCell(final CellLayout pLayout, final int pWidth,
+    protected LayoutCell(final CellLayout layout, final int pWidth,
             final ResizePolicy pHeightResizePolicy) {
-        this(pLayout);
+        this(layout);
         mSize.mWidth = pWidth;
         mHeightResizePolicy = pHeightResizePolicy;
     }
@@ -197,11 +197,11 @@ public abstract class LayoutCell {
      * Constructs a copy instance of the given source {@link LayoutCell}. for the given
      * {@link CellLayout}.
      * 
-     * @param pLayout A {@link CellLayout}.
+     * @param layout A {@link CellLayout}.
      * @param pSource The source {@link LayoutCell}.
      */
-    protected LayoutCell(final CellLayout pLayout, final LayoutCell pSource) {
-        mLayout = pLayout;
+    protected LayoutCell(final CellLayout layout, final LayoutCell pSource) {
+        mLayout = layout;
         mFixedSize = new Dimension(pSource.mFixedSize);
         mHeightResizePolicy = pSource.mHeightResizePolicy;
         mInsets = new Insets(pSource.mInsets);
@@ -262,14 +262,14 @@ public abstract class LayoutCell {
     /**
      * Sets the {@link CellLayout} defined to this {@link LayoutCell}.
      * 
-     * @param pLayout A {@link CellLayout}.
+     * @param layout A {@link CellLayout}.
      */
-    protected void setLayout(final CellLayout pLayout) {
+    protected void setLayout(final CellLayout layout) {
         if (mLayout != null) {
             throw new IllegalStateException("LayoutCell is already assigned to a CellLayout.");
         }
 
-        mLayout = pLayout;
+        mLayout = layout;
     }
 
     /**

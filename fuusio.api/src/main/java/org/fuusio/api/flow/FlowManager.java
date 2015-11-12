@@ -51,33 +51,33 @@ public class FlowManager {
     /**
      * Sets a {@link DependencyScopeOwner} that is used to provide a {@link DependencyScope} for testing
      * purposes.
-     * @param pProvider A {@link DependencyScopeOwner}.
+     * @param provider A {@link DependencyScopeOwner}.
      */
-    public static void setTestScopeProvider(final DependencyScopeOwner pProvider) {
-        sTestScopeManager = pProvider;
+    public static void setTestScopeProvider(final DependencyScopeOwner provider) {
+        sTestScopeManager = provider;
     }
 
     /**
      * Gets an instance of {@link Flow} that is used a mock. Mock {@link Flow}s are made available
      * by setting a {@link DependencyScope} that provides them using method
-     * @param pFlowClass A class specifying the {@link Flow}. The class may an interface or implementation
+     * @param flowClass A class specifying the {@link Flow}. The class may an interface or implementation
      *                   class as long as the implementation class name is the interface class name with
      *                   postfix {@code Impl}.
      * @return A {@link Flow}. May return {@code null}
      */
-    private static <T extends Flow> T getMockFlow(final Class<T> pFlowClass) {
+    private static <T extends Flow> T getMockFlow(final Class<T> flowClass) {
         T flow = null;
 
         if (sTestScopeManager != null) {
             final DependencyScope savedScope = D.getActiveScope();
             D.activateScope(sTestScopeManager);
 
-            flow = D.get(pFlowClass);
+            flow = D.get(flowClass);
 
-            if (flow == null && pFlowClass.isInterface()) {
+            if (flow == null && flowClass.isInterface()) {
                 final Class<T> implClass;
                 try {
-                    implClass = (Class<T>)Class.forName(pFlowClass.getName() + POSTFIX_IMPL);
+                    implClass = (Class<T>)Class.forName(flowClass.getName() + POSTFIX_IMPL);
                     flow = D.get(implClass);
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
@@ -104,27 +104,27 @@ public class FlowManager {
      * Creates the specified {@link Flow}, but does not start it. If the flow is
      * a {@link DependencyScopeOwner} its {@link FlowScope} is added to cache of
      * {@link DependencyScope}s.
-     * @param pFlowClass A {@link Flow}
-     * @param pContainer A {@link FlowFragmentContainer}.
-     * @param pParams A {@link Bundle} containing parameters for the started {@link Flow}.
+     * @param flowClass A {@link Flow}
+     * @param container A {@link FlowFragmentContainer}.
+     * @param params A {@link Bundle} containing parameters for the started {@link Flow}.
      * @param <T> The type extended from {@link Flow}.
      * @return A {@link Flow}.
      */
     @SuppressWarnings("unchecked")
-    public static <T extends Flow> T createFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer, final Bundle pParams) {
+    public static <T extends Flow> T createFlow(final Class<T> flowClass, final FlowFragmentContainer container, final Bundle params) {
 
-        T flow = getMockFlow(pFlowClass);
+        T flow = getMockFlow(flowClass);
 
         if (flow == null) {
-            Class<T> implClass = pFlowClass;
+            Class<T> implClass = flowClass;
 
             try {
-                if (pFlowClass.isInterface()) {
-                    implClass = (Class<T>)Class.forName(pFlowClass.getName() + POSTFIX_IMPL);
+                if (flowClass.isInterface()) {
+                    implClass = (Class<T>)Class.forName(flowClass.getName() + POSTFIX_IMPL);
                 }
 
                 final Class[] paramTypes = {FlowFragmentContainer.class, Bundle.class};
-                final Object[] paramValues = {pContainer, pParams};
+                final Object[] paramValues = {container, params};
                 final Constructor<T> constructor = implClass.getConstructor(paramTypes);
                 flow = constructor.newInstance(paramValues);
                 Dependency.addScope(flow);
@@ -139,27 +139,27 @@ public class FlowManager {
     /**
      * Creates and starts the specified {@link Flow} whose {@link android.app.Fragment}s are hosted by
      * the given {@link FlowFragmentContainer}.
-     * @param pFlowClass A {@link Class} specifying the {@link Flow} to be created and started.
-     * @param pContainer A {@link FlowFragmentContainer}.
-     * @param pParams A {@link Bundle} containing parameters for the created and started {@link Flow}.
+     * @param flowClass A {@link Class} specifying the {@link Flow} to be created and started.
+     * @param container A {@link FlowFragmentContainer}.
+     * @param params A {@link Bundle} containing parameters for the created and started {@link Flow}.
      * @param <T> The type extended from {@link Flow}.
      * @return A {@link Flow}.
      */
     @SuppressWarnings("unchecked")
-    public static <T extends Flow> T startFlow(final Class<T> pFlowClass, final FlowFragmentContainer pContainer, final Bundle pParams) {
+    public static <T extends Flow> T startFlow(final Class<T> flowClass, final FlowFragmentContainer container, final Bundle params) {
 
-        T flow = getMockFlow(pFlowClass);
+        T flow = getMockFlow(flowClass);
 
         if (flow == null) {
-            Class<T> implClass = pFlowClass;
+            Class<T> implClass = flowClass;
 
             try {
-                if (pFlowClass.isInterface()) {
-                    implClass = (Class<T>) Class.forName(pFlowClass.getName() + POSTFIX_IMPL);
+                if (flowClass.isInterface()) {
+                    implClass = (Class<T>) Class.forName(flowClass.getName() + POSTFIX_IMPL);
                 }
 
                 final Class[] paramTypes = {FlowFragmentContainer.class, Bundle.class};
-                final Object[] paramValues = {pContainer, pParams};
+                final Object[] paramValues = {container, params};
                 final Constructor<T> constructor = implClass.getConstructor(paramTypes);
                 flow = constructor.newInstance(paramValues);
             } catch (final Exception e) {
@@ -168,24 +168,24 @@ public class FlowManager {
         }
 
         final FlowManager flowManager = D.get(FlowManager.class);
-        return flowManager.startFlow(flow, pParams);
+        return flowManager.startFlow(flow, params);
     }
 
     /**
      * Starts the given {@link Flow}.
-     * @param pFlow {The {@link Flow} to be started.
-     * @param pParams A {@link Bundle} containing parameters for the started {@link Flow}.
+     * @param flow {The {@link Flow} to be started.
+     * @param params A {@link Bundle} containing parameters for the started {@link Flow}.
      * @param <T> The type extended from {@link Flow}.
      * @return A {@link Flow}.
      */
-    public static <T extends Flow> T startFlow(final T pFlow, final Bundle pParams) {
+    public static <T extends Flow> T startFlow(final T flow, final Bundle params) {
 
         final FlowManager flowManager = D.get(FlowManager.class);
 
-        pFlow.setFlowManager(flowManager);
-        pFlow.start(pParams);
-        flowManager.mActiveFlow = pFlow;
-        return pFlow;
+        flow.setFlowManager(flowManager);
+        flow.start(params);
+        flowManager.mActiveFlow = flow;
+        return flow;
     }
 
     /**
@@ -214,20 +214,20 @@ public class FlowManager {
 
     /**
      * Invoked by a {@link Flow#stop()} when the {@link Flow}} has been stopped.
-     * @param pFlow A {@link Flow}. May not be {@code null}.
+     * @param flow A {@link Flow}. May not be {@code null}.
      */
-    public void onFlowStopped(final Flow pFlow) {
-        if (mActiveFlow == pFlow) {
+    public void onFlowStopped(final Flow flow) {
+        if (mActiveFlow == flow) {
             mActiveFlow = null;
         }
     }
 
     /**
      * Invoked by a {@link Flow#destroy()} when the {@link Flow}} has been destroyed.
-     * @param pFlow A {@link Flow}. May not be {@code null}.
+     * @param flow A {@link Flow}. May not be {@code null}.
      */
-    public void onFlowDestroyed(final Flow pFlow) {
-        if (mActiveFlow == pFlow) {
+    public void onFlowDestroyed(final Flow flow) {
+        if (mActiveFlow == flow) {
             mActiveFlow = null;
         }
     }

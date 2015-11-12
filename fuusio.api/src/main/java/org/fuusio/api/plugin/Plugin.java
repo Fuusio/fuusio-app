@@ -27,13 +27,12 @@ public interface Plugin {
 
     String DEFAULT_PLUG_NAME = "*";
     boolean DEFAULT_VALUE_CREATE = false;
-    boolean DEFAULT_VALUE_SINGLETON = false;
 
 	String getPlugName();
 
-    void onPlugged(PluginBus pBus);
+    void onPlugged(PluginBus bus);
 
-    void onUnplugged(PluginBus pBus);
+    void onUnplugged(PluginBus bus);
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.FIELD)

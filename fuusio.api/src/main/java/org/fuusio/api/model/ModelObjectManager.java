@@ -59,8 +59,8 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
     @Plug
     ModelObjectObserver mModelObjectObserver;
 
-    protected ModelObjectManager(final String pName) {
-        super(pName);
+    protected ModelObjectManager(final String name) {
+        super(name);
 
         mMetaInfos = new HashMap<>();
         mModelObjects = new HashMap<>();
@@ -71,156 +71,156 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
         // TODO
     }
 
-    public void setModelObjectFactory(final ModelObjectFactory pFactory) {
-        mObjectFactory = pFactory;
+    public void setModelObjectFactory(final ModelObjectFactory factory) {
+        mObjectFactory = factory;
     }
 
-    public <T extends ModelObject> T getObject(final Class<T> pObjectClass, final long pId) {
-        return getObject(pObjectClass, pId, true);
+    public <T extends ModelObject> T getObject(final Class<T> objectClass, final long id) {
+        return getObject(objectClass, id, true);
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends ModelObject> T getObject(final Class<T> pObjectClass, final long pId,
-            final boolean pCreate) {
-        HashMap<Long, ModelObject> instances = mModelObjects.get(pObjectClass);
-        T pObject = null;
+    public <T extends ModelObject> T getObject(final Class<T> objectClass, final long id,
+            final boolean create) {
+        HashMap<Long, ModelObject> instances = mModelObjects.get(objectClass);
+        T object = null;
 
         if (instances == null) {
             instances = new HashMap<>();
-            mModelObjects.put(pObjectClass, instances);
+            mModelObjects.put(objectClass, instances);
         } else {
-            pObject = (T) instances.get(pId);
+            object = (T) instances.get(id);
         }
 
-        if (pObject == null && pCreate) {
-            pObject = mObjectFactory.createInstance(pObjectClass);
-            pObject.setContext(this);
-            pObject.setId(pId);
-            instances.put(pId, pObject);
+        if (object == null && create) {
+            object = mObjectFactory.createInstance(objectClass);
+            object.setContext(this);
+            object.setId(id);
+            instances.put(id, object);
 
-            if (pObject.existsInDatabase(pId)) {
-                pObject.readFromDatabase(pId);
-                pObject.setInitialized(true);
+            if (object.existsInDatabase(id)) {
+                object.readFromDatabase(id);
+                object.setInitialized(true);
             }
         }
 
-        return pObject;
+        return object;
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends ModelObject> Collection<T> getObjects(final Class<T> pObjectClass) {
-        HashMap<Long, ModelObject> instancesMap = mModelObjects.get(pObjectClass);
+    public <T extends ModelObject> Collection<T> getObjects(final Class<T> objectClass) {
+        HashMap<Long, ModelObject> instancesMap = mModelObjects.get(objectClass);
 
         if (instancesMap == null) {
             instancesMap = new HashMap<>();
-            mModelObjects.put(pObjectClass, instancesMap);
+            mModelObjects.put(objectClass, instancesMap);
         }
 
         return (Collection<T>) instancesMap.values();
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends ModelObject> void getObjects(final Class<T> pObjectClass,
-            final Collection<T> pObjects) {
-        HashMap<Long, ModelObject> instancesMap = mModelObjects.get(pObjectClass);
+    public <T extends ModelObject> void getObjects(final Class<T> objectClass,
+            final Collection<T> objects) {
+        HashMap<Long, ModelObject> instancesMap = mModelObjects.get(objectClass);
 
         if (instancesMap == null) {
             instancesMap = new HashMap<Long, ModelObject>();
-            mModelObjects.put(pObjectClass, instancesMap);
+            mModelObjects.put(objectClass, instancesMap);
         }
 
-        pObjects.addAll((Collection<T>) instancesMap.values());
+        objects.addAll((Collection<T>) instancesMap.values());
     }
 
-    public final ModelObjectMetaInfo getMetaInfo(final Class<? extends ModelObject> pObjectClass) {
-        return mMetaInfos.get(pObjectClass);
+    public final ModelObjectMetaInfo getMetaInfo(final Class<? extends ModelObject> objectClass) {
+        return mMetaInfos.get(objectClass);
     }
 
-    public final ModelObjectMetaInfo getMetaInfo(final ModelObject pObject) {
-        return mMetaInfos.get(pObject.getClass());
+    public final ModelObjectMetaInfo getMetaInfo(final ModelObject object) {
+        return mMetaInfos.get(object.getClass());
     }
 
-    public void addObject(final ModelObject pObject) {
-        final Class<? extends ModelObject> objectClass = pObject.getClass();
-        addObject(objectClass, pObject);
+    public void addObject(final ModelObject object) {
+        final Class<? extends ModelObject> objectClass = object.getClass();
+        addObject(objectClass, object);
     }
 
-    public void addObject(final Class<? extends ModelObject> pObjectClass, final ModelObject pObject) {
-        HashMap<Long, ModelObject> instancesMap = mModelObjects.get(pObjectClass);
+    public void addObject(final Class<? extends ModelObject> objectClass, final ModelObject object) {
+        HashMap<Long, ModelObject> instancesMap = mModelObjects.get(objectClass);
 
         if (instancesMap == null) {
             instancesMap = new HashMap<>();
-            mModelObjects.put(pObjectClass, instancesMap);
+            mModelObjects.put(objectClass, instancesMap);
         }
 
-        final long pId = pObject.getId();
-        assert (pId >= 0);
-        instancesMap.put(pId, pObject);
-        pObject.setContext(this);
+        final long id = object.getId();
+        assert (id >= 0);
+        instancesMap.put(id, object);
+        object.setContext(this);
     }
 
-    public void removeObject(final ModelObject pObject) {
-        final Class<? extends ModelObject> objectClass = pObject.getClass();
+    public void removeObject(final ModelObject object) {
+        final Class<? extends ModelObject> objectClass = object.getClass();
         final HashMap<Long, ModelObject> instancesMap = mModelObjects.get(objectClass);
 
         if (instancesMap != null) {
-            long pId = pObject.getId();
-            assert (pId >= 0);
-            instancesMap.remove(pId);
+            long id = object.getId();
+            assert (id >= 0);
+            instancesMap.remove(id);
         }
     }
 
-    public ModelObjectMetaInfo registerObjectClass(final Class<? extends ModelObject> pObjectClass) {
-        ModelObjectMetaInfo metaInfo = mMetaInfos.get(pObjectClass);
+    public ModelObjectMetaInfo registerObjectClass(final Class<? extends ModelObject> objectClass) {
+        ModelObjectMetaInfo metaInfo = mMetaInfos.get(objectClass);
 
         if (metaInfo == null) {
-            metaInfo = new ModelObjectMetaInfo(pObjectClass, this);
-            mMetaInfos.put(pObjectClass, metaInfo);
+            metaInfo = new ModelObjectMetaInfo(objectClass, this);
+            mMetaInfos.put(objectClass, metaInfo);
             metaInfo.setup();
         }
 
         return metaInfo;
     }
 
-    public final Collection<Property> getDescriptorProperties(final ModelObject pObject) {
-        final ModelObjectMetaInfo metaInfo = getMetaInfo(pObject);
+    public final Collection<Property> getDescriptorProperties(final ModelObject object) {
+        final ModelObjectMetaInfo metaInfo = getMetaInfo(object);
         return metaInfo.getDescriptorProperties();
     }
 
-    public final Collection<Property> getProperties(final ModelObject pObject) {
-        return getProperties(pObject.getClass());
+    public final Collection<Property> getProperties(final ModelObject object) {
+        return getProperties(object.getClass());
     }
 
-    public final Collection<Property> getProperties(final Class<? extends ModelObject> pObjectClass) {
-        final ModelObjectMetaInfo metaInfo = getMetaInfo(pObjectClass);
+    public final Collection<Property> getProperties(final Class<? extends ModelObject> objectClass) {
+        final ModelObjectMetaInfo metaInfo = getMetaInfo(objectClass);
         return metaInfo.getProperties();
     }
 
-    public final Property getProperty(final ModelObject pObject, final String pPropertyName) {
-        return getProperty(pObject.getClass(), pPropertyName);
+    public final Property getProperty(final ModelObject object, final String propertyName) {
+        return getProperty(object.getClass(), propertyName);
     }
 
-    public final Property getProperty(final Class<? extends ModelObject> pObjectClass, final String propertyName) {
-        final ModelObjectMetaInfo metaInfo = getMetaInfo(pObjectClass);
+    public final Property getProperty(final Class<? extends ModelObject> objectClass, final String propertyName) {
+        final ModelObjectMetaInfo metaInfo = getMetaInfo(objectClass);
         return metaInfo.getProperty(propertyName);
     }
 
-    public void objectChanged(final Class<? extends ModelObject> pObjectClass, final long pId,
+    public void objectChanged(final Class<? extends ModelObject> objectClass, final long id,
             final List<String> pProperties) {
-        final ModelObject object = getObject(pObjectClass, pId);
+        final ModelObject object = getObject(objectClass, id);
 
         if (object != null) {
-            object.readFromDatabase(pId); // TODO : Optimize to read only changed properties
+            object.readFromDatabase(id); // TODO : Optimize to read only changed properties
         }
     }
 
-    public boolean existsInDatabase(final Uri pContentUri, final long pId) { // TODO OPTIMIZE
+    public boolean existsInDatabase(final Uri contentUri, final long id) { // TODO OPTIMIZE
                                                                                     // !
-        if (pContentUri == null) {
+        if (contentUri == null) {
             return false;
         }
 
-        final Uri uri = ContentUris.withAppendedId(pContentUri, pId);
+        final Uri uri = ContentUris.withAppendedId(contentUri, id);
         final ContentResolver resolver = getContentResolver();
         final ContentProviderClient providerClient = resolver.acquireContentProviderClient(uri);
         boolean exists = false;
@@ -242,11 +242,11 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
     }
 
     @Override
-    public <T extends ModelObject> T createInstance(final String pClassName) {
+    public <T extends ModelObject> T createInstance(final String className) {
         T instance = null;
 
         try {
-            final Class<T> modelClass = (Class<T>)Class.forName(pClassName);
+            final Class<T> modelClass = (Class<T>)Class.forName(className);
             instance = createInstance(modelClass);
         } catch (final Exception pException) {
             L.e(this, "createInstance", pException);
@@ -255,11 +255,11 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
     }
 
     @Override
-    public <T extends ModelObject> T createInstance(final Class<T> pClass) {
+    public <T extends ModelObject> T createInstance(final Class<T> objectClass) {
         T instance = null;
 
         try {
-            instance = pClass.newInstance();
+            instance = objectClass.newInstance();
             instance.setContext(this);
         } catch (final InstantiationException pException) {
             L.e(this, "createInstance", pException);
@@ -290,19 +290,19 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
         }
     }
 
-    public boolean exists(final ModelObject pObject) {
-        final Class<? extends ModelObject> objectClass = pObject.getClass();
+    public boolean exists(final ModelObject object) {
+        final Class<? extends ModelObject> objectClass = object.getClass();
         final HashMap<Long, ModelObject> instances = mModelObjects.get(objectClass);
-        return instances.containsValue(pObject);
+        return instances.containsValue(object);
     }
 
-    public boolean exists(final Class<? extends ModelObject> pObjectClass, final long pId) {
-        final ModelObject modelObject = getObject(pObjectClass, pId, false);
+    public boolean exists(final Class<? extends ModelObject> objectClass, final long id) {
+        final ModelObject modelObject = getObject(objectClass, id, false);
         return (modelObject != null);
     }
 
-    public static String getString(final int pResId) {
-        return AppToolkit.getString(pResId);
+    public static String getString(final int resId) {
+        return AppToolkit.getString(resId);
     }
 
 
@@ -311,7 +311,7 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
         return application.getContentResolver();
     }
 
-    public void notifyModelObjectChanged(final ModelObject pObject) {
-        mModelObjectObserver.onModelObjectChanged(pObject);
+    public void notifyModelObjectChanged(final ModelObject object) {
+        mModelObjectObserver.onModelObjectChanged(object);
     }
 }

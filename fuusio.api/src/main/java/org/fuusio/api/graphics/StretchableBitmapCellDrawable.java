@@ -55,24 +55,24 @@ public class StretchableBitmapCellDrawable extends Drawable {
     /**
      * Constructs a new instance of {@code SkinCellPainter} for the given {@code SkinImage}.
      * 
-     * @param pSkinImage A {@code SkinImage}.
+     * @param skinImage A {@code SkinImage}.
      */
 
-    public StretchableBitmapCellDrawable(final StretchableBitmap pSkinImage) {
-        mSkinImage = pSkinImage;
+    public StretchableBitmapCellDrawable(final StretchableBitmap skinImage) {
+        mSkinImage = skinImage;
         mSourceRect = new Rect();
     }
 
     /**
      * Sets the source bounding box.
      * 
-     * @param pRect The bounding box as a {@code Rect}.
+     * @param rect The bounding box as a {@code Rect}.
      */
-    public void setSourceRect(final Rect pRect) {
-        mSourceRect.left = pRect.left;
-        mSourceRect.top = pRect.top;
-        mSourceRect.right = pRect.right;
-        mSourceRect.bottom = pRect.bottom;
+    public void setSourceRect(final Rect rect) {
+        mSourceRect.left = rect.left;
+        mSourceRect.top = rect.top;
+        mSourceRect.right = rect.right;
+        mSourceRect.bottom = rect.bottom;
     }
 
     /*
@@ -81,12 +81,12 @@ public class StretchableBitmapCellDrawable extends Drawable {
      * @see android.graphics.drawable.Drawable#draw(android.graphics.Canvas)
      */
     @Override
-    public void draw(final Canvas pCanvas) {
+    public void draw(final Canvas canvas) {
         final Bitmap cellBitmap = mSkinImage.getActiveStateImage();
 
         if (cellBitmap != null) {
             final Rect targetRect = getBounds();
-            pCanvas.drawBitmap(cellBitmap, mSourceRect, targetRect, null);
+            canvas.drawBitmap(cellBitmap, mSourceRect, targetRect, null);
         }
     }
 
@@ -106,7 +106,7 @@ public class StretchableBitmapCellDrawable extends Drawable {
      * @see android.graphics.drawable.Drawable#setAlpha(int)
      */
     @Override
-    public void setAlpha(final int pAlpha) {
+    public void setAlpha(final int alpha) {
         // TODO Auto-generated method stub
     }
 
@@ -116,7 +116,7 @@ public class StretchableBitmapCellDrawable extends Drawable {
      * @see android.graphics.drawable.Drawable#setColorFilter(android.graphics.ColorFilter)
      */
     @Override
-    public void setColorFilter(final ColorFilter pColorFilter) {
+    public void setColorFilter(final ColorFilter filter) {
         // TODO Auto-generated method stub
     }
 }

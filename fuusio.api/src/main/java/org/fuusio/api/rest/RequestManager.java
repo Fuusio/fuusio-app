@@ -8,9 +8,9 @@ import org.fuusio.api.component.Component;
  */
 public interface RequestManager<T_Request extends RestRequest> extends Component {
 
-    <T extends T_Request> T execute(final T_Request pRequest);
+    <T extends T_Request> T execute(final T_Request request);
 
-    void cancelPendingRequests(final Object pTag);
+    void cancelPendingRequests(final Object tag);
 
     void cancelAllRequests();
 

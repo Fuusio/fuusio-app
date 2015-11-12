@@ -26,22 +26,22 @@ public class HttpHeaders {
         mHeaders = new HashMap<>();
     }
 
-    public HttpHeaders(final Map<String, String> pHeaders) {
-        mHeaders = new HashMap<>(pHeaders);
+    public HttpHeaders(final Map<String, String> headers) {
+        mHeaders = new HashMap<>(headers);
     }
 
-    public final HttpHeaders add(final HeaderRequestField pField, final String pValue) {
-        return add(pField.getName(), pValue);
+    public final HttpHeaders add(final HeaderRequestField field, final String value) {
+        return add(field.getName(), value);
     }
 
-    public final HttpHeaders add(final String pField, final String pValue) {
-        mHeaders.put(pField, pValue);
+    public final HttpHeaders add(final String field, final String value) {
+        mHeaders.put(field, value);
         return this;
     }
 
-    public final void addAll(final HttpHeaders pHeaders) {
-        if (pHeaders != null) {
-            final Map<String, String> map = pHeaders.getMap();
+    public final void addAll(final HttpHeaders headers) {
+        if (headers != null) {
+            final Map<String, String> map = headers.getMap();
 
             for (final String key : map.keySet()) {
                 mHeaders.put(key, map.get(key));

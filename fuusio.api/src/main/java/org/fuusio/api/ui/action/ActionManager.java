@@ -31,8 +31,8 @@ public class ActionManager {
     private ActionContext mActiveActionContext;
     private Stack<Action> mActiveStack;
 
-    public ActionManager(final Context pApplicationContext) {
-        mApplicationContext = pApplicationContext;
+    public ActionManager(final Context applicationContext) {
+        mApplicationContext = applicationContext;
         mActionStacks = new HashMap<>();
         mRedoableActions = new HashMap<>();
         mActiveStack = null;
@@ -46,16 +46,16 @@ public class ActionManager {
         return mActiveActionContext;
     }
 
-    public void setActiveActionContext(final ActionContext pActionContext) {
+    public void setActiveActionContext(final ActionContext applicationContext) {
 
-        mActiveActionContext = pActionContext;
+        mActiveActionContext = applicationContext;
 
         if (mActiveActionContext != null) {
             mActiveStack = mActionStacks.get(mActiveActionContext);
 
             if (mActiveStack == null) {
                 mActiveStack = new Stack<>();
-                mActionStacks.put(pActionContext, mActiveStack);
+                mActionStacks.put(applicationContext, mActiveStack);
             }
         }
     }
@@ -64,16 +64,16 @@ public class ActionManager {
         mActiveStack.clear();
     }
 
-    public boolean executeAction(final Action pAction) {
-        boolean wasExecuted = pAction.execute(mActiveActionContext);
+    public boolean executeAction(final Action action) {
+        boolean wasExecuted = action.execute(mActiveActionContext);
 
         if (wasExecuted) {
             if (mActiveStack.size() >= MAX_UNDO_STACK_SIZE) {
                 mActiveStack.remove(0);
             }
 
-            if (pAction.isUndoable()) {
-                mActiveStack.add(pAction);
+            if (action.isUndoable()) {
+                mActiveStack.add(action);
             }
         }
 

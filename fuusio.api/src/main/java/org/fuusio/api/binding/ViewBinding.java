@@ -32,9 +32,9 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
     protected ViewBinding() {
     }
 
-    protected ViewBinding(final T_View pView) {
-        if (pView != null) {
-            setView(pView);
+    protected ViewBinding(final T_View view) {
+        if (view != null) {
+            setView(view);
         } else {
             mView = null;
         }
@@ -48,8 +48,8 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
         return mView.isEnabled();
     }
 
-    public final void setViewEnabled(final boolean pEnabled) {
-        mView.setEnabled(pEnabled);
+    public final void setViewEnabled(final boolean enabled) {
+        mView.setEnabled(enabled);
     }
 
     @SuppressWarnings("unchecked")
@@ -58,16 +58,16 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
     }
 
     @SuppressWarnings("unchecked")
-    public final <T> T getViewTag(final int pKey) {
-        return (T)mView.getTag(pKey);
+    public final <T> T getViewTag(final int key) {
+        return (T)mView.getTag(key);
     }
 
-    public void setViewTag(final Object pTag) {
-        mView.setTag(pTag);
+    public void setViewTag(final Object tag) {
+        mView.setTag(tag);
     }
 
-    public void setViewTag(final int pKey, final Object pTag) {
-        mView.setTag(pKey, pTag);
+    public void setViewTag(final int key, final Object tag) {
+        mView.setTag(key, tag);
     }
 
     /**
@@ -80,13 +80,13 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
 
     /**
      * Sets the {@link View} bound to this {@link ViewBinding}.
-     * @param pView A {@link View}.
+     * @param view A {@link View}.
      */
-    public void setView(final T_View pView) {
+    public void setView(final T_View view) {
 
-        if (pView != null) {
-            mView = pView;
-            mErrorMessage = new MessageContext(pView.getContext());
+        if (view != null) {
+            mView = view;
+            mErrorMessage = new MessageContext(view.getContext());
             attachListeners(mView);
         } else if (mView != null){
             detachListeners(mView);
@@ -98,37 +98,37 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
         return mView.getVisibility();
     }
 
-    public final void setViewVisibility(final int pVisibility) {
-        mView.setVisibility(pVisibility);
+    public final void setViewVisibility(final int visibility) {
+        mView.setVisibility(visibility);
     }
 
     /**
      * Tests if the given {@link View} can be bound to this {@link ViewBinding}.
-     * @param pView A  {@link View}.
+     * @param view A  {@link View}.
      * @return A {@code boolean} value.
      */
-    public abstract boolean canBind(final View pView);
+    public abstract boolean canBind(final View view);
 
     /**
      * Invoked to attach the listeners to the given {@link View}. Methods overriding this method
-     * has to call {@code super.attachListener(pView)}.
-     * @param pView A {@link View}.
+     * has to call {@code super.attachListener(view)}.
+     * @param view A {@link View}.
      */
-    protected void attachListeners(final T_View pView) {
-        pView.setOnClickListener(this);
+    protected void attachListeners(final T_View view) {
+        view.setOnClickListener(this);
     }
 
     /**
      * Invoked to detach the listeners from the given {@link View}. Methods overriding this method
-     * has to call {@code super.detachListeners(pView)}.
-     * @param pView A {@link View}.
+     * has to call {@code super.detachListeners(view)}.
+     * @param view A {@link View}.
      */
-    protected void detachListeners(final T_View pView) {
-        pView.setOnClickListener(null);
+    protected void detachListeners(final T_View view) {
+        view.setOnClickListener(null);
     }
 
     @Override
-    public void onClick(final View pView) {
+    public void onClick(final View view) {
         clicked();
     }
 
@@ -138,14 +138,14 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
     protected void clicked() {
     }
 
-    public void setErrorMessage(final String pMessage, final Object... pArgs) {
-        mErrorMessage.setMessage(pMessage);
-        mErrorMessage.setMessageArgs(pArgs);
+    public void setErrorMessage(final String message, final Object... args) {
+        mErrorMessage.setMessage(message);
+        mErrorMessage.setMessageArgs(args);
     }
 
-    public void setErrorMessage(final int pMessageResId, final Object... pArgs) {
-        mErrorMessage.setMessage(pMessageResId);
-        mErrorMessage.setMessageArgs(pArgs);
+    public void setErrorMessage(final int messageResId, final Object... args) {
+        mErrorMessage.setMessage(messageResId);
+        mErrorMessage.setMessageArgs(args);
     }
 
     public void clearErrorMessage() {

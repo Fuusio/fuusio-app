@@ -31,14 +31,13 @@ public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
         void onQueryComplete(int token, Object cookie, Cursor cursor);
     }
 
-    public NotifyingAsyncQueryHandler(final ContentResolver pResolver,
-            final AsyncQueryListener listener) {
-        super(pResolver);
+    public NotifyingAsyncQueryHandler(final ContentResolver resolver, final AsyncQueryListener listener) {
+        super(resolver);
         setQueryListener(listener);
     }
 
-    public void setQueryListener(final AsyncQueryListener pListener) {
-        mQueryListener = new WeakReference<AsyncQueryListener>(pListener);
+    public void setQueryListener(final AsyncQueryListener listener) {
+        mQueryListener = new WeakReference<AsyncQueryListener>(listener);
     }
 
     public void clearQueryListener() {
@@ -50,8 +49,8 @@ public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
      * {@link AsyncQueryListener#onQueryComplete(int, Object, Cursor)} is called if a valid
      * {@link AsyncQueryListener} is present.
      */
-    public void startQuery(final Uri pUri, final String[] pProjection) {
-        startQuery(-1, null, pUri, pProjection, null, null, null);
+    public void startQuery(final Uri uri, final String[] projection) {
+        startQuery(-1, null, uri, projection, null, null, null);
     }
 
     /**
@@ -62,8 +61,8 @@ public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
      * @param token Unique identifier passed through to
      *        {@link AsyncQueryListener#onQueryComplete(int, Object, Cursor)}
      */
-    public void startQuery(final int pToken, final Uri pUri, final String[] pProjection) {
-        startQuery(pToken, null, pUri, pProjection, null, null, null);
+    public void startQuery(final int token, final Uri uri, final String[] projection) {
+        startQuery(token, null, uri, projection, null, null, null);
     }
 
     /**
@@ -71,8 +70,8 @@ public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
      * {@link AsyncQueryListener#onQueryComplete(int, Object, Cursor)} is called if a valid
      * {@link AsyncQueryListener} is present.
      */
-    public void startQuery(final Uri pUri, final String[] pProjection, final String pSortOrder) {
-        startQuery(-1, null, pUri, pProjection, null, null, pSortOrder);
+    public void startQuery(final Uri uri, final String[] projection, final String sortOrder) {
+        startQuery(-1, null, uri, projection, null, null, sortOrder);
     }
 
     /**
@@ -80,35 +79,35 @@ public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
      * {@link AsyncQueryListener#onQueryComplete(int, Object, Cursor)} is called if a valid
      * {@link AsyncQueryListener} is present.
      */
-    public void startQuery(final Uri pUri, final String[] pProjection, final String pSelection,
+    public void startQuery(final Uri uri, final String[] projection, final String selection,
             final String[] selectionArgs, final String orderBy) {
-        startQuery(-1, null, pUri, pProjection, pSelection, selectionArgs, orderBy);
+        startQuery(-1, null, uri, projection, selection, selectionArgs, orderBy);
     }
 
     /**
      * Begin an asynchronous update with the given arguments.
      */
-    public void startUpdate(final Uri pUri, final ContentValues pValues) {
-        startUpdate(-1, null, pUri, pValues, null, null);
+    public void startUpdate(final Uri uri, final ContentValues values) {
+        startUpdate(-1, null, uri, values, null, null);
     }
 
-    public void startInsert(final Uri pUri, final ContentValues pValues) {
-        startInsert(-1, null, pUri, pValues);
+    public void startInsert(final Uri uri, final ContentValues values) {
+        startInsert(-1, null, uri, values);
     }
 
-    public void startDelete(final Uri pUri) {
-        startDelete(-1, null, pUri, null, null);
+    public void startDelete(final Uri uri) {
+        startDelete(-1, null, uri, null, null);
     }
 
     /** {@inheritDoc} */
     @Override
-    protected void onQueryComplete(final int pToken, final Object pCookie, final Cursor pCursor) {
+    protected void onQueryComplete(final int token, final Object cookie, final Cursor cursor) {
         final AsyncQueryListener listener = (mQueryListener == null) ? null : mQueryListener.get();
 
         if (listener != null) {
-            listener.onQueryComplete(pToken, pCookie, pCursor);
-        } else if (pCursor != null) {
-            pCursor.close();
+            listener.onQueryComplete(token, cookie, cursor);
+        } else if (cursor != null) {
+            cursor.close();
         }
     }
 }

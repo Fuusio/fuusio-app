@@ -25,8 +25,8 @@ public abstract class FlowActivity<T_Flow extends Flow, T_Presenter extends Pres
         return mFlow;
     }
 
-    public void setFlow(final T_Flow pFlow) {
-        mFlow = pFlow;
+    public void setFlow(final T_Flow flow) {
+        mFlow = flow;
     }
 
     @Override
@@ -35,34 +35,34 @@ public abstract class FlowActivity<T_Flow extends Flow, T_Presenter extends Pres
     }
 
     @Override
-    protected void onCreate(final Bundle pInState) {
-        super.onCreate(pInState);
+    protected void onCreate(final Bundle inState) {
+        super.onCreate(inState);
 
-        mFlow = createFlow(pInState);
+        mFlow = createFlow(inState);
         D.activateScope(mFlow);
     }
 
     /**
      * Sets the {@link Class} for creating the {@link Flow} in method
      * {@link FlowActivity#setFlowClass(Class)}.
-     * @param pFlowClass A {@link Class}.
+     * @param flowClass A {@link Class}.
      */
-    protected void setFlowClass(final Class<T_Flow> pFlowClass) {
-        mFlowClass = pFlowClass;
+    protected void setFlowClass(final Class<T_Flow> flowClass) {
+        mFlowClass = flowClass;
     }
 
     /**
      * Creates the {@link Flow} for this {@link FlowActivity}. This method can be overridden in
      * concrete implementations of {@link FlowActivity} if method {@link FlowActivity} used.
-     * @param pInState
+     * @param inState
      * @return
      */
-    protected T_Flow createFlow(final Bundle pInState) {
+    protected T_Flow createFlow(final Bundle inState) {
 
         T_Flow flow = null;
 
         if (mFlowClass != null) {
-            flow = FlowManager.createFlow(mFlowClass, this, pInState);
+            flow = FlowManager.createFlow(mFlowClass, this, inState);
         }
         return flow;
     }

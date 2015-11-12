@@ -26,9 +26,9 @@ public class ModelObjectTableDescriptor implements TableDescriptor {
 	private final ModelObjectMetaInfo mObjectMetaInfo;
 	
 	
-	public ModelObjectTableDescriptor(final ModelObjectMetaInfo pObjectMetaInfo) {
-		mColumnDescriptors = createColumnDescriptors(pObjectMetaInfo);
-		mObjectMetaInfo = pObjectMetaInfo;
+	public ModelObjectTableDescriptor(final ModelObjectMetaInfo metaInfo) {
+		mColumnDescriptors = createColumnDescriptors(metaInfo);
+		mObjectMetaInfo = metaInfo;
 	}
 	
 	@Override
@@ -44,8 +44,8 @@ public class ModelObjectTableDescriptor implements TableDescriptor {
 		return (index > 0) ? className.substring(index + 1) : className;
 	}
 
-	public static ColumnDescriptor[] createColumnDescriptors(final ModelObjectMetaInfo pObjectMetaInfo) {
-		final Collection<Property> properties = pObjectMetaInfo.getProperties();
+	public static ColumnDescriptor[] createColumnDescriptors(final ModelObjectMetaInfo metaInfo) {
+		final Collection<Property> properties = metaInfo.getProperties();
 		final int count = properties.size();
 		final ColumnDescriptor[] descriptors = new ColumnDescriptor[count];
 		

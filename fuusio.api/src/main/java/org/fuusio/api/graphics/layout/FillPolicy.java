@@ -76,10 +76,10 @@ public enum FillPolicy {
      * Constructs a new instance of {@link FillPolicy} with the given
      * displayable label.
      *
-     * @param pLabel The displayable label as a {@link String};
+     * @param label The displayable label as a {@link String};
      */
-    FillPolicy(final String pLabel) {
-        mLabel = pLabel;
+    FillPolicy(final String label) {
+        mLabel = label;
     }
 
     /**

@@ -31,12 +31,12 @@ public class PlugDescriptor {
 
     private boolean mCreated;
 
-	public PlugDescriptor(final Field pField, final String pName, final Class<? extends PluginInterface> pPluginInterface) {
+	public PlugDescriptor(final Field field, final String name, final Class<? extends PluginInterface> pluginInterface) {
 		super();
         mCreated = false;
-		mField = pField;
-		mName = (pName != null) ? pName : Plugin.DEFAULT_PLUG_NAME;
-		mPluginInterface = pPluginInterface;
+		mField = field;
+		mName = (name != null) ? name : Plugin.DEFAULT_PLUG_NAME;
+		mPluginInterface = pluginInterface;
         // OPTION mSynced =  (mField != null) && (mField.getType().getAnnotation(Plugin.UISynchronized.class) != null);
 	}
 
@@ -50,8 +50,8 @@ public class PlugDescriptor {
         return mSynced;
     }*/
 
-    public final void setCreated(final boolean pCreated) {
-        mCreated = pCreated;
+    public final void setCreated(final boolean created) {
+        mCreated = created;
     }
 
     public final Field getField() {

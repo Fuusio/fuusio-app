@@ -48,16 +48,6 @@ import android.graphics.drawable.Drawable;
  * @author Marko Salmela
  */
 public class StretchableBitmapDrawable extends CompositeDrawable {
-    // -------------------------------------------------------------------------
-    // Constant Fields
-    // -------------------------------------------------------------------------
-    // -------------------------------------------------------------------------
-    // Static Fields
-    // -------------------------------------------------------------------------
-    // -------------------------------------------------------------------------
-    // Instance Fields
-    // -------------------------------------------------------------------------
-
     /**
      * The number of columns in the assigned {@link StretchableBitmap}.
      */
@@ -74,13 +64,7 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
      * The rendered {@link StretchableBitmap}.
      */
     protected StretchableBitmap mStretchableBitmap;
-
-    // Transient Fields
-
-    // -------------------------------------------------------------------------
-    // Constructors
-    // -------------------------------------------------------------------------
-
+    
     /**
      * Constructs a new instance of {@link StretchableBitmapDrawable}.
      */
@@ -88,14 +72,10 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
         mSize = new Dimension();
     }
 
-    public StretchableBitmapDrawable(final StretchableBitmap pStretchableBitmap) {
+    public StretchableBitmapDrawable(final StretchableBitmap stretchableBitmap) {
         this();
-        setStretchableBitmap(pStretchableBitmap);
+        setStretchableBitmap(stretchableBitmap);
     }
-
-    // -------------------------------------------------------------------------
-    // Getter & Setter Methods
-    // -------------------------------------------------------------------------
 
     /**
      * Gets the assigned {@link StretchableBitmap}
@@ -110,11 +90,11 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
     /**
      * Sets the assigned {@link StretchableBitmap}.
      * 
-     * @param pStretchableBitmap A {@link StretchableBitmap}.
+     * @param stretchableBitmap A {@link StretchableBitmap}.
      */
 
-    public void setStretchableBitmap(final StretchableBitmap pStretchableBitmap) {
-        if (pStretchableBitmap != mStretchableBitmap) {
+    public void setStretchableBitmap(final StretchableBitmap stretchableBitmap) {
+        if (stretchableBitmap != mStretchableBitmap) {
             boolean isLayoutingNeeded = false;
 
             if (mStretchableBitmap != null) {
@@ -122,15 +102,15 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
                 isLayoutingNeeded = true;
             }
 
-            if (pStretchableBitmap != null) {
-                Rect[][] sourceRect = pStretchableBitmap.getSourceRects();
+            if (stretchableBitmap != null) {
+                Rect[][] sourceRect = stretchableBitmap.getSourceRects();
                 mColumns = sourceRect.length;
                 mRows = sourceRect[0].length;
 
                 for (int column = 0; column < mColumns; column++) {
                     for (int row = 0; row < mRows; row++) {
                         final StretchableBitmapCellDrawable drawable = new StretchableBitmapCellDrawable(
-                                pStretchableBitmap);
+                                stretchableBitmap);
                         drawable.setSourceRect(sourceRect[column][row]);
                         addDrawable(drawable);
                     }
@@ -141,28 +121,21 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
                 doLayout();
             }
 
-            mStretchableBitmap = pStretchableBitmap;
+            mStretchableBitmap = stretchableBitmap;
         }
     }
-
-    // -------------------------------------------------------------------------
-    // Create Methods
-    // -------------------------------------------------------------------------
-    // -------------------------------------------------------------------------
-    // Modifier Methods
-    // -------------------------------------------------------------------------
-
+    
     /*
      * (non-Javadoc)
      * 
      * @see android.graphics.drawable.Drawable#setBounds(int, int, int, int)
      */
     @Override
-    public void setBounds(final int pLeft, final int pTop, final int pRight, final int pBottom) {
-        mSize.mWidth = pRight - pLeft;
-        mSize.mHeight = pBottom - pTop;
+    public void setBounds(final int left, final int top, final int right, final int bottom) {
+        mSize.mWidth = right - left;
+        mSize.mHeight = bottom - top;
         doLayout();
-        super.setBounds(pLeft, pTop, pRight, pBottom);
+        super.setBounds(left, top, right, bottom);
     }
 
     /*
@@ -171,11 +144,11 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
      * @see android.graphics.drawable.Drawable#setBounds(android.graphics.Rect)
      */
     @Override
-    public void setBounds(final Rect pBounds) {
-        mSize.mWidth = pBounds.width();
-        mSize.mHeight = pBounds.height();
+    public void setBounds(final Rect bounds) {
+        mSize.mWidth = bounds.width();
+        mSize.mHeight = bounds.height();
         doLayout();
-        super.setBounds(pBounds);
+        super.setBounds(bounds);
     }
 
     /**
@@ -200,16 +173,6 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
         }
     }
 
-    // -------------------------------------------------------------------------
-    // Event Handler Methods
-    // -------------------------------------------------------------------------
-    // -------------------------------------------------------------------------
-    // Paint Methods
-    // -------------------------------------------------------------------------
-    // -------------------------------------------------------------------------
-    // Test Methods
-    // -------------------------------------------------------------------------
-
     /**
      * Tests whether this {@link Drawable} is currently enabled or not.
      * 
@@ -223,8 +186,4 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
 
         return super.isEnabled();
     }
-
-    // -------------------------------------------------------------------------
-    // Utility Methods
-    // -------------------------------------------------------------------------
 }

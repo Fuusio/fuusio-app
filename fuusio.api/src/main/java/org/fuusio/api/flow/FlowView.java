@@ -15,5 +15,5 @@ public interface FlowView<T_Presenter extends Presenter> extends View<T_Presente
      * Sets the {@link Flow} that controls this {@link FlowView}.
      * @param pFlow A {@link Flow}.
      */
-    void setFlow(Flow pFlow);
+    void setFlow(Flow flow);
 }

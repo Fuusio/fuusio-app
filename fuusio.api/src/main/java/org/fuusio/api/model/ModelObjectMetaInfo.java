@@ -32,9 +32,9 @@ public class ModelObjectMetaInfo {
     private final ModelObjectContext mObjectContext;
     private final HashMap<String, Property> mProperties;
 
-    protected ModelObjectMetaInfo(final Class<? extends ModelObject> pObjectClass, final ModelObjectContext pObjectContext) {
-        mObjectClass = pObjectClass;
-        mObjectContext = pObjectContext;
+    protected ModelObjectMetaInfo(final Class<? extends ModelObject> objectClass, final ModelObjectContext objectContext) {
+        mObjectClass = objectClass;
+        mObjectContext = objectContext;
         mProperties = new HashMap<>();
     }
 
@@ -53,7 +53,6 @@ public class ModelObjectMetaInfo {
                 property.addTransitionExceptionFor(mObjectClass);
             }
         }
-
     }
 
     public final Class<? extends ModelObject> getObjectClass() {
@@ -64,25 +63,25 @@ public class ModelObjectMetaInfo {
         return mProperties.values();
     }
 
-    public final Property getProperty(final String pPropertyName) {
-        return mProperties.get(pPropertyName);
+    public final Property getProperty(final String propertyName) {
+        return mProperties.get(propertyName);
     }
 
-    protected Property getProperty(final String pPropertyName, final boolean pCreate) {
-        Property property = mProperties.get(pPropertyName);
+    protected Property getProperty(final String propertyName, final boolean create) {
+        Property property = mProperties.get(propertyName);
 
-        if (property == null && pCreate) {
-            property = new Property(pPropertyName);
-            mProperties.put(pPropertyName, property);
+        if (property == null && create) {
+            property = new Property(propertyName);
+            mProperties.put(propertyName, property);
         }
 
         return property;
     }
 
     @SuppressWarnings("unchecked")
-    protected void collectProperties(final Class<? extends ModelObject> pObjectClass) {
+    protected void collectProperties(final Class<? extends ModelObject> objectClass) {
 
-        for (final Method method : pObjectClass.getMethods()) {
+        for (final Method method : objectClass.getMethods()) {
 
             if (method.isAnnotationPresent(PropertyGetter.class)) {
                 final PropertyGetter annotation = method.getAnnotation(PropertyGetter.class);
@@ -119,7 +118,7 @@ public class ModelObjectMetaInfo {
             }
         }
 
-        final Class<?> superClass = pObjectClass.getSuperclass();
+        final Class<?> superClass = objectClass.getSuperclass();
 
         if (ModelObject.class.isAssignableFrom(superClass)) {
 

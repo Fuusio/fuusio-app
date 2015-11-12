@@ -38,16 +38,16 @@ public enum ColumnDataType {
 	
 	private final String mSqlType;
 	
-	private ColumnDataType(final String pSqlType) {
-		mSqlType =  pSqlType;
+	private ColumnDataType(final String sqlType) {
+		mSqlType =  sqlType;
 	}
 
 	public final String getSqlType() {
 		return mSqlType;
 	}
 
-	public static ColumnDataType getForProperty(final Property pProperty) {
-		final Class<?> type = pProperty.getType();
+	public static ColumnDataType getForProperty(final Property property) {
+		final Class<?> type = property.getType();
 		
 		if (type.equals(Boolean.class) || type.equals(Boolean.TYPE)) {
 			return BOOLEAN;

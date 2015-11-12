@@ -55,7 +55,7 @@ public abstract class AbstractListenable<T_Listener> implements Listenable<T_Lis
     }
 
     @Override
-    public boolean hasListeners() {
+    public boolean hasAnyListeners() {
         return !mListeners.isEmpty();
     }
 }
