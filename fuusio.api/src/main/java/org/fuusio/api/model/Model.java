@@ -15,13 +15,13 @@
  */
 package org.fuusio.api.model;
 
-import java.util.Date;
+import android.content.ContentValues;
 
 import org.fuusio.api.model.Property.PropertyGetter;
 import org.fuusio.api.model.Property.PropertySetter;
 import org.fuusio.api.util.DateToolkit;
 
-import android.content.ContentValues;
+import java.util.Date;
 
 public abstract class Model extends ModelObject {
 
@@ -65,8 +65,8 @@ public abstract class Model extends ModelObject {
     public void getContentValues(final ContentValues values) {
         super.getContentValues(values);
 
-    	values.put(KEY_NAME, getName());
-    	values.put(KEY_CREATED_DATE, DateToolkit.format(getCreatedDate()));
+        values.put(KEY_NAME, getName());
+        values.put(KEY_CREATED_DATE, DateToolkit.format(getCreatedDate()));
     }
 
     @PropertyGetter(property = "CreatedDate", isDescriptor = true)
@@ -118,7 +118,7 @@ public abstract class Model extends ModelObject {
 
     @PropertySetter(property = "Namespace")
     public void setNamespace(final String namespace) {
-    	mNamespace = namespace;
+        mNamespace = namespace;
     }    
     /*
      * OPTION

@@ -35,14 +35,14 @@
 
 package org.fuusio.api.graphics.layout;
 
-import java.util.List;
-
 import android.graphics.drawable.Drawable;
+
+import java.util.List;
 
 /**
  * {@code Spacer} implements {@link LayoutCell} that is used to just fill space horizontally,
  * vertically, or both directions.
- * 
+ *
  * @author Marko Salmela
  */
 public class Spacer extends LayoutCell {
@@ -67,53 +67,53 @@ public class Spacer extends LayoutCell {
     /**
      * Constructs a new instance of {@code Spacer} for the given {@code CellLayout}. By default,
      * this instance fills space both horizontally and vertically.
-     * 
-     * @param pLayout A {@code CellLayout}.
+     *
+     * @param layout A {@code CellLayout}.
      */
-    public Spacer(final CellLayout pLayout) {
-        this(pLayout, FillPolicy.BOTH, -1, -1);
+    public Spacer(final CellLayout layout) {
+        this(layout, FillPolicy.BOTH, -1, -1);
     }
 
     /**
      * Constructs a new instance of {@code Spacer} for the given {@code CellLayout}. The instance
      * fills space according to the given {@code FillPolicy}.
-     * 
-     * @param pLayout A {@code CellLayout}.
-     * @param pFillMode A {@code FillPolicy}.
-     * @param pFixedWidth The fixed width of this {@code Spacer}. Value is -1 if this {@code Spacer}
-     *        if this spacer does not have fixed width.
-     * @param pFixedHeight The fixed height of this {@code Spacer}. Value is -1 if this
-     *        {@code Spacer} if this spacer does not have fixed height.
+     *
+     * @param layout      A {@code CellLayout}.
+     * @param fillMode    A {@code FillPolicy}.
+     * @param fixedWidth  The fixed width of this {@code Spacer}. Value is -1 if this {@code Spacer}
+     *                    if this spacer does not have fixed width.
+     * @param fixedHeight The fixed height of this {@code Spacer}. Value is -1 if this
+     *                    {@code Spacer} if this spacer does not have fixed height.
      */
-    public Spacer(final CellLayout pLayout, final FillPolicy pFillMode, final int pFixedWidth,
-            final int pFixedHeight) {
-        super(pLayout);
-        mFillMode = pFillMode;
-        mFixedHeight = pFixedHeight;
-        mFixedWidth = pFixedWidth;
+    public Spacer(final CellLayout layout, final FillPolicy fillMode, final int fixedWidth,
+                  final int fixedHeight) {
+        super(layout);
+        mFillMode = fillMode;
+        mFixedHeight = fixedHeight;
+        mFixedWidth = fixedWidth;
     }
 
     /**
      * Constructs a copy instance of the given {@code Spacer} for the given {@code CellLayout}.
-     * 
-     * @param pLayout A {@code CellLayout}.
-     * @param pSource A {@code Spacer}.
+     *
+     * @param layout A {@code CellLayout}.
+     * @param source A {@code Spacer}.
      */
-    public Spacer(final CellLayout pLayout, final Spacer pSource) {
-        super(pLayout, pSource);
-        mFillMode = pSource.mFillMode;
-        mFixedHeight = pSource.mFixedHeight;
-        mFixedWidth = pSource.mFixedWidth;
+    public Spacer(final CellLayout layout, final Spacer source) {
+        super(layout, source);
+        mFillMode = source.mFillMode;
+        mFixedHeight = source.mFixedHeight;
+        mFixedWidth = source.mFixedWidth;
     }
 
 
     /**
      * Gets the fill mode defined to this {@code Spacer}. Fill mode
-     * is mode is used to specify how the component fills up the area calculated 
-     * for its container {@code LayoutCell}.  The possible fill mode values are: 
-     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL}, 
-     * and {@code BOTH}. The default value is {@code NONE</code. 
-     *  
+     * is mode is used to specify how the component fills up the area calculated
+     * for its container {@code LayoutCell}.  The possible fill mode values are:
+     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL},
+     * and {@code BOTH}. The default value is {@code NONE</code.
+     *
      * @return A {@link FillPolicy}.
      */
     public final FillPolicy getFillMode() {
@@ -147,6 +147,6 @@ public class Spacer extends LayoutCell {
     }
 
     @Override
-    public void collectDrawables(final List<Drawable> pDrawables) {
+    public void collectDrawables(final List<Drawable> drawables) {
     }
 }

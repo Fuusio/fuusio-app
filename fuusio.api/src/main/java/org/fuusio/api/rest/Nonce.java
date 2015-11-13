@@ -15,16 +15,17 @@
  */
 package org.fuusio.api.rest;
 
+import org.fuusio.api.util.L;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
-
-import org.fuusio.api.util.L;
 
 public class Nonce {
 
     /**
      * Generates a nonce string using the given time stamp as a seed.
+     *
      * @param timeStamp A time stamp as a {@link String}.
      * @return A nonce {@link String}.
      */
@@ -58,6 +59,7 @@ public class Nonce {
 
     /**
      * Generates a nonce string using a time stamp as a seed.
+     *
      * @param timeStamp A time stamp.
      * @return A nonce {@link String}.
      */
@@ -70,6 +72,7 @@ public class Nonce {
     /**
      * Returns a string representation of a nonce. It should be noted that {@link String} value is
      * different for each invocation.
+     *
      * @return A {@link String}.
      */
     @Override

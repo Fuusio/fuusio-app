@@ -15,13 +15,13 @@
  */
 package org.fuusio.api.binding;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
         implements AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
@@ -49,14 +49,16 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
 
     /**
      * Set the items to {@link Adapter}.
+     *
      * @param items A {@link List} containing the items.
      */
     public final void setItems(final List<T_Item> items) {
-       mAdapter.setItems(items);
+        mAdapter.setItems(items);
     }
 
     /**
      * Sets the {@link Adapter}.
+     *
      * @param adapter An {@link Adapter}.
      */
     public final void setAdapter(final Adapter<?> adapter) {
@@ -70,13 +72,14 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
 
     /**
      * Gets the currently selected item.
+     *
      * @return The selected item. May be {@code null}.
      */
     public final T_Item getSelectedItem() {
         final int index = mView.getSelectedItemPosition();
 
         if (index >= 0) {
-            return (T_Item)mAdapter.getItem(index);
+            return (T_Item) mAdapter.getItem(index);
         }
         return null;
     }
@@ -103,6 +106,7 @@ public class AdapterViewBinding<T_Item> extends ViewBinding<AdapterView>
     /**
      * {@link Adapter} provides an abstract base class for implementing adapter for
      * {@link AdapterViewBinding}s bound to {@link AdapterView}s.
+     *
      * @param <T_Item> The type of the items.
      */
     public static abstract class Adapter<T_Item> extends BaseAdapter {

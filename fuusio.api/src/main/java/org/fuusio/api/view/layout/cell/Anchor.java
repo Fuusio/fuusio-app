@@ -73,7 +73,7 @@ public enum Anchor {
 
     /**
      * Constructs a new instance of {@code Anchor} with the given displayable label.
-     * 
+     *
      * @param pLabel A {@link String} for displayable label.
      */
     Anchor(final String pLabel) {
@@ -82,7 +82,7 @@ public enum Anchor {
 
     /**
      * Gets the displayable label for this {@code Anchor}.
-     * 
+     *
      * @return A {@link String} for displayable label.
      */
     public final String getLabel() {
@@ -91,7 +91,7 @@ public enum Anchor {
 
     /**
      * Returns a {@link String} representation of this {@code Anchor}.
-     * 
+     *
      * @return A {@link String}.
      */
     @Override

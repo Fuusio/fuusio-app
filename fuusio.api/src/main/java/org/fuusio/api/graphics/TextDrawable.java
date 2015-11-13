@@ -44,7 +44,7 @@ import android.graphics.drawable.Drawable;
 
 /**
  * {@link TextDrawable} extends {@link Drawable} to implements TODO
- * 
+ *
  * @author Marko Salmela
  */
 public class TextDrawable extends Drawable {
@@ -125,7 +125,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Tests whether the drawing of this (@link TextDrawable) is set to be antialized.
-     * 
+     *
      * @return {@code boolean} value.
      */
     public boolean isAntialized() {
@@ -135,7 +135,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the drawing of this (@link TextDrawable) to be antialized depending on the given
      * {@code boolean} value.
-     * 
+     *
      * @param antialized A {@code boolean} value.
      */
     public void setAntialized(final boolean antialized) {
@@ -144,7 +144,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Gets the {@link Paint} used for drawing the background of this {@link TextDrawable}.
-     * 
+     *
      * @return A {@link Paint}.
      */
     public Paint getBackgroundPaint() {
@@ -153,7 +153,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the {@link Paint} used for drawing the background of this {@link TextDrawable}.
-     * 
+     *
      * @param paint A {@link Paint}.
      */
     public void setBackgroundPaint(final Paint paint) {
@@ -165,7 +165,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the alpha value of the {@link Color} of the {@link Paint} used for drawing the
      * background of this {@link TextDrawable}.
-     * 
+     *
      * @param alpha The alpha value as an {@code int}.
      */
     public void setBackgroundAlpha(final int alpha) {
@@ -175,7 +175,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the {@link Color} of {@link Paint} used for drawing the background of this
      * {@link TextDrawable}.
-     * 
+     *
      * @param color A {@link Paint}.
      */
     public void setBackgroundColor(final int color) {
@@ -184,7 +184,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Tests whether the background of this {@link TextDrawable} is drawn.
-     * 
+     *
      * @return A {@code boolean} value.
      */
     public boolean isBackgroundDrawn() {
@@ -194,7 +194,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the background of this {@link TextDrawable} to be drawn depending on the given
      * {@code boolean} value.
-     * 
+     *
      * @param isDrawn A {@code boolean} value.
      */
     public void setBackgroundDrawn(final boolean isDrawn) {
@@ -203,7 +203,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Gets the {@link Paint} used for filling the displayed font glyphs.
-     * 
+     *
      * @return A {@link Paint}.
      */
     public Paint getFillPaint() {
@@ -212,7 +212,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the {@link Paint} used for filling the displayed font glyphs.
-     * 
+     *
      * @param paint A {@link Paint}.
      */
     public void setFillPaint(final Paint paint) {
@@ -224,7 +224,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the alpha value of the {@link Color} of the {@link Paint} used filling the displayed
      * font glyphs.
-     * 
+     *
      * @param alpha The alpha value as an {@code int}.
      */
     public void setFillAlpha(final int alpha) {
@@ -233,7 +233,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the {@link Color} of {@link Paint} used for filling the displayed font glyphs.
-     * 
+     *
      * @param color the color as an {@code int} value.
      */
     public void setFillColor(final int color) {
@@ -242,7 +242,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Gets the horizontal alignment.
-     * 
+     *
      * @return The alignment value as a {@link HorizontalAlignment}.
      */
     public HorizontalAlignment getHorizontalAlignment() {
@@ -251,7 +251,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the horizontal alignment.
-     * 
+     *
      * @param alignment The alignment value as a {@link HorizontalAlignment}.
      */
     public void setHorizontalAlignment(final HorizontalAlignment alignment) {
@@ -261,7 +261,7 @@ public class TextDrawable extends Drawable {
     /**
      * Gets the the intrinsic height of the underlying drawable object. Returns -1 if it has no
      * intrinsic height, such as with a solid color.
-     * 
+     *
      * @return The intrinsic height as an {@code int} value.
      */
     @Override
@@ -277,7 +277,7 @@ public class TextDrawable extends Drawable {
     /**
      * Gets the the intrinsic width of the underlying drawable object. Returns -1 if it has no
      * intrinsic width, such as with a solid color.
-     * 
+     *
      * @return The intrinsic width as an {@code int} value.
      */
     @Override
@@ -306,7 +306,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Gets the opacity value.
-     * 
+     *
      * @return The opacity value as an {@code int}.
      */
     @Override
@@ -316,7 +316,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the opacity value.
-     * 
+     *
      * @param opacity The opacity value as an {@code int}.
      */
     public void setOpacity(final int opacity) {
@@ -325,7 +325,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Gets the {@link Paint} used for drawing the stroke that outlines the displayed font glyphs.
-     * 
+     *
      * @return A {@link Paint}.
      */
     public Paint getStrokePaint() {
@@ -334,7 +334,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the {@link Paint} used for drawing the stroke that outlines the displayed font glyphs.
-     * 
+     *
      * @param paint A {@link Paint}.
      */
     public void setStrokePaint(final Paint paint) {
@@ -346,7 +346,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the cap parameter of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
-     * 
+     *
      * @param cap A {@link Paint.Cap} value.
      */
     public void setStrokeCap(final Paint.Cap cap) {
@@ -356,7 +356,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the alpha value of the {@link Color} of the {@link Paint} used for drawing the stroke
      * the displayed font glyphs.
-     * 
+     *
      * @param alpha The alpha value as an {@code int}.
      */
     public void setStrokeAlpha(final int alpha) {
@@ -366,7 +366,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the {@link Color} of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
-     * 
+     *
      * @param color the color as a {@link int} value.
      */
     public void setStrokeColor(final int color) {
@@ -380,7 +380,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the join parameter of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
-     * 
+     *
      * @param join A {@link Paint.Join} value.
      */
     public void setStrokeJoin(final Paint.Join join) {
@@ -390,7 +390,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the miter parameter of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
-     * 
+     *
      * @param miter A {@code float} value.
      */
     public void setStrokeMiter(final float miter) {
@@ -400,7 +400,7 @@ public class TextDrawable extends Drawable {
     /**
      * Sets the width parameter of {@link Paint} used for drawing the stroke that outlines the
      * displayed font glyphs.
-     * 
+     *
      * @param width A {@code float} value.
      */
     public void setStrokeWidth(final float width) {
@@ -409,7 +409,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Gets the {@link String} to be displayed.
-     * 
+     *
      * @return A {@link String}.
      */
     public String getText() {
@@ -418,7 +418,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the {@link String} to be displayed.
-     * 
+     *
      * @param text A {@link String}.
      */
     public void setText(final String text) {
@@ -427,7 +427,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Gets the text size.
-     * 
+     *
      * @return The size as a {@link float}.
      */
     public float getTextSize() {
@@ -436,7 +436,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the text size.
-     * 
+     *
      * @param size The size as a {@link float}.
      */
     public void setTextSize(final float size) {
@@ -446,7 +446,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Gets the used {@link Typeface}.
-     * 
+     *
      * @return A {@link Typeface}. May be {@link null} if not set.
      */
     public Typeface getTypeface() {
@@ -455,7 +455,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the used {@link Typeface}.
-     * 
+     *
      * @param typeface A {@link Typeface}. May be {@link null}.
      */
     public void setTypeface(final Typeface typeface) {
@@ -465,7 +465,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Gets the vertical alignment.
-     * 
+     *
      * @return The alignment value as a {@link VerticalAlignment}.
      */
     public VerticalAlignment getVerticalAlignment() {
@@ -474,7 +474,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Sets the vertical alignment.
-     * 
+     *
      * @param alignment The alignment value as a {@link VerticalAlignment}.
      */
     public void setVerticalAlignment(final VerticalAlignment alignment) {
@@ -484,7 +484,7 @@ public class TextDrawable extends Drawable {
     /**
      * Creates an appropriate instance of {@link Paint} to be used as a default background paint to
      * draw the background of a {@link TextDrawable}.
-     * 
+     *
      * @return The created {@link Paint} instance.
      */
     protected Paint createDefaultBackgroundPaint() {
@@ -497,7 +497,7 @@ public class TextDrawable extends Drawable {
     /**
      * Creates an appropriate instance of {@link Paint} to be used as a default fillPaint to fill
      * the interior of a {@link TextDrawable}.
-     * 
+     *
      * @return The created {@link Paint} instance.
      */
     protected Paint createDefaultFillPaint() {
@@ -510,7 +510,7 @@ public class TextDrawable extends Drawable {
     /**
      * Creates an appropriate instance of {@link Paint} to be used as a default fillPaint of a
      * stroke drawn around the outline of a {@link TextDrawable}.
-     * 
+     *
      * @return The created {@link Paint} instance.
      */
     protected Paint createDefaultStrokePaint() {
@@ -548,7 +548,7 @@ public class TextDrawable extends Drawable {
 
     /**
      * Draws this {@link TextDrawable} on the given {@link Canvas}.
-     * 
+     *
      * @param canvas A {@link Canvas}.
      */
     @Override

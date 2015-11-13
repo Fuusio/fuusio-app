@@ -34,23 +34,23 @@ public class GsonRequest<T> extends AbstractRequest<T> {
     private String mRequestBody;
 
     public GsonRequest(final String url, final Class responseClass,
-                       final Response.Listener listener, final Response.ErrorListener errorListener){
+                       final Response.Listener listener, final Response.ErrorListener errorListener) {
         this(Method.GET, url, null, responseClass, listener, errorListener);
     }
 
     public GsonRequest(final int pMethod, final String url, final Class responseClass,
-                       final Response.Listener listener, final Response.ErrorListener errorListener){
+                       final Response.Listener listener, final Response.ErrorListener errorListener) {
         this(pMethod, url, null, responseClass, listener, errorListener);
     }
 
     public GsonRequest(final int pMethod, final String url, final Object body, final Class responseClass,
-                             final Response.Listener listener, final Response.ErrorListener errorListener){
+                       final Response.Listener listener, final Response.ErrorListener errorListener) {
         super(pMethod, url, listener, errorListener);
 
         mGson = createGson();
         mResponseClass = responseClass;
 
-        if (body!=null){
+        if (body != null) {
             mRequestBody = mGson.toJson(body);
         } else {
             mRequestBody = null;
@@ -62,10 +62,10 @@ public class GsonRequest<T> extends AbstractRequest<T> {
     }
 
     @Override
-    public byte[] getBody(){
+    public byte[] getBody() {
         try {
-            return mRequestBody == null? null : mRequestBody.getBytes(PROTOCOL_CHARSET);
-        } catch (UnsupportedEncodingException e){
+            return mRequestBody == null ? null : mRequestBody.getBytes(PROTOCOL_CHARSET);
+        } catch (UnsupportedEncodingException e) {
             L.wtf(this, "getBody", e);
             VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, PROTOCOL_CHARSET);
             return null;
@@ -78,11 +78,11 @@ public class GsonRequest<T> extends AbstractRequest<T> {
     }
 
     @Override
-    protected Response parseNetworkResponse(final NetworkResponse response){
-        try{
+    protected Response parseNetworkResponse(final NetworkResponse response) {
+        try {
             final String jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
             return Response.success(mGson.fromJson(jsonString, mResponseClass), HttpHeaderParser.parseCacheHeaders(response));
-        } catch (final UnsupportedEncodingException pException){
+        } catch (final UnsupportedEncodingException pException) {
             return Response.error(new ParseError(pException));
         }
     }

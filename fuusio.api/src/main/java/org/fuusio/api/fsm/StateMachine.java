@@ -50,14 +50,14 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     }
 
     /**
-     *  {@link HashMap} containing the substates of a state if this instance of {@link StateMachine}
-     *  represents a state or the top-level states if this instance of {@link StateMachine}
-     *  represents a state machice.
+     * {@link HashMap} containing the substates of a state if this instance of {@link StateMachine}
+     * represents a state or the top-level states if this instance of {@link StateMachine}
+     * represents a state machice.
      */
     protected final HashSet<T_State> mSubStates;
 
     /**
-     *The current state,
+     * The current state,
      */
     protected T_State mCurrentState;
 
@@ -108,8 +108,9 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * This constructor is to be used by a concrete implementation of {@link StateMachine}.
+     *
      * @param initialStateClass The {@link Class} of a state that is the initial state to be entered
-     *                           at top-level when the represented state machine is started.
+     *                          at top-level when the represented state machine is started.
      */
     @SuppressWarnings("unchecked")
     protected StateMachine(final Class<? extends T_State> initialStateClass) {
@@ -118,7 +119,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
         mInitialStateClass = initialStateClass;
 
         // We initialise these two field only in this constructor
-        mStateMachine = (T_State)this;
+        mStateMachine = (T_State) this;
         mStateCache = new HashMap<>();
 
         mStateCache.put(getClass(), (T_State) this);
@@ -127,10 +128,11 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * This constructor is to be used by all actual state classes which are extended from the concrete
      * implementation of this {@link StateMachine}. The class providing a concrete implementation
-     * @param superStateClass The {@link Class} of a state that is the super state of the state using
-     *                         this constructor.
+     *
+     * @param superStateClass   The {@link Class} of a state that is the super state of the state using
+     *                          this constructor.
      * @param initialStateClass The {@link Class} of a state that is the initial state to be entered
-     *                           at top-level when the represented state machine is started.
+     *                          at top-level when the represented state machine is started.
      */
     protected StateMachine(final Class<? extends T_State> superStateClass, final Class<? extends T_State> initialStateClass) {
         this();
@@ -141,6 +143,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Gets the controllable object that is controlled by this {@link StateMachine}.
+     *
      * @return A controllable object.
      */
     @SuppressWarnings("unchecked")
@@ -154,7 +157,8 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Set the controllable object that is controlled by this {@link StateMachine}.
-     * @param controllable  A controllable object.
+     *
+     * @param controllable A controllable object.
      */
     public void setControllable(final T_Controllable controllable) {
         mControllable = controllable;
@@ -162,24 +166,27 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Gets the super state of this state.
+     *
      * @param <T> A type parameter for the state type.
      * @return The state object.
      */
     protected final <T extends T_State> T getSuperState() {
-        return (T)mSuperState;
+        return (T) mSuperState;
     }
 
     /**
      * Gets the current state of this {@link StateMachine} or state.
+     *
      * @param <T> A type parameter for the state type.
      * @return A state object.
      */
     public final <T extends T_State> T getCurrentState() {
-        return (T)mCurrentState;
+        return (T) mCurrentState;
     }
 
     /**
      * Sets the current state of this {@link StateMachine} or state.
+     *
      * @param state A state object representing the new current state.
      */
     protected final void setCurrentState(final T_State state) {
@@ -188,6 +195,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Gets the reference to a {@link StateMachine}.
+     *
      * @return A {@link StateMachine}.
      */
     protected final T_State getStateMachine() {
@@ -197,6 +205,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Tests if this instance of {@link StateMachine} represents a state machine and not a state
      * that belongs to it.
+     *
      * @return A {@code boolean} value.
      */
     protected final boolean isStateMachine() {
@@ -205,6 +214,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Gets an instance of the specified state.
+     *
      * @param stateClass A state object {@link Class}.
      * @return A state object. May not return {@code null}.
      */
@@ -229,12 +239,13 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
             }
             return state;
         } else {
-            return (T_State)getStateMachine().getState(stateClass);
+            return (T_State) getStateMachine().getState(stateClass);
         }
     }
 
     /**
      * Causes transition from the current state to the specified state.
+     *
      * @param stateClass A {@link Class} specifying the target state for the state transition.
      * @return The current state.
      */
@@ -244,9 +255,10 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Causes transition from the current state to the specified state optionally via an entry point
+     *
      * @param stateClass A {@link Class} specifying the target state for the state transition.
      * @param entryPoint A {@code int} value specifying if the optional entry point. Value zero
-     *                    represents a non entry point.
+     *                   represents a non entry point.
      * @return The current state.
      */
     protected final T_State toState(final Class<? extends T_State> stateClass, final int entryPoint) {
@@ -269,7 +281,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
                 currentState.exit(newState);
             }
 
-            return (T_State)newState.enter(entryPoint);
+            return (T_State) newState.enter(entryPoint);
         } else {
             return (T_State) getStateMachine().toState(stateClass, entryPoint);
         }
@@ -278,9 +290,10 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Causes transition from the current state to the specified history state via a deep or
      * shallow history point.
-     * @param stateClass A {@link Class} specifying the target state for the state transition.
+     *
+     * @param stateClass  A {@link Class} specifying the target state for the state transition.
      * @param deepHistory A {@code boolean} value specifying if the state is entered via a deep
-     *                     history point instead of shallow history point.
+     *                    history point instead of shallow history point.
      * @return The current state.
      */
     protected final T_State toHistoryState(final Class<? extends T_State> stateClass, final boolean deepHistory) {
@@ -318,8 +331,9 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Enters the represented by this instance of {@link StateMachine}. If the state is entered via
      * an entry point the index of the entry point has to be given and it has to be greater than zero.
+     *
      * @param entryPoint The index of the entry point to be entered. Value zero represents a non
-     *                    entry point.
+     *                   entry point.
      * @return The current state.
      */
     protected final T_State enter(final int entryPoint) {
@@ -339,6 +353,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Enters the specified entry point. If a state implementation has one or more entry points, it
      * has to override this method.
+     *
      * @param entryPoint The index of the entry point to be entered.
      * @return The current state after entering the deep history point.
      */
@@ -348,12 +363,13 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Enters a deep history point.
+     *
      * @return The current state after entering the deep history point.
      */
     @SuppressWarnings("unchecked")
     protected final T_State enterDeepHistory() {
         if (mCurrentState != null) {
-            return (T_State)mCurrentState.enterDeepHistory();
+            return (T_State) mCurrentState.enterDeepHistory();
         } else {
             if (mInitialStateClass != null) {
                 return toState(mInitialStateClass);
@@ -365,6 +381,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Enters a shallow history point.
+     *
      * @return The current state after entering the shallow history point.
      */
     @SuppressWarnings("unchecked")
@@ -383,6 +400,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Invoked to exit the state  represented by this instance of {@link StateMachine}. The state
      * machine will enter the given new target state.
+     *
      * @param newState A new target state.
      */
     protected final void exit(final T_State newState) {
@@ -418,6 +436,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
 
     /**
      * Invoked when the specified error has occurred while in the given state.
+     *
      * @param state A state object.
      * @param error An {@link Error} value specifying the occurred error.
      */
@@ -428,11 +447,12 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     }
 
     /**
-     /**
+     * /**
      * Invoked when the specified error has occurred while in the named event has been received in
      * the given state.
-     * @param state A state object.
-     * @param error An {@link Error} value specifying the occurred error.
+     *
+     * @param state     A state object.
+     * @param error     An {@link Error} value specifying the occurred error.
      * @param eventName The name of an event.
      */
     protected final void onError(final T_State state, final Error error, final String eventName) {
@@ -539,6 +559,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Tests if the given state object is a direct or an indirect super state of the state
      * represented by this instance of {@link StateMachine}.
+     *
      * @param state A state object to be tested.
      * @return A {@code boolean} value.
      */
@@ -562,6 +583,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * Tests if the state object represented by this instance of {@link StateMachine} is a direct or
      * an indirect super state of the given state.
+     *
      * @param state A state object to be tested.
      * @return A {@code boolean} value.
      */
@@ -579,6 +601,7 @@ public abstract class StateMachine<T_State extends StateMachine, T_Controllable>
     /**
      * A {@link String} representation of this {@link StateMachine} is simply the name of the class
      * implementing abstract class {@link StateMachine}.
+     *
      * @return A {@link String}
      */
     @Override

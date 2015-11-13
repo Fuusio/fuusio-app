@@ -42,7 +42,7 @@ import android.graphics.drawable.Drawable;
 /**
  * {@code StateImagePainter} extends {@code ImagePainter} to implement a {@code PainterNode} thatcan
  * be used to render state depended mBitmaps.
- * 
+ *
  * @author Marko Salmela
  */
 
@@ -69,7 +69,7 @@ public class StateBitmapDrawable extends Drawable {
 
     /**
      * Constructs a new instance of {@code StateImagePainter} with the give state bitmaps.
-     * 
+     *
      * @param stateImages The state mBitmaps as an array of {@link Bitmap}s.
      */
 
@@ -79,7 +79,7 @@ public class StateBitmapDrawable extends Drawable {
 
     /**
      * Gets the mBitmap of this {@code ImagePainter}.
-     * 
+     *
      * @return The mBitmap as an {@code Bitmap}.
      */
 
@@ -95,7 +95,7 @@ public class StateBitmapDrawable extends Drawable {
 
     /**
      * Sets the bitmap of this {@code ImagePainter}.
-     * 
+     *
      * @param bitmap The bitmap as an {@code Bitmap}.
      */
 
@@ -116,7 +116,7 @@ public class StateBitmapDrawable extends Drawable {
 
     /**
      * Gets the current state.
-     * 
+     *
      * @return The state as an {@code int}.
      */
 
@@ -126,7 +126,7 @@ public class StateBitmapDrawable extends Drawable {
 
     /**
      * Sets the current state.
-     * 
+     *
      * @param state The state as an {@code int}.
      */
 
@@ -139,7 +139,7 @@ public class StateBitmapDrawable extends Drawable {
 
     /**
      * Gets the state mBitmaps of this {@code StateImagePainter}.
-     * 
+     *
      * @return The state mBitmaps as an array of {@code Images}.
      */
 
@@ -149,7 +149,7 @@ public class StateBitmapDrawable extends Drawable {
 
     /**
      * Sets the state mBitmaps of this {@code StateImagePainter}.
-     * 
+     *
      * @param stateBitmaps The state mBitmaps as an array of {@code Images}.
      */
     public void setStateBitmaps(final Bitmap[] stateBitmaps) {

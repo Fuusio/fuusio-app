@@ -15,11 +15,11 @@
  */
 package org.fuusio.api.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.content.res.Resources;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MessageContext {
 
@@ -62,13 +62,13 @@ public class MessageContext {
         mMessageId = stringResId;
     }
 
-    public void setMessage(final int stringResId, final  Object... args) {
+    public void setMessage(final int stringResId, final Object... args) {
         mMessageId = stringResId;
         setMessageArgs(args);
     }
 
 
-    public void setMessageArgs(final  Object... args) {
+    public void setMessageArgs(final Object... args) {
         mArgs.clear();
 
         for (final Object arg : args) {

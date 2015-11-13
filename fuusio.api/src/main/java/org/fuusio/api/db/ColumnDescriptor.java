@@ -16,16 +16,16 @@
 package org.fuusio.api.db;
 
 public interface ColumnDescriptor {
-	
-	public String getLabel();
 
-	public String getName();
+    public String getLabel();
 
-	public int getIndex() ;
-	
-	public String getSqlType();
-	
-	public ColumnDataType getType();
+    public String getName();
 
-	public boolean isKey();
+    public int getIndex();
+
+    public String getSqlType();
+
+    public ColumnDataType getType();
+
+    public boolean isKey();
 }

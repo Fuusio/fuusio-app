@@ -38,7 +38,7 @@ package org.fuusio.api.graphics.layout;
 /**
  * {@code Anchor} defines an enumerated type for representing for anchoring directions (up, left,
  * down, and right) for {@link LayoutCell}s used in {@link CellLayout}.
- * 
+ *
  * @author Marko Salmela
  */
 public enum Anchor {
@@ -95,7 +95,7 @@ public enum Anchor {
 
     /**
      * Constructs a new instance of {@code Anchor} with the given displayable label.
-     * 
+     *
      * @param label A {@link String} for displayable label.
      */
     Anchor(final String label) {
@@ -104,7 +104,7 @@ public enum Anchor {
 
     /**
      * Gets the displayable label for this {@code Anchor}.
-     * 
+     *
      * @return A {@link String} for displayable label.
      */
     public final String getLabel() {
@@ -113,7 +113,7 @@ public enum Anchor {
 
     /**
      * Returns a {@link String} representation of this {@code Anchor}.
-     * 
+     *
      * @return A {@link String}.
      */
     @Override

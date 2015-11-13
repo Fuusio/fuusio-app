@@ -28,7 +28,7 @@ public class IntentAction extends Action {
     }
 
     public IntentAction(final int iconResId, final int textResId,
-            final Class<? extends Activity> activityClass) {
+                        final Class<? extends Activity> activityClass) {
         super(iconResId, textResId);
         setActivityClass(activityClass);
     }

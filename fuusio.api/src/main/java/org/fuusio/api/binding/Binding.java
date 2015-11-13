@@ -28,6 +28,6 @@ public class Binding extends TextViewBinding {
 
     @SuppressWarnings("unchecked")
     public Binding(final ViewFragment fragment, final int viewId) {
-        super((TextView)fragment.getView(viewId));
+        super((TextView) fragment.getView(viewId));
     }
 }

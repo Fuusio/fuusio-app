@@ -39,7 +39,7 @@ import android.graphics.Paint;
 /**
  * {@code HorizontalAlignment} defines a new enum type for representing horizontal alignment values,
  * for instance, for positioning text items.
- * 
+ *
  * @author Marko Salmela
  */
 public enum HorizontalAlignment {
@@ -61,8 +61,8 @@ public enum HorizontalAlignment {
     /**
      * Constructs a new instance of {@code HorizontalAlignment} with the given displayable label and
      * {@link Paint.Align} value.
-     * 
-     * @param label A {@link String} for displayable label.
+     *
+     * @param label      A {@link String} for displayable label.
      * @param paintAlign The {@link Paint.Align} value.
      */
 
@@ -73,7 +73,7 @@ public enum HorizontalAlignment {
 
     /**
      * Gets the displayable label of this {@code HorizontalAlignment} value.
-     * 
+     *
      * @return The displayable label as a {@link String}.
      */
     public final String getLabel() {
@@ -82,7 +82,7 @@ public enum HorizontalAlignment {
 
     /**
      * Gets the {@link Paint.Align} value.
-     * 
+     *
      * @return A {@link Paint.Align} value.
      */
     public final Paint.Align getPaintAlign() {

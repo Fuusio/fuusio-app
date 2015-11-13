@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:fitsSystemWindows="true">
 
-    <include layout="@layout/include_fragment_container"/>
+    <include layout="@layout/include_fragment_container" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
@@ -14,7 +14,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navigation_drawer_header"
-        app:menu="@menu/menu_navigation_drawer"/>
+        app:menu="@menu/menu_navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
 

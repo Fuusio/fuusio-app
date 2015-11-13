@@ -16,8 +16,8 @@
 package org.fuusio.api.model;
 
 public enum PropertyModifier {
-	DESCRIPTOR,
-	MODIFIABLE,
-	SYNTHETIC,
-	TRANSIENT;
+    DESCRIPTOR,
+    MODIFIABLE,
+    SYNTHETIC,
+    TRANSIENT;
 }

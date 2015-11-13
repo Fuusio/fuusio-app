@@ -15,63 +15,62 @@
  */
 package org.fuusio.api.db;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import org.fuusio.api.model.ModelObject;
 import org.fuusio.api.model.Property;
 
+import java.io.Serializable;
+import java.util.Date;
+
 public enum ColumnDataType {
-	
-	NULL("NULL"),
-	BOOLEAN("INTEGER"),
-	DATE("TEXT"),
-	DOUBLE("REAL"),
-	FLOAT("REAL"),
-	INTEGER("INTEGER"),
-	LONG("INTEGER"),
-	REAL("REAL"),
-	TEXT("TEXT"),
-	MODEL_OBJECT("TEXT"),
-	SERIALIZABLE("BLOB"),
-	BLOB("BLOB");
-	
-	private final String mSqlType;
-	
-	private ColumnDataType(final String sqlType) {
-		mSqlType =  sqlType;
-	}
 
-	public final String getSqlType() {
-		return mSqlType;
-	}
+    NULL("NULL"),
+    BOOLEAN("INTEGER"),
+    DATE("TEXT"),
+    DOUBLE("REAL"),
+    FLOAT("REAL"),
+    INTEGER("INTEGER"),
+    LONG("INTEGER"),
+    REAL("REAL"),
+    TEXT("TEXT"),
+    MODEL_OBJECT("TEXT"),
+    SERIALIZABLE("BLOB"),
+    BLOB("BLOB");
 
-	public static ColumnDataType getForProperty(final Property property) {
-		final Class<?> type = property.getType();
-		
-		if (type.equals(Boolean.class) || type.equals(Boolean.TYPE)) {
-			return BOOLEAN;
-		} else if (type.equals(Date.class)) {
-			return DATE;
-		} else if (type.equals(Double.class) || type.equals(Double.TYPE)) {
-			return DOUBLE;
-		} else if (type.equals(Float.class) || type.equals(Float.TYPE)) {
-			return FLOAT;
-		} else if (type.equals(Integer.class) || type.equals(Integer.TYPE)) {
-			return INTEGER;
-		} else if (type.equals(Long.class) || type.equals(Long.TYPE)) {
-			return LONG;
-		}else if (type.equals(String.class)) {
-			return TEXT;
-		} else if (ModelObject.class.isAssignableFrom(type)) {
-			return MODEL_OBJECT;
-		} else if (Serializable.class.isAssignableFrom(type)) {
-			return SERIALIZABLE;
-		}
-		else {
-			throw new IllegalArgumentException();
-		}
-	}	
-	    
+    private final String mSqlType;
+
+    private ColumnDataType(final String sqlType) {
+        mSqlType = sqlType;
+    }
+
+    public final String getSqlType() {
+        return mSqlType;
+    }
+
+    public static ColumnDataType getForProperty(final Property property) {
+        final Class<?> type = property.getType();
+
+        if (type.equals(Boolean.class) || type.equals(Boolean.TYPE)) {
+            return BOOLEAN;
+        } else if (type.equals(Date.class)) {
+            return DATE;
+        } else if (type.equals(Double.class) || type.equals(Double.TYPE)) {
+            return DOUBLE;
+        } else if (type.equals(Float.class) || type.equals(Float.TYPE)) {
+            return FLOAT;
+        } else if (type.equals(Integer.class) || type.equals(Integer.TYPE)) {
+            return INTEGER;
+        } else if (type.equals(Long.class) || type.equals(Long.TYPE)) {
+            return LONG;
+        } else if (type.equals(String.class)) {
+            return TEXT;
+        } else if (ModelObject.class.isAssignableFrom(type)) {
+            return MODEL_OBJECT;
+        } else if (Serializable.class.isAssignableFrom(type)) {
+            return SERIALIZABLE;
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }	
 

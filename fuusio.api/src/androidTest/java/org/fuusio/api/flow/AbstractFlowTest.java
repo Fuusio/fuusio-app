@@ -80,14 +80,14 @@ public class AbstractFlowTest {
         mTestView = Mockito.mock(TestView.class);
 
         final TestPresenter presenter = D.get(TestPresenter.class, mTestView);
-        
+
         when(mTestView.getPresenter()).thenReturn(presenter);
         mTestFlow.activateView(mTestView);
         assertNotNull(D.get(TestView.class));
 
         mTestFlow.stop();
 
-        verify(mFragmentManager, atLeastOnce()).removeOnBackStackChangedListener((FragmentManager.OnBackStackChangedListener)any());
+        verify(mFragmentManager, atLeastOnce()).removeOnBackStackChangedListener((FragmentManager.OnBackStackChangedListener) any());
     }
 
     @After

@@ -15,11 +15,12 @@
  */
 package org.fuusio.api.db;
 
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.model.ModelObject;
@@ -28,87 +29,86 @@ import org.fuusio.api.model.ModelObjectMetaInfo;
 import org.fuusio.api.model.Property;
 import org.fuusio.api.util.DateToolkit;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import android.database.sqlite.SQLiteOpenHelper;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public abstract class DatabaseHelper extends SQLiteOpenHelper {
 
-	private final HashMap<Class<? extends ModelObject>, ModelObjectTableDescriptor> mObjectTableDescriptors;
+    private final HashMap<Class<? extends ModelObject>, ModelObjectTableDescriptor> mObjectTableDescriptors;
     private final ModelObjectManager mModelManager = D.get(ModelObjectManager.class);
 
-	public DatabaseHelper(final Context context, final String name, final CursorFactory factory,
-			final int version) {
-		super(context, name, factory, version);
-		mObjectTableDescriptors = new HashMap<Class<? extends ModelObject>, ModelObjectTableDescriptor>();
-	}
+    public DatabaseHelper(final Context context, final String name, final CursorFactory factory,
+                          final int version) {
+        super(context, name, factory, version);
+        mObjectTableDescriptors = new HashMap<Class<? extends ModelObject>, ModelObjectTableDescriptor>();
+    }
 
-	@Override
-	public void onCreate(final SQLiteDatabase db) {
-		createTables(db);
-	}
-	
-	public ModelObjectTableDescriptor getTableDescriptorFor(final Class<? extends ModelObject> objectClass) {
-		ModelObjectTableDescriptor descriptor = mObjectTableDescriptors.get(objectClass);
-		
-		if (descriptor == null) {
-			final ModelObjectMetaInfo metaInfo = mModelManager.getMetaInfo(objectClass);
-			
-			descriptor = new ModelObjectTableDescriptor(metaInfo);
-			mObjectTableDescriptors.put(objectClass, descriptor);
-		}
-		
-		return descriptor;
-	}
+    @Override
+    public void onCreate(final SQLiteDatabase db) {
+        createTables(db);
+    }
 
-	protected abstract TablesDescriptor getTablesDescriptor();
-	
-	protected TableDescriptor[] getTableDescriptors() {
-		final TablesDescriptor tablesDecriptor = getTablesDescriptor();
-		
-		if (tablesDecriptor != null) {
-			return tablesDecriptor.getTableDescriptors();
-		}
-		return null;
-	}
-	
-	protected void createTables(final SQLiteDatabase db) {
+    public ModelObjectTableDescriptor getTableDescriptorFor(final Class<? extends ModelObject> objectClass) {
+        ModelObjectTableDescriptor descriptor = mObjectTableDescriptors.get(objectClass);
 
-		final TableDescriptor[] tableDescriptors = getTableDescriptors();
-		
-		if (tableDescriptors != null) {
-			for (final TableDescriptor descriptor : tableDescriptors) {
-				final SqlStatement statement = SqlStatement.create(descriptor);
-				db.execSQL(statement.execute());
-			}
-		} else {
-	        final String[] createStatements = getTableCreateStatements();
-	
-	        for (int i = 0; i < createStatements.length; i++) {
-	            db.execSQL(createStatements[i]);
-	        }
-		}
+        if (descriptor == null) {
+            final ModelObjectMetaInfo metaInfo = mModelManager.getMetaInfo(objectClass);
+
+            descriptor = new ModelObjectTableDescriptor(metaInfo);
+            mObjectTableDescriptors.put(objectClass, descriptor);
+        }
+
+        return descriptor;
+    }
+
+    protected abstract TablesDescriptor getTablesDescriptor();
+
+    protected TableDescriptor[] getTableDescriptors() {
+        final TablesDescriptor tablesDecriptor = getTablesDescriptor();
+
+        if (tablesDecriptor != null) {
+            return tablesDecriptor.getTableDescriptors();
+        }
+        return null;
+    }
+
+    protected void createTables(final SQLiteDatabase db) {
+
+        final TableDescriptor[] tableDescriptors = getTableDescriptors();
+
+        if (tableDescriptors != null) {
+            for (final TableDescriptor descriptor : tableDescriptors) {
+                final SqlStatement statement = SqlStatement.create(descriptor);
+                db.execSQL(statement.execute());
+            }
+        } else {
+            final String[] createStatements = getTableCreateStatements();
+
+            for (int i = 0; i < createStatements.length; i++) {
+                db.execSQL(createStatements[i]);
+            }
+        }
     }
 
     @Override
     public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
 
-		final TableDescriptor[] tableDescriptors = getTableDescriptors();
-		
-		if (tableDescriptors != null) {
-			for (final TableDescriptor descriptor : tableDescriptors) {
-				 db.execSQL(SqlStatement.DROP_TABLE_IF_EXISTS + descriptor.getName());
-			}
-		} else {    	
-	        final String[] tableNames = getTableNames();
-	
-	        for (int i = 0; i < tableNames.length; i++) {
-	            db.execSQL(SqlStatement.DROP_TABLE_IF_EXISTS + tableNames[i]);
-	        }
-		}
+        final TableDescriptor[] tableDescriptors = getTableDescriptors();
+
+        if (tableDescriptors != null) {
+            for (final TableDescriptor descriptor : tableDescriptors) {
+                db.execSQL(SqlStatement.DROP_TABLE_IF_EXISTS + descriptor.getName());
+            }
+        } else {
+            final String[] tableNames = getTableNames();
+
+            for (int i = 0; i < tableNames.length; i++) {
+                db.execSQL(SqlStatement.DROP_TABLE_IF_EXISTS + tableNames[i]);
+            }
+        }
 
         onCreate(db);
     }
@@ -128,126 +128,126 @@ public abstract class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean isInDatabase(final ModelObject object) {
-    	
-    	final long objectId = object.getId();  
-    	boolean isInDatabase = false;
-    	
-    	if (objectId > 0) {
-	        final String tableName = getTableNameFor(object);
-	        final SQLiteDatabase db = getReadableDatabase();
-	        final String keyId = getKeyIdFor(object.getClass());
-	    	final String selectQuery = SqlStatement.SELECT_FROM + tableName + SqlStatement.WHERE + keyId + " = " + objectId;
-	    	final Cursor cursor = db.rawQuery(selectQuery, null);
-	    	isInDatabase = (cursor != null);
-	    	db.close();
-    	}
-    	
+
+        final long objectId = object.getId();
+        boolean isInDatabase = false;
+
+        if (objectId > 0) {
+            final String tableName = getTableNameFor(object);
+            final SQLiteDatabase db = getReadableDatabase();
+            final String keyId = getKeyIdFor(object.getClass());
+            final String selectQuery = SqlStatement.SELECT_FROM + tableName + SqlStatement.WHERE + keyId + " = " + objectId;
+            final Cursor cursor = db.rawQuery(selectQuery, null);
+            isInDatabase = (cursor != null);
+            db.close();
+        }
+
         return isInDatabase;
     }
-    
+
     public long create(final ModelObject object) {
 
         final ContentValues values = new ContentValues();
-        
+
         if (useColumnMapping()) {
-        	getContentValues(object, values);
+            getContentValues(object, values);
         } else {
-        	object.getContentValues(values);
+            object.getContentValues(values);
         }
-        
+
         final String tableName = getTableNameFor(object);
         final SQLiteDatabase db = getWritableDatabase();
-    	final long id = db.insert(tableName, null, values);
-    	object.setId(id);
-    	db.close();
+        final long id = db.insert(tableName, null, values);
+        object.setId(id);
+        db.close();
         return id;
     }
 
     private void getContentValues(final ModelObject object, final ContentValues values) {
-        
-    	final Class<? extends ModelObject> objectClass = object.getClass();
+
+        final Class<? extends ModelObject> objectClass = object.getClass();
         final ModelObjectTableDescriptor tableDescriptor = getTableDescriptorFor(objectClass);
-        
+
         for (final Property property : mModelManager.getProperties(object)) {
             if (!property.isTransientFor(objectClass)) {
                 final Object value = property.get(object);
                 final int columnIndex = property.getColumnIndex();
                 final ColumnDescriptor columnDescriptor = tableDescriptor.getColumnDescriptor(columnIndex);
-                
+
                 putContentValue(values, value, columnDescriptor);
             }
         }
     }
 
-	private void putContentValue(final ContentValues values, final Object contentValue, ColumnDescriptor pColumnDescriptor) {
+    private void putContentValue(final ContentValues values, final Object contentValue, ColumnDescriptor pColumnDescriptor) {
 
-		final ColumnDataType datatype = pColumnDescriptor.getType();
-		final String key = pColumnDescriptor.getName();
-	
-		switch(datatype) {
-			case BOOLEAN: {
-				final Boolean value = Boolean.class.cast(contentValue);
-				values.put(key, value);
-				break;
-			}
-			case DATE: {
-				final Date value = Date.class.cast(contentValue);
-				values.put(key, DateToolkit.format(value));
-				break;
-			}
-			case DOUBLE: {
-				final Double value = Double.class.cast(contentValue);
-				values.put(key, value);
-				break;
-			}
-			case FLOAT: {
-				final Float value = Float.class.cast(contentValue);
-				values.put(key, value);
-				break;
-			}
-			case INTEGER: {
-				final Integer value = Integer.class.cast(contentValue);
-				values.put(key, value);
-				break;
-			}
-			case LONG: {
-				final Long value = Long.class.cast(contentValue);
-				values.put(key, value);
-				break;
-			}
-			case REAL: {
-				final Double value = Double.class.cast(contentValue);
-				values.put(key, value);
-				break;
-			}
-			case TEXT: {
-				values.put(key, (contentValue != null) ? contentValue.toString() : null);
-				break;
-			}
-			case MODEL_OBJECT: {
-				final ModelObject value = ModelObject.class.cast(contentValue);
-				final String tableName = getTableNameFor(value);
-				values.put(key, (value != null) ? tableName + "[" + value.getId() + "]" : null);
-				break;
-			}
-			case SERIALIZABLE:
-			case BLOB: {
-				final Serializable value = Serializable.class.cast(contentValue);
-				values.put(key, Database.toBlob(value));
-				break;
-			}
-			default: {
-				throw new IllegalStateException();
-			}
-		}
-	}
+        final ColumnDataType datatype = pColumnDescriptor.getType();
+        final String key = pColumnDescriptor.getName();
 
-	protected boolean useColumnMapping() {
-		return true;
-	}
+        switch (datatype) {
+            case BOOLEAN: {
+                final Boolean value = Boolean.class.cast(contentValue);
+                values.put(key, value);
+                break;
+            }
+            case DATE: {
+                final Date value = Date.class.cast(contentValue);
+                values.put(key, DateToolkit.format(value));
+                break;
+            }
+            case DOUBLE: {
+                final Double value = Double.class.cast(contentValue);
+                values.put(key, value);
+                break;
+            }
+            case FLOAT: {
+                final Float value = Float.class.cast(contentValue);
+                values.put(key, value);
+                break;
+            }
+            case INTEGER: {
+                final Integer value = Integer.class.cast(contentValue);
+                values.put(key, value);
+                break;
+            }
+            case LONG: {
+                final Long value = Long.class.cast(contentValue);
+                values.put(key, value);
+                break;
+            }
+            case REAL: {
+                final Double value = Double.class.cast(contentValue);
+                values.put(key, value);
+                break;
+            }
+            case TEXT: {
+                values.put(key, (contentValue != null) ? contentValue.toString() : null);
+                break;
+            }
+            case MODEL_OBJECT: {
+                final ModelObject value = ModelObject.class.cast(contentValue);
+                final String tableName = getTableNameFor(value);
+                values.put(key, (value != null) ? tableName + "[" + value.getId() + "]" : null);
+                break;
+            }
+            case SERIALIZABLE:
+            case BLOB: {
+                final Serializable value = Serializable.class.cast(contentValue);
+                values.put(key, Database.toBlob(value));
+                break;
+            }
+            default: {
+                throw new IllegalStateException();
+            }
+        }
+    }
 
-	@SuppressWarnings("unchecked")
-    public <T extends ModelObject> T getModelObject( final Class<? extends ModelObject> objectClass, final long objectId) {
+    protected boolean useColumnMapping() {
+        return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T extends ModelObject> T getModelObject(final Class<? extends ModelObject> objectClass, final long objectId) {
 
         final String tableName = getTableNameFor(objectClass);
         final String keyId = getKeyIdFor(objectClass);
@@ -274,7 +274,7 @@ public abstract class DatabaseHelper extends SQLiteOpenHelper {
         setProperties(object, cursor);
 
         db.close();
-        
+
         return (T) object;
     }
 
@@ -311,10 +311,10 @@ public abstract class DatabaseHelper extends SQLiteOpenHelper {
         final ContentValues values = new ContentValues();
 
         if (useColumnMapping()) {
-        	getContentValues(object, values);
+            getContentValues(object, values);
         } else {
-        	object.getContentValues(values);
-        }        
+            object.getContentValues(values);
+        }
 
         final Class<? extends ModelObject> objectClass = object.getClass();
         final String tableName = getTableNameFor(objectClass);
@@ -326,7 +326,7 @@ public abstract class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void deleteModelObject(final ModelObject object) {
-    	
+
         final Class<? extends ModelObject> objectClass = object.getClass();
         final String tableName = getTableNameFor(objectClass);
         final String keyId = getKeyIdFor(objectClass);

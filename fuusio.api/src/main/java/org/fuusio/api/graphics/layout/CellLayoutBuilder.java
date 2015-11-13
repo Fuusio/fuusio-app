@@ -1,8 +1,7 @@
 /**
  * Fuusio.org
- * 
+ * <p/>
  * Copyright (C) Marko Salmela 2013. All rights reserved.
- * 
  */
 
 package org.fuusio.api.graphics.layout;
@@ -11,15 +10,15 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 /**
- * 
+ *
  */
 public class CellLayoutBuilder {
 
     private final CellLayout mLayout;
     private ContainerCell mCurrentContainer;
 
-    public CellLayoutBuilder(final CellLayout pLayout) {
-        mLayout = pLayout;
+    public CellLayoutBuilder(final CellLayout layout) {
+        mLayout = layout;
         mCurrentContainer = mLayout.getRootCell();
         // assert (mCurrentContainer != null);
     }
@@ -31,56 +30,56 @@ public class CellLayoutBuilder {
         return mCurrentContainer;
     }
 
-    public void setCurrentContainer(final ContainerCell pCurrentContainer) {
-        mCurrentContainer = pCurrentContainer;
+    public void setCurrentContainer(final ContainerCell currentContainer) {
+        mCurrentContainer = currentContainer;
     }
 
-    public ColumnCell addColumn(final ResizePolicy pWidthResizePolicy,
-            final ResizePolicy pHeightResizePolicy) {
-        final ColumnCell column = new ColumnCell(mLayout, pWidthResizePolicy, pHeightResizePolicy);
+    public ColumnCell addColumn(final ResizePolicy widthResizePolicy,
+                                final ResizePolicy heightResizePolicy) {
+        final ColumnCell column = new ColumnCell(mLayout, widthResizePolicy, heightResizePolicy);
         mCurrentContainer.addCell(column);
         return column;
     }
 
-    public ColumnCell addColumn(final int pWidth, final int pHeight) {
-        final ColumnCell column = new ColumnCell(mLayout, pWidth, pHeight);
+    public ColumnCell addColumn(final int width, final int height) {
+        final ColumnCell column = new ColumnCell(mLayout, width, height);
         getCurrentContainer().addCell(column);
         return column;
     }
 
-    public ColumnCell addColumn(final ResizePolicy pWidthResizePolicy, final int pHeight) {
-        final ColumnCell column = new ColumnCell(mLayout, pWidthResizePolicy, pHeight);
+    public ColumnCell addColumn(final ResizePolicy widthResizePolicy, final int height) {
+        final ColumnCell column = new ColumnCell(mLayout, widthResizePolicy, height);
         getCurrentContainer().addCell(column);
         return column;
     }
 
-    public ColumnCell addColumn(final int pWidth, final ResizePolicy pHeightResizePolicy) {
-        final ColumnCell column = new ColumnCell(mLayout, pWidth, pHeightResizePolicy);
+    public ColumnCell addColumn(final int width, final ResizePolicy heightResizePolicy) {
+        final ColumnCell column = new ColumnCell(mLayout, width, heightResizePolicy);
         getCurrentContainer().addCell(column);
         return column;
     }
 
-    public RowCell addRow(final ResizePolicy pWidthResizePolicy,
-            final ResizePolicy pHeightResizePolicy) {
-        final RowCell row = new RowCell(mLayout, pWidthResizePolicy, pHeightResizePolicy);
+    public RowCell addRow(final ResizePolicy widthResizePolicy,
+                          final ResizePolicy heightResizePolicy) {
+        final RowCell row = new RowCell(mLayout, widthResizePolicy, heightResizePolicy);
         getCurrentContainer().addCell(row);
         return row;
     }
 
-    public RowCell addRow(final int pWidth, final int pHeight) {
-        final RowCell row = new RowCell(mLayout, pWidth, pHeight);
+    public RowCell addRow(final int width, final int height) {
+        final RowCell row = new RowCell(mLayout, width, height);
         getCurrentContainer().addCell(row);
         return row;
     }
 
-    public RowCell addRow(final ResizePolicy pWidthResizePolicy, final int pHeight) {
-        final RowCell row = new RowCell(mLayout, pWidthResizePolicy, pHeight);
+    public RowCell addRow(final ResizePolicy widthResizePolicy, final int height) {
+        final RowCell row = new RowCell(mLayout, widthResizePolicy, height);
         getCurrentContainer().addCell(row);
         return row;
     }
 
-    public RowCell addRow(final int pWidth, final ResizePolicy pHeightResizePolicy) {
-        final RowCell row = new RowCell(mLayout, pWidth, pHeightResizePolicy);
+    public RowCell addRow(final int width, final ResizePolicy heightResizePolicy) {
+        final RowCell row = new RowCell(mLayout, width, heightResizePolicy);
         getCurrentContainer().addCell(row);
         return row;
     }
@@ -91,85 +90,85 @@ public class CellLayoutBuilder {
         return spacer;
     }
 
-    public Spacer addSpacer(final FillPolicy pFillMode, final int pFixedWidth,
-            final int pFixedHeight) {
-        final Spacer spacer = new Spacer(mLayout, pFillMode, pFixedWidth, pFixedHeight);
+    public Spacer addSpacer(final FillPolicy fillMode, final int fixedWidth,
+                            final int fixedHeight) {
+        final Spacer spacer = new Spacer(mLayout, fillMode, fixedWidth, fixedHeight);
         getCurrentContainer().addCell(spacer);
         return spacer;
     }
 
-    public Spacer addSpacer(final Spacer pSource) {
-        final Spacer spacer = new Spacer(mLayout, pSource);
+    public Spacer addSpacer(final Spacer source) {
+        final Spacer spacer = new Spacer(mLayout, source);
         getCurrentContainer().addCell(spacer);
         return spacer;
     }
 
-    public DrawableCell addDrawable(final CellLayout pLayout, final Drawable pForegroundDrawable) {
-        final DrawableCell cell = new DrawableCell(mLayout, pForegroundDrawable);
+    public DrawableCell addDrawable(final CellLayout layout, final Drawable foregroundDrawable) {
+        final DrawableCell drawableCell = new DrawableCell(mLayout, foregroundDrawable);
+        getCurrentContainer().addCell(drawableCell);
+        return drawableCell;
+    }
+
+    public DrawableCell addDrawable(final Drawable foregroundDrawable,
+                                    final ResizePolicy widthResizePolicy, final ResizePolicy heightResizePolicy) {
+        final DrawableCell drawableCell = new DrawableCell(mLayout, foregroundDrawable);
+        getCurrentContainer().addCell(drawableCell);
+        return drawableCell;
+    }
+
+    public DrawableCell addDrawable(final Drawable foregroundDrawable, final int width,
+                                    final int height) {
+        final DrawableCell drawableCell = new DrawableCell(mLayout, foregroundDrawable, width, height);
+        getCurrentContainer().addCell(drawableCell);
+        return drawableCell;
+    }
+
+    public DrawableCell addDrawable(final Drawable foregroundDrawable,
+                                    final ResizePolicy widthResizePolicy, final int height) {
+        final DrawableCell drawableCell = new DrawableCell(mLayout, foregroundDrawable,
+                widthResizePolicy, height);
+        getCurrentContainer().addCell(drawableCell);
+        return drawableCell;
+    }
+
+    public DrawableCell addDrawable(final Drawable foregroundDrawable, final int width,
+                                    final ResizePolicy heightResizePolicy) {
+        final DrawableCell drawableCell = new DrawableCell(mLayout, foregroundDrawable, width,
+                heightResizePolicy);
+        getCurrentContainer().addCell(drawableCell);
+        return drawableCell;
+    }
+
+    public ViewCell addView(final CellLayout layout, final View view) {
+        final ViewCell viewCell = new ViewCell(mLayout, view);
+        getCurrentContainer().addCell(viewCell);
+        return viewCell;
+    }
+
+    public ViewCell addView(final View view, final ResizePolicy widthResizePolicy,
+                            final ResizePolicy heightResizePolicy) {
+        final ViewCell viewCell = new ViewCell(mLayout, view);
+        getCurrentContainer().addCell(viewCell);
+        return viewCell;
+    }
+
+    public ViewCell addView(final View view, final int width, final int height) {
+        final ViewCell cell = new ViewCell(mLayout, view, width, height);
         getCurrentContainer().addCell(cell);
         return cell;
     }
 
-    public DrawableCell addDrawable(final Drawable pForegroundDrawable,
-            final ResizePolicy pWidthResizePolicy, final ResizePolicy pHeightResizePolicy) {
-        final DrawableCell cell = new DrawableCell(mLayout, pForegroundDrawable);
-        getCurrentContainer().addCell(cell);
-        return cell;
+    public ViewCell addView(final View view, final ResizePolicy widthResizePolicy,
+                            final int height) {
+        final ViewCell viewCell = new ViewCell(mLayout, view, widthResizePolicy, height);
+        getCurrentContainer().addCell(viewCell);
+        return viewCell;
     }
 
-    public DrawableCell addDrawable(final Drawable pForegroundDrawable, final int pWidth,
-            final int pHeight) {
-        final DrawableCell cell = new DrawableCell(mLayout, pForegroundDrawable, pWidth, pHeight);
-        getCurrentContainer().addCell(cell);
-        return cell;
-    }
-
-    public DrawableCell addDrawable(final Drawable pForegroundDrawable,
-            final ResizePolicy pWidthResizePolicy, final int pHeight) {
-        final DrawableCell cell = new DrawableCell(mLayout, pForegroundDrawable,
-                pWidthResizePolicy, pHeight);
-        getCurrentContainer().addCell(cell);
-        return cell;
-    }
-
-    public DrawableCell addDrawable(final Drawable pForegroundDrawable, final int pWidth,
-            final ResizePolicy pHeightResizePolicy) {
-        final DrawableCell cell = new DrawableCell(mLayout, pForegroundDrawable, pWidth,
-                pHeightResizePolicy);
-        getCurrentContainer().addCell(cell);
-        return cell;
-    }
-
-    public ViewCell addView(final CellLayout pLayout, final View pView) {
-        final ViewCell cell = new ViewCell(mLayout, pView);
-        getCurrentContainer().addCell(cell);
-        return cell;
-    }
-
-    public ViewCell addView(final View pView, final ResizePolicy pWidthResizePolicy,
-            final ResizePolicy pHeightResizePolicy) {
-        final ViewCell cell = new ViewCell(mLayout, pView);
-        getCurrentContainer().addCell(cell);
-        return cell;
-    }
-
-    public ViewCell addView(final View pView, final int pWidth, final int pHeight) {
-        final ViewCell cell = new ViewCell(mLayout, pView, pWidth, pHeight);
-        getCurrentContainer().addCell(cell);
-        return cell;
-    }
-
-    public ViewCell addView(final View pView, final ResizePolicy pWidthResizePolicy,
-            final int pHeight) {
-        final ViewCell cell = new ViewCell(mLayout, pView, pWidthResizePolicy, pHeight);
-        getCurrentContainer().addCell(cell);
-        return cell;
-    }
-
-    public ViewCell addView(final View pView, final int pWidth,
-            final ResizePolicy pHeightResizePolicy) {
-        final ViewCell cell = new ViewCell(mLayout, pView, pWidth, pHeightResizePolicy);
-        getCurrentContainer().addCell(cell);
-        return cell;
+    public ViewCell addView(final View view, final int width,
+                            final ResizePolicy heightResizePolicy) {
+        final ViewCell viewCell = new ViewCell(mLayout, view, width, heightResizePolicy);
+        getCurrentContainer().addCell(viewCell);
+        return viewCell;
     }
 }

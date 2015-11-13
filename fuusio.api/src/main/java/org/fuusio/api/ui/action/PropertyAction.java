@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */package org.fuusio.api.ui.action;
+ */
+package org.fuusio.api.ui.action;
 
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.model.ModelObject;

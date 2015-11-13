@@ -15,11 +15,11 @@
  */
 package org.fuusio.api.util;
 
+import android.webkit.URLUtil;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
-
-import android.webkit.URLUtil;
 
 public class URLToolkit {
 

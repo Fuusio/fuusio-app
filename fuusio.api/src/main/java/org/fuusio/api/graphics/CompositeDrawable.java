@@ -34,18 +34,18 @@
 
 package org.fuusio.api.graphics;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * {@code CompositeDrawable} extends {@code Drawable} to implements a composite drawables that can
  * contain other {@code Drawable}s as child components.
- * 
+ *
  * @author Marko Salmela
  */
 
@@ -71,7 +71,7 @@ public class CompositeDrawable extends Drawable {
 
     /**
      * Gets the component {@code PainterNodes}.
-     * 
+     *
      * @return A {@code List} containing the component {@code PainterNodes}.
      */
 
@@ -82,7 +82,7 @@ public class CompositeDrawable extends Drawable {
     /**
      * Sets the border of this {@code CompositeDrawable} to be drawn depending on the given
      * {@code boolean} value.
-     * 
+     *
      * @param drawBorder The given {@code boolean} value.
      */
     public void setDrawBorder(final boolean drawBorder) {
@@ -91,7 +91,7 @@ public class CompositeDrawable extends Drawable {
 
     /**
      * Adds the given {@code Drawable} to {@code CompositeDrawable}.
-     * 
+     *
      * @param drawable The {@code Drawable} to be added.
      * @return The added {@code Drawable}. May return {@code null} if adding fails.
      */
@@ -106,7 +106,7 @@ public class CompositeDrawable extends Drawable {
 
     /**
      * Adds the given {@code Drawable}s to this {@code CompositeDrawable}.
-     * 
+     *
      * @param drawables A {@link List} of {@code Drawable}s to be added.
      */
     public void addDrawables(final List<Drawable> drawables) {
@@ -117,9 +117,9 @@ public class CompositeDrawable extends Drawable {
 
     /**
      * Inserts the given {@code Drawable} as a component painter to this {@code CompositeDrawable}.
-     * 
+     *
      * @param drawable The {@code Drawable} to be inserted.
-     * @param index The specified index.
+     * @param index    The specified index.
      * @return The inserted {@code Drawable}. May return {@code null} if inserting fails.
      */
     public Drawable insertDrawable(final Drawable drawable, final int index) {
@@ -133,7 +133,7 @@ public class CompositeDrawable extends Drawable {
 
     /**
      * Removes the given component {@code Drawable} from this {@code CompositeDrawable}.
-     * 
+     *
      * @param drawable The {@code Drawable} to be removed.
      * @return The removed {@code Drawable}. May return {@code null} if removing fails.
      */
@@ -175,7 +175,7 @@ public class CompositeDrawable extends Drawable {
 
     /**
      * Tests whether a border is drawn for this {@code CompositeDrawable}.
-     * 
+     *
      * @return A {@code boolean}.
      */
     public boolean isDrawBorder() {

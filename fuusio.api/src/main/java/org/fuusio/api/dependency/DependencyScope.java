@@ -51,7 +51,7 @@ public abstract class DependencyScope {
     /**
      * The {@link DependencyScopeOwner} that manages this {@link DependencyScope}.
      */
-    private DependencyScopeOwner mScopeManager;
+    private DependencyScopeOwner mOwner;
 
     /**
      * A helper field for storing the currently requested type of dependency.
@@ -65,22 +65,25 @@ public abstract class DependencyScope {
 
     /**
      * Get the {@link DependencyScopeOwner} that manages the lifecycle this {@link DependencyScope}.
+     *
      * @return A {@link DependencyScopeOwner}.
      */
-    public final DependencyScopeOwner getManager() {
-        return mScopeManager;
+    public final DependencyScopeOwner getOwner() {
+        return mOwner;
     }
 
     /**
      * Set the {@link DependencyScopeOwner} that manages the lifecycle this {@link DependencyScope}.
-     * @param pManager A {@link DependencyScopeOwner}.
+     *
+     * @param owner A {@link DependencyScopeOwner}.
      */
-    protected void setManager(final DependencyScopeOwner pManager) {
-        mScopeManager = pManager;
+    protected void setOwner(final DependencyScopeOwner owner) {
+        mOwner = owner;
     }
 
     /**
      * Gets the parent {@link DependencyScope}.
+     *
      * @return A {@link DependencyScope}. May return {@code null} if the parent is not set.
      */
     public final DependencyScope getParentScope() {
@@ -89,15 +92,17 @@ public abstract class DependencyScope {
 
     /**
      * Sets the parent {@link DependencyScope}.
-     * @param pParent A {@link DependencyScope}. May be {@code null}.
+     *
+     * @param parent A {@link DependencyScope}. May be {@code null}.
      */
-    public void setParentScope(final DependencyScope pParent) {
-        mParentScope = pParent;
+    public void setParentScope(final DependencyScope parent) {
+        mParentScope = parent;
     }
 
     /**
      * Gets the {@link DependencyScope} that overrides this {@link DependencyScope}. An overriding
      * {@link DependencyScope} can be used for providing mock dependencies for unit tests.
+     *
      * @return A {@link DependencyScope}. May return {@code null}.
      */
     public final DependencyScope getMockedScope() {
@@ -107,14 +112,16 @@ public abstract class DependencyScope {
     /**
      * Sets the given {@link DependencyScope} to override this {@link DependencyScope}. An overriding
      * {@link DependencyScope} can be used for providing mock dependencies for unit tests.
-     * @param pScope A {@link DependencyScope}.
+     *
+     * @param scope A {@link DependencyScope}.
      */
-    public void setMockedScope(final DependencyScope pScope) {
-        mMockedScope = pScope;
+    public void setMockedScope(final DependencyScope scope) {
+        mMockedScope = scope;
     }
 
     /**
      * Tests if this {@link DependencyScope} can be disposed.
+     *
      * @return A {@code boolean} value.
      */
     public boolean isDisposable() {
@@ -123,34 +130,37 @@ public abstract class DependencyScope {
 
     /**
      * Adds the given {@link Object} as a dependant to this {@link DependencyScope}.
-     * @param pDependant An {@link Object}.
+     *
+     * @param dependant An {@link Object}.
      */
-    public void addDependant(final Object pDependant) {
-        mDependants.add(pDependant);
+    public void addDependant(final Object dependant) {
+        mDependants.add(dependant);
     }
 
     /**
      * Tests if the specified type represents the requested dependency type.
-     * @param pDependencyType A {@link Class} specifying the type of the requested dependency.
+     *
+     * @param dependencyType A {@link Class} specifying the type of the requested dependency.
      * @return A {@code boolean} value.
      */
     @SuppressWarnings("unchecked")
-    protected boolean type(final Class<?> pDependencyType) {
-        return mDependencyType.isAssignableFrom(pDependencyType);
+    protected boolean type(final Class<?> dependencyType) {
+        return mDependencyType.isAssignableFrom(dependencyType);
     }
 
     /**
      * Caches the requested dependency {@link Object} before it is returned to a requester.
-     * @param pDependency The requested dependency {@link Object} to be cached.
-     * @param <T> The generic return type of the cached dependency.
+     *
+     * @param dependency The requested dependency {@link Object} to be cached.
+     * @param <T>        The generic return type of the cached dependency.
      * @return The cached dependency {@link Object}.
      */
     @SuppressWarnings("unchecked")
-    protected <T> T dependency(final Object pDependency) {
-        if (pDependency != null) {
+    protected <T> T dependency(final Object dependency) {
+        if (dependency != null) {
             if (mDependencyType != null) {
-                if (mDependencyType.isInstance(pDependency)) {
-                    return (T) cache(mDependencyType, pDependency);
+                if (mDependencyType.isInstance(dependency)) {
+                    return (T) cache(mDependencyType, dependency);
                 } else {
                     throw new IllegalStateException("The given dependency object is not an instance of: " + mDependencyType.getName());
                 }
@@ -164,18 +174,19 @@ public abstract class DependencyScope {
 
     /**
      * Caches the given requested dependency {@link Object} using the requested type as a key.
-     * @param pDependencyType The dependence type as a {@link Class} used as a key.
-     * @param pDependency The requested dependency {@link Object} to be cached.
-     * @param <T> The generic return type of the cached dependency.
+     *
+     * @param dependencyType The dependence type as a {@link Class} used as a key.
+     * @param dependency     The requested dependency {@link Object} to be cached.
+     * @param <T>            The generic return type of the cached dependency.
      * @return The cached dependency {@link Object}.
      */
     @SuppressWarnings("unchecked")
-    public <T> T cache(final Class<T> pDependencyType, final Object pDependency) {
-        if (pDependency != null) {
-            mDependencies.put(pDependencyType, pDependency);
-            return (T) pDependency;
+    public <T> T cache(final Class<T> dependencyType, final Object dependency) {
+        if (dependency != null) {
+            mDependencies.put(dependencyType, dependency);
+            return (T) dependency;
         } else {
-            throw new IllegalArgumentException("Parameter 'pDependency' may not be null");
+            throw new IllegalArgumentException("Parameter 'dependency' may not be null");
         }
     }
 
@@ -185,6 +196,7 @@ public abstract class DependencyScope {
      * a such instance. The implementation of this method should not delegate the request to any other
      * {@link DependencyScope}. If the implementation is not able to cache the requested instance,
      * the design contract is to return {@code null} instead.
+     *
      * @param <T> A type parameter for casting the requested instance to expected type.
      * @return The requested dependency instance if is this {@link DependencyScope} implementation is
      * capable of providing such instance otherwise {@code null}.
@@ -196,39 +208,40 @@ public abstract class DependencyScope {
      * from the currently active {@link DependencyScope}. If a requested instance is not found the search
      * is delegated to parent {@link DependencyScope}. As a last attempt,
      * the {@link ApplicationScope} is searched.
-     * @param pDependencyType A {@link Class} specifying the type of the requested instance.
-     * @param pDependant The requesting object. This parameter is required when the requesting dependant
-     *                is also a requested within the object graph represented by a {@link DependencyScope}.
-     * @param <T> A type parameter for casting the requested instance to expected type.
-     * @param pCreateNew A {@code boolean} parameter specifying if an instance of the requested
-     *                   type should be automatically created.
+     *
+     * @param dependencyType A {@link Class} specifying the type of the requested instance.
+     * @param dependant      The requesting object. This parameter is required when the requesting dependant
+     *                       is also a requested within the object graph represented by a {@link DependencyScope}.
+     * @param <T>            A type parameter for casting the requested instance to expected type.
+     * @param pCreateNew     A {@code boolean} parameter specifying if an instance of the requested
+     *                       type should be automatically created.
      * @return The returned instance. If {@code null} is returned it indicates an error in
      * the implementation of the {@link DependencyScope}.
      */
     @SuppressWarnings("unchecked")
-    protected <T> T getDependency(final Class<T> pDependencyType, final Object pDependant, final boolean pCreateNew) {
+    protected <T> T getDependency(final Class<T> dependencyType, final Object dependant, final boolean pCreateNew) {
 
         final Class savedDependencyType = mDependencyType;
 
-        mDependencyType = pDependencyType;
+        mDependencyType = dependencyType;
 
-        if (pDependant != null) {
-            mDependants.add(pDependant);
+        if (dependant != null) {
+            mDependants.add(dependant);
         }
 
         T dependency = null;
 
         if (!pCreateNew) {
-            dependency = (T) mDependencies.get(pDependencyType);
+            dependency = (T) mDependencies.get(dependencyType);
         }
 
         if (dependency == null) {
-            dependency = lookDependencyAmongDependants(pDependencyType);
+            dependency = lookDependencyAmongDependants(dependencyType);
 
             if (dependency == null) {
 
                 if (mMockedScope != null) {
-                    dependency = mMockedScope.getDependency(pDependencyType, pDependant, pCreateNew);
+                    dependency = mMockedScope.getDependency(dependencyType, dependant, pCreateNew);
                 } else {
                     dependency = getDependency();
                 }
@@ -236,11 +249,11 @@ public abstract class DependencyScope {
                 if (dependency == null) {
 
                     if (mParentScope != null) {
-                        dependency = mParentScope.getDependency(pDependencyType, null, pCreateNew);
+                        dependency = mParentScope.getDependency(dependencyType, null, pCreateNew);
                     }
 
                     if (dependency == null && !(this instanceof ApplicationScope)) {
-                        dependency = ApplicationScope.getInstance().getDependency(pDependencyType, pDependant, pCreateNew);
+                        dependency = ApplicationScope.getInstance().getDependency(dependencyType, dependant, pCreateNew);
                     }
                 }
 
@@ -259,22 +272,23 @@ public abstract class DependencyScope {
      * {@link DependencyScope} is first requested to create the new instance. If it does not create
      * instance, the requested is delegated to parent {@link DependencyScope}. As a last attempt,
      * the {@link ApplicationScope} is requested to create a new instance.
-     * @param pDependencyType A {@link Class} specifying the type of the requested instance.
-     * @param pDependant The requesting object. This parameter is required when the requesting dependant
-     *                is also a requested within the object graph represented by a {@link DependencyScope}.
-     * @param <T> A type parameter for casting the requested instance to expected type.
+     *
+     * @param dependencyType A {@link Class} specifying the type of the requested instance.
+     * @param dependant      The requesting object. This parameter is required when the requesting dependant
+     *                       is also a requested within the object graph represented by a {@link DependencyScope}.
+     * @param <T>            A type parameter for casting the requested instance to expected type.
      * @return The returned instance. If {@code null} is returned it indicates an error in
      * the implementation of the {@link DependencyScope}.
      */
     @SuppressWarnings("unchecked")
-    protected <T> T createDependency(final Class<T> pDependencyType, final Object pDependant) {
+    protected <T> T createDependency(final Class<T> dependencyType, final Object dependant) {
 
         final Class savedDependencyType = mDependencyType;
 
-        mDependencyType = pDependencyType;
+        mDependencyType = dependencyType;
 
-        if (pDependant != null) {
-            mDependants.add(pDependant);
+        if (dependant != null) {
+            mDependants.add(dependant);
         }
 
         T dependency = createDependency();
@@ -282,11 +296,11 @@ public abstract class DependencyScope {
         if (dependency == null) {
 
             if (mParentScope != null) {
-                dependency = mParentScope.createDependency(pDependencyType, pDependant);
+                dependency = mParentScope.createDependency(dependencyType, dependant);
             }
 
             if (dependency == null && !(this instanceof ApplicationScope)) {
-                dependency = ApplicationScope.getInstance().createDependency(pDependencyType, null);
+                dependency = ApplicationScope.getInstance().createDependency(dependencyType, null);
             }
         }
 
@@ -297,6 +311,7 @@ public abstract class DependencyScope {
     /**
      * This method is meant to be implemented by each concrete implementation of {@link DependencyScope}.
      * The requested dependency instance is created and returned by the implementation.
+     *
      * @param <T> A type parameter for casting the requested instance to expected type.
      * @return The created instance of the requested dependency type. May not return {@code null}.
      */
@@ -306,18 +321,19 @@ public abstract class DependencyScope {
 
     /**
      * Checks it the requested dependency is one of the cached dependent instances.
-     * @param pDependencyType A {@link Class} specifying the type of the requested dependency.
-     * @param <T> A type parameter for casting the requested dependency to expected type.
+     *
+     * @param dependencyType A {@link Class} specifying the type of the requested dependency.
+     * @param <T>            A type parameter for casting the requested dependency to expected type.
      * @return The found requested instance or {@code null}.
      */
-    private <T> T lookDependencyAmongDependants(final Class<T> pDependencyType) {
+    private <T> T lookDependencyAmongDependants(final Class<T> dependencyType) {
 
         for (int i = mDependants.size() - 1; i >= 0; i--) {
             final Object dependant = mDependants.get(i);
 
-            if (pDependencyType.isAssignableFrom(dependant.getClass())) {
+            if (dependencyType.isAssignableFrom(dependant.getClass())) {
                 mDependants.remove(dependant);
-                return cache(pDependencyType, dependant);
+                return cache(dependencyType, dependant);
             }
         }
         return null;
@@ -330,7 +346,7 @@ public abstract class DependencyScope {
         mDependencies.clear();
         mDependants.clear();
         mParentScope = null;
-        mScopeManager = null;
+        mOwner = null;
         mDependencyType = null;
 
         if (mMockedScope != null) {
@@ -342,18 +358,20 @@ public abstract class DependencyScope {
     /**
      * This method is invoked by {@link Dependency} when this {@link DependencyScope} is activated
      * for the given {@link DependencyScopeOwner}.
-     * @param pManager A {@link DependencyScopeOwner}.
+     *
+     * @param owner A {@link DependencyScopeOwner}.
      */
-    public void onActivated(final DependencyScopeOwner pManager) {
+    public void onActivated(final DependencyScopeOwner owner) {
         // By default do nothing
     }
 
     /**
      * This method is invoked by {@link Dependency} when this {@link DependencyScope} is deactivated
      * for the given {@link DependencyScopeOwner}.
-     * @param pManager A {@link DependencyScopeOwner}.
+     *
+     * @param owner A {@link DependencyScopeOwner}.
      */
-    public void onDeactivated(final DependencyScopeOwner pManager) {
+    public void onDeactivated(final DependencyScopeOwner owner) {
         // By default do nothing
     }
 

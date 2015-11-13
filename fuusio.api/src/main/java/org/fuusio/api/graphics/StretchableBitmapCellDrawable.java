@@ -54,7 +54,7 @@ public class StretchableBitmapCellDrawable extends Drawable {
 
     /**
      * Constructs a new instance of {@code SkinCellPainter} for the given {@code SkinImage}.
-     * 
+     *
      * @param skinImage A {@code SkinImage}.
      */
 
@@ -65,7 +65,7 @@ public class StretchableBitmapCellDrawable extends Drawable {
 
     /**
      * Sets the source bounding box.
-     * 
+     *
      * @param rect The bounding box as a {@code Rect}.
      */
     public void setSourceRect(final Rect rect) {

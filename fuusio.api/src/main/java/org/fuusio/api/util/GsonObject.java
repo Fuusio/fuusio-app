@@ -23,7 +23,7 @@ public abstract class GsonObject {
 
     public JsonObject toJson() {
         final JsonParser jsonParser = new JsonParser();
-        return (JsonObject)jsonParser.parse(toJsonString());
+        return (JsonObject) jsonParser.parse(toJsonString());
     }
 
     public String toJsonString() {

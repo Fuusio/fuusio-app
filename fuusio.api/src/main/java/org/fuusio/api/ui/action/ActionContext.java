@@ -17,8 +17,6 @@ package org.fuusio.api.ui.action;
 
 import android.content.Context;
 
-import org.fuusio.api.mvp.Presenter;
-
 public interface ActionContext {
 
     Context getContext();

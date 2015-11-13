@@ -15,11 +15,11 @@
  */
 package org.fuusio.api.app;
 
-import java.lang.Thread.UncaughtExceptionHandler;
+import android.util.Log;
 
 import org.fuusio.api.util.L;
 
-import android.util.Log;
+import java.lang.Thread.UncaughtExceptionHandler;
 
 public abstract class ApplicationExceptionHandler<T_ApplicationError extends ApplicationError> implements UncaughtExceptionHandler {
 
@@ -27,41 +27,41 @@ public abstract class ApplicationExceptionHandler<T_ApplicationError extends App
 
     private final Thread.UncaughtExceptionHandler mDefaultHandler;
 
-	protected ApplicationExceptionHandler(Thread.UncaughtExceptionHandler defaultHandler) {
+    protected ApplicationExceptionHandler(Thread.UncaughtExceptionHandler defaultHandler) {
         sInstance = this;
         mDefaultHandler = defaultHandler;
-	}
-	
-	@Override
-	public void uncaughtException(final Thread thread, final Throwable throwable) {
-		createLogEntryFor(thread, getUnknownError(), throwable);
-	}
-	
-	public static void createLogEntryFor(final Object object, final Throwable throwable) {
-		createLogEntryFor(object, getUnknownError(), throwable);
-	}
+    }
 
-	public static void createLogEntryFor(final Object object, final String message) {
-		createLogEntryFor(object, getUnknownError(), message);
-	}
-	
-	public static void createLogEntryFor(final Object object, final ApplicationError error, final String message) {
-		if (message != null) {
-			L.wtf(object, "ERROR - Error:", message);			
-		}
-	}
+    @Override
+    public void uncaughtException(final Thread thread, final Throwable throwable) {
+        createLogEntryFor(thread, getUnknownError(), throwable);
+    }
 
-	public static void createLogEntryFor(final Object object, final ApplicationError error, final Throwable throwable) {
-		if (throwable != null) {
-			final String stackTrace = Log.getStackTraceString(throwable); 
-			
-			L.wtf(object, "ERROR - UncaughtException", throwable.getMessage());
-			L.wtf(object, "ERROR - Stack Trace", stackTrace);				
-		}
-	}
+    public static void createLogEntryFor(final Object object, final Throwable throwable) {
+        createLogEntryFor(object, getUnknownError(), throwable);
+    }
+
+    public static void createLogEntryFor(final Object object, final String message) {
+        createLogEntryFor(object, getUnknownError(), message);
+    }
+
+    public static void createLogEntryFor(final Object object, final ApplicationError error, final String message) {
+        if (message != null) {
+            L.wtf(object, "ERROR - Error:", message);
+        }
+    }
+
+    public static void createLogEntryFor(final Object object, final ApplicationError error, final Throwable throwable) {
+        if (throwable != null) {
+            final String stackTrace = Log.getStackTraceString(throwable);
+
+            L.wtf(object, "ERROR - UncaughtException", throwable.getMessage());
+            L.wtf(object, "ERROR - Stack Trace", stackTrace);
+        }
+    }
 
     protected static ApplicationError getUnknownError() {
-       return sInstance.getAppSpecificUnknownError();
+        return sInstance.getAppSpecificUnknownError();
     }
 
     protected abstract T_ApplicationError getAppSpecificUnknownError();

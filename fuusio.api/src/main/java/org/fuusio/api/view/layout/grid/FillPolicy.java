@@ -15,7 +15,6 @@
  */
 package org.fuusio.api.view.layout.grid;
 
-import org.fuusio.api.view.layout.cell.*;
 import org.fuusio.api.view.layout.cell.CellLayout;
 import org.fuusio.api.view.layout.cell.ViewCell;
 

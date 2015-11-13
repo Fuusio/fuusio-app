@@ -35,20 +35,20 @@
 
 package org.fuusio.api.graphics.layout;
 
-import java.util.List;
-
-import org.fuusio.api.util.Dimension;
-import org.fuusio.api.util.Insets;
-
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+import org.fuusio.api.util.Dimension;
+import org.fuusio.api.util.Insets;
+
+import java.util.List;
+
 /**
  * {@link LayoutCell} is an abstract base class for the layout cell objects that consist a
  * {@link CellLayout}.
- * 
+ *
  * @author Marko Salmela
  */
 public abstract class LayoutCell {
@@ -116,7 +116,7 @@ public abstract class LayoutCell {
 
     /**
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
-     * 
+     *
      * @param layout A {@link CellLayout}.
      */
     protected LayoutCell(final CellLayout layout) {
@@ -137,86 +137,86 @@ public abstract class LayoutCell {
     /**
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
      * TODO
-     * 
-     * @param layout A {@link CellLayout}.
-     * @param pWidthResizePolicy The horizontal {@link ResizePolicy}.
-     * @param pHeightResizePolicy The vertical {@link ResizePolicy}.
+     *
+     * @param layout             A {@link CellLayout}.
+     * @param widthResizePolicy  The horizontal {@link ResizePolicy}.
+     * @param heightResizePolicy The vertical {@link ResizePolicy}.
      */
-    protected LayoutCell(final CellLayout layout, final ResizePolicy pWidthResizePolicy,
-            final ResizePolicy pHeightResizePolicy) {
+    protected LayoutCell(final CellLayout layout, final ResizePolicy widthResizePolicy,
+                         final ResizePolicy heightResizePolicy) {
         this(layout);
-        mWidthResizePolicy = pWidthResizePolicy;
-        mHeightResizePolicy = pHeightResizePolicy;
+        mWidthResizePolicy = widthResizePolicy;
+        mHeightResizePolicy = heightResizePolicy;
     }
 
     /**
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
      * TODO
-     * 
+     *
      * @param layout A {@link CellLayout}.
-     * @param pWidth The width of the {@link LayoutCell}.
-     * @param pHeight The height of the {@link LayoutCell}.
+     * @param width  The width of the {@link LayoutCell}.
+     * @param height The height of the {@link LayoutCell}.
      */
-    protected LayoutCell(final CellLayout layout, final int pWidth, final int pHeight) {
+    protected LayoutCell(final CellLayout layout, final int width, final int height) {
         this(layout);
-        mSize.mWidth = pWidth;
-        mSize.mHeight = pHeight;
+        mSize.mWidth = width;
+        mSize.mHeight = height;
     }
 
     /**
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
      * TODO
-     * 
-     * @param layout A {@link CellLayout}.
-     * @param pWidthResizePolicy The horizontal {@link ResizePolicy}.
-     * @param pHeight The height of the {@link LayoutCell}.
+     *
+     * @param layout            A {@link CellLayout}.
+     * @param widthResizePolicy The horizontal {@link ResizePolicy}.
+     * @param height            The height of the {@link LayoutCell}.
      */
-    protected LayoutCell(final CellLayout layout, final ResizePolicy pWidthResizePolicy,
-            final int pHeight) {
+    protected LayoutCell(final CellLayout layout, final ResizePolicy widthResizePolicy,
+                         final int height) {
         this(layout);
-        mWidthResizePolicy = pWidthResizePolicy;
-        mSize.mHeight = pHeight;
+        mWidthResizePolicy = widthResizePolicy;
+        mSize.mHeight = height;
     }
 
     /**
      * Constructs a new instance of {@link LayoutCell} for the given {@link CellLayout}.
      * TODO
-     * 
-     * @param layout A {@link CellLayout}.
-     * @param pWidth The width of the {@link LayoutCell}.
-     * @param pHeightResizePolicy The vertical {@link ResizePolicy} to be added.
+     *
+     * @param layout             A {@link CellLayout}.
+     * @param width              The width of the {@link LayoutCell}.
+     * @param heightResizePolicy The vertical {@link ResizePolicy} to be added.
      */
-    protected LayoutCell(final CellLayout layout, final int pWidth,
-            final ResizePolicy pHeightResizePolicy) {
+    protected LayoutCell(final CellLayout layout, final int width,
+                         final ResizePolicy heightResizePolicy) {
         this(layout);
-        mSize.mWidth = pWidth;
-        mHeightResizePolicy = pHeightResizePolicy;
+        mSize.mWidth = width;
+        mHeightResizePolicy = heightResizePolicy;
     }
 
     /**
      * Constructs a copy instance of the given source {@link LayoutCell}. for the given
      * {@link CellLayout}.
-     * 
+     *
      * @param layout A {@link CellLayout}.
-     * @param pSource The source {@link LayoutCell}.
+     * @param source The source {@link LayoutCell}.
      */
-    protected LayoutCell(final CellLayout layout, final LayoutCell pSource) {
+    protected LayoutCell(final CellLayout layout, final LayoutCell source) {
         mLayout = layout;
-        mFixedSize = new Dimension(pSource.mFixedSize);
-        mHeightResizePolicy = pSource.mHeightResizePolicy;
-        mInsets = new Insets(pSource.mInsets);
+        mFixedSize = new Dimension(source.mFixedSize);
+        mHeightResizePolicy = source.mHeightResizePolicy;
+        mInsets = new Insets(source.mInsets);
         mRecalculateBounds = true;
         mLocation = new Point();
         mMaximumSize = new Dimension();
         mMinimumSize = new Dimension();
         mPreferredSize = new Dimension();
         mSize = new Dimension();
-        mWidthResizePolicy = pSource.mWidthResizePolicy;
+        mWidthResizePolicy = source.mWidthResizePolicy;
     }
 
     /**
      * Gets the bounds of this {@link LayoutCell}.
-     * 
+     *
      * @return The bounds as a {link Rect}.
      */
     public Rect getBounds() {
@@ -234,7 +234,7 @@ public abstract class LayoutCell {
 
     /**
      * Gets the height of this {@link LayoutCell}.
-     * 
+     *
      * @return The height as an {@code int}. Returns -1 is the absolute height is not applied.
      */
     public final int getHeight() {
@@ -243,7 +243,7 @@ public abstract class LayoutCell {
 
     /**
      * Gets the {@link ResizePolicy} for zone height.
-     * 
+     *
      * @return A {@link ResizePolicy}.
      */
     public final ResizePolicy getHeightResizePolicy() {
@@ -252,7 +252,7 @@ public abstract class LayoutCell {
 
     /**
      * Gets the {@link CellLayout} that contains this {@link LayoutCell}.
-     * 
+     *
      * @return A {@link CellLayout}.
      */
     public final CellLayout getLayout() {
@@ -261,7 +261,7 @@ public abstract class LayoutCell {
 
     /**
      * Sets the {@link CellLayout} defined to this {@link LayoutCell}.
-     * 
+     *
      * @param layout A {@link CellLayout}.
      */
     protected void setLayout(final CellLayout layout) {
@@ -274,7 +274,7 @@ public abstract class LayoutCell {
 
     /**
      * Gets the current location calculated for this {@link LayoutCell}.
-     * 
+     *
      * @return The location as a {@code Point}.
      */
     public Point getLocation() {
@@ -283,18 +283,18 @@ public abstract class LayoutCell {
 
     /**
      * Sets the current location calculated for this {@link LayoutCell}.
-     * 
-     * @param pX The x-coordinate of the new location as an {@code int}.
-     * @param pY The y-coordinate of the new location as an {@code int}.
+     *
+     * @param x The x-coordinate of the new location as an {@code int}.
+     * @param y The y-coordinate of the new location as an {@code int}.
      */
-    public void setLocation(final int pX, final int pY) {
-        mLocation.x = pX;
-        mLocation.y = pY;
+    public void setLocation(final int x, final int y) {
+        mLocation.x = x;
+        mLocation.y = y;
     }
 
     /**
      * Gets the maximum size calculated for this {@link LayoutCell}.
-     * 
+     *
      * @return The maximum size as a {@link Dimension}.
      */
     public Dimension getMaximumSize() {
@@ -303,7 +303,7 @@ public abstract class LayoutCell {
 
     /**
      * Gets the minimum size calculated for this {@link LayoutCell}.
-     * 
+     *
      * @return The minimum size as a {@link Dimension}.
      */
     public Dimension getMinimumSize() {
@@ -312,7 +312,7 @@ public abstract class LayoutCell {
 
     /**
      * Gets the preferred size calculated for this {@link LayoutCell}.
-     * 
+     *
      * @return The preferred size as a {@link Dimension}.
      */
     public Dimension getPreferredSize() {
@@ -321,7 +321,7 @@ public abstract class LayoutCell {
 
     /**
      * Gets the current size calculated for this {@link LayoutCell}.
-     * 
+     *
      * @return The size as a {@link Dimension}.
      */
     public Dimension getSize() {
@@ -330,18 +330,18 @@ public abstract class LayoutCell {
 
     /**
      * Gets the current size calculated for this {@link LayoutCell}.
-     * 
-     * @param pWidth The width of the new size as an {@code int}.
-     * @param pHeight The height of the new size as an {@code int}.
+     *
+     * @param width  The width of the new size as an {@code int}.
+     * @param height The height of the new size as an {@code int}.
      */
-    public void setSize(final int pWidth, final int pHeight) {
-        mSize.mWidth = pWidth;
-        mSize.mHeight = pHeight;
+    public void setSize(final int width, final int height) {
+        mSize.mWidth = width;
+        mSize.mHeight = height;
     }
 
     /**
      * Gets the width of this {@link LayoutCell}.
-     * 
+     *
      * @return The width as an {@code int}. Returns -1 if the absolute width is not applied.
      */
     public final int getWidth() {
@@ -350,7 +350,7 @@ public abstract class LayoutCell {
 
     /**
      * Gets the {@link ResizePolicy} for zone height.
-     * 
+     *
      * @return A {@link ResizePolicy}.
      */
     public final ResizePolicy getWidthResizePolicy() {
@@ -383,15 +383,15 @@ public abstract class LayoutCell {
 
     /**
      * Tests whether the layout cell defined by this {@link LayoutCell} is visible or not.
-     * 
+     *
      * @return A {@code boolean} value.
      */
     public boolean isVisible() {
         return true;
     }
 
-    public abstract void collectDrawables(List<Drawable> pDrawables);
+    public abstract void collectDrawables(List<Drawable> drawables);
 
-    public void collectViews(final List<View> pViews) {
+    public void collectViews(final List<View> views) {
     }
 }

@@ -24,21 +24,21 @@ import java.lang.reflect.Field;
  */
 public class PlugDescriptor {
 
-	private final Field mField;
-	private final String mName;
-	private final Class<? extends PluginInterface> mPluginInterface;
+    private final Field mField;
+    private final String mName;
+    private final Class<? extends PluginInterface> mPluginInterface;
     // OPTION private final boolean mSynced;
 
     private boolean mCreated;
 
-	public PlugDescriptor(final Field field, final String name, final Class<? extends PluginInterface> pluginInterface) {
-		super();
+    public PlugDescriptor(final Field field, final String name, final Class<? extends PluginInterface> pluginInterface) {
+        super();
         mCreated = false;
-		mField = field;
-		mName = (name != null) ? name : Plugin.DEFAULT_PLUG_NAME;
-		mPluginInterface = pluginInterface;
+        mField = field;
+        mName = (name != null) ? name : Plugin.DEFAULT_PLUG_NAME;
+        mPluginInterface = pluginInterface;
         // OPTION mSynced =  (mField != null) && (mField.getType().getAnnotation(Plugin.UISynchronized.class) != null);
-	}
+    }
 
     @SuppressWarnings("unused")
     public final boolean isCreated() {
@@ -55,14 +55,14 @@ public class PlugDescriptor {
     }
 
     public final Field getField() {
-		return mField;
-	}
+        return mField;
+    }
 
-	public final String getName() {
-		return mName;
-	}
+    public final String getName() {
+        return mName;
+    }
 
-	public final Class<? extends PluginInterface> getPluginInterface() {
-		return mPluginInterface;
-	}
+    public final Class<? extends PluginInterface> getPluginInterface() {
+        return mPluginInterface;
+    }
 }

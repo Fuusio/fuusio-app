@@ -91,10 +91,10 @@ public class CellLayout extends ViewGroup {
     /**
      * Sets the default margins for {@link LayoutCell}s containing {@link View}s.
      *
-     * @param pTop The top insets.
-     * @param pLeft The left insets.
+     * @param pTop    The top insets.
+     * @param pLeft   The left insets.
      * @param pBottom The bottom insets.
-     * @param pRight The right insets.
+     * @param pRight  The right insets.
      */
     public void setDefaultViewInsets(final int pTop, final int pLeft, final int pBottom, final int pRight) {
         ViewCell.setDefaultViewInsets(pTop, pLeft, pBottom, pRight);
@@ -133,7 +133,7 @@ public class CellLayout extends ViewGroup {
 
     /**
      * Creates a new instance of {@link CellLayout}.
-     * 
+     *
      * @param pContext A {@link Context}.
      * @return The created {@link CellLayout}.
      */
@@ -145,7 +145,7 @@ public class CellLayout extends ViewGroup {
     /**
      * Invalidates the layout for the given {@link View}, indicating that if this
      * {@link CellLayout} has cached information it should be discarded.
-     * 
+     *
      * @param pView The {@link View} to be isInvalidated.
      */
     public void invalidateLayout(final View pView) {
@@ -202,6 +202,7 @@ public class CellLayout extends ViewGroup {
 
     /**
      * Adds the given {@link LayoutCell} to this {@code ContainerCell}.
+     *
      * @param pCell The {@link LayoutCell} to be added.
      * @return The added {@link LayoutCell} if adding succeeds, otherwise {@code null}.
      */

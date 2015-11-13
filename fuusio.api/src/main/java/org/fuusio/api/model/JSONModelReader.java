@@ -15,19 +15,19 @@
  */
 package org.fuusio.api.model;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
+import android.util.Log;
 
 import org.fuusio.api.util.DateToolkit;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class JSONModelReader {
 
@@ -94,7 +94,7 @@ public class JSONModelReader {
         return modelObject;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public HashMap<?, ?> readHashMap(final JSONObject jsonObject) throws JSONException {
         final HashMap hashMap = new HashMap();
         final Iterator i = jsonObject.keys();
@@ -129,9 +129,9 @@ public class JSONModelReader {
         return array;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public ArrayList<?> readArrayList(final JSONArray jsonArray, final Class<?> listType,
-            final Class<?> componentType) throws JSONException {
+                                      final Class<?> componentType) throws JSONException {
         final int size = jsonArray.length();
 
         ArrayList arrayList = null;
@@ -148,7 +148,7 @@ public class JSONModelReader {
     }
 
     protected void readValue(final ModelObject object, final Property property,
-            final JSONObject propertyObject) throws JSONException {
+                             final JSONObject propertyObject) throws JSONException {
         final String valueName = property.getName();
 
         if (!propertyObject.has(valueName)) {

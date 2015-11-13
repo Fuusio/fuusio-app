@@ -17,7 +17,7 @@ package org.fuusio.api.db;
 
 public interface TableDescriptor {
 
-	public ColumnDescriptor[] getColumnDescriptors();
-	
-	public String getName();
+    public ColumnDescriptor[] getColumnDescriptors();
+
+    public String getName();
 }

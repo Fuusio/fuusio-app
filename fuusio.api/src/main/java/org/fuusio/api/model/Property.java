@@ -15,6 +15,17 @@
  */
 package org.fuusio.api.model;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import org.fuusio.api.util.DateToolkit;
+import org.fuusio.api.util.L;
+import org.fuusio.api.util.MessageContext;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -30,29 +41,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import org.fuusio.api.util.DateToolkit;
-import org.fuusio.api.util.L;
-import org.fuusio.api.util.MessageContext;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 public class Property {
 
     /**
      * An {@code int} code defining the column index.
      */
-	private int mColumnIndex;
+    private int mColumnIndex;
 
     /**
      * A {@code boolean} value defining if this {@link Property} represents key column.
      */
-	private boolean mKey;
-    
+    private boolean mKey;
+
     /**
      * A {@code String} containing a name of the represented property.
      */
@@ -119,7 +119,7 @@ public class Property {
 
         mTransientExceptions = new ArrayList<>();
         mColumnIndex = -1;
-        mKey = false;        
+        mKey = false;
     }
 
     public final boolean isKey() {
@@ -129,20 +129,20 @@ public class Property {
     public void setKey(final boolean key) {
         mKey = key;
     }
-    
+
     public final Method getGetter() {
         return mGetter;
     }
 
     public final int getColumnIndex() {
-		return mColumnIndex;
-	}
+        return mColumnIndex;
+    }
 
-	public void setColumnIndex(final int columnIndex) {
-		mColumnIndex = columnIndex;
-	}
+    public void setColumnIndex(final int columnIndex) {
+        mColumnIndex = columnIndex;
+    }
 
-	public void setGetter(final Method getter) {
+    public void setGetter(final Method getter) {
         mGetter = getter;
         mType = mGetter.getReturnType();
 
@@ -200,7 +200,7 @@ public class Property {
     /**
      * Sets this {@code Property} to represent a descriptor property (i.e. the property whose value
      * is read when a {@link ModelObject} is read as a descriptor and not fully).
-     * 
+     *
      * @param isDescriptor A {@code boolean} value.
      */
     public void setDescriptor(final boolean isDescriptor) {
@@ -211,7 +211,7 @@ public class Property {
      * Sets this {@code Property} to represent a synthetic property (i.e. the property whose value
      * is dynamically computed from other property values and therefore is not persistent) depending
      * on the given {@code boolean} value.
-     * 
+     *
      * @param isSynthetic A {@code boolean} value.
      */
     public void setSynthetic(final boolean isSynthetic) {
@@ -221,7 +221,7 @@ public class Property {
     /**
      * Sets this {@code Property} to represent a transient property (i.e. the property whose value
      * is not persistent and is not stored into database).
-     * 
+     *
      * @param isTransient A {@code boolean} value.
      */
     public void setTransient(final boolean isTransient) {
@@ -230,7 +230,7 @@ public class Property {
 
     /**
      * Gets the name of this {@code Property}.
-     * 
+     *
      * @return The name as a {@code String}.
      */
     public final String getName() {
@@ -239,84 +239,84 @@ public class Property {
 
     /**
      * Gets the {@link Method} that represents the property getter.
-     * 
+     *
      * @param getters An {@link ArrayList} containing getter method candidates.
      * @return A {@link Method}. May return {@code null}.
      * @throws java.lang.NoSuchMethodException If the getter method for the property is not
      *         available. REMOVE
      * @SuppressWarnings("unused") private Method getGetter(ArrayList<Method> getters) throws
      *                             NoSuchMethodException {
-     * 
+     *
      *                             for (Method method : getters) {
-     * 
+     *
      *                             Class<?>[] parameterTypes = method.getParameterTypes(); Class<?>
      *                             returnType = method.getReturnType();
-     * 
+     *
      *                             if (parameterTypes.length == 0 && !returnType.equals(Void.TYPE))
      *                             { mType = returnType; return method; } }
-     * 
+     *
      *                             return null; }
      */
 
     /**
      * Gets the {@link Method} that represents the property resetter.
-     * 
+     *
      * @param resetters An {@link ArrayList} containing resetter method candidates.
      * @return A {@link Method}. May return {@code null}.
      * @throws java.lang.NoSuchMethodException If the mGetter method for the property is not
      *         available. REMOVE private Method getResetter(ArrayList<Method> resetters) throws
      *         NoSuchMethodException {
-     * 
+     *
      *         for ( Method method : resetters ) {
-     * 
+     *
      *         Class<?>[] parameterTypes = method.getParameterTypes();
-     * 
+     *
      *         if (parameterTypes.length == 0) { return method; } }
-     * 
+     *
      *         return null; }
      */
 
     /**
      * Gets the {@link Method}s that represents the property setters.
-     * 
+     *
      * @param setters An {@link ArrayList} containing setter method candidates.
      * @return A {@code List} of {@link Method}s. May return an empty {@code List}.
      * @throws java.lang.NoSuchMethodException If the setter method for the property is not
      *         available. REMOVE private Method getSetter(ArrayList<Method> setters) throws
      *         NoSuchMethodException {
-     * 
+     *
      *         for ( Method method : setters ) {
-     * 
+     *
      *         Class<?>[] parameterTypes = method.getParameterTypes();
-     * 
+     *
      *         if (parameterTypes.length == 1 && parameterTypes[0].equals(mType)) { return method; }
      *         }
-     * 
+     *
      *         return null; }
      */
 
     /**
      * Gets the {@link Method} that represents a property validator.
-     * 
+     *
      * @param validators An {@link ArrayList} containing validator method candidates.
      * @return A {@link Method}. May return {@code null}.
      * @throws java.lang.NoSuchMethodException If the validator method for the property is not
      *         available. REMOVE private Method getValidator(ArrayList<Method> validators) throws
      *         NoSuchMethodException {
-     * 
+     *
      *         for ( Method method : validators ) {
-     * 
+     *
      *         Class<?>[] parameterTypes = method.getParameterTypes();
-     * 
+     *
      *         if (parameterTypes.length == 1 && parameterTypes[0].equals(mType)) { return method; }
      *         }
-     * 
+     *
      *         return null; }
      */
 
     /**
      * Gets the type of this {@code Property}.
-     * 
+     *
      * @return The type as a {@code Class}.
      */
     public final Class<?> getType() {
@@ -325,7 +325,7 @@ public class Property {
 
     /**
      * Gets the generic parameter type of this {@code Property}.
-     * 
+     *
      * @return The type as a {@code Class}.
      */
     public final Class<?> getComponentType() {
@@ -334,7 +334,7 @@ public class Property {
 
     /**
      * Gets the specified property value from the given {@code ModelObject}.
-     * 
+     *
      * @param object A {@code ModelObject}.
      * @return The value as an {@code Object}.
      */
@@ -359,7 +359,7 @@ public class Property {
 
     /**
      * Resets the specified property value from the given {@code ModelObject}.
-     * 
+     *
      * @param object A {@code ModelObject}.
      * @return The value as an {@code Object}.
      */
@@ -384,9 +384,9 @@ public class Property {
 
     /**
      * Applies the given property value to the given {@code ModelObject}.
-     * 
+     *
      * @param object A {@code ModelObject}.
-     * @param value The value as a {@code Object}.
+     * @param value  The value as a {@code Object}.
      * @return A {@code boolean} value indicating whether set property value was actually changed.
      */
     public boolean set(final ModelObject object, final Object value) {
@@ -472,7 +472,7 @@ public class Property {
 
     /**
      * Tests if this {@code Property} is the one specified by the given name.
-     * 
+     *
      * @param name The name of the property,
      * @return A {@code boolean}.
      */
@@ -494,7 +494,7 @@ public class Property {
 
     /**
      * Tests if this {@code Property} is descriptor property.
-     * 
+     *
      * @return A {@code boolean}.
      */
     public boolean isDescriptor() {
@@ -503,7 +503,7 @@ public class Property {
 
     /**
      * Tests if this {@code Property} is modifiable.
-     * 
+     *
      * @return A {@code boolean}.
      */
     public boolean isModifiable() {
@@ -513,7 +513,7 @@ public class Property {
     /**
      * Tests whether this {@code Property} represents a synthetic property (i.e. the property whose
      * value is dynamically computed from other property values and therefore is not persistent).
-     * 
+     *
      * @return A {@code boolean} value.
      */
     public boolean isSynthetic() {
@@ -523,7 +523,7 @@ public class Property {
     /**
      * Tests whether this {@code Property} represents a transient property (i.e. the property whose
      * value is not persistent and is not stored into database).
-     * 
+     *
      * @return A {@code boolean} value.
      */
     public boolean isTransient() {
@@ -534,7 +534,7 @@ public class Property {
      * Tests whether this {@code Property} represents a transient property (i.e. the property whose
      * value is not persistent and is not stored into database) for the specified
      * {@link ModelObject} type.
-     * 
+     *
      * @param type A {@link Class} specifying the type of the {@link ModelObject}.
      * @return A {@code boolean} value.
      */
@@ -542,12 +542,12 @@ public class Property {
         return mTransientExceptions.contains(type);
     }
 
-/**
-     * Tests whether the given {@code Object} represents a valid value of 
+    /**
+     * Tests whether the given {@code Object} represents a valid value of
      * this {@code Property} for the given {@code ModelObject}.
-     *      
-     * @param object A {@code ModelObject].     
-     * @param value The value as an {@code Object}. May be {@code null}.
+     *
+     * @param object A {@code ModelObject].
+     * @param value  The value as an {@code Object}. May be {@code null}.
      * @return A {@code boolean} value.
      */
     public boolean validate(final ModelObject object, final Object value) {
@@ -654,9 +654,10 @@ public class Property {
 
         throw new UnsupportedOperationException();
     }
+
     /**
      * Changes the first character of the given {@code String} to be a uppercase character.
-     * 
+     *
      * @param string The given {@code String}. It must contain at least one character.
      * @return The modified {@code String}.
      */
@@ -765,7 +766,6 @@ public class Property {
     }
 
 
-
     /**
      * Annotation type {@code PropertyGetter} is used to explicitly define a property getter,
      * setter, resetter, or validator method.
@@ -780,9 +780,9 @@ public class Property {
         boolean isSynthetic() default false;
 
         boolean isTransient() default false;
-        
+
         boolean isKey() default false;
-        
+
         int index() default -1;
     }
 

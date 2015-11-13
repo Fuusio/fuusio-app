@@ -15,15 +15,15 @@
  */
 package org.fuusio.api.ui.action;
 
+import android.content.Context;
+
 import java.util.HashMap;
 import java.util.Stack;
-
-import android.content.Context;
 
 public class ActionManager {
 
     private static final int MAX_UNDO_STACK_SIZE = 20;
-    
+
     private final HashMap<ActionContext, Stack<Action>> mActionStacks;
     private final HashMap<ActionContext, Action> mRedoableActions;
     private final Context mApplicationContext;

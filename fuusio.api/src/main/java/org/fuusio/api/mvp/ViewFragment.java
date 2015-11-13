@@ -15,17 +15,22 @@
  */
 package org.fuusio.api.mvp;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.widget.AdapterView;
 
-import org.fuusio.api.binding.ViewBindingManager;
 import org.fuusio.api.binding.AdapterViewBinding;
 import org.fuusio.api.binding.ViewBinding;
+import org.fuusio.api.binding.ViewBindingManager;
+import org.fuusio.api.dependency.D;
+import org.fuusio.api.dependency.DependencyScope;
+import org.fuusio.api.dependency.DependencyScopeCache;
+import org.fuusio.api.dependency.DependencyScopeOwner;
 
 /**
  * {@link ViewFragment} provides an abstract base class for concrete {@link Fragment} implementations
  * that implement {@link View} components for a MVP architectural pattern implementation.
+ *
  * @param <T_Presenter> The type of the {@link Presenter}.
  */
 public abstract class ViewFragment<T_Presenter extends Presenter> extends Fragment
@@ -43,6 +48,7 @@ public abstract class ViewFragment<T_Presenter extends Presenter> extends Fragme
 
     /**
      * Gets the {@link Presenter} assigned for this {@link ViewFragment}.
+     *
      * @return A {@link Presenter}.
      */
     @Override
@@ -55,6 +61,7 @@ public abstract class ViewFragment<T_Presenter extends Presenter> extends Fragme
 
     /**
      * This method has to implemented by concrete implementations of this class.
+     *
      * @return A {@link Presenter}.
      */
     protected abstract T_Presenter getPresenterDependency();
@@ -120,6 +127,45 @@ public abstract class ViewFragment<T_Presenter extends Presenter> extends Fragme
         mState.onDestroy();
 
         mBindingManager.dispose();
+
+        if (this instanceof DependencyScopeOwner) {
+            final DependencyScopeCache cache = D.get(DependencyScopeCache.class);
+            final DependencyScopeOwner owner = (DependencyScopeOwner) this;
+            cache.removeDependencyScope(owner);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        onSaveState(outState);
+
+        if (this instanceof DependencyScopeOwner) {
+            final DependencyScopeOwner owner = (DependencyScopeOwner) this;
+            final DependencyScopeCache cache = D.get(DependencyScopeCache.class);
+            cache.saveDependencyScope(owner, owner.getDependencyScope());
+        }
+    }
+
+    protected void onSaveState(final Bundle outState) {
+        // By default do nothing
+    }
+
+    @Override
+    public void onViewStateRestored(final Bundle inState) {
+        super.onViewStateRestored(inState);
+        onRestoreState(inState);
+
+        if (this instanceof DependencyScopeOwner) {
+            final DependencyScopeCache cache = D.get(DependencyScopeCache.class);
+            final DependencyScopeOwner owner = (DependencyScopeOwner) this;
+            final DependencyScope scope = cache.removeDependencyScope(owner);
+            D.activateScope(owner, scope);
+        }
+    }
+
+    protected void onRestoreState(final Bundle outState) {
+        // By default do nothing
     }
 
     @Override
@@ -139,17 +185,19 @@ public abstract class ViewFragment<T_Presenter extends Presenter> extends Fragme
 
     /**
      * Looks up and returns a {@link android.view.View} with the given layout id.
+     *
      * @param viewId A view id used in a layout XML resource.
      * @return The found {@link android.view.View}.
      */
     public <T extends android.view.View> T getView(final int viewId) {
-        return (T)getActivity().findViewById(viewId);
+        return (T) getActivity().findViewById(viewId);
     }
 
     /**
      * Creates and binds a {@link ViewBinding} to a {@link android.view.View} specified by the given view id.
+     *
      * @param viewId A view id used in a layout XML resource.
-     * @param <T> The parametrised type of the ViewDelagate.
+     * @param <T>    The parametrised type of the ViewDelagate.
      * @return The created {@link ViewBinding}.
      */
     @SuppressWarnings("unchecked")
@@ -159,7 +207,8 @@ public abstract class ViewFragment<T_Presenter extends Presenter> extends Fragme
 
     /**
      * Binds the given {@link ViewBinding} to the specified {@link android.view.View}.
-     * @param viewId A view id in a layout XML specifying the target {@link android.view.View}.
+     *
+     * @param viewId  A view id in a layout XML specifying the target {@link android.view.View}.
      * @param binding An {@link ViewBinding}.
      * @return The found and bound {@link android.view.View}.
      */
@@ -170,7 +219,8 @@ public abstract class ViewFragment<T_Presenter extends Presenter> extends Fragme
 
     /**
      * Binds the given {@link AdapterViewBinding} to the specified {@link AdapterView}.
-     * @param viewId A view id in a layout XML specifying the target {@link AdapterView}.
+     *
+     * @param viewId  A view id in a layout XML specifying the target {@link AdapterView}.
      * @param binding An {@link AdapterViewBinding}.
      * @param adapter An {@link AdapterViewBinding.Adapter} that is assigned to {@link AdapterViewBinding}.
      * @return The found and bound {@link AdapterView}.

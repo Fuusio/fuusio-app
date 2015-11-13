@@ -35,17 +35,17 @@
 
 package org.fuusio.api.graphics.layout;
 
-import java.util.List;
+import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 
 import org.fuusio.api.util.Insets;
 
-import android.graphics.Point;
-import android.graphics.drawable.Drawable;
+import java.util.List;
 
 /**
  * {@code DrawableCell} implements {@code LayoutCell} that is used to define a layout cell in a
  * {@code CellLayout} that may contain a {@link Drawable}.
- * 
+ *
  * @author Marko Salmela
  */
 public class DrawableCell extends LayoutCell {
@@ -81,14 +81,14 @@ public class DrawableCell extends LayoutCell {
      * Constructs a new instance of {@code DrawableCell} for adding the given foreground
      * {@link Drawable} into the {@code Container} whose layout is managed by the given
      * {@code CellLayout}.
-     * 
-     * @param pLayout A {@code CellLayout}.
-     * @param pForegroundDrawable The {@link Drawable} to be added.
+     *
+     * @param layout             A {@code CellLayout}.
+     * @param foregroundDrawable The {@link Drawable} to be added.
      */
-    protected DrawableCell(final CellLayout pLayout, final Drawable pForegroundDrawable) {
-        super(pLayout);
+    protected DrawableCell(final CellLayout layout, final Drawable foregroundDrawable) {
+        super(layout);
         mBackgroundInsets = new Insets(0, 0, 0, 0);
-        mForegroundDrawable = pForegroundDrawable;
+        mForegroundDrawable = foregroundDrawable;
         mAnchor = Anchor.CENTER;
         mFillMode = FillPolicy.NONE;
     }
@@ -97,91 +97,91 @@ public class DrawableCell extends LayoutCell {
      * Constructs a new instance of {@code DrawableCell} for adding the given foreground
      * {@link Drawable} into the {@code Container} whose layout is managed by the given
      * {@code CellLayout}.
-     * 
-     * @param pLayout A {@code CellLayout}.
-     * @param pForegroundDrawable The {@link Drawable} to be added.
-     * @param pWidthResizePolicy The horizontal {@code ResizePolicy}.
-     * @param pHeightResizePolicy The vertical {@code ResizePolicy}.
+     *
+     * @param layout             A {@code CellLayout}.
+     * @param foregroundDrawable The {@link Drawable} to be added.
+     * @param widthResizePolicy  The horizontal {@code ResizePolicy}.
+     * @param heightResizePolicy The vertical {@code ResizePolicy}.
      */
-    public DrawableCell(final CellLayout pLayout, final Drawable pForegroundDrawable,
-            final ResizePolicy pWidthResizePolicy, final ResizePolicy pHeightResizePolicy) {
-        this(pLayout, pForegroundDrawable);
-        mWidthResizePolicy = pWidthResizePolicy;
-        mHeightResizePolicy = pHeightResizePolicy;
+    public DrawableCell(final CellLayout layout, final Drawable foregroundDrawable,
+                        final ResizePolicy widthResizePolicy, final ResizePolicy heightResizePolicy) {
+        this(layout, foregroundDrawable);
+        mWidthResizePolicy = widthResizePolicy;
+        mHeightResizePolicy = heightResizePolicy;
     }
 
     /**
      * Constructs a new instance of {@code DrawableCell} for adding the given foreground
      * {@link Drawable} into the {@code Container} whose layout is managed by the given
      * {@code CellLayout}.
-     * 
-     * @param pLayout A {@code CellLayout}.
-     * @param pForegroundDrawable The {@link Drawable} to be added.
-     * @param pWidth The width of the {@code DrawableCell}.
-     * @param pHeight The height of the {@code DrawableCell}.
+     *
+     * @param layout             A {@code CellLayout}.
+     * @param foregroundDrawable The {@link Drawable} to be added.
+     * @param width              The width of the {@code DrawableCell}.
+     * @param height             The height of the {@code DrawableCell}.
      */
-    public DrawableCell(final CellLayout pLayout, final Drawable pForegroundDrawable,
-            final int pWidth, final int pHeight) {
-        this(pLayout, pForegroundDrawable);
-        mFixedSize.mWidth = pWidth;
-        mFixedSize.mHeight = pHeight;
+    public DrawableCell(final CellLayout layout, final Drawable foregroundDrawable,
+                        final int width, final int height) {
+        this(layout, foregroundDrawable);
+        mFixedSize.mWidth = width;
+        mFixedSize.mHeight = height;
     }
 
     /**
      * Constructs a new instance of {@code DrawableCell} for adding the given foreground
      * {@link Drawable} into the {@code Container} whose layout is managed by the given
      * {@code CellLayout}.
-     * 
-     * @param pLayout A {@code CellLayout}.
-     * @param pForegroundDrawable The {@link Drawable} to be added.
-     * @param pWidthResizePolicy The horizontal {@code ResizePolicy}.
-     * @param pHeight The height of the {@code DrawableCell}.
+     *
+     * @param layout             A {@code CellLayout}.
+     * @param foregroundDrawable The {@link Drawable} to be added.
+     * @param widthResizePolicy  The horizontal {@code ResizePolicy}.
+     * @param height             The height of the {@code DrawableCell}.
      */
-    public DrawableCell(final CellLayout pLayout, final Drawable pForegroundDrawable,
-            final ResizePolicy pWidthResizePolicy, final int pHeight) {
-        this(pLayout, pForegroundDrawable);
-        mWidthResizePolicy = pWidthResizePolicy;
-        mFixedSize.mHeight = pHeight;
+    public DrawableCell(final CellLayout layout, final Drawable foregroundDrawable,
+                        final ResizePolicy widthResizePolicy, final int height) {
+        this(layout, foregroundDrawable);
+        mWidthResizePolicy = widthResizePolicy;
+        mFixedSize.mHeight = height;
     }
 
     /**
      * Constructs a new instance of {@code DrawableCell} for adding the given foreground
      * {@link Drawable} into the {@code Container} whose layout is managed by the given
      * {@code CellLayout}.
-     * 
-     * @param pLayout A {@code CellLayout}.
-     * @param pForegroundDrawable The {@link Drawable} to be added.
-     * @param pWidth The width of the {@code DrawableCell}.
-     * @param pHeightResizePolicy The vertical {@code ResizePolicy}.
+     *
+     * @param layout             A {@code CellLayout}.
+     * @param foregroundDrawable The {@link Drawable} to be added.
+     * @param width              The width of the {@code DrawableCell}.
+     * @param heightResizePolicy The vertical {@code ResizePolicy}.
      */
-    public DrawableCell(final CellLayout pLayout, final Drawable pForegroundDrawable,
-            final int pWidth, final ResizePolicy pHeightResizePolicy) {
-        this(pLayout, pForegroundDrawable);
-        mFixedSize.mWidth = pWidth;
-        mHeightResizePolicy = pHeightResizePolicy;
+    public DrawableCell(final CellLayout layout, final Drawable foregroundDrawable,
+                        final int width, final ResizePolicy heightResizePolicy) {
+        this(layout, foregroundDrawable);
+        mFixedSize.mWidth = width;
+        mHeightResizePolicy = heightResizePolicy;
     }
 
     @Override
-    public void collectDrawables(final List<Drawable> pDrawables) {
+    public void collectDrawables(final List<Drawable> drawables) {
         if (mBackgroundDrawable != null) {
-            pDrawables.add(mBackgroundDrawable);
+            drawables.add(mBackgroundDrawable);
         }
 
         if (mForegroundDrawable != null) {
-            pDrawables.add(mForegroundDrawable);
+            drawables.add(mForegroundDrawable);
         }
     }
 
     /**
-     * Gets the anchor defined to this {@code DrawableCell}. The anchor is 
+     * Gets the anchor defined to this {@code DrawableCell}. The anchor is
      * used when the drawable is smaller than area calculated for its container
-     * {@code LayoutCell}. It determines where, within the cell area, to place 
-     * the drawable. The possible anchor values are: {@code CENTER}, 
-     * {@code NORTH}, {@code NORTHEAST}, {@code EAST}, 
-     * {@code SOUTHEAST}, {@code SOUTH}, {@code SOUTHWEST}, 
-     * {@code WEST}, and {@code NORTHWEST}. The default value is 
-     * {@code CENTER</code. 
-     *  
+     * {@code LayoutCell}. It determines where, within the cell area, to place
+     * the drawable. The possible anchor values are: {@code CENTER},
+     * {@code NORTH}, {@code NORTHEAST}, {@code EAST},
+     * {@code SOUTHEAST}, {@code SOUTH}, {@code SOUTHWEST},
+     * {@code WEST}, and {@code NORTHWEST}. The default value is
+     * {@code CENTER</code.
+     *
      * @return An {@code Anchor}.
      */
     public final Anchor getAnchor() {
@@ -189,26 +189,26 @@ public class DrawableCell extends LayoutCell {
     }
 
     /**
-     * Sets the anchor defined to this {@code DrawableCell}. The anchor is 
+     * Sets the anchor defined to this {@code DrawableCell}. The anchor is
      * used when the drawable is smaller than area calculated for its container
-     * {@code LayoutCell}. It determines where, within the cell area, to place 
-     * the drawable. The possible anchor values are: {@code CENTER}, 
-     * {@code NORTH}, {@code NORTHEAST}, {@code EAST}, 
-     * {@code SOUTHEAST}, {@code SOUTH}, {@code SOUTHWEST}, 
-     * {@code WEST}, and {@code NORTHWEST}. The default value is 
-     * {@code CENTER</code. 
-     * 
-     * @param pAnchor An {@code Direction} specifying the anchor.
+     * {@code LayoutCell}. It determines where, within the cell area, to place
+     * the drawable. The possible anchor values are: {@code CENTER},
+     * {@code NORTH}, {@code NORTHEAST}, {@code EAST},
+     * {@code SOUTHEAST}, {@code SOUTH}, {@code SOUTHWEST},
+     * {@code WEST}, and {@code NORTHWEST}. The default value is
+     * {@code CENTER</code.
+     *
+     * @param anchor An {@code Direction} specifying the anchor.
      * @return This instance as a {@code DrawableCell}.
      */
-    public final DrawableCell setAnchor(final Anchor pAnchor) {
-        mAnchor = pAnchor;
+    public final DrawableCell setAnchor(final Anchor anchor) {
+        mAnchor = anchor;
         return this;
     }
 
     /**
      * Gets the location for the specified anchor.
-     * 
+     *
      * @return A location as a {@code Point}.
      */
     protected Point getAnchorLocation() {
@@ -270,7 +270,7 @@ public class DrawableCell extends LayoutCell {
 
     /**
      * Gets the background {@link Drawable} assigned to this {@code DrawableCell}.
-     * 
+     *
      * @return A {@link Drawable}.
      */
     public final Drawable getBackgroundDrawable() {
@@ -279,7 +279,7 @@ public class DrawableCell extends LayoutCell {
 
     /**
      * Gets the foreground {@link Drawable} assigned to this {@code DrawableCell}.
-     * 
+     *
      * @return A {@link Drawable}.
      */
     public final Drawable getForegroundDrawable() {
@@ -288,7 +288,7 @@ public class DrawableCell extends LayoutCell {
 
     /**
      * Gets the default margins for {@code DrawableCell}s.
-     * 
+     *
      * @return The margins as an {@link Insets}.
      */
     public static Insets getDefaultDrawableInsets() {
@@ -297,49 +297,49 @@ public class DrawableCell extends LayoutCell {
 
     /**
      * Sets the default margins for {@code ComponentCells}.
-     * 
-     * @param pTop The top insets.
-     * @param pLeft The left insets.
-     * @param pBottom The bottom insets.
-     * @param pRight The right insets.
+     *
+     * @param top    The top insets.
+     * @param left   The left insets.
+     * @param bottom The bottom insets.
+     * @param right  The right insets.
      */
-    public static void setDefaultDrawableInsets(final int pTop, final int pLeft, final int pBottom,
-            final int pRight) {
-        sDefaultDrawableInsets = new Insets(pTop, pLeft, pBottom, pRight);
+    public static void setDefaultDrawableInsets(final int top, final int left, final int bottom,
+                                                final int right) {
+        sDefaultDrawableInsets = new Insets(top, left, bottom, right);
     }
 
-/**
+    /**
      * Gets the fill mode defined to this {@code DrawableCell}. Fill mode
-     * is mode is used to specify how the drawable fills up the area calculated 
-     * for its container {@code LayoutCell}.  The possible fill mode values are: 
-     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL}, 
-     * and {@code BOTH}. The default value is {@code NONE</code. 
-     *  
+     * is mode is used to specify how the drawable fills up the area calculated
+     * for its container {@code LayoutCell}.  The possible fill mode values are:
+     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL},
+     * and {@code BOTH}. The default value is {@code NONE</code.
+     *
      * @return A {@link FillPolicy}.
      */
     public final FillPolicy getFillMode() {
         return mFillMode;
     }
 
-/**
+    /**
      * Sets the fill mode defined to this {@code DrawableCell}. Fill mode
-     * is mode is used to specify how the drawable fills up the area calculated 
-     * for its container {@code LayoutCell}.  The possible fill mode values are: 
-     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL}, 
-     * and {@code BOTH}. The default value is {@code NONE</code. 
-     * 
-     * @param pFillMode A {@link FillPolicy}.
+     * is mode is used to specify how the drawable fills up the area calculated
+     * for its container {@code LayoutCell}.  The possible fill mode values are:
+     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL},
+     * and {@code BOTH}. The default value is {@code NONE</code.
+     *
+     * @param fillMode A {@link FillPolicy}.
      * @return This instance as a {@code DrawableCell} for method invocation
-     *      linking.
+     * linking.
      */
-    public final DrawableCell setFillPolicy(final FillPolicy pFillMode) {
-        mFillMode = pFillMode;
+    public final DrawableCell setFillPolicy(final FillPolicy fillMode) {
+        mFillMode = fillMode;
         return this;
     }
 
     /**
      * Gets the background insets of this {@code DrawableCell}.
-     * 
+     *
      * @return An {@link Insets}.
      */
     public final Insets getBackgroundInsets() {
@@ -348,35 +348,35 @@ public class DrawableCell extends LayoutCell {
 
     /**
      * Sets the background insets of this {@code DrawableCell}.
-     * 
-     * @param pInsets An {@link Insets}.
+     *
+     * @param insets An {@link Insets}.
      * @return This instance for method invocation linking.
      */
-    public final DrawableCell setBackgroundInsets(final Insets pInsets) {
-        return setBackgroundInsets(pInsets.mTop, pInsets.mLeft, pInsets.mBottom, pInsets.mRight);
+    public final DrawableCell setBackgroundInsets(final Insets insets) {
+        return setBackgroundInsets(insets.mTop, insets.mLeft, insets.mBottom, insets.mRight);
     }
 
     /**
      * Sets the background insets of this {@code DrawableCell}.
-     * 
-     * @param pTop The top insets.
-     * @param pLeft The left insets.
-     * @param pBottom The bottom insets.
-     * @param pRight The right insets.
+     *
+     * @param top    The top insets.
+     * @param left   The left insets.
+     * @param bottom The bottom insets.
+     * @param right  The right insets.
      * @return This instance for method invocation linking.
      */
-    public final DrawableCell setBackgroundInsets(final int pTop, final int pLeft,
-            final int pBottom, final int pRight) {
-        mBackgroundInsets.mTop = pTop;
-        mBackgroundInsets.mLeft = pLeft;
-        mBackgroundInsets.mBottom = pBottom;
-        mBackgroundInsets.mRight = pRight;
+    public final DrawableCell setBackgroundInsets(final int top, final int left,
+                                                  final int bottom, final int right) {
+        mBackgroundInsets.mTop = top;
+        mBackgroundInsets.mLeft = left;
+        mBackgroundInsets.mBottom = bottom;
+        mBackgroundInsets.mRight = right;
         return this;
     }
 
     /**
      * Gets the insets of this {@code DrawableCell}.
-     * 
+     *
      * @return An {@link Insets}.
      */
     public final Insets getInsets() {
@@ -385,70 +385,68 @@ public class DrawableCell extends LayoutCell {
 
     /**
      * Sets the insets of this {@code DrawableCell}.
-     * 
-     * @param pInsets An {@link Insets}.
+     *
+     * @param insets An {@link Insets}.
      * @return This instance for method invocation linking.
      */
-    public final DrawableCell setInsets(final Insets pInsets) {
-        return setInsets(pInsets.mTop, pInsets.mLeft, pInsets.mBottom, pInsets.mRight);
+    public final DrawableCell setInsets(final Insets insets) {
+        return setInsets(insets.mTop, insets.mLeft, insets.mBottom, insets.mRight);
     }
 
     /**
      * Sets the insets of this {@code DrawableCell}.
-     * 
-     * @param pTop The top insets.
-     * @param pLeft The left insets.
-     * @param pBottom The bottom insets.
-     * @param pRight The right insets.
+     *
+     * @param top    The top insets.
+     * @param left   The left insets.
+     * @param bottom The bottom insets.
+     * @param right  The right insets.
      * @return This instance for method invocation linking.
      */
-    public final DrawableCell setInsets(final int pTop, final int pLeft, final int pBottom,
-            final int pRight) {
-        mInsets.mTop = pTop;
-        mInsets.mLeft = pLeft;
-        mInsets.mBottom = pBottom;
-        mInsets.mRight = pRight;
+    public final DrawableCell setInsets(final int top, final int left, final int bottom, final int right) {
+        mInsets.mTop = top;
+        mInsets.mLeft = left;
+        mInsets.mBottom = bottom;
+        mInsets.mRight = right;
         return this;
     }
 
     /**
      * Sets the current size measure for this {@code LayoutCell}.
-     * 
-     * @param pWidth The width of the new size as an {@code int}.
-     * @param pHeight The height of the new size as an {@code int}.
+     *
+     * @param width  The width of the new size as an {@code int}.
+     * @param height The height of the new size as an {@code int}.
      */
     @Override
-    public void setSize(final int pWidth, final int pHeight) {
-        super.setSize(pWidth, pHeight);
+    public void setSize(final int width, final int height) {
+        super.setSize(width, height);
 
         if (mBackgroundDrawable != null) {
-            layoutDrawable(mBackgroundDrawable, pWidth, pHeight, mBackgroundInsets);
+            layoutDrawable(mBackgroundDrawable, width, height, mBackgroundInsets);
         }
 
         if (mForegroundDrawable != null) {
-            layoutDrawable(mForegroundDrawable, pWidth, pHeight, mInsets);
+            layoutDrawable(mForegroundDrawable, width, height, mInsets);
         }
     }
 
-    protected void layoutDrawable(final Drawable pDrawable, final int pWidth, final int pHeight,
-            final Insets pInsets) {
+    protected void layoutDrawable(final Drawable drawable, final int width, final int height, final Insets insets) {
 
         if (mFillMode == FillPolicy.BOTH) {
-            final int drawableWidth = pWidth - pInsets.mLeft - pInsets.mRight;
-            final int drawableHeight = pHeight - pInsets.mTop - pInsets.mBottom;
-            int x = mLocation.x + pInsets.mLeft;
-            int y = mLocation.y + pInsets.mTop;
-            pDrawable.setBounds(x, y, x + drawableWidth, y + drawableHeight);
+            final int drawableWidth = width - insets.mLeft - insets.mRight;
+            final int drawableHeight = height - insets.mTop - insets.mBottom;
+            int x = mLocation.x + insets.mLeft;
+            int y = mLocation.y + insets.mTop;
+            drawable.setBounds(x, y, x + drawableWidth, y + drawableHeight);
             return;
         }
 
-        int x = pInsets.mLeft;
-        int y = pInsets.mTop;
+        int x = insets.mLeft;
+        int y = insets.mTop;
 
         if (mFillMode == FillPolicy.HORIZONTAL) {
-            final int drawableWidth = pWidth - pInsets.mLeft - pInsets.mRight;
-            int drawableHeight = pDrawable.getMinimumHeight();
-            int maxHeight = pHeight - pInsets.mTop - pInsets.mBottom;
+            final int drawableWidth = width - insets.mLeft - insets.mRight;
+            int drawableHeight = drawable.getMinimumHeight();
+            int maxHeight = height - insets.mTop - insets.mBottom;
             drawableHeight = (drawableHeight > maxHeight) ? maxHeight : drawableHeight;
 
             switch (mAnchor) {
@@ -461,23 +459,23 @@ public class DrawableCell extends LayoutCell {
                 case SOUTH:
                 case SOUTH_WEST:
                 case SOUTH_EAST: {
-                    y = mLocation.y + pHeight - drawableHeight;
+                    y = mLocation.y + height - drawableHeight;
                     break;
                 }
                 case WEST:
                 case EAST:
                 case CENTER: {
-                    y = mLocation.y + (pHeight - drawableHeight) / 2;
+                    y = mLocation.y + (height - drawableHeight) / 2;
                     break;
                 }
             }
 
-            pDrawable.setBounds(x, y, x + drawableWidth, y + drawableHeight);
+            drawable.setBounds(x, y, x + drawableWidth, y + drawableHeight);
         } else if (mFillMode == FillPolicy.VERTICAL) {
-            int drawableWidth = pDrawable.getMinimumWidth();
-            final int maxWidth = pWidth - pInsets.mLeft - pInsets.mRight;
+            int drawableWidth = drawable.getMinimumWidth();
+            final int maxWidth = width - insets.mLeft - insets.mRight;
             drawableWidth = (drawableWidth > maxWidth) ? maxWidth : drawableWidth;
-            final int drawableHeight = pHeight - pInsets.mTop - pInsets.mBottom;
+            final int drawableHeight = height - insets.mTop - insets.mBottom;
 
             switch (mAnchor) {
                 case WEST:
@@ -489,60 +487,60 @@ public class DrawableCell extends LayoutCell {
                 case EAST:
                 case NORTH_EAST:
                 case SOUTH_EAST: {
-                    x = mLocation.x + pWidth - drawableWidth;
+                    x = mLocation.x + width - drawableWidth;
                     break;
                 }
                 case NORTH:
                 case SOUTH:
                 case CENTER: {
-                    x = mLocation.x + (pWidth - drawableWidth) / 2;
+                    x = mLocation.x + (width - drawableWidth) / 2;
                     break;
                 }
             }
 
-            pDrawable.setBounds(x, y, x + drawableWidth, y + drawableHeight);
+            drawable.setBounds(x, y, x + drawableWidth, y + drawableHeight);
         } else {
-            int drawableWidth = pDrawable.getMinimumWidth();
-            final int maxWidth = pWidth - pInsets.mLeft - pInsets.mRight;
+            int drawableWidth = drawable.getMinimumWidth();
+            final int maxWidth = width - insets.mLeft - insets.mRight;
             drawableWidth = (drawableWidth > maxWidth) ? maxWidth : drawableWidth;
-            int drawableHeight = pDrawable.getMinimumHeight();
-            final int maxHeight = pHeight - pInsets.mTop - pInsets.mBottom;
+            int drawableHeight = drawable.getMinimumHeight();
+            final int maxHeight = height - insets.mTop - insets.mBottom;
             drawableHeight = (drawableHeight > maxHeight) ? maxHeight : drawableHeight;
 
             switch (mAnchor) {
                 case NORTH: {
-                    x = mLocation.x + (pWidth - drawableWidth) / 2;
+                    x = mLocation.x + (width - drawableWidth) / 2;
                     y = mLocation.y;
                     break;
                 }
                 case NORTH_EAST: {
-                    x = mLocation.x + pWidth - drawableWidth;
+                    x = mLocation.x + width - drawableWidth;
                     y = mLocation.y;
                     break;
                 }
                 case EAST: {
-                    x = mLocation.x + pWidth - drawableWidth;
-                    y = mLocation.y + (pHeight - drawableHeight) / 2;
+                    x = mLocation.x + width - drawableWidth;
+                    y = mLocation.y + (height - drawableHeight) / 2;
                     break;
                 }
                 case SOUTH_EAST: {
-                    x = mLocation.x + pWidth - drawableWidth;
-                    y = mLocation.y + pHeight - drawableHeight;
+                    x = mLocation.x + width - drawableWidth;
+                    y = mLocation.y + height - drawableHeight;
                     break;
                 }
                 case SOUTH: {
-                    x = mLocation.x + (pWidth - drawableWidth) / 2;
-                    y = mLocation.y + pHeight - drawableHeight;
+                    x = mLocation.x + (width - drawableWidth) / 2;
+                    y = mLocation.y + height - drawableHeight;
                     break;
                 }
                 case SOUTH_WEST: {
                     x = mLocation.x;
-                    y = mLocation.y + pHeight - drawableHeight;
+                    y = mLocation.y + height - drawableHeight;
                     break;
                 }
                 case WEST: {
                     x = mLocation.x;
-                    y = mLocation.y + (pHeight - drawableHeight) / 2;
+                    y = mLocation.y + (height - drawableHeight) / 2;
                     break;
                 }
                 case NORTH_WEST: {
@@ -551,13 +549,13 @@ public class DrawableCell extends LayoutCell {
                     break;
                 }
                 case CENTER: {
-                    x = mLocation.x + (pWidth - drawableWidth) / 2;
-                    y = mLocation.y + (pHeight - drawableHeight) / 2;
+                    x = mLocation.x + (width - drawableWidth) / 2;
+                    y = mLocation.y + (height - drawableHeight) / 2;
                     break;
                 }
             }
 
-            pDrawable.setBounds(x, y, x + drawableWidth, y + drawableHeight);
+            drawable.setBounds(x, y, x + drawableWidth, y + drawableHeight);
         }
     }
 
@@ -661,7 +659,7 @@ public class DrawableCell extends LayoutCell {
 
     /**
      * Tests whether the layout cell defined by this {@code LayoutCell} is visible or not.
-     * 
+     *
      * @return A {@code boolean} value.
      */
     @Override
@@ -681,48 +679,47 @@ public class DrawableCell extends LayoutCell {
     }
 
     /**
-     * Sets the anchor defined to this {@code DrawableCell}. The anchor is 
+     * Sets the anchor defined to this {@code DrawableCell}. The anchor is
      * used when the drawable is smaller than area calculated for its container
-     * {@code LayoutCell}. It determines where, within the cell area, to place 
-     * the drawable. The possible anchor values are: {@code CENTER}, 
-     * {@code NORTH}, {@code NORTHEAST}, {@code EAST}, 
-     * {@code SOUTHEAST}, {@code SOUTH}, {@code SOUTHWEST}, 
-     * {@code WEST}, and {@code NORTHWEST}. The default value is 
-     * {@code CENTER</code. 
-     * 
-     * @param pAnchor An {@code Direction} specifying the anchor.
+     * {@code LayoutCell}. It determines where, within the cell area, to place
+     * the drawable. The possible anchor values are: {@code CENTER},
+     * {@code NORTH}, {@code NORTHEAST}, {@code EAST},
+     * {@code SOUTHEAST}, {@code SOUTH}, {@code SOUTHWEST},
+     * {@code WEST}, and {@code NORTHWEST}. The default value is
+     * {@code CENTER</code.
+     *
+     * @param anchor An {@code Direction} specifying the anchor.
      * @return This instance as a {@code DrawableCell} for method invocation
-     *      linking.
+     * linking.
      */
-    public final DrawableCell anchor(final Anchor pAnchor) {
-        return setAnchor(pAnchor);
+    public final DrawableCell anchor(final Anchor anchor) {
+        return setAnchor(anchor);
     }
 
     /**
      * Sets the fill mode defined to this {@code DrawableCell}. Fill mode
-     * is mode is used to specify how the drawable fills up the area calculated 
-     * for its container {@code LayoutCell}.  The possible fill mode values are: 
-     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL}, 
-     * and {@code BOTH}. The default value is {@code NONE</code. 
-     * 
-     * @param pFillMode A {@link FillPolicy}.
+     * is mode is used to specify how the drawable fills up the area calculated
+     * for its container {@code LayoutCell}.  The possible fill mode values are:
+     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL},
+     * and {@code BOTH}. The default value is {@code NONE</code.
+     *
+     * @param fillMode A {@link FillPolicy}.
      * @return This instance as a {@code DrawableCell}.
      */
-    public final DrawableCell fill(final FillPolicy pFillMode) {
-        return setFillPolicy(pFillMode);
+    public final DrawableCell fill(final FillPolicy fillMode) {
+        return setFillPolicy(fillMode);
     }
 
     /**
      * Sets the insets of this {@code DrawableCell}.
-     * 
-     * @param pTop The top insets.
-     * @param pLeft The left insets.
-     * @param pBottom The bottom insets.
-     * @param pRight The right insets.
+     *
+     * @param top    The top insets.
+     * @param left   The left insets.
+     * @param bottom The bottom insets.
+     * @param right  The right insets.
      * @return This instance for method invocation linking.
      */
-    public final DrawableCell insets(final int pTop, final int pLeft, final int pBottom,
-            final int pRight) {
-        return setInsets(pTop, pLeft, pBottom, pRight);
+    public final DrawableCell insets(final int top, final int left, final int bottom, final int right) {
+        return setInsets(top, left, bottom, right);
     }
 }

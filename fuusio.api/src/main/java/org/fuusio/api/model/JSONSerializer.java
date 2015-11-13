@@ -15,16 +15,16 @@
  */
 package org.fuusio.api.model;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
+import android.util.Log;
 
 import org.fuusio.api.util.DateToolkit;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class JSONSerializer {
 

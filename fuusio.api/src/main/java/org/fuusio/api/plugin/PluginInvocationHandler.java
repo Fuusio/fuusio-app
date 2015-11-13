@@ -32,7 +32,7 @@ import java.util.List;
 public class PluginInvocationHandler implements InvocationHandler {
 
     protected final Looper mMainLooper;
-	protected final ArrayList<Plugin> mPlugins;
+    protected final ArrayList<Plugin> mPlugins;
     protected final PluginBus mPluginBus;
     protected final Class<? extends PluginInterface> mPluginInterface;
 
@@ -61,24 +61,24 @@ public class PluginInvocationHandler implements InvocationHandler {
         final List<T> plugins = new ArrayList<>();
 
         for (final Plugin plugin : plugins) {
-            plugins.add((T)plugin);
+            plugins.add((T) plugin);
         }
         return plugins;
     }
 
-	public final Proxy getProxy() {
-		return mProxy;
-	}
-	
-	public void setProxy(final Proxy proxy) {
-		mProxy = proxy;
-	}
+    public final Proxy getProxy() {
+        return mProxy;
+    }
 
-	@Override
-	public Object invoke(final Object proxy, final Method pMethod, final Object[] args)
-			throws Throwable {
-		
-		Object returnValue = null;
+    public void setProxy(final Proxy proxy) {
+        mProxy = proxy;
+    }
+
+    @Override
+    public Object invoke(final Object proxy, final Method pMethod, final Object[] args)
+            throws Throwable {
+
+        Object returnValue = null;
 
         if (Looper.myLooper() == mMainLooper) {
             for (int i = mPluginCount - 1; i >= 0; i--) {
@@ -105,20 +105,20 @@ public class PluginInvocationHandler implements InvocationHandler {
                 }
             });
         }
-		return returnValue;
-	}
-	
-	public void plug(final Plugin plugin) {
-		if (!mPlugins.contains(plugin)) {
-			mPlugins.add(plugin);
-			mPluginCount = mPlugins.size();
-		}
-	}
+        return returnValue;
+    }
 
-	public void unplug(final Plugin plugin) {
-		if (mPlugins.contains(plugin)) {
-			mPlugins.remove(plugin);
-			mPluginCount = mPlugins.size();
-		}
-	}
+    public void plug(final Plugin plugin) {
+        if (!mPlugins.contains(plugin)) {
+            mPlugins.add(plugin);
+            mPluginCount = mPlugins.size();
+        }
+    }
+
+    public void unplug(final Plugin plugin) {
+        if (mPlugins.contains(plugin)) {
+            mPlugins.remove(plugin);
+            mPluginCount = mPlugins.size();
+        }
+    }
 }

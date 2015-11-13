@@ -59,7 +59,7 @@ public class StateMachineTest extends AndroidTestCase {
 
 
     @Before
-    public void beforeTests()  {
+    public void beforeTests() {
     }
 
     @Test

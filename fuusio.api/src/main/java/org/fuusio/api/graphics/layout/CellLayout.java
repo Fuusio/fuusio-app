@@ -35,17 +35,17 @@
 
 package org.fuusio.api.graphics.layout;
 
+import android.view.View;
+
 import org.fuusio.api.util.Dimension;
 import org.fuusio.api.util.Insets;
-
-import android.view.View;
 
 /**
  * {@link CellLayout} implements a layout manager for defining and managing the layout of
  * {@link android.graphics.drawable.Drawable}s . The layout managing is based on a number of
  * {@link LayoutCell} instances that each define constraints for setting the layout for given set of
  * {@link android.graphics.drawable.Drawable}s.
- * 
+ *
  * @author Marko Salmela
  */
 public class CellLayout {
@@ -105,7 +105,7 @@ public class CellLayout {
     /**
      * Constructs a new instance of {@link CellLayout} for managing the layout of the given
      * {@link View}.
-     * 
+     *
      * @param view A {@link View}.
      */
     public CellLayout(final View view) {
@@ -120,7 +120,7 @@ public class CellLayout {
 
     /**
      * Gets the managed {@link View}.
-     * 
+     *
      * @return A {@link View}.
      */
     protected View getView() {
@@ -130,7 +130,7 @@ public class CellLayout {
     /**
      * Gets the default margins for {@link LayoutCell}s capsulating
      * {@link android.graphics.drawable.Drawable}s.
-     * 
+     *
      * @return The margins as an {@link Insets}.
      */
     public Insets getDefaultComponentInsets() {
@@ -139,20 +139,19 @@ public class CellLayout {
 
     /**
      * Sets the default margins for {@link LayoutCell}.
-     * 
-     * @param pTop The top insets.
-     * @param pLeft The left insets.
-     * @param pBottom The bottom insets.
-     * @param pRight The right insets.
+     *
+     * @param top    The top insets.
+     * @param left   The left insets.
+     * @param bottom The bottom insets.
+     * @param right  The right insets.
      */
-    public void setDefaultComponentInsets(final int pTop, final int pLeft, final int pBottom,
-            final int pRight) {
-        DrawableCell.setDefaultDrawableInsets(pTop, pLeft, pBottom, pRight);
+    public void setDefaultComponentInsets(final int top, final int left, final int bottom, final int right) {
+        DrawableCell.setDefaultDrawableInsets(top, left, bottom, right);
     }
 
     /**
      * Sets the layout insets that are used for defining top, left, bottom, and right margins.
-     * 
+     *
      * @param insets An {@link Insets}.
      */
     public void setLayoutInsets(final Insets insets) {
@@ -166,17 +165,17 @@ public class CellLayout {
      * Sets this {@link CellLayout} to be dynamically resized depending on the given boolean value.
      * The size of the dynamically resized {@link View} is determined by the preferred sizes of the
      * contained components.
-     * 
-     * @param pDynamicallyResized A {@code boolean} flag specifying whether this {@link CellLayout}
-     *        is dynamically resized.
+     *
+     * @param dynamicallyResized A {@code boolean} flag specifying whether this {@link CellLayout}
+     *                           is dynamically resized.
      */
-    public void setDynamicallyResized(final boolean pDynamicallyResized) {
-        mDynamicallyResized = pDynamicallyResized;
+    public void setDynamicallyResized(final boolean dynamicallyResized) {
+        mDynamicallyResized = dynamicallyResized;
     }
 
     /**
      * Gets the root {@link ContainerCell} of the build {@link CellLayout}.
-     * 
+     *
      * @return A {@link ContainerCell}.
      */
     public ContainerCell getRootCell() {
@@ -185,18 +184,18 @@ public class CellLayout {
 
     /**
      * Sets the root {@link ContainerCell} of the build {@link CellLayout}.
-     * 
-     * @param pCell A {@link ContainerCell}.
+     *
+     * @param cell A {@link ContainerCell}.
      */
-    public void setRootCell(final ContainerCell pCell) {
-        mRootCell = pCell;
+    public void setRootCell(final ContainerCell cell) {
+        mRootCell = cell;
 
     }
 
     /**
      * Creates a new instance of {@link CellLayout} for managing the layout of the given
      * {@link View}.
-     * 
+     *
      * @param view A {@link View}.
      * @return The created {@link CellLayout}.
      */
@@ -208,22 +207,22 @@ public class CellLayout {
      * Creates a new instance of {@link CellLayout} for managing the layout of the given
      * {@link View}. The given {@code boolean} flag specifies whether the {@link View} is
      * dynamically resized according to calculated preferred layout size.
-     * 
-     * @param view A {@link View}.
-     * @param pDynamicallyResized A {@code boolean} flag specifying whether the {@link View} is
-     *        dynamically resized.
+     *
+     * @param view               A {@link View}.
+     * @param dynamicallyResized A {@code boolean} flag specifying whether the {@link View} is
+     *                           dynamically resized.
      * @return The created {@link CellLayout}.
      */
-    public static CellLayout create(final View view, final boolean pDynamicallyResized) {
+    public static CellLayout create(final View view, final boolean dynamicallyResized) {
         final CellLayout layout = new CellLayout(view);
-        layout.setDynamicallyResized(pDynamicallyResized);
+        layout.setDynamicallyResized(dynamicallyResized);
         return layout;
     }
 
     /**
      * Tests whether the assigned {@link View} is to be dynamically resized according to calculated
      * preferred layout size.
-     * 
+     *
      * @return A {@code boolean} flag specifying whether the {@link View} is dynamically resized.
      */
     public final boolean isDynamicallyResized() {
@@ -233,7 +232,7 @@ public class CellLayout {
     /**
      * Invalidates the layout for the given {@link View}, indicating that if this
      * {@link CellLayout} has cached information it should be discarded.
-     * 
+     *
      * @param view The {@link View} to be isInvalidated.
      */
     public void invalidateLayout(final View view) {
@@ -253,7 +252,7 @@ public class CellLayout {
 
     /**
      * Lays out the given {@link View}.
-     * 
+     *
      * @param view The {@link View} to be laid out.
      */
     public void layoutView(final View view) {
@@ -292,21 +291,21 @@ public class CellLayout {
         }
     }
 
-    public void layout(final int pWidth, final int pHeight) {
+    public void layout(final int width, final int height) {
 
         if (mRootCell == null) {
             return;
         }
 
         if (mRootCell.isVisible()) {
-            mRootCell.setSize(pWidth, pHeight);
+            mRootCell.setSize(width, height);
         }
     }
 
     /**
      * Calculates the maximum size dimensions for the specified View, given the components it
      * contains.
-     * 
+     *
      * @param view The {@link View} to be laid out.
      * @return The maximum layout size as a {@link Dimension}.
      */
@@ -325,7 +324,7 @@ public class CellLayout {
     /**
      * Calculates the minimum size dimensions for the specified {@link View}, given the components
      * it contains.
-     * 
+     *
      * @param view The {@link View} to be laid out.
      * @return The minimum layout size as a {@link Dimension}.
      */

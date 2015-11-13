@@ -19,12 +19,14 @@ public interface ApplicationError {
 
     /**
      * Return the unique code for this error.
+     *
      * @return An {@link int} code.
      */
     int getCode();
 
     /**
      * Return the error message describing this error.
+     *
      * @param args Optional args used for formatting the error message.
      * @return A {@link String} containing the error message.
      */

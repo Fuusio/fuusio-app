@@ -35,16 +35,16 @@
 
 package org.fuusio.api.graphics.layout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.graphics.drawable.Drawable;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * {@code CompositeCell} implements {@code LayoutCell} that may contain a horizontally or vertically
  * oriented group of multiple {@link LayoutCell}s.
- * 
+ *
  * @author Marko Salmela
  */
 public abstract class ContainerCell extends LayoutCell {
@@ -56,97 +56,95 @@ public abstract class ContainerCell extends LayoutCell {
 
     /**
      * Constructs a new instance of {@code CompositeCell} for the given {@link CellLayout}.
-     * 
-     * @param pLayout A {@link CellLayout}.
+     *
+     * @param layout A {@link CellLayout}.
      */
-    protected ContainerCell(final CellLayout pLayout) {
-        super(pLayout);
-        mComponentCells = new ArrayList<LayoutCell>();
+    protected ContainerCell(final CellLayout layout) {
+        super(layout);
+        mComponentCells = new ArrayList<>();
     }
 
     /**
      * Constructs a new instance of {@code CompositeCell} for the given {@link CellLayout}.
      * The instance is resizeable according to the specified resize mode.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidthResizePolicy The horizontal {@code ResizePolicy}.
-     * @param pHeightResizePolicy The vertical {@code ResizePolicy}.
+     *
+     * @param layout             A {@link CellLayout}.
+     * @param widthResizePolicy  The horizontal {@code ResizePolicy}.
+     * @param heightResizePolicy The vertical {@code ResizePolicy}.
      */
-    protected ContainerCell(final CellLayout pLayout,
-            final ResizePolicy pWidthResizePolicy, final ResizePolicy pHeightResizePolicy) {
-        this(pLayout);
-        mWidthResizePolicy = pWidthResizePolicy;
-        mHeightResizePolicy = pHeightResizePolicy;
+    protected ContainerCell(final CellLayout layout,
+                            final ResizePolicy widthResizePolicy, final ResizePolicy heightResizePolicy) {
+        this(layout);
+        mWidthResizePolicy = widthResizePolicy;
+        mHeightResizePolicy = heightResizePolicy;
     }
 
     /**
      * Constructs a new instance of {@code CompositeCell} for the given {@link CellLayout}.
      * The instance defines a layout cell with fixed width and height.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidth The width of the {@code CompositeCell}.
-     * @param pHeight The height of the {@code CompositeCell}.
+     *
+     * @param layout A {@link CellLayout}.
+     * @param width  The width of the {@code CompositeCell}.
+     * @param height The height of the {@code CompositeCell}.
      */
-    protected ContainerCell(final CellLayout pLayout, final int pWidth, final int pHeight) {
-        this(pLayout);
-        mFixedSize.mWidth = pWidth;
-        mFixedSize.mHeight = pHeight;
+    protected ContainerCell(final CellLayout layout, final int width, final int height) {
+        this(layout);
+        mFixedSize.mWidth = width;
+        mFixedSize.mHeight = height;
     }
 
     /**
      * Constructs a new instance of {@code CompositeCell} for the given {@link CellLayout}.
      * The instance defines a layout cell with fixed height and resizeable width.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidthResizePolicy The horizontal {@code ResizePolicy}.
-     * @param pHeight The height of the {@code CompositeCell}.
+     *
+     * @param layout            A {@link CellLayout}.
+     * @param widthResizePolicy The horizontal {@code ResizePolicy}.
+     * @param height            The height of the {@code CompositeCell}.
      */
-    protected ContainerCell(final CellLayout pLayout,
-            final ResizePolicy pWidthResizePolicy, final int pHeight) {
-        this(pLayout);
-        mWidthResizePolicy = pWidthResizePolicy;
-        mFixedSize.mHeight = pHeight;
+    protected ContainerCell(final CellLayout layout, final ResizePolicy widthResizePolicy, final int height) {
+        this(layout);
+        mWidthResizePolicy = widthResizePolicy;
+        mFixedSize.mHeight = height;
     }
 
     /**
      * Constructs a new instance of {@code CompositeCell} for the given {@link CellLayout}.
      * The instance defines a layout cell with fixed width and resizeable height.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidth The width of the {@code CompositeCell}.
-     * @param pHeightResizePolicy The vertical {@code ResizePolicy} to be added.
+     *
+     * @param layout             A {@link CellLayout}.
+     * @param width              The width of the {@code CompositeCell}.
+     * @param heightResizePolicy The vertical {@code ResizePolicy} to be added.
      */
-    protected ContainerCell(final CellLayout pLayout, final int pWidth,
-            final ResizePolicy pHeightResizePolicy) {
-        this(pLayout);
-        mFixedSize.mWidth = pWidth;
-        mHeightResizePolicy = pHeightResizePolicy;
+    protected ContainerCell(final CellLayout layout, final int width, final ResizePolicy heightResizePolicy) {
+        this(layout);
+        mFixedSize.mWidth = width;
+        mHeightResizePolicy = heightResizePolicy;
     }
 
     @Override
-    public void collectDrawables(final List<Drawable> pDrawables) {
+    public void collectDrawables(final List<Drawable> drawables) {
         for (final LayoutCell cell : mComponentCells) {
-            cell.collectDrawables(pDrawables);
+            cell.collectDrawables(drawables);
         }
     }
 
     @Override
-    public void collectViews(final List<View> pViews) {
+    public void collectViews(final List<View> views) {
         for (final LayoutCell cell : mComponentCells) {
-            cell.collectViews(pViews);
+            cell.collectViews(views);
         }
     }
 
     /**
      * Adds the given {@link LayoutCell} to this {@code CompositeCell}.
-     * 
-     * @param pCell The {@link LayoutCell} to be added.
+     *
+     * @param cell The {@link LayoutCell} to be added.
      * @return The added {@link LayoutCell} if adding succeeds, otherwise {@code null}.
      */
-    public LayoutCell addCell(final LayoutCell pCell) {
-        if (!mComponentCells.contains(pCell)) {
-            mComponentCells.add(pCell);
-            return pCell;
+    public LayoutCell addCell(final LayoutCell cell) {
+        if (!mComponentCells.contains(cell)) {
+            mComponentCells.add(cell);
+            return cell;
         }
 
         return null;
@@ -154,7 +152,7 @@ public abstract class ContainerCell extends LayoutCell {
 
     /**
      * Tests whether the layout cell defined by this {@link LayoutCell} is visible or not.
-     * 
+     *
      * @return A {@code boolean} value.
      */
     @Override
@@ -167,7 +165,6 @@ public abstract class ContainerCell extends LayoutCell {
                 return true;
             }
         }
-
         return false;
     }
 }

@@ -16,6 +16,7 @@
 package org.fuusio.api.app;
 
 import org.fuusio.api.dependency.ApplicationScope;
+import org.fuusio.api.dependency.DependencyScopeCache;
 import org.fuusio.api.flow.FlowManager;
 import org.fuusio.api.graphics.BitmapManager;
 import org.fuusio.api.graphics.BitmapManagerImpl;
@@ -24,7 +25,7 @@ import org.fuusio.api.rest.RequestManager;
 import org.fuusio.api.rest.volley.VolleyRequestManager;
 import org.fuusio.api.ui.action.ActionManager;
 
-public abstract class FuusioApplicationScope extends ApplicationScope {
+public abstract class FuusioApplicationScope extends ApplicationScope<FuusioApplication> {
 
     protected FuusioApplicationScope(final FuusioApplication application) {
         super(application);
@@ -36,6 +37,8 @@ public abstract class FuusioApplicationScope extends ApplicationScope {
             return dependency(new ActionManager(getApplicationContext()));
         } else if (type(BitmapManager.class)) {
             return dependency(new BitmapManagerImpl());
+        } else if (type(DependencyScopeCache.class)) {
+            return dependency(getApplication().getDependencyScopeCache());
         } else if (type(ModelObjectManager.class)) {
             return dependency(getModelObjectManager());
         } else if (type(FlowManager.class)) {

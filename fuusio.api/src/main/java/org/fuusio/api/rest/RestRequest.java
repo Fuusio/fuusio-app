@@ -127,7 +127,7 @@ public abstract class RestRequest<T_Response, T_PeerRequest> {
     /**
      * Add the specified query parameter with the given value.
      *
-     * @param key The name of the parameter to be added as a {@link String}.
+     * @param key   The name of the parameter to be added as a {@link String}.
      * @param value The value of the parameter.
      */
     public RestRequest addParam(final String key, final String value) {
@@ -158,7 +158,7 @@ public abstract class RestRequest<T_Response, T_PeerRequest> {
     /**
      * Add the specified path parameter with the given value.
      *
-     * @param key The name of the parameter to be added as a {@link String}.
+     * @param key   The name of the parameter to be added as a {@link String}.
      * @param value The value of the parameter.
      */
     public RestRequest addPathParam(final String key, final String value) {

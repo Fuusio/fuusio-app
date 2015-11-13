@@ -17,7 +17,7 @@ package org.fuusio.api.util;
 
 /**
  * {@code Direction} defines a new enum type for representing priority values at five levels.
- * 
+ *
  * @author Marko Salmela
  */
 

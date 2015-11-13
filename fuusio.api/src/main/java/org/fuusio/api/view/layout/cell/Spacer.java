@@ -41,7 +41,7 @@ public class Spacer extends LayoutCell {
     /**
      * Constructs a new instance of {@code Spacer} for the given {@code CellLayout}. By default,
      * this instance fills space both horizontally and vertically.
-     * 
+     *
      * @param pLayout A {@code CellLayout}.
      */
     public Spacer(final CellLayout pLayout) {
@@ -51,16 +51,16 @@ public class Spacer extends LayoutCell {
     /**
      * Constructs a new instance of {@code Spacer} for the given {@code CellLayout}. The instance
      * fills space according to the given {@code FillPolicy}.
-     * 
-     * @param pLayout A {@code CellLayout}.
-     * @param pFillMode A {@code FillPolicy}.
-     * @param pFixedWidth The fixed width of this {@code Spacer}. Value is -1 if this {@code Spacer}
-     *        if this spacer does not have fixed width.
+     *
+     * @param pLayout      A {@code CellLayout}.
+     * @param pFillMode    A {@code FillPolicy}.
+     * @param pFixedWidth  The fixed width of this {@code Spacer}. Value is -1 if this {@code Spacer}
+     *                     if this spacer does not have fixed width.
      * @param pFixedHeight The fixed height of this {@code Spacer}. Value is -1 if this
-     *        {@code Spacer} if this spacer does not have fixed height.
+     *                     {@code Spacer} if this spacer does not have fixed height.
      */
     public Spacer(final CellLayout pLayout, final FillPolicy pFillMode, final int pFixedWidth,
-            final int pFixedHeight) {
+                  final int pFixedHeight) {
         super(pLayout);
         mFillMode = pFillMode;
         mFixedHeight = pFixedHeight;
@@ -69,7 +69,7 @@ public class Spacer extends LayoutCell {
 
     /**
      * Constructs a copy instance of the given {@code Spacer} for the given {@code CellLayout}.
-     * 
+     *
      * @param pLayout A {@code CellLayout}.
      * @param pSource A {@code Spacer}.
      */
@@ -83,11 +83,11 @@ public class Spacer extends LayoutCell {
 
     /**
      * Gets the fill mode defined to this {@code Spacer}. Fill mode
-     * is mode is used to specify how the component fills up the area calculated 
-     * for its container {@code LayoutCell}.  The possible fill mode values are: 
-     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL}, 
-     * and {@code BOTH}. The default value is {@code NONE</code. 
-     *  
+     * is mode is used to specify how the component fills up the area calculated
+     * for its container {@code LayoutCell}.  The possible fill mode values are:
+     * {@code NONE}, {@code HORIZONTAL}, {@code VERTICAL},
+     * and {@code BOTH}. The default value is {@code NONE</code.
+     *
      * @return A {@link FillPolicy }.
      */
     public final FillPolicy getFillMode() {

@@ -23,7 +23,16 @@ package org.fuusio.api.dependency;
 public interface DependencyScopeOwner {
 
     /**
-     * Gets the {@link DependencyScope} provide by this {@link DependencyScopeOwner}.
+     * Return an identified for the {@link DependencyScope} provided by this
+     * {@link DependencyScopeOwner}.
+     *
+     * @return The identifier as a {@link String}.
+     */
+    String getScopeId();
+
+    /**
+     * Return the {@link DependencyScope} provide by this {@link DependencyScopeOwner}.
+     *
      * @param <T> The generic return type of {@link DependencyScope}.
      * @return A {@link DependencyScope}.
      */

@@ -28,7 +28,7 @@ public interface Plugin {
     String DEFAULT_PLUG_NAME = "*";
     boolean DEFAULT_VALUE_CREATE = false;
 
-	String getPlugName();
+    String getPlugName();
 
     void onPlugged(PluginBus bus);
 
@@ -38,6 +38,7 @@ public interface Plugin {
     @Target(ElementType.FIELD)
     public @interface Plug {
         String name() default DEFAULT_PLUG_NAME;
+
         boolean create() default DEFAULT_VALUE_CREATE;
     }
 }

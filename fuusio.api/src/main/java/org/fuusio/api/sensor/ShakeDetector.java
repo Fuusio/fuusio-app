@@ -20,8 +20,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-import org.fuusio.api.util.AbstractListenable;
-
 import java.util.ArrayList;
 
 /**

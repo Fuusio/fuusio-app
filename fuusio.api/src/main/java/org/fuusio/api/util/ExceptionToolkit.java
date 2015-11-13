@@ -20,7 +20,7 @@ import java.text.MessageFormat;
 /**
  * {@code ExceptionToolkit} provides a set of convenience methods and utilities for throwing,
  * handling, and using {@link Exception}s.
- * 
+ *
  * @author Marko Salmela
  */
 public class ExceptionToolkit {
@@ -28,12 +28,12 @@ public class ExceptionToolkit {
     /**
      * Asserts that the given parameter value is not {@code null}. If {@code null}, throws an
      * {@link IllegalArgumentException}.
-     * 
+     *
      * @param parameterValue The parameter value to be tested.
-     * @param parameterName The name of the parameter.
+     * @param parameterName  The name of the parameter.
      */
     public static void assertParameterNotNull(final Object parameterValue,
-            final String parameterName) {
+                                              final String parameterName) {
         if (parameterValue == null) {
             final String message = "Parameter '{0}' may not be null.";
             throw new IllegalArgumentException(StringToolkit.formatString(message,
@@ -44,9 +44,9 @@ public class ExceptionToolkit {
     /**
      * Formats the given message {@link String} with given two arguments and by using the
      * {@link MessageFormat} class.
-     * 
+     *
      * @param message The message to be displayed as {@link String}.
-     * @param args The optional arguments for {@link MessageFormat} class.
+     * @param args    The optional arguments for {@link MessageFormat} class.
      * @return A {@link String} containing the formatted message.
      */
     public static String formatMessageString(final String message, final Object... args) {
@@ -55,7 +55,7 @@ public class ExceptionToolkit {
 
     /**
      * Creates and throws an {@link IllegalArgumentException} with the given message.
-     * 
+     *
      * @param message The message to be displayed as {@link String}.
      */
     public static void throwIllegalArgumentException(final String message) {
@@ -64,7 +64,7 @@ public class ExceptionToolkit {
 
     /**
      * Creates and throws an {@link IllegalStateException} with the given message.
-     * 
+     *
      * @param message The message to be displayed as {@link String}.
      */
     public static void throwIllegalStateException(final String message) {
@@ -74,9 +74,9 @@ public class ExceptionToolkit {
     /**
      * Creates and throws an {@link IllegalArgumentException} with the given message and message
      * formatting arguments.
-     * 
+     *
      * @param message The message to be displayed as {@link String}.
-     * @param args The optional message formatting arguments.
+     * @param args    The optional message formatting arguments.
      */
     public static void throwIllegalArgumentException(final String message, final Object... args) {
         final String errorMessage = StringToolkit.formatString(message, args);
@@ -86,7 +86,7 @@ public class ExceptionToolkit {
     /**
      * Creates and throws an {@link IllegalArgumentException} with the given message and message
      * formatting arguments.
-     * 
+     *
      * @param parameterName The name of the parameter as {@link String}.
      */
     public static void throwNullParameterException(final String parameterName) {

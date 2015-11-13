@@ -15,16 +15,16 @@
  */
 package org.fuusio.api.model;
 
+import org.fuusio.api.model.Property.PropertyGetter;
+import org.fuusio.api.model.Property.PropertySetter;
+import org.fuusio.api.model.Property.PropertyValidator;
+import org.fuusio.api.model.Property.TransientProperties;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.StringTokenizer;
-
-import org.fuusio.api.model.Property.PropertyGetter;
-import org.fuusio.api.model.Property.PropertySetter;
-import org.fuusio.api.model.Property.PropertyValidator;
-import org.fuusio.api.model.Property.TransientProperties;
 
 public class ModelObjectMetaInfo {
 
@@ -91,7 +91,7 @@ public class ModelObjectMetaInfo {
                 final boolean isTransient = annotation.isTransient();
                 final boolean isKey = annotation.isKey();
                 final int index = annotation.index();
-                
+
                 final Property property = getProperty(propertyName, true);
                 property.setGetter(method);
                 property.setDescriptor(isDescriptor);
@@ -99,7 +99,7 @@ public class ModelObjectMetaInfo {
                 property.setTransient(isTransient);
                 property.setKey(isKey);
                 property.setColumnIndex(index);
-                
+
             } else if (method.isAnnotationPresent(PropertySetter.class)) {
                 final PropertySetter annotation = method.getAnnotation(PropertySetter.class);
                 final String propertyName = annotation.property();

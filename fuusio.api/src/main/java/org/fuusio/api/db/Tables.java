@@ -17,26 +17,26 @@ package org.fuusio.api.db;
 
 public enum Tables implements TableDescriptor, TablesDescriptor {
 
-	TABLE_FOO("Foo", null);
-	
-	private final String mName;
-	private final ColumnDescriptor[] mColumnDescriptors;
-	
-	private Tables(final String name, final ColumnDescriptor[] columnDescriptors) {
-		mName = name;
-		mColumnDescriptors = columnDescriptors;
-	}
+    TABLE_FOO("Foo", null);
 
-	public final ColumnDescriptor[] getColumnDescriptors() {
-		return mColumnDescriptors;
-	}
+    private final String mName;
+    private final ColumnDescriptor[] mColumnDescriptors;
 
-	public final String getName() {
-		return mName;
-	}
+    private Tables(final String name, final ColumnDescriptor[] columnDescriptors) {
+        mName = name;
+        mColumnDescriptors = columnDescriptors;
+    }
 
-	@Override
-	public TableDescriptor[] getTableDescriptors() {
-		return values();
-	}
+    public final ColumnDescriptor[] getColumnDescriptors() {
+        return mColumnDescriptors;
+    }
+
+    public final String getName() {
+        return mName;
+    }
+
+    @Override
+    public TableDescriptor[] getTableDescriptors() {
+        return values();
+    }
 }

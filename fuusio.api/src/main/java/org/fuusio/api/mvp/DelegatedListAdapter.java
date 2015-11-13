@@ -17,7 +17,7 @@ package org.fuusio.api.mvp;
 
 import android.content.Context;
 import android.database.DataSetObserver;
-import android.view.*;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListAdapter;
 
@@ -100,7 +100,7 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
             itemView = createItemView(position);
             itemView.getInflatedView().setTag(itemView);
         } else {
-            itemView = (ListItemView)convertView.getTag();
+            itemView = (ListItemView) convertView.getTag();
         }
 
         if (position != mUndoPosition) {
@@ -112,6 +112,7 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
 
     /**
      * Constructs and appropriate {@link ListItemView} for the given item position.
+     *
      * @param position The item position on list.
      * @returnA {@link ListItemView}.
      */
@@ -179,7 +180,7 @@ public abstract class DelegatedListAdapter<T_ListItemProvider extends ListItemPr
     }
 
     @Override
-    public void onScroll(final AbsListView view, final int firstVisibleItem, final int  visibleItemCount, final int totalItemCount) {
+    public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, final int totalItemCount) {
         if (mUndoPosition >= 0) {
             commitRemove();
         }

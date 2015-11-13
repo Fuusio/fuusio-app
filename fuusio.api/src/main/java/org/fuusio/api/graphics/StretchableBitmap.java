@@ -33,15 +33,15 @@
 
 package org.fuusio.api.graphics;
 
-import java.util.StringTokenizer;
-
-import org.fuusio.api.util.Dimension;
-import org.fuusio.api.util.ExceptionToolkit;
-
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.SparseArray;
+
+import org.fuusio.api.util.Dimension;
+import org.fuusio.api.util.ExceptionToolkit;
+
+import java.util.StringTokenizer;
 
 /**
  * {@link StretchableBitmap} implements a skinnable image based on the {@link Bitmap}
@@ -151,10 +151,10 @@ public class StretchableBitmap {
     /**
      * Constructs a new instance of {@link StretchableBitmap} with the given skin {@link Bitmap} and
      * layout specification.
-     * 
-     * @param bitmap An {@link Bitmap}.
+     *
+     * @param bitmap      An {@link Bitmap}.
      * @param columnsSpec A {@link String} specifying the layout columns.
-     * @param rowsSpec A {@link String} specifying the layout rows.
+     * @param rowsSpec    A {@link String} specifying the layout rows.
      */
     public StretchableBitmap(final Bitmap bitmap, final String columnsSpec, final String rowsSpec) {
         mImageSize = new Dimension();
@@ -168,7 +168,7 @@ public class StretchableBitmap {
 
     /**
      * Gets the currently active skin image.
-     * 
+     *
      * @return The default skin image as an {@link Bitmap}.
      */
     public final Bitmap getActiveStateImage() {
@@ -177,7 +177,7 @@ public class StretchableBitmap {
 
     /**
      * Gets the default skin image.
-     * 
+     *
      * @return The default skin image as an {@link Bitmap}.
      */
     public Bitmap getDefaultStateImage() {
@@ -186,7 +186,7 @@ public class StretchableBitmap {
 
     /**
      * Gets the destination rectangles.
-     * 
+     *
      * @return An two-dimensional array of Rectangles containing the destination rectangles
      */
     public final Rect[][] getDestinationBounds() {
@@ -195,7 +195,7 @@ public class StretchableBitmap {
 
     /**
      * Gets the initial size of this {@link StretchableBitmap}.
-     * 
+     *
      * @return The initial size a {@link Dimension}.
      */
     public Dimension getInitialSize() {
@@ -204,7 +204,7 @@ public class StretchableBitmap {
 
     /**
      * Gets the maximum size of this {@link StretchableBitmap}.
-     * 
+     *
      * @return The maximum size a {@link Dimension}.
      */
     public Dimension getMaximumSize() {
@@ -213,7 +213,7 @@ public class StretchableBitmap {
 
     /**
      * Gets the minimum size of this {@link StretchableBitmap}.
-     * 
+     *
      * @return The minimum size a {@link Dimension}.
      */
     public Dimension getMinimumSize() {
@@ -222,10 +222,10 @@ public class StretchableBitmap {
 
     /**
      * Gets the skin Bitmap for the specified state.
-     * 
-     * @param state An {@link int} index specifying the state.
+     *
+     * @param state           An {@link int} index specifying the state.
      * @param isReturnDefault A {@link boolean} value indicating whether the default skin image is
-     *        returned if the state specific skin Bitmap is not defined.
+     *                        returned if the state specific skin Bitmap is not defined.
      * @return An {@link Bitmap}.
      */
     public Bitmap getStateImage(final int state, final boolean isReturnDefault) {
@@ -240,10 +240,10 @@ public class StretchableBitmap {
 
     /**
      * Sets the skin image for the specified state.
-     * 
+     *
      * @param bitmap The skin image as an {@link Bitmap}. May be {@link null}. If null the
-     *        specified state is set not to have a skin image specific for the given state.
-     * @param state An {@link int} index specifying the state.
+     *               specified state is set not to have a skin image specific for the given state.
+     * @param state  An {@link int} index specifying the state.
      */
     public void setStateImage(final Bitmap bitmap, final int state) {
         if (bitmap != null) {
@@ -260,7 +260,7 @@ public class StretchableBitmap {
 
     /**
      * Gets the source rectangles.
-     * 
+     *
      * @return An two-dimensional array of {@link Rect}s containing the source rectangles.
      */
     public final Rect[][] getSourceRects() {
@@ -269,7 +269,7 @@ public class StretchableBitmap {
 
     /**
      * Gets the current state.
-     * 
+     *
      * @return The state as an {@link int}.
      */
     public final int getState() {
@@ -278,7 +278,7 @@ public class StretchableBitmap {
 
     /**
      * Sets the current state.
-     * 
+     *
      * @param state The state as an {@link int}.
      */
     public final void setState(final int state) {
@@ -287,7 +287,7 @@ public class StretchableBitmap {
 
     /**
      * Layouts this {@link StretchableBitmap} for the given size.
-     * 
+     *
      * @param size A {@link Dimension} specifying the size.
      */
     public void doLayout(final Dimension size) {
@@ -399,11 +399,11 @@ public class StretchableBitmap {
     /**
      * Sets up the layout for this {@link StretchableBitmap} according to the given rows and columns
      * specifications.
-     * 
+     *
      * @param columnsSpec A {@link String} containing the specifications for rows. The
-     *        specification consists number of tokens separated by spaces.
-     * @param rowsSpec A {@link String} containing the specifications for rows. The specification
-     *        consists number of tokens separated by spaces.
+     *                    specification consists number of tokens separated by spaces.
+     * @param rowsSpec    A {@link String} containing the specifications for rows. The specification
+     *                    consists number of tokens separated by spaces.
      */
     protected void setupLayout(final String columnsSpec, final String rowsSpec) {
         final StringTokenizer columnTokenizer = new StringTokenizer(columnsSpec, " ");
@@ -459,7 +459,7 @@ public class StretchableBitmap {
                         minimumWidth = initialWidth;
                         maximumWidth = initialWidth;
                     } catch (Exception e) {
-                        Object[] args = { token, columnsSpec };
+                        Object[] args = {token, columnsSpec};
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER,
                                 args);
                     }
@@ -473,7 +473,7 @@ public class StretchableBitmap {
                     try {
                         minimumWidth = Integer.parseInt(valueString);
                     } catch (Exception e) {
-                        final Object[] args = { token, columnsSpec };
+                        final Object[] args = {token, columnsSpec};
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER,
                                 args);
                     }
@@ -483,7 +483,7 @@ public class StretchableBitmap {
                     try {
                         initialWidth = Integer.parseInt(valueString);
                     } catch (Exception e) {
-                        final Object[] args = { token, columnsSpec };
+                        final Object[] args = {token, columnsSpec};
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER,
                                 args);
                     }
@@ -493,12 +493,12 @@ public class StretchableBitmap {
                     try {
                         maximumWidth = Integer.parseInt(valueString);
                     } catch (Exception e) {
-                        final Object[] args = { token, columnsSpec };
+                        final Object[] args = {token, columnsSpec};
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER,
                                 args);
                     }
                 } else {
-                    final Object[] args = { token, columnsSpec };
+                    final Object[] args = {token, columnsSpec};
                     ExceptionToolkit.throwIllegalArgumentException(INVALID_COLUMN_SPECIFIER, args);
                 }
 
@@ -527,7 +527,7 @@ public class StretchableBitmap {
                             minimumHeight = initialHeight;
                             maximumHeight = initialHeight;
                         } catch (Exception e) {
-                            final Object[] args = { token, rowsSpec };
+                            final Object[] args = {token, rowsSpec};
                             ExceptionToolkit.throwIllegalArgumentException(INVALID_ROW_SPECIFIER,
                                     args);
                         }
@@ -541,7 +541,7 @@ public class StretchableBitmap {
                         try {
                             minimumHeight = Integer.parseInt(valueString);
                         } catch (Exception e) {
-                            final Object[] args = { token, rowsSpec };
+                            final Object[] args = {token, rowsSpec};
                             ExceptionToolkit.throwIllegalArgumentException(INVALID_ROW_SPECIFIER,
                                     args);
                         }
@@ -551,7 +551,7 @@ public class StretchableBitmap {
                         try {
                             initialHeight = Integer.parseInt(valueString);
                         } catch (Exception e) {
-                            final Object[] args = { token, rowsSpec };
+                            final Object[] args = {token, rowsSpec};
                             ExceptionToolkit.throwIllegalArgumentException(INVALID_ROW_SPECIFIER,
                                     args);
                         }
@@ -561,12 +561,12 @@ public class StretchableBitmap {
                         try {
                             maximumHeight = Integer.parseInt(valueString);
                         } catch (Exception e) {
-                            final Object[] args = { token, rowsSpec };
+                            final Object[] args = {token, rowsSpec};
                             ExceptionToolkit.throwIllegalArgumentException(
                                     INVALID_COLUMN_SPECIFIER, args);
                         }
                     } else {
-                        final Object[] args = { token, rowsSpec };
+                        final Object[] args = {token, rowsSpec};
                         ExceptionToolkit.throwIllegalArgumentException(INVALID_ROW_SPECIFIER, args);
                     }
 

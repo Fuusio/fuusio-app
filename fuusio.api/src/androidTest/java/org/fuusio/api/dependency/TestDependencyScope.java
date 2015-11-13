@@ -16,7 +16,6 @@
 package org.fuusio.api.dependency;
 
 import org.fuusio.api.flow.FlowScope;
-
 import org.mockito.Mockito;
 
 public class TestDependencyScope extends FlowScope<TestFlow> {

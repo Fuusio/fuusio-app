@@ -2,20 +2,12 @@ package org.fuusio.api.rest.volley;
 
 import android.util.Log;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import org.fuusio.api.rest.HttpHeaders;
 import org.fuusio.api.rest.HttpMethod;
-import org.fuusio.api.rest.HttpParams;
 import org.fuusio.api.rest.RequestListener;
 import org.fuusio.api.rest.RestRequest;
-import org.fuusio.api.util.KeyValue;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.List;
 
 public abstract class VolleyRestRequest<T_Response> extends RestRequest<T_Response, AbstractRequest<T_Response>> {
 
@@ -57,6 +49,7 @@ public abstract class VolleyRestRequest<T_Response> extends RestRequest<T_Respon
     protected final AbstractRequest<T_Response> createRequest() {
         return createRequest(mResponseListener, mErrorListener);
     }
+
     protected abstract AbstractRequest<T_Response> createRequest(Response.Listener<T_Response> responseListener, Response.ErrorListener errorListener);
 
     protected Response.Listener<T_Response> createResponseListener(final RequestListener<T_Response> requestListener) {

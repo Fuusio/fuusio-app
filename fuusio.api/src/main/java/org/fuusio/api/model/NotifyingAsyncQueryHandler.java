@@ -15,13 +15,13 @@
  */
 package org.fuusio.api.model;
 
-import java.lang.ref.WeakReference;
-
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+
+import java.lang.ref.WeakReference;
 
 public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
 
@@ -57,9 +57,9 @@ public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
      * Begin an asynchronous query with the given arguments. When finished,
      * {@link AsyncQueryListener#onQueryComplete(int, Object, Cursor)} is called if a valid
      * {@link AsyncQueryListener} is present.
-     * 
+     *
      * @param token Unique identifier passed through to
-     *        {@link AsyncQueryListener#onQueryComplete(int, Object, Cursor)}
+     *              {@link AsyncQueryListener#onQueryComplete(int, Object, Cursor)}
      */
     public void startQuery(final int token, final Uri uri, final String[] projection) {
         startQuery(token, null, uri, projection, null, null, null);
@@ -80,7 +80,7 @@ public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
      * {@link AsyncQueryListener} is present.
      */
     public void startQuery(final Uri uri, final String[] projection, final String selection,
-            final String[] selectionArgs, final String orderBy) {
+                           final String[] selectionArgs, final String orderBy) {
         startQuery(-1, null, uri, projection, selection, selectionArgs, orderBy);
     }
 
@@ -99,7 +99,9 @@ public class NotifyingAsyncQueryHandler extends AsyncQueryHandler {
         startDelete(-1, null, uri, null, null);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onQueryComplete(final int token, final Object cookie, final Cursor cursor) {
         final AsyncQueryListener listener = (mQueryListener == null) ? null : mQueryListener.get();

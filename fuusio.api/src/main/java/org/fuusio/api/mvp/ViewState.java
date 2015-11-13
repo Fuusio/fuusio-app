@@ -15,8 +15,6 @@
  */
 package org.fuusio.api.mvp;
 
-import android.os.Bundle;
-
 import org.fuusio.api.util.LifecycleState;
 
 /**
@@ -25,7 +23,7 @@ import org.fuusio.api.util.LifecycleState;
 public class ViewState {
 
     private final View mView;
-    
+
     private LifecycleState mLifecycleState;
     private boolean mRestarted;
 

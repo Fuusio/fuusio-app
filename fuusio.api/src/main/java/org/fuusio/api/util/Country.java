@@ -16,7 +16,7 @@
 package org.fuusio.api.util;
 
 public class Country {
-    
+
     private final String mCode;
     private final String mIso;
     private final String mName;
@@ -37,5 +37,5 @@ public class Country {
 
     public final String getName() {
         return mName;
-    }   
+    }
 }

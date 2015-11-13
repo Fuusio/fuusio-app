@@ -38,7 +38,7 @@ package org.fuusio.api.graphics.layout;
 /**
  * {@code ResizePolicy} defines an enumerated type for representing the various resize policies for
  * {@link LayoutCell} instances defined in a {@link CellLayout}.
- * 
+ *
  * @author Marko Salmela
  */
 public enum ResizePolicy {
@@ -61,10 +61,6 @@ public enum ResizePolicy {
      */
     PREFERRED("Preferred");
 
-    // -------------------------------------------------------------------------
-    // Enumeration Fields
-    // -------------------------------------------------------------------------
-
     /**
      * The displayable label of {@code ResizePolicy} item values.
      */
@@ -72,16 +68,16 @@ public enum ResizePolicy {
 
     /**
      * Constructs a new instance of {@code ResizePolicy} with the given displayable label.
-     * 
-     * @param pLabel A {@link String} for the displayable label.
+     *
+     * @param label A {@link String} for the displayable label.
      */
-    ResizePolicy(final String pLabel) {
-        mLabel = pLabel;
+    ResizePolicy(final String label) {
+        mLabel = label;
     }
 
     /**
      * Gets the displayable label for this {@code ResizePolicy}.
-     * 
+     *
      * @return A {@link String} for displayable label.
      */
     public String getLabel() {
@@ -90,7 +86,7 @@ public enum ResizePolicy {
 
     /**
      * Returns a {@link String} representation of this {@code ResizePolicy}.
-     * 
+     *
      * @return A {@link String} representation of this @code ResizePolicy}.
      */
     @Override

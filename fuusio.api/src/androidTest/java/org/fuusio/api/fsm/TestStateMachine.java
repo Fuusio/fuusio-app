@@ -99,7 +99,7 @@ public class TestStateMachine extends StateMachine<TestStateMachine, CoffeeMaker
 
     @SuppressWarnings("unchecked")
     public <T extends TestStateMachine> T getStateInstance(final Class<? extends TestStateMachine> stateClass) {
-        return (T)this.getState(stateClass);
+        return (T) this.getState(stateClass);
     }
 
     @Override

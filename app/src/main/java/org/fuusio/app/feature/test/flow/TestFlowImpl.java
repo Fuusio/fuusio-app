@@ -2,15 +2,14 @@ package org.fuusio.app.feature.test.flow;
 
 import android.os.Bundle;
 
+import org.fuusio.api.dependency.D;
+import org.fuusio.api.flow.AbstractFlow;
+import org.fuusio.api.flow.FlowFragmentContainer;
+import org.fuusio.api.flow.FlowScope;
+import org.fuusio.api.mvp.Presenter;
 import org.fuusio.app.feature.test.presenter.TestPresenter1;
 import org.fuusio.app.feature.test.view.TestView1;
 import org.fuusio.app.feature.test.view.TestView2;
-
-import org.fuusio.api.dependency.D;
-import org.fuusio.api.flow.AbstractFlow;
-import org.fuusio.api.flow.FlowScope;
-import org.fuusio.api.flow.FlowFragmentContainer;
-import org.fuusio.api.mvp.Presenter;
 
 public class TestFlowImpl extends AbstractFlow implements TestFlow {
 
@@ -37,5 +36,10 @@ public class TestFlowImpl extends AbstractFlow implements TestFlow {
             activateView(D.get(TestView1.class));
         }
 
+    }
+
+    @Override
+    public String getScopeId() {
+        return "TestFlow";
     }
 }

@@ -18,8 +18,8 @@ package org.fuusio.api.dependency;
 import android.os.Bundle;
 
 import org.fuusio.api.flow.AbstractFlow;
-import org.fuusio.api.flow.FlowScope;
 import org.fuusio.api.flow.FlowFragmentContainer;
+import org.fuusio.api.flow.FlowScope;
 
 public class TestFlow extends AbstractFlow {
 
@@ -31,4 +31,5 @@ public class TestFlow extends AbstractFlow {
     protected FlowScope createDependencyScope() {
         return new TestDependencyScope(this);
     }
+
 }

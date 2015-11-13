@@ -94,6 +94,7 @@ public abstract class LayoutSpec {
 
     /**
      * Gets the index of the specified row or column.
+     *
      * @return The index as an {@code int}.
      */
     public final int getIndex() {
@@ -102,6 +103,7 @@ public abstract class LayoutSpec {
 
     /**
      * Sets the index of the specified row or column.
+     *
      * @param pIndex The index as an {@code int}.
      */
     public void setIndex(final int pIndex) {
@@ -232,7 +234,7 @@ public abstract class LayoutSpec {
     /**
      * Gets the current size for this {@LayoutSpec}.
      *
-     * @param pSize  The ew size as an {@code int}.
+     * @param pSize The ew size as an {@code int}.
      */
     public void setSize(final int pSize) {
         mSize = pSize;
@@ -249,6 +251,7 @@ public abstract class LayoutSpec {
 
     /**
      * Tests if this {@link LayoutSpec} defines a fix sized row or column.
+     *
      * @return A {@code boolean} value.
      */
     public final boolean isFixed() {

@@ -35,6 +35,16 @@ public class HomeActivity extends FuusioBaseActivity<HomePresenter> implements H
     }
 
     @Override
+    public String getScopeId() {
+        return "Home";
+    }
+
+    @Override
+    protected HomePresenter getPresenterDependency() {
+        return null;
+    }
+
+    @Override
     protected void onCreate(final Bundle pInState) {
         super.onCreate(pInState);
 
@@ -43,6 +53,9 @@ public class HomeActivity extends FuusioBaseActivity<HomePresenter> implements H
         mToolbar = getToolbar();
 
         mActionBar = getSupportActionBar();
+
+        assert (mActionBar != null);
+
         mActionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         mActionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -93,6 +106,7 @@ public class HomeActivity extends FuusioBaseActivity<HomePresenter> implements H
         mPresenter = D.get(HomePresenter.class, this);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public DependencyScope getDependencyScope() {
         if (mScope == null) {

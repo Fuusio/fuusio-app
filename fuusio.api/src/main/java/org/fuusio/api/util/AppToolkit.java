@@ -31,13 +31,11 @@ import android.net.NetworkInfo;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcManager;
 import android.os.Build;
-import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.View;
 
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.graphics.BitmapManager;
-import org.fuusio.api.graphics.BitmapManagerImpl;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,7 +46,7 @@ import java.util.List;
 public class AppToolkit {
 
     private static final String PREFIX_EDIT = "edit_";
-    
+
     private static Application sApplication = null;
 
     public static Application getApplication() {
@@ -182,7 +180,7 @@ public class AppToolkit {
     }
 
     public static Bitmap getCachedBitmap(final int resId) {
-        return  getBitmapManager().getBitmap(resId);
+        return getBitmapManager().getBitmap(resId);
     }
 
     public static File getApplicationDirectory() {

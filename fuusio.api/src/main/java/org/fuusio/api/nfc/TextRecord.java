@@ -15,14 +15,14 @@
  */
 package org.fuusio.api.nfc;
 
+import android.nfc.NdefRecord;
+
+import com.google.common.base.Preconditions;
+
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Locale;
-
-import android.nfc.NdefRecord;
-
-import com.google.common.base.Preconditions;
 
 public class TextRecord extends ParsedNdefRecord {
 

@@ -26,7 +26,7 @@ import org.fuusio.api.util.MessageContext;
  */
 public abstract class ViewBinding<T_View extends View> implements View.OnClickListener {
 
-    protected  MessageContext mErrorMessage;
+    protected MessageContext mErrorMessage;
     protected T_View mView;
 
     protected ViewBinding() {
@@ -42,6 +42,7 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
 
     /**
      * Tests if the attached {@link View} is enabled.
+     *
      * @return A {@link boolean}.
      */
     public final boolean isViewEnabled() {
@@ -54,12 +55,12 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
 
     @SuppressWarnings("unchecked")
     public final <T> T getViewTag() {
-        return (T)mView.getTag();
+        return (T) mView.getTag();
     }
 
     @SuppressWarnings("unchecked")
     public final <T> T getViewTag(final int key) {
-        return (T)mView.getTag(key);
+        return (T) mView.getTag(key);
     }
 
     public void setViewTag(final Object tag) {
@@ -72,6 +73,7 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
 
     /**
      * Gets the {@link View} bound to this {@link ViewBinding}.
+     *
      * @return A {@link View}.
      */
     public final T_View getView() {
@@ -80,6 +82,7 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
 
     /**
      * Sets the {@link View} bound to this {@link ViewBinding}.
+     *
      * @param view A {@link View}.
      */
     public void setView(final T_View view) {
@@ -88,7 +91,7 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
             mView = view;
             mErrorMessage = new MessageContext(view.getContext());
             attachListeners(mView);
-        } else if (mView != null){
+        } else if (mView != null) {
             detachListeners(mView);
             mView = null;
         }
@@ -104,6 +107,7 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
 
     /**
      * Tests if the given {@link View} can be bound to this {@link ViewBinding}.
+     *
      * @param view A  {@link View}.
      * @return A {@code boolean} value.
      */
@@ -112,6 +116,7 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
     /**
      * Invoked to attach the listeners to the given {@link View}. Methods overriding this method
      * has to call {@code super.attachListener(view)}.
+     *
      * @param view A {@link View}.
      */
     protected void attachListeners(final T_View view) {
@@ -121,6 +126,7 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
     /**
      * Invoked to detach the listeners from the given {@link View}. Methods overriding this method
      * has to call {@code super.detachListeners(view)}.
+     *
      * @param view A {@link View}.
      */
     protected void detachListeners(final T_View view) {

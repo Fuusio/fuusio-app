@@ -45,16 +45,18 @@ public class ViewBindingManager {
 
     /**
      * Looks up and returns a {@link View} with the given layout id.
+     *
      * @param viewId A view id used in a layout XML resource.
      * @return The found {@link View}.
      */
     @SuppressWarnings("unchecked")
     public <T extends View> T getView(final int viewId) {
-        return (T)mActivity.findViewById(viewId);
+        return (T) mActivity.findViewById(viewId);
     }
 
     /**
      * Gets a {@link ViewBinding} for the specified {@link View}.
+     *
      * @param viewId A view id used in a layout XML resource.
      * @return The found {@link View}.
      */
@@ -84,8 +86,9 @@ public class ViewBindingManager {
 
     /**
      * Creates and binds a {@link ViewBinding} to a {@link View} specified by the given view id.
+     *
      * @param viewId A view id used in a layout XML resource.
-     * @param <T> The parametrised type of the ViewDelagate.
+     * @param <T>    The parametrised type of the ViewDelagate.
      * @return The created {@link ViewBinding}.
      */
     @SuppressWarnings("unchecked")
@@ -95,17 +98,18 @@ public class ViewBindingManager {
 
         if (view instanceof AdapterView) {
             throw new IllegalStateException("For AdapterView derived classes use AdapterViewBinding.");
-        } else  {
-            binding = new TextViewBinding((TextView)view);
+        } else {
+            binding = new TextViewBinding((TextView) view);
         }
 
         mBindingsCache.put(viewId, binding);
-        return (T)binding;
+        return (T) binding;
     }
 
     /**
      * Binds the given {@link ViewBinding} to the specified {@link View}.
-     * @param viewId A view id in a layout XML specifying the target {@link View}.
+     *
+     * @param viewId  A view id in a layout XML specifying the target {@link View}.
      * @param binding An {@link ViewBinding}.
      * @return The found and bound {@link View}.
      */
@@ -124,7 +128,8 @@ public class ViewBindingManager {
 
     /**
      * Binds the given {@link AdapterViewBinding} to the specified {@link AdapterView}.
-     * @param viewId A view id in a layout XML specifying the target {@link AdapterView}.
+     *
+     * @param viewId  A view id in a layout XML specifying the target {@link AdapterView}.
      * @param binding An {@link AdapterViewBinding}.
      * @param adapter An {@link AdapterViewBinding.Adapter} that is assigned to {@link AdapterViewBinding}.
      * @return The found and bound {@link AdapterView}.

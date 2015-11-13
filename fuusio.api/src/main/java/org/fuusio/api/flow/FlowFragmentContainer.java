@@ -15,9 +15,9 @@
  */
 package org.fuusio.api.flow;
 
-import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.v4.app.FragmentManager;
 
 import org.fuusio.api.mvp.View;
 
@@ -29,12 +29,14 @@ public interface FlowFragmentContainer {
 
     /**
      * Gets the {@link Context} available for  {@link FlowFragment}s
+     *
      * @return A {@link Context}.
      */
     Context getContext();
 
     /**
      * Tests if the given {@link View} can be shown.
+     *
      * @param view A {@link View}.
      * @return A {@code boolean}.
      */
@@ -42,12 +44,14 @@ public interface FlowFragmentContainer {
 
     /**
      * Gets the {@link FragmentManager} that manages {@link android.app.Fragment}s.
+     *
      * @return A {@link FragmentManager}.
      */
     FragmentManager getSupportFragmentManager();
 
     /**
      * Gets the {@link Resources} available for {@link FlowFragment}s
+     *
      * @return A {@link Resources}.
      */
     Resources getResources();
@@ -56,10 +60,11 @@ public interface FlowFragmentContainer {
      * Shows the given {@link FlowFragment} which is managed by the given {@link Flow}. Each shown
      * {@link FlowFragment} instance has to be supplied with a tag that can be used to retrieve
      * the instance later on.
-     * @param flow A {@link Flow}. May not be {@code null}.
-     * @param fragment A {@link FlowFragment}. May not be {@code null}.
+     *
+     * @param flow        A {@link Flow}. May not be {@code null}.
+     * @param fragment    A {@link FlowFragment}. May not be {@code null}.
      * @param fragmentTag A {@link String} used as a tag to identify the {@link FlowFragment}.
-     *                     In most cases tag can be simply the class name of the  {@link FlowFragment}.
+     *                    In most cases tag can be simply the class name of the  {@link FlowFragment}.
      */
     void showFlowFragment(Flow flow, FlowFragment fragment, String fragmentTag);
 }

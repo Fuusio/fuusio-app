@@ -17,5 +17,5 @@ package org.fuusio.api.db;
 
 public interface TablesDescriptor {
 
-	public TableDescriptor[] getTableDescriptors();
+    public TableDescriptor[] getTableDescriptors();
 }

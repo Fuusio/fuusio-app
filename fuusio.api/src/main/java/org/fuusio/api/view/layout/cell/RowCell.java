@@ -48,22 +48,22 @@ public class RowCell extends ContainerCell {
     /**
      * Constructs a new instance of {@code RowCell} for the given {@link CellLayout}. The instance
      * is resizeable according to the specified resize mode.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidthResizePolicy The horizontal {@link ResizePolicy}.
+     *
+     * @param pLayout             A {@link CellLayout}.
+     * @param pWidthResizePolicy  The horizontal {@link ResizePolicy}.
      * @param pHeightResizePolicy The vertical {@link ResizePolicy}.
      */
     public RowCell(final CellLayout pLayout, final ResizePolicy pWidthResizePolicy,
-            final ResizePolicy pHeightResizePolicy) {
+                   final ResizePolicy pHeightResizePolicy) {
         super(pLayout, pWidthResizePolicy, pHeightResizePolicy);
     }
 
     /**
      * Constructs a new instance of {@code RowCell} for the given {@link CellLayout}. The instance
      * defines a layout cell with fixed width and height.
-     * 
+     *
      * @param pLayout A {@link CellLayout}.
-     * @param pWidth The width of the {@code RowCell}.
+     * @param pWidth  The width of the {@code RowCell}.
      * @param pHeight The height of the {@code RowCell}.
      */
     public RowCell(final CellLayout pLayout, final int pWidth, final int pHeight) {
@@ -73,33 +73,33 @@ public class RowCell extends ContainerCell {
     /**
      * Constructs a new instance of {@code RowCell} for the given {@link CellLayout}. The instance
      * defines a layout cell with fixed height and resizeable width.
-     * 
-     * @param pLayout A {@link CellLayout}.
+     *
+     * @param pLayout            A {@link CellLayout}.
      * @param pWidthResizePolicy The horizontal {@link ResizePolicy}.
-     * @param pHeight The height of the {@code RowCell}.
+     * @param pHeight            The height of the {@code RowCell}.
      */
     public RowCell(final CellLayout pLayout, final ResizePolicy pWidthResizePolicy,
-            final int pHeight) {
+                   final int pHeight) {
         super(pLayout, pWidthResizePolicy, pHeight);
     }
 
     /**
      * Constructs a new instance of {@code RowCell} for the given {@link CellLayout}. The instance
      * defines a layout cell with fixed width and resizeable height.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidth The width of the {@code RowCell}.
+     *
+     * @param pLayout             A {@link CellLayout}.
+     * @param pWidth              The width of the {@code RowCell}.
      * @param pHeightResizePolicy The vertical {@link ResizePolicy} to be added.
      */
     public RowCell(final CellLayout pLayout, final int pWidth,
-            final ResizePolicy pHeightResizePolicy) {
+                   final ResizePolicy pHeightResizePolicy) {
         super(pLayout, pWidth, pHeightResizePolicy);
     }
 
     /**
      * Gets the current size calculated for this {@code LayoutCell}.
-     * 
-     * @param width The width of the new size as an {@code int}.
+     *
+     * @param width  The width of the new size as an {@code int}.
      * @param height The height of the new size as an {@code int}.
      */
     @Override
@@ -136,7 +136,7 @@ public class RowCell extends ContainerCell {
             final Dimension prefSize = cell.getPreferredSize();
             int cellWidth = prefSize.mWidth;
             int cellHeight = setCellHeight; // (prefSize.height > height) ? prefSize.height :
-                                            // height;
+            // height;
 
             if (cell.getWidthResizePolicy() == ResizePolicy.PREFERRED) {
                 cellWidth += (i < cellCount - 1) ? offset : lastOffset;
@@ -150,7 +150,7 @@ public class RowCell extends ContainerCell {
 
     /**
      * Adds the given {@code LayoutCell} to this {@code RowCell}.
-     * 
+     *
      * @param cell The {@code LayoutCell} to be added.
      * @return The reference for {@code RowCell} for method invocation linking.
      */

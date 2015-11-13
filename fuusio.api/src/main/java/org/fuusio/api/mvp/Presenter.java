@@ -22,18 +22,28 @@ import org.fuusio.api.util.Listenable;
  * {@link Presenter} is the interface to be implemented by Presenter components of a MVP
  * architectural pattern implementation. By default, a {@link Presenter} implementation is also
  * a listener for {@link View} events via the {@link View.Listener} interface.
+ *
  * @param <T_View> The parametrised type extending {@link View}.
  */
 public interface Presenter<T_View extends View, T_Listener extends Presenter.Listener> extends Component, Listenable<T_Listener>, View.Listener {
 
     /**
      * Return the {@link View} of this {@link Presenter}.
+     *
      * @return A {@link View}.
      */
     T_View getView();
 
     /**
+     * Gets the {@link ViewState} of the bound {@link View}.
+     *
+     * @return An {@link ViewState}.
+     */
+    ViewState getState();
+
+    /**
      * Set the {@link View} of this {@link Presenter}.
+     *
      * @param view A {@link View}.
      */
     void setView(T_View view);
@@ -63,6 +73,7 @@ public interface Presenter<T_View extends View, T_Listener extends Presenter.Lis
         /**
          * Invoked by a {@link Presenter} when it is started. Typically a {@link Presenter} is
          * started when its {@link View} is started.
+         *
          * @param presenter The started {@link Presenter}.
          */
         void onPresenterStarted(Presenter presenter);
@@ -70,6 +81,7 @@ public interface Presenter<T_View extends View, T_Listener extends Presenter.Lis
         /**
          * Invoked by a {@link Presenter} when it is resumed. Typically a {@link Presenter} is
          * resumed when its {@link View} is resumed.
+         *
          * @param presenter The resumed {@link Presenter}.
          */
         void onPresenterResumed(Presenter presenter);
@@ -77,6 +89,7 @@ public interface Presenter<T_View extends View, T_Listener extends Presenter.Lis
         /**
          * Invoked by a {@link Presenter} when it is paused. Typically a {@link Presenter} is
          * paused when its {@link View} is paused.
+         *
          * @param presenter The paused {@link Presenter}.
          */
         void onPresenterPaused(Presenter presenter);
@@ -84,6 +97,7 @@ public interface Presenter<T_View extends View, T_Listener extends Presenter.Lis
         /**
          * Invoked by a {@link Presenter} when it is stopped. Typically a {@link Presenter} is
          * stopped when its {@link View} is stopped.
+         *
          * @param presenter The stopped {@link Presenter}.
          */
         void onPresenterStopped(Presenter presenter);

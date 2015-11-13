@@ -15,10 +15,6 @@
  */
 package org.fuusio.api.view.layout.grid;
 
-import android.view.View;
-
-import org.fuusio.api.util.Dimension;
-
 /**
  * {@code ColumnSpec} implements {@link LayoutSpec} TODO
  */
@@ -68,6 +64,7 @@ public class ColumnSpec extends LayoutSpec {
 
     /**
      * Gets the current width of the column.
+     *
      * @return The width as an {@code int}.
      */
     public final int getWidth() {
@@ -80,6 +77,7 @@ public class ColumnSpec extends LayoutSpec {
 
     /**
      * Sets the current width of the column.
+     *
      * @param pWidth The width as an {@code int}.
      */
     public final void setWidth(final int pWidth) {

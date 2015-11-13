@@ -70,7 +70,7 @@ public abstract class ModelObject extends Observable implements Observer {
     public <T extends ModelObject> T copy() {
         return null;
     }
-    
+
     private long generateId() {
         long generatedId = 0;
         do {

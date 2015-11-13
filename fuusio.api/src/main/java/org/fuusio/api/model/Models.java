@@ -21,70 +21,70 @@ import java.util.List;
 public class Models<T_Model extends Model> extends Model {
 
     protected final Model mContainerModel;
-	protected final ArrayList<T_Model> mModels;
-	
-	protected Models() {
+    protected final ArrayList<T_Model> mModels;
+
+    protected Models() {
         this(null);
-	}
-	
-	public Models(final Model containerModel) {
+    }
+
+    public Models(final Model containerModel) {
         mContainerModel = containerModel;
-		mModels = new ArrayList<>();
-	}
+        mModels = new ArrayList<>();
+    }
 
-	public final Model getContainerModel() {
-		return mContainerModel;
-	}
+    public final Model getContainerModel() {
+        return mContainerModel;
+    }
 
-	public T_Model addModel(final T_Model model) {
-		if (!mModels.contains(model)) {
-			mModels.add(model);
-			return model;
-		}
-		return null;
-	}
-	
-	public T_Model removeModel(final T_Model model) {
-		if (mModels.contains(model)) {
-			mModels.remove(model);
-			return model;
-		}
-		return null;
-	}
-	
-	public T_Model getModelAt(final int index) {
-		return mModels.get(index);
-	}
-	
-	public T_Model getModelWithName(final String name) {
-		for (final T_Model model : mModels) {
-			if (name.equalsIgnoreCase(model.getName())) {
-				return model;
-			}
-		}
-		return null;
-	}
-	
-	public int getModelCount() {
-		return mModels.size();
-	}
-	
-	public List<T_Model> getModels() {
-		return mModels;
-	}
-	
-	public void setModels(final List<T_Model> models) {
-		mModels.clear();
-		mModels.addAll(models);
-	}
-	
-	public boolean hasModelWithName(final String name) {
-		for (final T_Model model : mModels) {
-			if (name.equalsIgnoreCase(model.getName())) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public T_Model addModel(final T_Model model) {
+        if (!mModels.contains(model)) {
+            mModels.add(model);
+            return model;
+        }
+        return null;
+    }
+
+    public T_Model removeModel(final T_Model model) {
+        if (mModels.contains(model)) {
+            mModels.remove(model);
+            return model;
+        }
+        return null;
+    }
+
+    public T_Model getModelAt(final int index) {
+        return mModels.get(index);
+    }
+
+    public T_Model getModelWithName(final String name) {
+        for (final T_Model model : mModels) {
+            if (name.equalsIgnoreCase(model.getName())) {
+                return model;
+            }
+        }
+        return null;
+    }
+
+    public int getModelCount() {
+        return mModels.size();
+    }
+
+    public List<T_Model> getModels() {
+        return mModels;
+    }
+
+    public void setModels(final List<T_Model> models) {
+        mModels.clear();
+        mModels.addAll(models);
+    }
+
+    public boolean hasModelWithName(final String name) {
+        for (final T_Model model : mModels) {
+            if (name.equalsIgnoreCase(model.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

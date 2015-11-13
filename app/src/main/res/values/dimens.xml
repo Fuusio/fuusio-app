@@ -1,26 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Copyright (C) 2011, Marko Salmela
 -->
 <resources>
-	<dimen name="action_button_height">46dip</dimen>
-	<dimen name="action_button_width">46dip</dimen>
-	<dimen name="actions_bar_height">46dip</dimen>
-	<dimen name="navigation_bar_height">46dip</dimen>
+    <dimen name="action_button_height">46dip</dimen>
+    <dimen name="action_button_width">46dip</dimen>
+    <dimen name="actions_bar_height">46dip</dimen>
+    <dimen name="navigation_bar_height">46dip</dimen>
     <dimen name="title_height">45dip</dimen>
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_large">20sp</dimen>
-    
+
     <!-- Dialog Dimensions -->
     <dimen name="dialog_layout_padding">8dip</dimen>
-    
+
     <!-- Wizard Dimensions -->
     <dimen name="wizard_text_size_label">14sp</dimen>
     <dimen name="wizard_text_size_edit">18sp</dimen>
     <dimen name="wizard_text_size_message">14sp</dimen>
     <dimen name="wizard_layout_padding">8dip</dimen>
-    
+
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
@@ -36,12 +35,12 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- Code Scene Dimensions -->
-      
+
     <dimen name="code_node_height">56dp</dimen>
 
     <dimen name="detail_backdrop_height">256dp</dimen>
     <dimen name="card_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_item_avatar_size">40dp</dimen>
-        
+
 </resources>

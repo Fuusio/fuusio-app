@@ -60,7 +60,7 @@ public class UIToolkit {
     public static final int COLOR_WHITE = 0xffffffff;
 
     private static int sConfirmDialogIconRes = 0;
-    
+
     private static Application sApplication = null;
     private static DisplayMetrics sDisplayMetrics = null;
     private static Class<? extends Activity> sSettingsActivityClass = null;
@@ -147,7 +147,7 @@ public class UIToolkit {
     public static float sp2pixels(final int sp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, sDisplayMetrics);
     }
-    
+
     public static int getNumberOfBottomActions() {
         return getNumberOfTopActions() + 3;
     }
@@ -203,7 +203,7 @@ public class UIToolkit {
     }
 
     public static void showToast(final Context context, final String text, final boolean isLong,
-            final int gravity, final int xOffset, final int yOffset) {
+                                 final int gravity, final int xOffset, final int yOffset) {
         final Toast toast = Toast.makeText(context, text, isLong ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT);
         toast.setGravity(gravity, xOffset, yOffset);
         toast.show();
@@ -356,14 +356,13 @@ public class UIToolkit {
         return mActivity.getResources().getStringArray(resId);
     }
 
-    public static int getResourceId(final String variableName, final String resourceName, final String packageName)
-    {
+    public static int getResourceId(final String variableName, final String resourceName, final String packageName) {
         try {
             return getResources().getIdentifier(variableName, resourceName, packageName);
         } catch (final Exception pException) {
             pException.printStackTrace(); // LOG
             return -1;
-        } 
+        }
     }
 
     public static Resources getResources() {

@@ -15,8 +15,6 @@
  */
 package org.fuusio.api.nfc;
 
-import java.util.Arrays;
-
 import android.net.Uri;
 import android.nfc.NdefRecord;
 
@@ -26,6 +24,8 @@ import com.google.common.collect.ImmutableBiMap;
 
 import org.fuusio.api.util.ByteToolkit;
 
+import java.util.Arrays;
+
 public class UriRecord extends ParsedNdefRecord {
 
     private static final String TAG = "UriRecord";
@@ -33,12 +33,12 @@ public class UriRecord extends ParsedNdefRecord {
 
     /**
      * NFC Forum "URI Record Type Definition"
-     * 
+     * <p/>
      * This is a mapping of "URI Identifier Codes" to URI string prefixes, per section 3.2.2 of the
      * NFC Forum URI Record Type Definition document.
      */
     private static final BiMap<Byte, String> URI_PREFIX_MAP = ImmutableBiMap
-            .<Byte, String> builder().put((byte) 0x00, "").put((byte) 0x01, "http://www.")
+            .<Byte, String>builder().put((byte) 0x00, "").put((byte) 0x01, "http://www.")
             .put((byte) 0x02, "https://www.").put((byte) 0x03, "http://")
             .put((byte) 0x04, "https://").put((byte) 0x05, "tel:").put((byte) 0x06, "mailto:")
             .put((byte) 0x07, "ftp://anonymous:anonymous@").put((byte) 0x08, "ftp://ftp.")
@@ -67,7 +67,7 @@ public class UriRecord extends ParsedNdefRecord {
     /**
      * Convert {@link android.nfc.NdefRecord} into a {@link android.net.Uri}. This will handle both
      * TNF_WELL_KNOWN / RTD_URI and TNF_ABSOLUTE_URI.
-     * 
+     *
      * @throws IllegalArgumentException if the NdefRecord is not a record containing a URI.
      */
     public static UriRecord parse(final NdefRecord record) {
@@ -81,7 +81,9 @@ public class UriRecord extends ParsedNdefRecord {
         throw new IllegalArgumentException("Unknown TNF " + tnf);
     }
 
-    /** Parse and absolute URI record */
+    /**
+     * Parse and absolute URI record
+     */
     private static UriRecord parseAbsolute(final NdefRecord record) {
         final byte[] payload = record.getPayload();
         final Uri uri = Uri.parse(new String(payload, CHARSET_UTF_8));
@@ -90,7 +92,7 @@ public class UriRecord extends ParsedNdefRecord {
 
     /**
      * Parse an well known URI record
-     * */
+     */
     private static UriRecord parseWellKnown(final NdefRecord record) {
         Preconditions.checkArgument(Arrays.equals(record.getType(), NdefRecord.RTD_URI));
         final byte[] payload = record.getPayload();

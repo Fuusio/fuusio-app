@@ -37,7 +37,7 @@ package org.fuusio.api.graphics;
 /**
  * {@code VerticalAlignment} defines a new enum type for representing vertical alignment values, for
  * instance, for positioning text items.
- * 
+ *
  * @author Marko Salmela
  */
 public enum VerticalAlignment {
@@ -53,7 +53,7 @@ public enum VerticalAlignment {
 
     /**
      * Constructs a new instance of {@code HorizontalAlignment} with the given displayable label.
-     * 
+     *
      * @param pLabel A {@link String} for displayable label.
      */
     VerticalAlignment(final String pLabel) {
@@ -62,7 +62,7 @@ public enum VerticalAlignment {
 
     /**
      * Gets the displayable label of this {@code HorizontalAlignment} value.
-     * 
+     *
      * @return The displayable label as a {@link String}.
      */
     public final String getLabel() {

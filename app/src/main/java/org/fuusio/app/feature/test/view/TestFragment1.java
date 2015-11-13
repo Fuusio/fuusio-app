@@ -6,17 +6,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.fuusio.app.R;
-import org.fuusio.app.feature.test.presenter.TestPresenter1;
-
 import org.fuusio.api.binding.Binding;
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.flow.FlowFragment;
+import org.fuusio.app.R;
+import org.fuusio.app.feature.test.presenter.TestPresenter1;
 
 public class TestFragment1 extends FlowFragment<TestPresenter1> implements TestView1 {
 
     public TestFragment1() {
-        mPresenter = D.get(TestPresenter1.class, this);
+        mPresenter = getPresenterDependency();
+    }
+
+    @Override
+    protected TestPresenter1 getPresenterDependency() {
+        return D.get(TestPresenter1.class, this);
     }
 
     @Override

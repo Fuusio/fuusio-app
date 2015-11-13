@@ -18,6 +18,7 @@ package org.fuusio.api.dependency;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.test.suitebuilder.annotation.SmallTest;
 
 import org.fuusio.api.flow.FlowFragmentContainer;
 import org.junit.After;
@@ -25,8 +26,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-
-import android.test.suitebuilder.annotation.SmallTest;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -53,7 +52,7 @@ public class DependencyScopeTest {
     public void test() {
 
         final TestFlow testFlow = new TestFlow(mFragmentHost, null);
-        final TestDependencyScope scope = (TestDependencyScope)testFlow.getDependencyScope();
+        final TestDependencyScope scope = (TestDependencyScope) testFlow.getDependencyScope();
         scope.setParentScope(mParentScope);
 
         assertNotNull(scope);

@@ -22,7 +22,7 @@ import org.fuusio.api.util.Insets;
 /**
  * {@code ViewArea} implements TODO
  */
-public class ViewArea  {
+public class ViewArea {
 
     /**
      * Default layout cell insets for a {@link View}.
@@ -81,7 +81,8 @@ public class ViewArea  {
      */
     public ViewArea(final GridLayout pLayout) {
         this(pLayout, null);
-    }    
+    }
+
     /**
      * Constructs a new instance of {@code ViewArea} for adding the given foreground
      * {@link View} into the {@code ViewGroup} whose layout is managed by the given
@@ -179,60 +180,60 @@ public class ViewArea  {
      * @return A location as a {@code Point}.
      *
     protected Point getAnchorLocation() {
-        int x = mLocation.x + mSize.mWidth / 2;
-        int y = mLocation.y + mSize.mHeight / 2;
+    int x = mLocation.x + mSize.mWidth / 2;
+    int y = mLocation.y + mSize.mHeight / 2;
 
-        if (mView != null && mView.getVisibility() != View.GONE) {
-            switch (mAnchor) {
-                case NORTH_WEST: {
-                    x = mLocation.x;
-                    y = mLocation.y;
-                    break;
-                }
-                case NORTH: {
-                    x = mLocation.x + mSize.mWidth / 2;
-                    y = mLocation.y;
-                    break;
-                }
-                case NORTH_EAST: {
-                    x = mLocation.x + mSize.mWidth;
-                    y = mLocation.y;
-                    break;
-                }
-                case EAST: {
-                    x = mLocation.x + mSize.mWidth;
-                    y = mLocation.y + mSize.mHeight / 2;
-                    break;
-                }
-                case SOUTH_EAST: {
-                    x = mLocation.x + mSize.mWidth;
-                    y = mLocation.y + mSize.mHeight;
-                    break;
-                }
-                case SOUTH: {
-                    x = mLocation.x + mSize.mWidth / 2;
-                    y = mLocation.y + mSize.mHeight;
-                    break;
-                }
-                case SOUTH_WEST: {
-                    x = mLocation.x;
-                    y = mLocation.y + mSize.mHeight;
-                    break;
-                }
-                case WEST: {
-                    x = mLocation.x;
-                    y = mLocation.y + mSize.mHeight / 2;
-                    break;
-                }
-                case CENTER: {
-                    x = mLocation.x + mSize.mWidth / 2;
-                    y = mLocation.y + mSize.mHeight / 2;
-                    break;
-                }
-            }
-        }
+    if (mView != null && mView.getVisibility() != View.GONE) {
+    switch (mAnchor) {
+    case NORTH_WEST: {
+    x = mLocation.x;
+    y = mLocation.y;
+    break;
+    }
+    case NORTH: {
+    x = mLocation.x + mSize.mWidth / 2;
+    y = mLocation.y;
+    break;
+    }
+    case NORTH_EAST: {
+    x = mLocation.x + mSize.mWidth;
+    y = mLocation.y;
+    break;
+    }
+    case EAST: {
+    x = mLocation.x + mSize.mWidth;
+    y = mLocation.y + mSize.mHeight / 2;
+    break;
+    }
+    case SOUTH_EAST: {
+    x = mLocation.x + mSize.mWidth;
+    y = mLocation.y + mSize.mHeight;
+    break;
+    }
+    case SOUTH: {
+    x = mLocation.x + mSize.mWidth / 2;
+    y = mLocation.y + mSize.mHeight;
+    break;
+    }
+    case SOUTH_WEST: {
+    x = mLocation.x;
+    y = mLocation.y + mSize.mHeight;
+    break;
+    }
+    case WEST: {
+    x = mLocation.x;
+    y = mLocation.y + mSize.mHeight / 2;
+    break;
+    }
+    case CENTER: {
+    x = mLocation.x + mSize.mWidth / 2;
+    y = mLocation.y + mSize.mHeight / 2;
+    break;
+    }
+    }
+    }
 
-        return new Point(x, y);
+    return new Point(x, y);
     } */
 
     /**
@@ -301,7 +302,7 @@ public class ViewArea  {
      * @return The location as a {@code Point}.
      *
     public Point getLocation() {
-        return mLocation;
+    return mLocation;
     }*/
 
     /**
@@ -311,8 +312,8 @@ public class ViewArea  {
      * @param pY The y-coordinate of the new location as an {@code int}.
      *
     public void setLocation(final int pX, final int pY) {
-        mLocation.x = pX;
-        mLocation.y = pY;
+    mLocation.x = pX;
+    mLocation.y = pY;
     }*/
 
     /**
@@ -360,143 +361,143 @@ public class ViewArea  {
      *
     public void setSize(final int pWidth, final int pHeight) {
 
-        mSize.mWidth = pWidth;
-        mSize.mHeight = pHeight;
-        // TODO
-        if (mView != null) {
-            layoutView(mView, pWidth, pHeight, mInsets);
-        }
+    mSize.mWidth = pWidth;
+    mSize.mHeight = pHeight;
+    // TODO
+    if (mView != null) {
+    layoutView(mView, pWidth, pHeight, mInsets);
+    }
     }
 
     protected void layoutView(final View pView, final int pWidth, final int pHeight,
-                              final Insets pInsets) {
+    final Insets pInsets) {
 
-        if (mFillPolicy == FillPolicy.BOTH) {
-            final int drawableWidth = pWidth - pInsets.mLeft - pInsets.mRight;
-            final int drawableHeight = pHeight - pInsets.mTop - pInsets.mBottom;
-            int x = mLocation.x + pInsets.mLeft;
-            int y = mLocation.y + pInsets.mTop;
-            pView.layout(x, y, x + drawableWidth, y + drawableHeight);
-            return;
-        }
+    if (mFillPolicy == FillPolicy.BOTH) {
+    final int drawableWidth = pWidth - pInsets.mLeft - pInsets.mRight;
+    final int drawableHeight = pHeight - pInsets.mTop - pInsets.mBottom;
+    int x = mLocation.x + pInsets.mLeft;
+    int y = mLocation.y + pInsets.mTop;
+    pView.layout(x, y, x + drawableWidth, y + drawableHeight);
+    return;
+    }
 
-        int x = pInsets.mLeft;
-        int y = pInsets.mTop;
+    int x = pInsets.mLeft;
+    int y = pInsets.mTop;
 
-        if (mFillPolicy == FillPolicy.HORIZONTAL) {
-            final int viewWidth = pWidth - pInsets.mLeft - pInsets.mRight;
-            int viewHeight = pView.getMeasuredHeight();
-            int maxHeight = pHeight - pInsets.mTop - pInsets.mBottom;
-            viewHeight = (viewHeight > maxHeight) ? maxHeight : viewHeight;
+    if (mFillPolicy == FillPolicy.HORIZONTAL) {
+    final int viewWidth = pWidth - pInsets.mLeft - pInsets.mRight;
+    int viewHeight = pView.getMeasuredHeight();
+    int maxHeight = pHeight - pInsets.mTop - pInsets.mBottom;
+    viewHeight = (viewHeight > maxHeight) ? maxHeight : viewHeight;
 
-            switch (mAnchor) {
-                case NORTH:
-                case NORTH_WEST:
-                case NORTH_EAST: {
-                    y = mLocation.y;
-                    break;
-                }
-                case SOUTH:
-                case SOUTH_WEST:
-                case SOUTH_EAST: {
-                    y = mLocation.y + pHeight - viewHeight;
-                    break;
-                }
-                case WEST:
-                case EAST:
-                case CENTER: {
-                    y = mLocation.y + (pHeight - viewHeight) / 2;
-                    break;
-                }
-            }
+    switch (mAnchor) {
+    case NORTH:
+    case NORTH_WEST:
+    case NORTH_EAST: {
+    y = mLocation.y;
+    break;
+    }
+    case SOUTH:
+    case SOUTH_WEST:
+    case SOUTH_EAST: {
+    y = mLocation.y + pHeight - viewHeight;
+    break;
+    }
+    case WEST:
+    case EAST:
+    case CENTER: {
+    y = mLocation.y + (pHeight - viewHeight) / 2;
+    break;
+    }
+    }
 
-            pView.layout(x, y, x + viewWidth, y + viewHeight);
-        } else if (mFillPolicy == FillPolicy.VERTICAL) {
-            int viewWidth = pView.getMeasuredWidth();
-            final int maxWidth = pWidth - pInsets.mLeft - pInsets.mRight;
-            viewWidth = (viewWidth > maxWidth) ? maxWidth : viewWidth;
-            final int viewHeight = pHeight - pInsets.mTop - pInsets.mBottom;
+    pView.layout(x, y, x + viewWidth, y + viewHeight);
+    } else if (mFillPolicy == FillPolicy.VERTICAL) {
+    int viewWidth = pView.getMeasuredWidth();
+    final int maxWidth = pWidth - pInsets.mLeft - pInsets.mRight;
+    viewWidth = (viewWidth > maxWidth) ? maxWidth : viewWidth;
+    final int viewHeight = pHeight - pInsets.mTop - pInsets.mBottom;
 
-            switch (mAnchor) {
-                case WEST:
-                case SOUTH_WEST:
-                case NORTH_WEST: {
-                    x = mLocation.x;
-                    break;
-                }
-                case EAST:
-                case NORTH_EAST:
-                case SOUTH_EAST: {
-                    x = mLocation.x + pWidth - viewWidth;
-                    break;
-                }
-                case NORTH:
-                case SOUTH:
-                case CENTER: {
-                    x = mLocation.x + (pWidth - viewWidth) / 2;
-                    break;
-                }
-            }
+    switch (mAnchor) {
+    case WEST:
+    case SOUTH_WEST:
+    case NORTH_WEST: {
+    x = mLocation.x;
+    break;
+    }
+    case EAST:
+    case NORTH_EAST:
+    case SOUTH_EAST: {
+    x = mLocation.x + pWidth - viewWidth;
+    break;
+    }
+    case NORTH:
+    case SOUTH:
+    case CENTER: {
+    x = mLocation.x + (pWidth - viewWidth) / 2;
+    break;
+    }
+    }
 
-            pView.layout(x, y, x + viewWidth, y + viewHeight);
-        } else {
-            int viewWidth = pView.getMeasuredWidth();
-            final int maxWidth = pWidth - pInsets.mLeft - pInsets.mRight;
-            viewWidth = (viewWidth > maxWidth) ? maxWidth : viewWidth;
-            int viewHeight = pView.getMeasuredHeight();
-            final int maxHeight = pHeight - pInsets.mTop - pInsets.mBottom;
-            viewHeight = (viewHeight > maxHeight) ? maxHeight : viewHeight;
+    pView.layout(x, y, x + viewWidth, y + viewHeight);
+    } else {
+    int viewWidth = pView.getMeasuredWidth();
+    final int maxWidth = pWidth - pInsets.mLeft - pInsets.mRight;
+    viewWidth = (viewWidth > maxWidth) ? maxWidth : viewWidth;
+    int viewHeight = pView.getMeasuredHeight();
+    final int maxHeight = pHeight - pInsets.mTop - pInsets.mBottom;
+    viewHeight = (viewHeight > maxHeight) ? maxHeight : viewHeight;
 
-            switch (mAnchor) {
-                case NORTH: {
-                    x = mLocation.x + (pWidth - viewWidth) / 2;
-                    y = mLocation.y;
-                    break;
-                }
-                case NORTH_EAST: {
-                    x = mLocation.x + pWidth - viewWidth;
-                    y = mLocation.y;
-                    break;
-                }
-                case EAST: {
-                    x = mLocation.x + pWidth - viewWidth;
-                    y = mLocation.y + (pHeight - viewHeight) / 2;
-                    break;
-                }
-                case SOUTH_EAST: {
-                    x = mLocation.x + pWidth - viewWidth;
-                    y = mLocation.y + pHeight - viewHeight;
-                    break;
-                }
-                case SOUTH: {
-                    x = mLocation.x + (pWidth - viewWidth) / 2;
-                    y = mLocation.y + pHeight - viewHeight;
-                    break;
-                }
-                case SOUTH_WEST: {
-                    x = mLocation.x;
-                    y = mLocation.y + pHeight - viewHeight;
-                    break;
-                }
-                case WEST: {
-                    x = mLocation.x;
-                    y = mLocation.y + (pHeight - viewHeight) / 2;
-                    break;
-                }
-                case NORTH_WEST: {
-                    x = mLocation.x;
-                    y = mLocation.y;
-                    break;
-                }
-                case CENTER: {
-                    x = mLocation.x + (pWidth - viewWidth) / 2;
-                    y = mLocation.y + (pHeight - viewHeight) / 2;
-                    break;
-                }
-            }
+    switch (mAnchor) {
+    case NORTH: {
+    x = mLocation.x + (pWidth - viewWidth) / 2;
+    y = mLocation.y;
+    break;
+    }
+    case NORTH_EAST: {
+    x = mLocation.x + pWidth - viewWidth;
+    y = mLocation.y;
+    break;
+    }
+    case EAST: {
+    x = mLocation.x + pWidth - viewWidth;
+    y = mLocation.y + (pHeight - viewHeight) / 2;
+    break;
+    }
+    case SOUTH_EAST: {
+    x = mLocation.x + pWidth - viewWidth;
+    y = mLocation.y + pHeight - viewHeight;
+    break;
+    }
+    case SOUTH: {
+    x = mLocation.x + (pWidth - viewWidth) / 2;
+    y = mLocation.y + pHeight - viewHeight;
+    break;
+    }
+    case SOUTH_WEST: {
+    x = mLocation.x;
+    y = mLocation.y + pHeight - viewHeight;
+    break;
+    }
+    case WEST: {
+    x = mLocation.x;
+    y = mLocation.y + (pHeight - viewHeight) / 2;
+    break;
+    }
+    case NORTH_WEST: {
+    x = mLocation.x;
+    y = mLocation.y;
+    break;
+    }
+    case CENTER: {
+    x = mLocation.x + (pWidth - viewWidth) / 2;
+    y = mLocation.y + (pHeight - viewHeight) / 2;
+    break;
+    }
+    }
 
-            pView.layout(x, y, x + viewWidth, y + viewHeight);
-        }
+    pView.layout(x, y, x + viewWidth, y + viewHeight);
+    }
     }*/
 
     /**

@@ -23,7 +23,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
 @SmallTest
@@ -36,7 +36,7 @@ public class TupleTest {
 
     @Before
     public void beforeTests() {
-        mTuple = new Tuple<>(DOUBLE_VALUE_1,DOUBLE_VALUE_2);
+        mTuple = new Tuple<>(DOUBLE_VALUE_1, DOUBLE_VALUE_2);
     }
 
     @After

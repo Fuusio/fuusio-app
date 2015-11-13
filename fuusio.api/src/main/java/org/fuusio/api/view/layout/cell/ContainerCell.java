@@ -45,12 +45,12 @@ public abstract class ContainerCell extends LayoutCell {
      * Constructs a new instance of {@code ContainerCell} for the given {@link CellLayout}.
      * The instance is resizeable according to the specified resize mode.
      *
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidthResizePolicy The horizontal {@code ResizePolicy}.
+     * @param pLayout             A {@link CellLayout}.
+     * @param pWidthResizePolicy  The horizontal {@code ResizePolicy}.
      * @param pHeightResizePolicy The vertical {@code ResizePolicy}.
      */
     protected ContainerCell(final CellLayout pLayout,
-            final ResizePolicy pWidthResizePolicy, final ResizePolicy pHeightResizePolicy) {
+                            final ResizePolicy pWidthResizePolicy, final ResizePolicy pHeightResizePolicy) {
         this(pLayout);
         mWidthResizePolicy = pWidthResizePolicy;
         mHeightResizePolicy = pHeightResizePolicy;
@@ -61,7 +61,7 @@ public abstract class ContainerCell extends LayoutCell {
      * The instance defines a layout cell with fixed width and height.
      *
      * @param pLayout A {@link CellLayout}.
-     * @param pWidth The width of the {@code ContainerCell}.
+     * @param pWidth  The width of the {@code ContainerCell}.
      * @param pHeight The height of the {@code ContainerCell}.
      */
     protected ContainerCell(final CellLayout pLayout, final int pWidth, final int pHeight) {
@@ -74,12 +74,12 @@ public abstract class ContainerCell extends LayoutCell {
      * Constructs a new instance of {@code ContainerCell} for the given {@link CellLayout}.
      * The instance defines a layout cell with fixed height and resizeable width.
      *
-     * @param pLayout A {@link CellLayout}.
+     * @param pLayout            A {@link CellLayout}.
      * @param pWidthResizePolicy The horizontal {@code ResizePolicy}.
-     * @param pHeight The height of the {@code ContainerCell}.
+     * @param pHeight            The height of the {@code ContainerCell}.
      */
     protected ContainerCell(final CellLayout pLayout,
-            final ResizePolicy pWidthResizePolicy, final int pHeight) {
+                            final ResizePolicy pWidthResizePolicy, final int pHeight) {
         this(pLayout);
         mWidthResizePolicy = pWidthResizePolicy;
         mFixedSize.mHeight = pHeight;
@@ -89,12 +89,12 @@ public abstract class ContainerCell extends LayoutCell {
      * Constructs a new instance of {@code ContainerCell} for the given {@link CellLayout}.
      * The instance defines a layout cell with fixed width and resizeable height.
      *
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidth The width of the {@code ContainerCell}.
+     * @param pLayout             A {@link CellLayout}.
+     * @param pWidth              The width of the {@code ContainerCell}.
      * @param pHeightResizePolicy The vertical {@code ResizePolicy} to be added.
      */
     protected ContainerCell(final CellLayout pLayout, final int pWidth,
-            final ResizePolicy pHeightResizePolicy) {
+                            final ResizePolicy pHeightResizePolicy) {
         this(pLayout);
         mFixedSize.mWidth = pWidth;
         mHeightResizePolicy = pHeightResizePolicy;
@@ -102,6 +102,7 @@ public abstract class ContainerCell extends LayoutCell {
 
     /**
      * Collects the {@link View}s contained by this {@link ContainerCell}.
+     *
      * @param pViews
      */
     @Override
@@ -113,6 +114,7 @@ public abstract class ContainerCell extends LayoutCell {
 
     /**
      * Adds the given {@link LayoutCell} to this {@code ContainerCell}.
+     *
      * @param pCell The {@link LayoutCell} to be added.
      * @return The added {@link LayoutCell} if adding succeeds, otherwise {@code null}.
      */
@@ -127,6 +129,7 @@ public abstract class ContainerCell extends LayoutCell {
 
     /**
      * Tests whether the layout cell defined by this {@link LayoutCell} is visible or not.
+     *
      * @return A {@code boolean} value.
      */
     @Override
@@ -146,6 +149,7 @@ public abstract class ContainerCell extends LayoutCell {
 
     /**
      * Adds a {@link Spacer}.
+     *
      * @return The added {@link Spacer}.
      */
     public Spacer addSpacer() {
@@ -156,8 +160,9 @@ public abstract class ContainerCell extends LayoutCell {
 
     /**
      * Adds a {@link Spacer} with the given parameters.
-     * @param pFillPolicy A {@link FillPolicy}.
-     * @param pFixedWidth Fixed width.
+     *
+     * @param pFillPolicy  A {@link FillPolicy}.
+     * @param pFixedWidth  Fixed width.
      * @param pFixedHeight Fixed height.
      * @return {@link Spacer} The added {@link Spacer}.
      */
@@ -169,6 +174,7 @@ public abstract class ContainerCell extends LayoutCell {
 
     /**
      * Adds a copy {@link Spacer} of the given source {@link Spacer}.
+     *
      * @param pSource The source {@link Spacer}.
      * @return The added {@link Spacer}.
      */

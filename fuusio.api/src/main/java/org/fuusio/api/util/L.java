@@ -43,7 +43,7 @@ public class L extends Object {
         L.e(object, method, exception.getMessage());
 
         final StringWriter stringWriter = new StringWriter();
-        final PrintWriter printWriter = new  PrintWriter(stringWriter);
+        final PrintWriter printWriter = new PrintWriter(stringWriter);
         exception.printStackTrace(printWriter);
         printWriter.flush();
         L.e(object, method, printWriter.toString());

@@ -35,15 +35,15 @@
 
 package org.fuusio.api.graphics.layout;
 
-import org.fuusio.api.util.Dimension;
-
 import android.graphics.drawable.Drawable;
 import android.view.View;
+
+import org.fuusio.api.util.Dimension;
 
 /**
  * {@code RowCell} implements {@link ContainerCell} that may contain a horizontally oriented group
  * of multiple {@link LayoutCell}s.
- * 
+ *
  * @author Marko Salmela
  */
 public class RowCell extends ContainerCell {
@@ -51,58 +51,56 @@ public class RowCell extends ContainerCell {
     /**
      * Constructs a new instance of {@code RowCell} for the given {@link CellLayout}. The instance
      * is resizeable according to the specified resize mode.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidthResizePolicy The horizontal {@link ResizePolicy}.
-     * @param pHeightResizePolicy The vertical {@link ResizePolicy}.
+     *
+     * @param layout             A {@link CellLayout}.
+     * @param widthResizePolicy  The horizontal {@link ResizePolicy}.
+     * @param heightResizePolicy The vertical {@link ResizePolicy}.
      */
-    public RowCell(final CellLayout pLayout, final ResizePolicy pWidthResizePolicy,
-            final ResizePolicy pHeightResizePolicy) {
-        super(pLayout, pWidthResizePolicy, pHeightResizePolicy);
+    public RowCell(final CellLayout layout, final ResizePolicy widthResizePolicy,
+                   final ResizePolicy heightResizePolicy) {
+        super(layout, widthResizePolicy, heightResizePolicy);
     }
 
     /**
      * Constructs a new instance of {@code RowCell} for the given {@link CellLayout}. The instance
      * defines a layout cell with fixed width and height.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidth The width of the {@code RowCell}.
-     * @param pHeight The height of the {@code RowCell}.
+     *
+     * @param layout A {@link CellLayout}.
+     * @param width  The width of the {@code RowCell}.
+     * @param height The height of the {@code RowCell}.
      */
-    public RowCell(final CellLayout pLayout, final int pWidth, final int pHeight) {
-        super(pLayout, pWidth, pHeight);
+    public RowCell(final CellLayout layout, final int width, final int height) {
+        super(layout, width, height);
     }
 
     /**
      * Constructs a new instance of {@code RowCell} for the given {@link CellLayout}. The instance
      * defines a layout cell with fixed height and resizeable width.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidthResizePolicy The horizontal {@link ResizePolicy}.
-     * @param pHeight The height of the {@code RowCell}.
+     *
+     * @param layout            A {@link CellLayout}.
+     * @param widthResizePolicy The horizontal {@link ResizePolicy}.
+     * @param height            The height of the {@code RowCell}.
      */
-    public RowCell(final CellLayout pLayout, final ResizePolicy pWidthResizePolicy,
-            final int pHeight) {
-        super(pLayout, pWidthResizePolicy, pHeight);
+    public RowCell(final CellLayout layout, final ResizePolicy widthResizePolicy, final int height) {
+        super(layout, widthResizePolicy, height);
     }
 
     /**
      * Constructs a new instance of {@code RowCell} for the given {@link CellLayout}. The instance
      * defines a layout cell with fixed width and resizeable height.
-     * 
-     * @param pLayout A {@link CellLayout}.
-     * @param pWidth The width of the {@code RowCell}.
-     * @param pHeightResizePolicy The vertical {@link ResizePolicy} to be added.
+     *
+     * @param layout             A {@link CellLayout}.
+     * @param width              The width of the {@code RowCell}.
+     * @param heightResizePolicy The vertical {@link ResizePolicy} to be added.
      */
-    public RowCell(final CellLayout pLayout, final int pWidth,
-            final ResizePolicy pHeightResizePolicy) {
-        super(pLayout, pWidth, pHeightResizePolicy);
+    public RowCell(final CellLayout layout, final int width, final ResizePolicy heightResizePolicy) {
+        super(layout, width, heightResizePolicy);
     }
 
     /**
      * Gets the current size calculated for this {@code LayoutCell}.
-     * 
-     * @param width The width of the new size as an {@code int}.
+     *
+     * @param width  The width of the new size as an {@code int}.
      * @param height The height of the new size as an {@code int}.
      */
     @Override
@@ -141,7 +139,7 @@ public class RowCell extends ContainerCell {
                 final Dimension prefSize = cell.getPreferredSize();
                 int cellWidth = prefSize.mWidth;
                 int cellHeight = setCellHeight; // (prefSize.height > height) ? prefSize.height :
-                                                // height;
+                // height;
 
                 if (cell.getWidthResizePolicy() == ResizePolicy.PREFERRED) {
                     cellWidth += (i < cellCount - 1) ? offset : lastOffset;
@@ -197,7 +195,7 @@ public class RowCell extends ContainerCell {
 
     /**
      * Adds the given {@code LayoutCell} to this {@code RowCell}.
-     * 
+     *
      * @param cell The {@code LayoutCell} to be added.
      * @return The reference for {@code RowCell} for method invocation linking.
      */
@@ -296,31 +294,31 @@ public class RowCell extends ContainerCell {
         }
     }
 
-    public ColumnCell addColumn(final int pWidth) {
-        final ColumnCell column = new ColumnCell(mLayout, pWidth, ResizePolicy.PREFERRED);
-        return column;
+    public ColumnCell addColumn(final int width) {
+        final ColumnCell columnCell = new ColumnCell(mLayout, width, ResizePolicy.PREFERRED);
+        return columnCell;
     }
 
-    public DrawableCell addDrawable(final Drawable pDrawable, final int pWidth) {
-        final DrawableCell drawable = new DrawableCell(mLayout, pDrawable, pWidth,
+    public DrawableCell addDrawable(final Drawable drawable, final int width) {
+        final DrawableCell drawableCell = new DrawableCell(mLayout, drawable, width,
                 ResizePolicy.PREFERRED);
-        return drawable;
+        return drawableCell;
     }
 
-    public DrawableCell addDrawable(final Drawable pDrawable) {
-        final DrawableCell drawable = new DrawableCell(mLayout, pDrawable, ResizePolicy.PREFERRED,
+    public DrawableCell addDrawable(final Drawable drawable) {
+        final DrawableCell drawableCell = new DrawableCell(mLayout, drawable, ResizePolicy.PREFERRED,
                 ResizePolicy.PREFERRED);
-        return drawable;
+        return drawableCell;
     }
 
-    public ViewCell addView(final View pView) {
-        final ViewCell view = new ViewCell(mLayout, pView, ResizePolicy.PREFERRED,
+    public ViewCell addView(final View view) {
+        final ViewCell viewCell = new ViewCell(mLayout, view, ResizePolicy.PREFERRED,
                 ResizePolicy.PREFERRED);
-        return view;
+        return viewCell;
     }
 
-    public ViewCell addView(final View pView, final int pWidth) {
-        final ViewCell view = new ViewCell(mLayout, pView, pWidth, ResizePolicy.PREFERRED);
-        return view;
+    public ViewCell addView(final View view, final int width) {
+        final ViewCell viewCell = new ViewCell(mLayout, view, width, ResizePolicy.PREFERRED);
+        return viewCell;
     }
 }

@@ -15,12 +15,12 @@
  */
 package org.fuusio.api.nfc;
 
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 
 public class ParsedNdefRecord {
 

@@ -7,13 +7,15 @@ public interface FlowView<T_Presenter extends Presenter> extends View<T_Presente
 
     /**
      * Gets the {@link Flow} that controls this {@link FlowView}.
+     *
      * @return A {@link Flow}.
      */
-    Flow getFlow();
+    <T extends Flow> T getFlow();
 
     /**
      * Sets the {@link Flow} that controls this {@link FlowView}.
-     * @param pFlow A {@link Flow}.
+     *
+     * @param flow A {@link Flow}.
      */
     void setFlow(Flow flow);
 }

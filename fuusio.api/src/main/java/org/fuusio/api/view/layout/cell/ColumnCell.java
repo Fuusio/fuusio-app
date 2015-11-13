@@ -29,12 +29,12 @@ public class ColumnCell extends ContainerCell {
      * Constructs a new instance of {@code ColumnCell} for the given {@code CellLayout}. The
      * instance is resizeable according to the specified resize mode.
      *
-     * @param pLayout A {@code CellLayout}.
-     * @param pWidthResizePolicy The horizontal {@code ResizePolicy}.
+     * @param pLayout             A {@code CellLayout}.
+     * @param pWidthResizePolicy  The horizontal {@code ResizePolicy}.
      * @param pHeightResizePolicy The vertical {@code ResizePolicy}.
      */
     public ColumnCell(final CellLayout pLayout, final ResizePolicy pWidthResizePolicy,
-            final ResizePolicy pHeightResizePolicy) {
+                      final ResizePolicy pHeightResizePolicy) {
         super(pLayout, pWidthResizePolicy, pHeightResizePolicy);
     }
 
@@ -43,7 +43,7 @@ public class ColumnCell extends ContainerCell {
      * instance defines a layout cell with fixed width and height.
      *
      * @param pLayout A {@code CellLayout}.
-     * @param pWidth The width of the {@code CompositeCell}.
+     * @param pWidth  The width of the {@code CompositeCell}.
      * @param pHeight The height of the {@code CompositeCell}.
      */
     public ColumnCell(final CellLayout pLayout, final int pWidth, final int pHeight) {
@@ -54,12 +54,12 @@ public class ColumnCell extends ContainerCell {
      * Constructs a new instance of {@code ColumnCell} for the given {@code CellLayout}. The
      * instance defines a layout cell with fixed height and resizeable width.
      *
-     * @param pLayout A {@code CellLayout}.
+     * @param pLayout            A {@code CellLayout}.
      * @param pWidthResizePolicy The horizontal {@code ResizePolicy}.
-     * @param pHeight The height of the {@code CompositeCell}.
+     * @param pHeight            The height of the {@code CompositeCell}.
      */
     public ColumnCell(final CellLayout pLayout, final ResizePolicy pWidthResizePolicy,
-            final int pHeight) {
+                      final int pHeight) {
         super(pLayout, pWidthResizePolicy, pHeight);
     }
 
@@ -67,19 +67,19 @@ public class ColumnCell extends ContainerCell {
      * Constructs a new instance of {@code ColumnCell} for the given {@code CellLayout}. The
      * instance defines a layout cell with fixed width and resizeable height.
      *
-     * @param pLayout A {@code CellLayout}.
-     * @param pWidth The width of the {@code CompositeCell}.
+     * @param pLayout             A {@code CellLayout}.
+     * @param pWidth              The width of the {@code CompositeCell}.
      * @param pHeightResizePolicy The vertical {@code ResizePolicy} to be added.
      */
     public ColumnCell(final CellLayout pLayout, final int pWidth,
-            final ResizePolicy pHeightResizePolicy) {
+                      final ResizePolicy pHeightResizePolicy) {
         super(pLayout, pWidth, pHeightResizePolicy);
     }
 
     /**
      * Gets the current size calculated for this {@code LayoutCell}.
      *
-     * @param pWidth The width of the new size as an {@code int}.
+     * @param pWidth  The width of the new size as an {@code int}.
      * @param pHeight The height of the new size as an {@code int}.
      */
     @Override

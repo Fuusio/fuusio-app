@@ -18,8 +18,6 @@ package org.fuusio.api.util;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import org.fuusio.api.util.StringList;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

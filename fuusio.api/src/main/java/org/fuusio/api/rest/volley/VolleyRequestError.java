@@ -20,8 +20,6 @@ import com.android.volley.VolleyError;
 import org.fuusio.api.rest.HttpHeaders;
 import org.fuusio.api.rest.RequestError;
 
-import java.util.Map;
-
 public class VolleyRequestError extends RequestError {
 
     private final HttpHeaders mHeaders;

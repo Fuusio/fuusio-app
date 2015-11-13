@@ -17,7 +17,6 @@ package org.fuusio.api.util;
 
 import android.app.ActivityManager;
 import android.app.Service;
-import android.content.Context;
 
 import org.fuusio.api.dependency.D;
 

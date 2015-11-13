@@ -26,7 +26,7 @@ public interface ModelObjectColumns extends BaseColumns {
 
     /**
      * The timestamp for when the data was created
-     * <P>
+     * <p/>
      * Type: INTEGER (long from System.curentTimeMillis())
      * </P>
      */
@@ -34,7 +34,7 @@ public interface ModelObjectColumns extends BaseColumns {
 
     /**
      * The timestamp for when the data was last modified
-     * <P>
+     * <p/>
      * Type: INTEGER (long from System.curentTimeMillis())
      * </P>
      */
@@ -42,7 +42,7 @@ public interface ModelObjectColumns extends BaseColumns {
 
     /**
      * Gets the column index corresponding the given property name.
-     * 
+     *
      * @param property The property name as a {@link String}.
      * @return The column index as an {@code int}. Returns -1 if no matching column is found.
      */

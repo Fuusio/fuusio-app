@@ -24,10 +24,10 @@ public class SqlStatement {
     protected static final String SELECT_FROM = "SELECT * FROM";
     protected static final String SPACE = " ";
     protected static final String WHERE = "WHERE";
-    
+
     private final StringBuilder mBuilder;
     private boolean mClosingParenthesisNeeded;
-    private boolean mFirstColumn;    
+    private boolean mFirstColumn;
     private String mStatementString;
 
     private SqlStatement() {
@@ -40,7 +40,7 @@ public class SqlStatement {
         mBuilder.append(' ');
         return this;
     }
-    
+
     public SqlStatement append(final String stringValue) {
         mBuilder.append(stringValue);
         mBuilder.append(' ');
@@ -89,14 +89,14 @@ public class SqlStatement {
         statement.append(CREATE_TABLE);
         statement.append(tableName);
         statement.openParenthesis();
-        
+
         for (final ColumnDescriptor columnDescriptor : tableDescriptor.getColumnDescriptors()) {
-        	statement.addColumn(columnDescriptor);
+            statement.addColumn(columnDescriptor);
         }
-        
+
         return statement;
     }
-    
+
     public SqlStatement addIntegerColumn(final String columnName) {
         return addIntegerColumn(columnName, false);
     }
@@ -117,8 +117,8 @@ public class SqlStatement {
 
         return this;
     }
-    
-        
+
+
     public SqlStatement addIntegerColumn(final String columnName, final boolean primaryKey) {
 
         if (mFirstColumn) {
@@ -181,21 +181,21 @@ public class SqlStatement {
         return addIntegerColumn(columnName, true);
     }
 
-	public final String execute() {
-		return toString();
-	}
+    public final String execute() {
+        return toString();
+    }
 
-	public static SqlStatement create(final TableDescriptor tableDescriptor) {
-		return newCreateTable(tableDescriptor.getName(), tableDescriptor);
-	}
-	
-	public static String[] whereArgs(final Object... values) {
-		final int count = values.length;
-		final String[] wheraArgs = new String[count];
-		
-		for (int  i = count - 1; i >= 0; i--) {
-			wheraArgs[i] = (values[i] != null) ? values[i].toString() : null;
-		}
-    	return wheraArgs;
-    }	
+    public static SqlStatement create(final TableDescriptor tableDescriptor) {
+        return newCreateTable(tableDescriptor.getName(), tableDescriptor);
+    }
+
+    public static String[] whereArgs(final Object... values) {
+        final int count = values.length;
+        final String[] wheraArgs = new String[count];
+
+        for (int i = count - 1; i >= 0; i--) {
+            wheraArgs[i] = (values[i] != null) ? values[i].toString() : null;
+        }
+        return wheraArgs;
+    }
 }

@@ -81,7 +81,7 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
 
     @SuppressWarnings("unchecked")
     public <T extends ModelObject> T getObject(final Class<T> objectClass, final long id,
-            final boolean create) {
+                                               final boolean create) {
         HashMap<Long, ModelObject> instances = mModelObjects.get(objectClass);
         T object = null;
 
@@ -121,7 +121,7 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
 
     @SuppressWarnings("unchecked")
     public <T extends ModelObject> void getObjects(final Class<T> objectClass,
-            final Collection<T> objects) {
+                                                   final Collection<T> objects) {
         HashMap<Long, ModelObject> instancesMap = mModelObjects.get(objectClass);
 
         if (instancesMap == null) {
@@ -206,7 +206,7 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
     }
 
     public void objectChanged(final Class<? extends ModelObject> objectClass, final long id,
-            final List<String> pProperties) {
+                              final List<String> pProperties) {
         final ModelObject object = getObject(objectClass, id);
 
         if (object != null) {
@@ -215,7 +215,7 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
     }
 
     public boolean existsInDatabase(final Uri contentUri, final long id) { // TODO OPTIMIZE
-                                                                                    // !
+        // !
         if (contentUri == null) {
             return false;
         }
@@ -246,7 +246,7 @@ public abstract class ModelObjectManager extends PluginComponent implements Mode
         T instance = null;
 
         try {
-            final Class<T> modelClass = (Class<T>)Class.forName(className);
+            final Class<T> modelClass = (Class<T>) Class.forName(className);
             instance = createInstance(modelClass);
         } catch (final Exception pException) {
             L.e(this, "createInstance", pException);

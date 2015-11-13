@@ -15,11 +15,11 @@
  */
 package org.fuusio.api.util;
 
+import android.annotation.SuppressLint;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import android.annotation.SuppressLint;
 
 public class DateToolkit {
 

@@ -15,19 +15,20 @@
  */
 package org.fuusio.api.flow;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
 
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.dependency.Dependency;
 import org.fuusio.api.dependency.DependencyScope;
 import org.fuusio.api.dependency.DependencyScopeOwner;
-import org.fuusio.api.mvp.View;
 import org.fuusio.api.mvp.Presenter;
+import org.fuusio.api.mvp.View;
 import org.fuusio.api.ui.action.ActionContext;
 import org.fuusio.api.ui.action.ActionManager;
+import org.fuusio.api.util.LifecycleState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +46,14 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
     protected Context mContext;
     protected FlowScope mDependencyScope;
     protected FlowManager mFlowManager;
+    protected LifecycleState mLifecycleState;
+    protected boolean mRestarted;
 
     /**
      * Construct a new instance of {@link AbstractFlow} with the given {@link FlowFragmentContainer}.
+     *
      * @param container A {@link FlowFragmentContainer}.
-     * @param params A {@link Bundle} containing parameters for starting the {@link Flow}.
+     * @param params    A {@link Bundle} containing parameters for starting the {@link Flow}.
      */
     protected AbstractFlow(final FlowFragmentContainer container, final Bundle params) {
         mFragmentContainer = container;
@@ -57,6 +61,8 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
         mActiveViews = new ArrayList<>();
         mBackStackSize = 0;
         mContext = container.getContext();
+        mLifecycleState = LifecycleState.DORMANT;
+        mRestarted = false;
     }
 
     @Override
@@ -68,7 +74,12 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
                 mDependencyScope = createDependencyScope();
             }
         }
-        return (T)mDependencyScope;
+        return (T) mDependencyScope;
+    }
+
+    @Override
+    public String getScopeId() {
+        return getClass().getSimpleName();
     }
 
     @Override
@@ -80,6 +91,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
     /**
      * Adds the given {@link View} to the set of currently active Views. This method is
      * meant to be used only by the Flow Framework.
+     *
      * @param view A {@link View}.
      */
     @Override
@@ -90,9 +102,11 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
         }
         return null;
     }
+
     /**
      * Removes the given {@link View} from the set of currently active Views. This method
      * is meant to be used only by the Flow Framework.
+     *
      * @param view A {@link View}.
      */
     @Override
@@ -106,6 +120,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
 
     /**
      * Tests if the given {@link View} is currently active one.
+     *
      * @param view A {@link View}.
      * @return A {@code boolean} value.
      */
@@ -126,6 +141,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
 
     /**
      * Creates the {@link FlowScope} for this {@link DependencyScopeOwner}.
+     *
      * @return A {@link FlowScope}. May not be {@code null}.
      */
     protected abstract FlowScope createDependencyScope();
@@ -154,7 +170,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
 
         if (presenter instanceof ActionContext) {
             final ActionManager actionManager = D.get(ActionManager.class);
-            actionManager.setActiveActionContext((ActionContext)presenter);
+            actionManager.setActiveActionContext((ActionContext) presenter);
         }
     }
 
@@ -182,7 +198,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
         while (index >= 0) {
             final FragmentManager.BackStackEntry entry = fragmentManager.getBackStackEntryAt(index);
             final String tag = entry.getName();
-            final FlowFragment fragment = (FlowFragment)fragmentManager.findFragmentByTag(tag);
+            final FlowFragment fragment = (FlowFragment) fragmentManager.findFragmentByTag(tag);
 
             if (isActiveView(fragment)) {
                 fragmentManager.popBackStackImmediate();
@@ -225,11 +241,13 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
 
     @Override
     public final void restart() {
+        mRestarted = true;
         onRestart();
     }
 
     @Override
     public final void start(final Bundle params) {
+        mLifecycleState = LifecycleState.STARTED;
         final FragmentManager manager = mFragmentContainer.getSupportFragmentManager();
         manager.addOnBackStackChangedListener(this);
         Dependency.activateScope(this);
@@ -239,16 +257,19 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
 
     @Override
     public final void pause() {
+        mLifecycleState = LifecycleState.PAUSED;
         onPause();
     }
 
     @Override
     public final void resume() {
+        mLifecycleState = LifecycleState.RESUMED;
         onResume();
     }
 
     @Override
     public final void stop() {
+        mLifecycleState = LifecycleState.STOPPED;
         final FragmentManager manager = mFragmentContainer.getSupportFragmentManager();
         manager.removeOnBackStackChangedListener(this);
         mFlowManager.onFlowStopped(this);
@@ -258,6 +279,7 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
 
     @Override
     public final void destroy() {
+        mLifecycleState = LifecycleState.DESTROYED;
         Dependency.deactivateScope(this);
         mFlowManager.onFlowDestroyed(this);
         onDestroy();
@@ -327,4 +349,30 @@ public abstract class AbstractFlow implements Flow, Presenter.Listener, Dependen
     @Override
     public void onPresenterStopped(final Presenter presenter) {
     }
+
+    @Override
+    public boolean isPaused() {
+        return mLifecycleState.isPaused();
+    }
+
+    @Override
+    public boolean isRestarted() {
+        return mRestarted;
+    }
+
+    @Override
+    public boolean isResumed() {
+        return mLifecycleState.isResumed();
+    }
+
+    @Override
+    public boolean isStarted() {
+        return mLifecycleState.isStarted();
+    }
+
+    @Override
+    public boolean isStopped() {
+        return mLifecycleState.isStopped();
+    }
+
 }

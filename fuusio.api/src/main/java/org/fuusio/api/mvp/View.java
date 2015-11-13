@@ -22,31 +22,35 @@ import org.fuusio.api.component.Component;
 /**
  * {@link View} is the interface to be implemented by View components of a MVP
  * architectural pattern implementation.
+ *
  * @param <T_Presenter> The parametrised type extending {@link Presenter}.
  */
 public interface View<T_Presenter extends Presenter> extends Component {
 
     /**
      * Gets the {@link Presenter} assigned for this {@link View}.
+     *
      * @return A {@link Presenter}.
      */
     T_Presenter getPresenter();
 
-
     /**
      * Gets the {@link ViewState} of this {@link View}.
+     *
      * @return An {@link ViewState}.
      */
     ViewState getState();
 
     /**
      * Test if this {@link View} has been paused.
+     *
      * @return A {@code boolean}.
      */
     boolean isPaused();
 
     /**
      * Test if this {@link View} has been restarted.
+     *
      * @return A {@code boolean}.
      */
     boolean isRestarted();
@@ -57,7 +61,7 @@ public interface View<T_Presenter extends Presenter> extends Component {
          * Invoked by a {@link View} implementation when it is created,
          * e.g. on {@link ViewFragment#onViewCreated(android.view.View, Bundle)}.
          *
-         * @param view A {@link View}
+         * @param view    A {@link View}
          * @param inState {@lin Bundle} containing the initial state.
          */
         void onViewCreated(View view, Bundle inState);

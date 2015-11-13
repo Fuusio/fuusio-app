@@ -23,12 +23,14 @@ public interface PluginInjector {
 
     /**
      * Invoked when the given {@link Plugin} is plugged to {@link PluginBus},
+     *
      * @param plugin A plugged {@link Plugin}.
      */
     void onPlug(Plugin plugin);
 
     /**
      * Invoked when the given {@link Plugin} is unplugged from {@link PluginBus},
+     *
      * @param plugin An unplugged {@link Plugin}.
      */
     void onUnplug(Plugin plugin);

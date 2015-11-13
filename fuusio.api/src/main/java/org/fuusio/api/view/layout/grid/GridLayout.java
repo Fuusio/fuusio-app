@@ -105,6 +105,7 @@ public class GridLayout extends ViewGroup {
 
     /**
      * Adds the given {@link ViewArea} into this {@link GridLayout}.
+     *
      * @param pArea A {@link ViewArea}.
      */
     public void addViewArea(final ViewArea pArea) {
@@ -116,10 +117,10 @@ public class GridLayout extends ViewGroup {
     /**
      * Sets the default margins for {@link LayoutSpec}s containing {@link View}s.
      *
-     * @param pTop The top insets.
-     * @param pLeft The left insets.
+     * @param pTop    The top insets.
+     * @param pLeft   The left insets.
      * @param pBottom The bottom insets.
-     * @param pRight The right insets.
+     * @param pRight  The right insets.
      */
     public void setDefaultViewInsets(final int pTop, final int pLeft, final int pBottom, final int pRight) {
         ViewArea.setDefaultViewInsets(pTop, pLeft, pBottom, pRight);
@@ -168,13 +169,13 @@ public class GridLayout extends ViewGroup {
 
         final int width = pRight - pLeft;
         final int height = pBottom - pTop;
-        final int lastRowIndex =  mRowSpecs.length - 1;
+        final int lastRowIndex = mRowSpecs.length - 1;
         final int lastColumnIndex = mColumnSpecs.length - 1;
 
         int offset = height;
         int resizeableCount = 0;
 
-        for (int i = 0; i <= lastRowIndex ; i++) {
+        for (int i = 0; i <= lastRowIndex; i++) {
             final RowSpec spec = mRowSpecs[i];
 
             if (spec.isFixed()) {
@@ -188,7 +189,7 @@ public class GridLayout extends ViewGroup {
         final int rowOffset = offset / resizeableCount;
         final int lastRowOffset = rowOffset + (offset - resizeableCount * rowOffset);
 
-        for (int i = 0; i <= lastRowIndex ; i++) {
+        for (int i = 0; i <= lastRowIndex; i++) {
             final RowSpec spec = mRowSpecs[i];
 
             if (!spec.isFixed()) {

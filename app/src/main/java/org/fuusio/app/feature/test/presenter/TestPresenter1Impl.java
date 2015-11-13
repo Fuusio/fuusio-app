@@ -1,10 +1,9 @@
 package org.fuusio.app.feature.test.presenter;
 
-import org.fuusio.api.mvp.Presenter;
-import org.fuusio.app.feature.test.view.TestView1;
-
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.mvp.AbstractPresenter;
+import org.fuusio.api.mvp.Presenter;
+import org.fuusio.app.feature.test.view.TestView1;
 
 public class TestPresenter1Impl extends AbstractPresenter<TestView1, Presenter.Listener> implements TestPresenter1 {
 

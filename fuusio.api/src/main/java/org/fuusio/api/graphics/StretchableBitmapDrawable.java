@@ -34,17 +34,17 @@
 
 package org.fuusio.api.graphics;
 
-import java.util.List;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 
 import org.fuusio.api.util.Dimension;
 
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
+import java.util.List;
 
 /**
  * {@link StretchableBitmapDrawable} extends {@link CompositeDrawable} to implement a
  * {@link Drawable} that utilizes {@link StretchableBitmap}s for painting.
- * 
+ *
  * @author Marko Salmela
  */
 public class StretchableBitmapDrawable extends CompositeDrawable {
@@ -64,7 +64,7 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
      * The rendered {@link StretchableBitmap}.
      */
     protected StretchableBitmap mStretchableBitmap;
-    
+
     /**
      * Constructs a new instance of {@link StretchableBitmapDrawable}.
      */
@@ -79,7 +79,7 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
 
     /**
      * Gets the assigned {@link StretchableBitmap}
-     * 
+     *
      * @return A {@link StretchableBitmap}.
      */
 
@@ -89,7 +89,7 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
 
     /**
      * Sets the assigned {@link StretchableBitmap}.
-     * 
+     *
      * @param stretchableBitmap A {@link StretchableBitmap}.
      */
 
@@ -124,7 +124,7 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
             mStretchableBitmap = stretchableBitmap;
         }
     }
-    
+
     /*
      * (non-Javadoc)
      * 
@@ -175,7 +175,7 @@ public class StretchableBitmapDrawable extends CompositeDrawable {
 
     /**
      * Tests whether this {@link Drawable} is currently enabled or not.
-     * 
+     *
      * @return A {@link boolean}.
      */
     @Override

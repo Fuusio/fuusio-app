@@ -15,57 +15,57 @@
  */
 package org.fuusio.api.db;
 
-import java.util.Collection;
-
 import org.fuusio.api.model.ModelObjectMetaInfo;
 import org.fuusio.api.model.Property;
 
+import java.util.Collection;
+
 public class ModelObjectTableDescriptor implements TableDescriptor {
 
-	private final ColumnDescriptor[] mColumnDescriptors;
-	private final ModelObjectMetaInfo mObjectMetaInfo;
-	
-	
-	public ModelObjectTableDescriptor(final ModelObjectMetaInfo metaInfo) {
-		mColumnDescriptors = createColumnDescriptors(metaInfo);
-		mObjectMetaInfo = metaInfo;
-	}
-	
-	@Override
-	public ColumnDescriptor[] getColumnDescriptors() {
-		return mColumnDescriptors;
-	}
+    private final ColumnDescriptor[] mColumnDescriptors;
+    private final ModelObjectMetaInfo mObjectMetaInfo;
 
-	@Override
-	public String getName() {
-		final Class<?> objectClass = mObjectMetaInfo.getObjectClass();
-		final String className = objectClass.getSimpleName();
-		final int index = className.lastIndexOf('.');
-		return (index > 0) ? className.substring(index + 1) : className;
-	}
 
-	public static ColumnDescriptor[] createColumnDescriptors(final ModelObjectMetaInfo metaInfo) {
-		final Collection<Property> properties = metaInfo.getProperties();
-		final int count = properties.size();
-		final ColumnDescriptor[] descriptors = new ColumnDescriptor[count];
-		
-		int index = 0;
-		
-		for (final Property property : properties) {
-			descriptors[index++] = new PropertyColumnDescriptor(property);
-		}
-		
-		return descriptors;
-	}
+    public ModelObjectTableDescriptor(final ModelObjectMetaInfo metaInfo) {
+        mColumnDescriptors = createColumnDescriptors(metaInfo);
+        mObjectMetaInfo = metaInfo;
+    }
 
-	public ColumnDescriptor getColumnDescriptor(int columnIndex) {
-		
-		for (final ColumnDescriptor columnDescriptor : mColumnDescriptors) {
-			if (columnDescriptor.getIndex() == columnIndex) {
-				return columnDescriptor;
-			}
-		}
-		return null;
-	}
+    @Override
+    public ColumnDescriptor[] getColumnDescriptors() {
+        return mColumnDescriptors;
+    }
+
+    @Override
+    public String getName() {
+        final Class<?> objectClass = mObjectMetaInfo.getObjectClass();
+        final String className = objectClass.getSimpleName();
+        final int index = className.lastIndexOf('.');
+        return (index > 0) ? className.substring(index + 1) : className;
+    }
+
+    public static ColumnDescriptor[] createColumnDescriptors(final ModelObjectMetaInfo metaInfo) {
+        final Collection<Property> properties = metaInfo.getProperties();
+        final int count = properties.size();
+        final ColumnDescriptor[] descriptors = new ColumnDescriptor[count];
+
+        int index = 0;
+
+        for (final Property property : properties) {
+            descriptors[index++] = new PropertyColumnDescriptor(property);
+        }
+
+        return descriptors;
+    }
+
+    public ColumnDescriptor getColumnDescriptor(int columnIndex) {
+
+        for (final ColumnDescriptor columnDescriptor : mColumnDescriptors) {
+            if (columnDescriptor.getIndex() == columnIndex) {
+                return columnDescriptor;
+            }
+        }
+        return null;
+    }
 
 }

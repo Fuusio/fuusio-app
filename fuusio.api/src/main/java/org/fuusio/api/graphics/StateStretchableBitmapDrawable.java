@@ -37,7 +37,7 @@ package org.fuusio.api.graphics;
 /**
  * {@code StateStretchableBitmapPainter} extends {@code StretchableBitmapDrawable} to implement {@code Drawable}
  * that can be used to render state depended skin images.
- * 
+ *
  * @author Marko Salmela
  */
 
@@ -56,7 +56,7 @@ public class StateStretchableBitmapDrawable extends StretchableBitmapDrawable {
 
     /**
      * Gets the current state.
-     * 
+     *
      * @return The state as an {@code int}.
      */
 
@@ -66,7 +66,7 @@ public class StateStretchableBitmapDrawable extends StretchableBitmapDrawable {
 
     /**
      * Sets the current state.
-     * 
+     *
      * @param state The state as an {@code int}.
      */
 

@@ -48,7 +48,7 @@ public enum ResizePolicy {
 
     /**
      * Constructs a new instance of {@code ResizePolicy} with the given displayable label.
-     * 
+     *
      * @param pLabel A {@link String} for the displayable label.
      */
     ResizePolicy(final String pLabel) {
@@ -57,7 +57,7 @@ public enum ResizePolicy {
 
     /**
      * Gets the displayable label for this {@code ResizePolicy}.
-     * 
+     *
      * @return A {@link String} for displayable label.
      */
     public String getLabel() {
@@ -66,7 +66,7 @@ public enum ResizePolicy {
 
     /**
      * Returns a {@link String} representation of this {@code ResizePolicy}.
-     * 
+     *
      * @return A {@link String} representation of this @code ResizePolicy}.
      */
     @Override

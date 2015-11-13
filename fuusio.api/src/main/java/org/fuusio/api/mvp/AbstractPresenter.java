@@ -22,7 +22,8 @@ import org.fuusio.api.util.AbstractListenable;
 /**
  * {@link AbstractPresenter} extends {@link AbstractListenable} to provide an abstract base class
  * for concrete implementations of {@link Presenter}s.
- * @param <T_View> The parametrised type extended  from {@link View}.
+ *
+ * @param <T_View>     The parametrised type extended  from {@link View}.
  * @param <T_Listener> The parametrised type extended  from {@link Presenter.Listener}.
  */
 public class AbstractPresenter<T_View extends View, T_Listener extends Presenter.Listener> extends AbstractListenable<T_Listener>
@@ -35,20 +36,19 @@ public class AbstractPresenter<T_View extends View, T_Listener extends Presenter
         mStopped = false;
     }
 
-    /**
-     * Return the {@link View} of this {@link Presenter}.
-     * @return A {@link View}.
-     */
+    @Override
     public final T_View getView() {
         return mView;
     }
 
-    /**
-     * Set the {@link View} of this {@link Presenter}.
-     * @param view A {@link View}.
-     */
+    @Override
     public void setView(final T_View view) {
         mView = view;
+    }
+
+    @Override
+    public ViewState getState() {
+        return mView.getState();
     }
 
     /**
@@ -106,13 +106,13 @@ public class AbstractPresenter<T_View extends View, T_Listener extends Presenter
     @SuppressWarnings("unchecked")
     @Override
     public void onViewCreated(final View view, final Bundle inState) {
-        setView((T_View)view);
+        setView((T_View) view);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void onViewResume(final View view) {
-        setView((T_View)view);
+        setView((T_View) view);
         resume();
     }
 

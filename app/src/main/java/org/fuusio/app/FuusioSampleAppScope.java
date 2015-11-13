@@ -1,12 +1,11 @@
 package org.fuusio.app;
 
-import org.fuusio.app.feature.test.flow.TestFlow;
-import org.fuusio.app.feature.test.flow.TestFlowImpl;
-
 import org.fuusio.api.app.FuusioApplicationScope;
 import org.fuusio.api.dependency.D;
 import org.fuusio.api.flow.FlowFragmentContainer;
 import org.fuusio.api.model.ModelObjectManager;
+import org.fuusio.app.feature.test.flow.TestFlow;
+import org.fuusio.app.feature.test.flow.TestFlowImpl;
 
 public class FuusioSampleAppScope extends FuusioApplicationScope {
 

@@ -32,6 +32,7 @@ public class PropertyBinding extends TextViewBinding {
 
     /**
      * Gets the assigned {@link ModelObject} that owns the target {@link Property}.
+     *
      * @return A {@link ModelObject}
      */
     public final ModelObject getModelObject() {
@@ -40,6 +41,7 @@ public class PropertyBinding extends TextViewBinding {
 
     /**
      * Sets the assigned {@link ModelObject} that owns the target {@link Property}.
+     *
      * @param object A {@link ModelObject}
      */
     public void setModelObject(final ModelObject object) {
@@ -48,6 +50,7 @@ public class PropertyBinding extends TextViewBinding {
 
     /**
      * Gets the target {@link Property}.
+     *
      * @return A {@link Property}
      */
     public final Property getProperty() {
@@ -56,6 +59,7 @@ public class PropertyBinding extends TextViewBinding {
 
     /**
      * Sets the target {@link Property}.
+     *
      * @param property A {@link Property}
      */
     public void setProperty(final Property property) {
@@ -64,6 +68,7 @@ public class PropertyBinding extends TextViewBinding {
 
     /**
      * Sets the given value via this {@link TextViewBinding} to target.
+     *
      * @param text A {@link String} representing the value.
      */
     protected final Object setValue(final String text) {
@@ -74,6 +79,7 @@ public class PropertyBinding extends TextViewBinding {
 
     /**
      * Tests if the given text represents a valid input value for the assigned {@link View}.
+     *
      * @param text The input value given as a {@link String}.
      * @return A {@code boolean} value.
      */

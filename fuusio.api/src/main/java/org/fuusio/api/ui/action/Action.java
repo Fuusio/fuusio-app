@@ -52,7 +52,7 @@ public class Action {
     }
 
     public Action(final ActionListener listener, final int pId, final int drawableResId,
-            final int textResId) {
+                  final int textResId) {
         mId = pId;
         mDrawableResId = drawableResId;
         mTextResId = textResId;

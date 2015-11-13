@@ -26,8 +26,6 @@
 
 package org.fuusio.api.widget;
 
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -44,6 +42,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * Layout container for a view hierarchy that can be scrolled by the user,
@@ -309,9 +309,9 @@ public class ScrollView2D extends FrameLayout {
             }
             return false;
         }
-        
+
         boolean handled = false;
-        
+
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (event.getKeyCode()) {
                 case KeyEvent.KEYCODE_DPAD_UP:
@@ -350,7 +350,7 @@ public class ScrollView2D extends FrameLayout {
     @Override
     public boolean onInterceptTouchEvent(final MotionEvent event) {
         /*
-		 * This method JUST determines whether we want to intercept the motion.
+         * This method JUST determines whether we want to intercept the motion.
 		 * If we return true, onMotionEvent will be called and we do the actual
 		 * scrolling there.
 		 *
@@ -912,7 +912,7 @@ public class ScrollView2D extends FrameLayout {
      * If rect is off screen, scroll just enough to getOrCreate it (or at least the
      * first screen size chunk of it) on screen.
      *
-     * @param rect The rectangle.
+     * @param rect      The rectangle.
      * @param immediate True to scroll immediately without animation
      * @return true if scrolling was performed
      */
@@ -1101,8 +1101,8 @@ public class ScrollView2D extends FrameLayout {
 
     /**
      * Tests if the given child is an descendant of parent, (or equal to the parent).
-
-     * @param child A child {@link View}.
+     *
+     * @param child  A child {@link View}.
      * @param parent A parent {@link View}.
      * @return A {@code boolean} value.
      */

@@ -84,7 +84,7 @@ public class VolleyRequestManager implements RequestManager<VolleyRestRequest<Ab
         final AbstractRequest peerRequest = request.getPeerRequest();
         peerRequest.setRetryPolicy(createRetryPolicy());
         getRequestQueue().add(peerRequest);
-        return (T)request;
+        return (T) request;
     }
 
     @Override

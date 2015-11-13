@@ -15,10 +15,8 @@
  */
 package org.fuusio.api.flow;
 
-import android.os.Bundle;
-
-import org.fuusio.api.mvp.ViewFragment;
 import org.fuusio.api.mvp.Presenter;
+import org.fuusio.api.mvp.ViewFragment;
 
 public abstract class FlowFragment<T_Presenter extends Presenter> extends ViewFragment<T_Presenter> implements FlowView<T_Presenter> {
 
@@ -39,6 +37,7 @@ public abstract class FlowFragment<T_Presenter extends Presenter> extends ViewFr
 
     /**
      * Get a tag for this {@link FlowFragment}.
+     *
      * @return A tag as a {@link String}.
      */
     public String getFlowTag() {
@@ -48,6 +47,7 @@ public abstract class FlowFragment<T_Presenter extends Presenter> extends ViewFr
     /**
      * Gets the {@link FlowScope} owned by the {@link Flow} that controls this
      * {@link FlowFragment}.
+     *
      * @param <T> The generic return type of {@link FlowScope}.
      * @return A {@link FlowScope}.
      */

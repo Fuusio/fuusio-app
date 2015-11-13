@@ -53,6 +53,7 @@ public class FuusioSampleApp extends FuusioApplication {
 
     /**
      * Gets the Google Analytics Property ID.
+     *
      * @return The property ID as an {@code int} value.
      */
     public int getPropertyId() {
@@ -60,92 +61,92 @@ public class FuusioSampleApp extends FuusioApplication {
     }
 
     /**
-     * 
      *
-    private void doTests() {
-        final Calculator calculator = new Calculator();
-        final CompiledType calculatorType = new CompiledType(Calculator.class);
-        final VirtualMachine vm = new VirtualMachine(this);
-        final ExecutionContext ctx = new ExecutionContext(vm);
-        final Method addDigitMethod = calculatorType
-                .getMethod(Calculator.M_receiveDigit_int);
-        ctx.mArgs = new Object[] { 8 };
-        ctx.mContextObject = calculator;
-        final Object returnValue = addDigitMethod.execute(ctx);
+     *
+     private void doTests() {
+     final Calculator calculator = new Calculator();
+     final CompiledType calculatorType = new CompiledType(Calculator.class);
+     final VirtualMachine vm = new VirtualMachine(this);
+     final ExecutionContext ctx = new ExecutionContext(vm);
+     final Method addDigitMethod = calculatorType
+     .getMethod(Calculator.M_receiveDigit_int);
+     ctx.mArgs = new Object[] { 8 };
+     ctx.mContextObject = calculator;
+     final Object returnValue = addDigitMethod.execute(ctx);
 
-        final DynamicType helloWorldType = new DynamicType("HelloWorld");
-        final Property intProperty = new Property("x", MutableInteger.TYPE);
-        final Property stringProperty = new Property("string", MutableString.TYPE);
-        final Property[] properties = { intProperty, stringProperty };
-        helloWorldType.setProperties(properties);
+     final DynamicType helloWorldType = new DynamicType("HelloWorld");
+     final Property intProperty = new Property("x", MutableInteger.TYPE);
+     final Property stringProperty = new Property("string", MutableString.TYPE);
+     final Property[] properties = { intProperty, stringProperty };
+     helloWorldType.setProperties(properties);
 
-        final DynamicMethod constructor = new DynamicMethod("new");
-        final Method[] constructors = { constructor };
-        helloWorldType.setConstructors(constructors);
+     final DynamicMethod constructor = new DynamicMethod("new");
+     final Method[] constructors = { constructor };
+     helloWorldType.setConstructors(constructors);
 
-        {
-            final Code code = constructor.getMethodCode();
-            final Statement statement1 = new Statement();
-            final Statement statement2 = new Statement();
-            final Statement[] statements = { statement1, statement2 };
-            code.setStatements(statements);
+     {
+     final Code code = constructor.getMethodCode();
+     final Statement statement1 = new Statement();
+     final Statement statement2 = new Statement();
+     final Statement[] statements = { statement1, statement2 };
+     code.setStatements(statements);
 
-            final PropertyInvocation propertyInvocation1 = new PropertyInvocation(stringProperty);
-            final Literal literal1 = new Literal(MutableString.TYPE, "Hello World!");
-            final Executable[] executables1 = { literal1, propertyInvocation1 };
-            statement1.setExecutables(executables1);
+     final PropertyInvocation propertyInvocation1 = new PropertyInvocation(stringProperty);
+     final Literal literal1 = new Literal(MutableString.TYPE, "Hello World!");
+     final Executable[] executables1 = { literal1, propertyInvocation1 };
+     statement1.setExecutables(executables1);
 
-            final PropertyInvocation propertyInvocation2 = new PropertyInvocation(intProperty);
-            final Literal literal2 = new Literal(MutableInteger.TYPE, 8);
-            final Executable[] executables2 = { literal2, propertyInvocation2 };
+     final PropertyInvocation propertyInvocation2 = new PropertyInvocation(intProperty);
+     final Literal literal2 = new Literal(MutableInteger.TYPE, 8);
+     final Executable[] executables2 = { literal2, propertyInvocation2 };
 
-            statement2.setExecutables(executables2);
-        }
-        final DynamicMethod messageMethod = new DynamicMethod("message", MutableString.TYPE);
-        final Method[] methods = { messageMethod };
-        helloWorldType.setMethods(methods);
+     statement2.setExecutables(executables2);
+     }
+     final DynamicMethod messageMethod = new DynamicMethod("message", MutableString.TYPE);
+     final Method[] methods = { messageMethod };
+     helloWorldType.setMethods(methods);
 
-        {
-            final Code code = messageMethod.getMethodCode();
-            constructCode(helloWorldType, code);
-        }
+     {
+     final Code code = messageMethod.getMethodCode();
+     constructCode(helloWorldType, code);
+     }
 
-        final MethodInvocation methodInvocation = new MethodInvocation(messageMethod);
-        final ExecutionContext ctx2 = new ExecutionContext(vm);
-        final Instance<DynamicType> helloWorld = helloWorldType.newInstance(ctx2);
-        ctx2.mContextObject = helloWorld;
-        final Object returnValue2 = methodInvocation.execute(ctx2);
-    }
+     final MethodInvocation methodInvocation = new MethodInvocation(messageMethod);
+     final ExecutionContext ctx2 = new ExecutionContext(vm);
+     final Instance<DynamicType> helloWorld = helloWorldType.newInstance(ctx2);
+     ctx2.mContextObject = helloWorld;
+     final Object returnValue2 = methodInvocation.execute(ctx2);
+     }
 
-    private void constructCode(final DynamicType pType, final Code pCode) {
-        final Statement statement = new Statement();
-        final Statement[] statements = { statement };
-        final Property stringProperty = pType.getProperty("string");
-        final Property intProperty = pType.getProperty("x");
+     private void constructCode(final DynamicType pType, final Code pCode) {
+     final Statement statement = new Statement();
+     final Statement[] statements = { statement };
+     final Property stringProperty = pType.getProperty("string");
+     final Property intProperty = pType.getProperty("x");
 
-        final Return returns = new Return();
+     final Return returns = new Return();
 
-        final PropertyInvocation propertyInvocation = new PropertyInvocation(intProperty);
+     final PropertyInvocation propertyInvocation = new PropertyInvocation(intProperty);
 
-        // 4 + 5 - 2 * x -> (- (+ 4 5) (* 2 x))
+     // 4 + 5 - 2 * x -> (- (+ 4 5) (* 2 x))
 
-        // 4 > 5 > + > 2 > x > * -
+     // 4 > 5 > + > 2 > x > * -
 
-        final Addition a = new Addition();
-        final Multiplication m = new Multiplication();
-        final Subtraction s = new Subtraction();
+     final Addition a = new Addition();
+     final Multiplication m = new Multiplication();
+     final Subtraction s = new Subtraction();
 
-        s.setFirstOperand(a);
-        s.setSecondOperand(m);
+     s.setFirstOperand(a);
+     s.setSecondOperand(m);
 
-        a.setFirstOperand(Literal.create(4));
-        a.setSecondOperand(Literal.create(5));
+     a.setFirstOperand(Literal.create(4));
+     a.setSecondOperand(Literal.create(5));
 
-        m.setFirstOperand(Literal.create(2));
-        m.setSecondOperand(propertyInvocation);
+     m.setFirstOperand(Literal.create(2));
+     m.setSecondOperand(propertyInvocation);
 
-        final Executable[] executables = { s, returns };
-        statement.setExecutables(executables);
-        pCode.setStatements(statements);
-    }*/
+     final Executable[] executables = { s, returns };
+     statement.setExecutables(executables);
+     pCode.setStatements(statements);
+     }*/
 }

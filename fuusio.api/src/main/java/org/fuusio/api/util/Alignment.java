@@ -17,7 +17,7 @@ package org.fuusio.api.util;
 
 /**
  * {@code Alignment} defines a new enum type for representing priority values at five levels.
- * 
+ *
  * @author Marko Salmela
  */
 public enum Alignment {
@@ -35,7 +35,7 @@ public enum Alignment {
 
     /**
      * Constructs a new instance of {@code Alignment} with the given displayable label.
-     * 
+     *
      * @param label A {@link String} for displayable label.
      */
     Alignment(final String label) {
@@ -44,7 +44,7 @@ public enum Alignment {
 
     /**
      * Gets the displayable label of this {@code Alignment} value.
-     * 
+     *
      * @return The displayable label as a {@link String}.
      */
     public final String getLabel() {

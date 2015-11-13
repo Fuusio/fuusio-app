@@ -24,7 +24,7 @@
     <color name="form_title_text">#ff000000</color>
     <color name="toast_background">#cc000000</color>
     <color name="white_text">#ffffffff</color>
-    
+
     <color name="wizard_text_color_label">#ffeeeeee</color>
     <color name="wizard_text_color_valid">#ffffffff</color>
     <color name="wizard_text_color_hint">#ff666666</color>

@@ -15,13 +15,13 @@
  */
 package org.fuusio.api.model;
 
-import java.util.Date;
-import java.util.HashMap;
-
 import org.fuusio.api.util.DateToolkit;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Date;
+import java.util.HashMap;
 
 public class JSONModelWriter {
 

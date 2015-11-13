@@ -47,9 +47,13 @@ public abstract class FuusioApplication extends Application implements Applicati
         UIToolkit.setApplication(this);
     }
 
+    public DependencyScopeCache getDependencyScopeCache() {
+        return mDependencyScopeCache;
+    }
+
     @SuppressWarnings("unchecked")
     public static <T extends FuusioApplication> T getInstance() {
-        return (T)sInstance;
+        return (T) sInstance;
     }
 
     private static void setInstance(final FuusioApplication instance) {
@@ -58,13 +62,13 @@ public abstract class FuusioApplication extends Application implements Applicati
 
     protected abstract ApplicationScope createDependencyScope();
 
-
     protected DependencyScopeCache createDependencyScopeCache() {
         return new DependencyScopeCache(this);
     }
 
     /**
      * Return the Google Analytics Property ID.
+     *
      * @return The property ID as an {@code int} value.
      */
     public int getPropertyId() {
@@ -73,6 +77,7 @@ public abstract class FuusioApplication extends Application implements Applicati
 
     /**
      * Return the {@link Resources}.
+     *
      * @return A {@link Resources}.
      */
     public static Resources getApplicationResources() {
@@ -82,6 +87,7 @@ public abstract class FuusioApplication extends Application implements Applicati
 
     /**
      * Return the {@link Activity} that is currently in foreground.
+     *
      * @return An {@link Activity}. May return {@code null}.
      */
     public Activity getForegroundActivity() {
@@ -90,6 +96,7 @@ public abstract class FuusioApplication extends Application implements Applicati
 
     /**
      * Return the {@link SharedPreferences}.
+     *
      * @return A {@link SharedPreferences}.
      */
     public SharedPreferences getPreferences() {
@@ -107,6 +114,7 @@ public abstract class FuusioApplication extends Application implements Applicati
     /**
      * Invoked by {@link FuusioApplication#readPreferences()}. This method should be overridden
      * in extended classes.
+     *
      * @param preferences A {@link SharedPreferences} for reading the preferences.
      */
     protected void onReadPreferences(final SharedPreferences preferences) {
@@ -126,6 +134,7 @@ public abstract class FuusioApplication extends Application implements Applicati
     /**
      * Invoked by {@link FuusioApplication#writePreferences()}. This method should be overridden
      * in extended classes.
+     *
      * @param preferences A {@link SharedPreferences} for reading the preferences.
      */
     protected void onWritePreferences(final SharedPreferences preferences) {
@@ -134,7 +143,7 @@ public abstract class FuusioApplication extends Application implements Applicati
 
     @SuppressWarnings("unchecked")
     public static <T extends FuusioApplication> T getApplication(final Activity activity) {
-        return (T)activity.getApplicationContext();
+        return (T) activity.getApplicationContext();
     }
 
     @SuppressLint("NewApi")

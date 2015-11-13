@@ -35,10 +35,6 @@
 
 package org.fuusio.api.view.layout.grid;
 
-import android.view.View;
-
-import org.fuusio.api.util.Dimension;
-
 /**
  * {@code RowCell} implements {@link LayoutSpec} TODO
  */

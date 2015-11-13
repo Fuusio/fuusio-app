@@ -1,5 +1,6 @@
 package org.fuusio.app.feature.test.flow;
 
+import org.fuusio.api.flow.FlowScope;
 import org.fuusio.app.feature.test.presenter.TestPresenter1;
 import org.fuusio.app.feature.test.presenter.TestPresenter1Impl;
 import org.fuusio.app.feature.test.presenter.TestPresenter2;
@@ -8,8 +9,6 @@ import org.fuusio.app.feature.test.view.TestFragment1;
 import org.fuusio.app.feature.test.view.TestFragment2;
 import org.fuusio.app.feature.test.view.TestView1;
 import org.fuusio.app.feature.test.view.TestView2;
-
-import org.fuusio.api.flow.FlowScope;
 
 public class TestScope extends FlowScope<TestFlow> {
 

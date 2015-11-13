@@ -15,24 +15,23 @@
  */
 package org.fuusio.api.graphics;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.HashMap;
-
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 
 import org.fuusio.api.util.AppToolkit;
 import org.fuusio.api.util.L;
 import org.fuusio.api.util.StringToolkit;
-import org.fuusio.api.util.UIToolkit;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.HashMap;
 
 public class BitmapManagerImpl implements BitmapManager {
 
     private static final int DEFAULT_CACHE_SIZE = 50;
     private static final String NAME_DEFAULT_CACHE = "_DefaultCache";
 
-    private  HashMap<String, LruCache<String, Bitmap>> mBitmacaches;
+    private HashMap<String, LruCache<String, Bitmap>> mBitmacaches;
 
     public BitmapManagerImpl() {
         addCache(NAME_DEFAULT_CACHE);

@@ -15,14 +15,11 @@
  */
 package org.fuusio.api.rest;
 
-import android.util.Log;
-
 import org.fuusio.api.util.KeyValue;
 import org.fuusio.api.util.L;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

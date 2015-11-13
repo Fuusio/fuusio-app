@@ -36,13 +36,13 @@ import android.view.inputmethod.InputMethodManager;
  * specific {@link DependencyScope} that has the same lifecycle as the application. An instance of
  * {@link ApplicationScope} is not disposable.
  */
-public abstract class ApplicationScope extends DependencyScope {
+public abstract class ApplicationScope<T_Application extends Application> extends DependencyScope {
 
     private static ApplicationScope sInstance = null;
 
-    private final Application mApplication;
+    private final T_Application mApplication;
 
-    protected ApplicationScope(final Application application) {
+    protected ApplicationScope(final T_Application application) {
         mApplication = application;
         sInstance = this;
     }
@@ -109,12 +109,11 @@ public abstract class ApplicationScope extends DependencyScope {
     /**
      * Gets the {@link Application}.
      *
-     * @param <T> The parameter type extending {@link Application}.
      * @return A {@link Application}.
      */
     @SuppressWarnings("unchecked")
-    public final <T extends Application> T getApplication() {
-        return (T) mApplication;
+    public final T_Application getApplication() {
+        return mApplication;
     }
 
     /**

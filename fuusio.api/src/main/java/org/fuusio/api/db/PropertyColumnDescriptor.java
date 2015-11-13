@@ -19,42 +19,42 @@ import org.fuusio.api.model.Property;
 
 public class PropertyColumnDescriptor implements ColumnDescriptor {
 
-	private final Property mProperty;
-	private final ColumnDataType mColumnType;
-	
-	public PropertyColumnDescriptor(final Property property) {
-		mProperty = property;
-		mColumnType = ColumnDataType.getForProperty(property);
-	}
-	
-	@Override
-	public String getLabel() {
-		return mProperty.getName();
-	}
+    private final Property mProperty;
+    private final ColumnDataType mColumnType;
 
-	@Override
-	public String getName() {
-		return mProperty.getName();
-	}
+    public PropertyColumnDescriptor(final Property property) {
+        mProperty = property;
+        mColumnType = ColumnDataType.getForProperty(property);
+    }
 
-	@Override
-	public int getIndex() {
-		return mProperty.getColumnIndex();
-	}
+    @Override
+    public String getLabel() {
+        return mProperty.getName();
+    }
 
-	@Override
-	public String getSqlType() {
-		return mColumnType.getSqlType();
-	}
+    @Override
+    public String getName() {
+        return mProperty.getName();
+    }
 
-	@Override
-	public ColumnDataType getType() {
-		return mColumnType;
-	}
+    @Override
+    public int getIndex() {
+        return mProperty.getColumnIndex();
+    }
 
-	@Override
-	public boolean isKey() {
-		return mProperty.isKey();
-	}
+    @Override
+    public String getSqlType() {
+        return mColumnType.getSqlType();
+    }
+
+    @Override
+    public ColumnDataType getType() {
+        return mColumnType;
+    }
+
+    @Override
+    public boolean isKey() {
+        return mProperty.isKey();
+    }
 
 }

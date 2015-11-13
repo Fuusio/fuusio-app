@@ -35,6 +35,7 @@ public class TextViewBinding extends ViewBinding<TextView> implements TextWatche
 
     /**
      * Set text of the bound {@link TextView}.
+     *
      * @param text A {@link String} containing the text.
      */
     public void setText(final String text) {
@@ -48,6 +49,7 @@ public class TextViewBinding extends ViewBinding<TextView> implements TextWatche
 
     /**
      * TODO
+     *
      * @param view
      */
     @Override
@@ -58,6 +60,7 @@ public class TextViewBinding extends ViewBinding<TextView> implements TextWatche
 
     /**
      * TODO
+     *
      * @param view
      */
     @Override
@@ -100,6 +103,7 @@ public class TextViewBinding extends ViewBinding<TextView> implements TextWatche
             // TODO
         }
     }
+
     /**
      * This method should be overridden for delegating {@link TextWatcher#afterTextChanged(Editable)}
      * events with {@link Editable} parameter.
@@ -128,6 +132,7 @@ public class TextViewBinding extends ViewBinding<TextView> implements TextWatche
 
     /**
      * Sets the given value via this {@link TextViewBinding} to target.
+     *
      * @param text A {@link String} representing the value.
      * @return The value as an {@link Object}. By default this value is {@code null}.
      */
@@ -138,6 +143,7 @@ public class TextViewBinding extends ViewBinding<TextView> implements TextWatche
 
     /**
      * Tests if the given text represents a valid input value for the assigned {@link View}.
+     *
      * @param text The input value given as a {@link String}.
      * @return A {@code boolean} value.
      */

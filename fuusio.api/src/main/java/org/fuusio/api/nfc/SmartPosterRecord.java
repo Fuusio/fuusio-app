@@ -15,18 +15,16 @@
  */
 package org.fuusio.api.nfc;
 
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
-
 import android.nfc.FormatException;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 
-
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterables;
+
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class SmartPosterRecord extends ParsedNdefRecord {
 
@@ -141,7 +139,7 @@ public class SmartPosterRecord extends ParsedNdefRecord {
         return null;
     }
 
-    private static final byte[] ACTION_RECORD_TYPE = new byte[] { 'a', 'c', 't' };
+    private static final byte[] ACTION_RECORD_TYPE = new byte[]{'a', 'c', 't'};
 
     private static RecommendedAction parseRecommendedAction(final NdefRecord[] records) {
         final NdefRecord record = getByType(ACTION_RECORD_TYPE, records);
@@ -158,7 +156,7 @@ public class SmartPosterRecord extends ParsedNdefRecord {
         return RecommendedAction.UNKNOWN;
     }
 
-    private static final byte[] TYPE_TYPE = new byte[] { 't' };
+    private static final byte[] TYPE_TYPE = new byte[]{'t'};
 
     private static String parseType(final NdefRecord[] records) {
         final NdefRecord type = getByType(TYPE_TYPE, records);

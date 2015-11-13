@@ -27,7 +27,7 @@ import java.util.StringTokenizer;
 /**
  * {@link StringToolkit} provides a set of convenience methods and utilities for using and modifying
  * Strings.
- * 
+ *
  * @author Marko Salmela
  */
 public class StringToolkit {
@@ -38,7 +38,7 @@ public class StringToolkit {
 
     /**
      * Creates a valid identifier string from the given {@link String}.
-     * 
+     *
      * @param string The object name as a {@link String}.
      * @return The valid identifier as a {@link String}.
      * @throws IllegalArgumentException If the given string is {@code null}.
@@ -67,9 +67,9 @@ public class StringToolkit {
     /**
      * Tests if the given {@link String} contains only whitespaces. If the {@link String} is
      * {@code null}, boolean value {@code true} is returned.
-     * 
+     *
      * @param string The {@link String} to be tested.
-     * @param start The start offset.
+     * @param start  The start offset.
      * @param length The length of data.
      * @return A {@code boolean} value.
      */
@@ -84,9 +84,9 @@ public class StringToolkit {
 
     /**
      * Tests if the given char array contains only whitespaces
-     * 
-     * @param chars The array of {@code chars}.
-     * @param start The start offset.
+     *
+     * @param chars  The array of {@code chars}.
+     * @param start  The start offset.
      * @param length The length of data.
      * @return A {@code boolean} value.
      */
@@ -107,13 +107,13 @@ public class StringToolkit {
 
     /**
      * Tests if the given {@code char} array equals with the given {@link String}.
-     * 
-     * @param chars The given char array.
+     *
+     * @param chars  The given char array.
      * @param length The number of characters to be compared. Should not exceed the length of the
-     *        {@code char} array.
+     *               {@code char} array.
      * @param string The given {@link String}. Cannot be {@code null}.
      * @return A boolean value {@code true} if the {@code char} array and the {@link String} contain
-     *         the same characters.
+     * the same characters.
      */
     public static boolean equals(final char[] chars, final int length, final String string) {
         if (length == string.length()) {
@@ -129,16 +129,16 @@ public class StringToolkit {
 
     /**
      * Tests if the given {@code char} array equals with the given {@link String}.
-     * 
-     * @param chars The given {@code char} array.
+     *
+     * @param chars  The given {@code char} array.
      * @param offset The offset for the {@code char} array.
      * @param length The number of characters to be compared. Should not exceed the length of the
-     *        {@code char} array.
+     *               {@code char} array.
      * @param string The given {@link String}. Cannot be {@code null}.
      * @return true if the {@code char} array and the {@link String} contain the same characters.
      */
     public static boolean equals(final char[] chars, final int offset, final int length,
-            final String string) {
+                                 final String string) {
         if (length == string.length()) {
             for (int i = 0; i < length; i++) {
                 if (chars[i + offset] != string.charAt(i)) {
@@ -152,7 +152,7 @@ public class StringToolkit {
 
     /**
      * Tests whether the given {@link String} represents a syntactically valid Java identifier.
-     * 
+     *
      * @param identifier The given {@link String} to be tested.
      * @return A {@code boolean}.
      */
@@ -186,7 +186,7 @@ public class StringToolkit {
 
     /**
      * Tests whether the given {@link String} represents a syntactically valid namespace name.
-     * 
+     *
      * @param string The given {@link String} to be tested.
      * @return A {@code boolean}.
      */
@@ -239,9 +239,9 @@ public class StringToolkit {
 
     /**
      * Formats the given {@link String} with given arguments.
-     * 
+     *
      * @param string The string {@link String}.
-     * @param args A {@link List} containing the arguments for {@link String#format} method.
+     * @param args   A {@link List} containing the arguments for {@link String#format} method.
      * @return A formatted string {@link String}.
      */
     public static String formatString(final String string, final List<?> args) {
@@ -255,9 +255,9 @@ public class StringToolkit {
     /**
      * Formats the given  {@link String} with given arguments and by using the
      * {@link String#format} method.
-     * 
+     *
      * @param string The string {@link String}.
-     * @param args The arguments for {@link String#format} method.
+     * @param args   The arguments for {@link String#format} method.
      * @return A formatted string {@link String}.
      */
     public static String formatString(final String string, final Object... args) {
@@ -291,7 +291,7 @@ public class StringToolkit {
 
     /**
      * Changes the first character of the given {@link String} to be a lowercase character.
-     * 
+     *
      * @param string The given {@link String}. It must contain at least one character.
      * @return The modified {@link String}.
      */
@@ -310,7 +310,7 @@ public class StringToolkit {
     /**
      * Parses the property key to create an array of {@link String}s containing individual
      * tokens of the key.
-     * 
+     *
      * @param propertyKey The specified property key {@link String}.
      * @return An array of {@link String}s containing the key tokens.
      */
@@ -330,13 +330,13 @@ public class StringToolkit {
     /**
      * Parses the tokens separated by the specified separator from the given {@link String}. Parsed
      * tokens are stored into the given Vector.
-     * 
+     *
      * @param tokensString The given tokens {@link String}.
-     * @param separator The specified separator {@link String}.
-     * @param tokens A {@link List} used for storing the parsed tokens.
+     * @param separator    The specified separator {@link String}.
+     * @param tokens       A {@link List} used for storing the parsed tokens.
      */
     public static void parseKeyTokens(final String tokensString, final String separator,
-            final List<String> tokens) {
+                                      final List<String> tokens) {
         final StringTokenizer tokenizer = new StringTokenizer(tokensString, separator);
 
         while (tokenizer.hasMoreElements()) {
@@ -346,7 +346,7 @@ public class StringToolkit {
 
     /**
      * Strips all the white spaces from the given {@link String}.
-     * 
+     *
      * @param string The given {@link String}.
      * @return A {@link String}.
      */
@@ -367,7 +367,7 @@ public class StringToolkit {
 
     /**
      * Changes the first character of the given {@link String} to be a uppercase character.
-     * 
+     *
      * @param string The given {@link String}. It must contain at least one character.
      * @return The modified {@link String}.
      */

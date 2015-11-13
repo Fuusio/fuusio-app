@@ -17,51 +17,51 @@ package org.fuusio.api.db;
 
 public enum Columns implements ColumnDescriptor {
 
-	COLUMN_ID("Id", "id", 0, ColumnDataType.INTEGER, true);
-	
-	private final String mLabel;
-	private final String mName;
-	private final int mIndex;
-	private final ColumnDataType mType;
-	private final boolean mKey;
-	
-	private Columns(final String label, final String name, final int index, final ColumnDataType type) {
-		this(label, name, index, type, false);
-	}
-	
-	private Columns(final String label, final String name, final int index, final ColumnDataType type, final boolean key) {
-		mLabel = label;
-		mName = name;
-		mIndex = index;
-		mType = type;
-		mKey = key;
-	}
+    COLUMN_ID("Id", "id", 0, ColumnDataType.INTEGER, true);
 
-	public static ColumnDescriptor[] getAllColumns() {
-		return values();
-	}
-	
-	public final String getLabel() {
-		return mLabel;
-	}
+    private final String mLabel;
+    private final String mName;
+    private final int mIndex;
+    private final ColumnDataType mType;
+    private final boolean mKey;
 
-	public final String getName() {
-		return mName;
-	}
+    private Columns(final String label, final String name, final int index, final ColumnDataType type) {
+        this(label, name, index, type, false);
+    }
 
-	public final int getIndex() {
-		return mIndex;
-	}
-	
-	public final ColumnDataType getType() {
-		return mType;
-	}
+    private Columns(final String label, final String name, final int index, final ColumnDataType type, final boolean key) {
+        mLabel = label;
+        mName = name;
+        mIndex = index;
+        mType = type;
+        mKey = key;
+    }
 
-	public final boolean isKey() {
-		return mKey;
-	}
+    public static ColumnDescriptor[] getAllColumns() {
+        return values();
+    }
 
-	public final String getSqlType() {
-		return mType.getSqlType();
-	}	
+    public final String getLabel() {
+        return mLabel;
+    }
+
+    public final String getName() {
+        return mName;
+    }
+
+    public final int getIndex() {
+        return mIndex;
+    }
+
+    public final ColumnDataType getType() {
+        return mType;
+    }
+
+    public final boolean isKey() {
+        return mKey;
+    }
+
+    public final String getSqlType() {
+        return mType.getSqlType();
+    }
 }
