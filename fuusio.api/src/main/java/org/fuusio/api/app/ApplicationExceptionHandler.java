@@ -27,7 +27,7 @@ public abstract class ApplicationExceptionHandler<T_ApplicationError extends App
 
     private final Thread.UncaughtExceptionHandler mDefaultHandler;
 
-    protected ApplicationExceptionHandler(Thread.UncaughtExceptionHandler defaultHandler) {
+    protected ApplicationExceptionHandler(final Thread.UncaughtExceptionHandler defaultHandler) {
         sInstance = this;
         mDefaultHandler = defaultHandler;
     }

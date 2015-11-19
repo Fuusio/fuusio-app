@@ -26,19 +26,19 @@ import org.fuusio.api.mvp.ViewFragment;
 import java.util.HashMap;
 
 /**
- * {@link ViewBindingManager} is component that can be added into an object using {@link ViewBinding}
+ * {@link ViewBinder} is component that can be added into an object using {@link ViewBinding}
  * to establish bindings between {@link View}s and {@link Presenter}s.
  */
-public class ViewBindingManager {
+public class ViewBinder {
 
     private final HashMap<Integer, ViewBinding<?>> mBindingsCache;
     private final Activity mActivity;
 
-    public ViewBindingManager(final ViewFragment fragment) {
+    public ViewBinder(final ViewFragment fragment) {
         this(fragment.getActivity());
     }
 
-    public ViewBindingManager(final Activity activity) {
+    public ViewBinder(final Activity activity) {
         mBindingsCache = new HashMap<>();
         mActivity = activity;
     }
@@ -78,7 +78,7 @@ public class ViewBindingManager {
     }
 
     /**
-     * Disposes this {@link ViewBindingManager} by clearing the Binding Cache.
+     * Disposes this {@link ViewBinder} by clearing the Binding Cache.
      */
     public void dispose() {
         mBindingsCache.clear();

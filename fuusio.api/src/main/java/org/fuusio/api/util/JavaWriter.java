@@ -44,7 +44,7 @@ public class JavaWriter {
 
         private final String mKeyword;
 
-        private Keyword(final String keyword) {
+        Keyword(final String keyword) {
             mKeyword = keyword;
         }
 
@@ -90,8 +90,8 @@ public class JavaWriter {
     public JavaWriter a(final String string) {
         try {
             mWriter.append(string);
-        } catch (final IOException e) {
-            L.e(this, "append", e);
+        } catch (IOException e) {
+            L.e(this, "a", e);
         }
         return this;
     }
@@ -99,7 +99,7 @@ public class JavaWriter {
     public JavaWriter append(final String string) {
         try {
             mWriter.append(string);
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "append", e);
         }
         return this;
@@ -108,7 +108,7 @@ public class JavaWriter {
     public JavaWriter append(final boolean value) {
         try {
             mWriter.append(Boolean.toString(value));
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "append", e);
         }
         return this;
@@ -118,7 +118,7 @@ public class JavaWriter {
         try {
             mWriter.append(Float.toString(value));
             mWriter.append('f');
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "append", e);
         }
         return this;
@@ -128,7 +128,7 @@ public class JavaWriter {
         try {
             mWriter.append(Long.toString(value));
             mWriter.append('L');
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "append", e);
         }
         return this;
@@ -137,7 +137,7 @@ public class JavaWriter {
     public JavaWriter append(final int value) {
         try {
             mWriter.append(Integer.toString(value));
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "append", e);
         }
         return this;
@@ -145,8 +145,8 @@ public class JavaWriter {
 
     public JavaWriter space() {
         try {
-            mWriter.append(" ");
-        } catch (final IOException e) {
+            mWriter.append(' ');
+        } catch (IOException e) {
             L.e(this, "space", e);
         }
         return this;
@@ -158,7 +158,7 @@ public class JavaWriter {
             for (int i = 0; i < mIndentationCount; i++) {
                 mWriter.append(mIndentation);
             }
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "intend", e);
         }
         return this;
@@ -175,7 +175,7 @@ public class JavaWriter {
             if (indented) {
                 intend();
             }
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "newLine", e);
         }
         return this;
@@ -187,7 +187,7 @@ public class JavaWriter {
             mWriter.append('\n');
             mIndentationCount++;
             intend();
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "beginBlock", e);
         }
         return this;
@@ -208,7 +208,7 @@ public class JavaWriter {
             } else {
                 mWriter.append(" ");
             }
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "endBlock", e);
         }
         return this;
@@ -217,7 +217,7 @@ public class JavaWriter {
     public JavaWriter openParenthesis() {
         try {
             mWriter.append('(');
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "openParenthesis", e);
         }
         return this;
@@ -226,7 +226,7 @@ public class JavaWriter {
     public JavaWriter closeParenthesis() {
         try {
             mWriter.append(')');
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "closeParenthesis", e);
         }
         return this;
@@ -244,7 +244,7 @@ public class JavaWriter {
             if (intented) {
                 intend();
             }
-        } catch (final IOException e) {
+        } catch (IOException e) {
             L.e(this, "endBlock", e);
         }
         return this;
@@ -274,16 +274,24 @@ public class JavaWriter {
     }
 
     public JavaWriter beginClass(final String name, final boolean isPublic) {
+        return beginClass(name, null, isPublic);
+    }
+
+    public JavaWriter beginClass(final String name, final String superClass, final boolean isPublic) {
 
         if (isPublic) {
             Keyword.KEYWORD_PUBLIC.write(this);
         } else {
             Keyword.KEYWORD_PRIVATE.write(this);
         }
-        space();
         Keyword.KEYWORD_CLASS.write(this);
-        space();
         append(name);
+
+        if (superClass != null) {
+            Keyword.KEYWORD_EXTENDS.write(this);
+            append(superClass);
+        }
+        space();
         beginBlock();
         return this;
     }

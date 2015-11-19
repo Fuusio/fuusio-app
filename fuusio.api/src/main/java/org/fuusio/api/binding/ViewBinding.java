@@ -26,6 +26,7 @@ import org.fuusio.api.util.MessageContext;
  */
 public abstract class ViewBinding<T_View extends View> implements View.OnClickListener {
 
+    protected ClickListener mClickListener;
     protected MessageContext mErrorMessage;
     protected T_View mView;
 
@@ -38,6 +39,14 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
         } else {
             mView = null;
         }
+    }
+
+    public ClickListener getClickListener() {
+        return mClickListener;
+    }
+
+    public void setClickListener(ClickListener listener) {
+        mClickListener = listener;
     }
 
     /**
@@ -135,6 +144,9 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
 
     @Override
     public void onClick(final View view) {
+        if (mClickListener != null) {
+            mClickListener.onClicked(this);
+        }
         clicked();
     }
 
@@ -156,5 +168,10 @@ public abstract class ViewBinding<T_View extends View> implements View.OnClickLi
 
     public void clearErrorMessage() {
         mErrorMessage.clear();
+    }
+
+    public interface ClickListener {
+
+        void onClicked(ViewBinding binding);
     }
 }

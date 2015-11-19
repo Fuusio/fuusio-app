@@ -157,22 +157,8 @@ public class FlowManager {
         T flow = getMockFlow(flowClass);
 
         if (flow == null) {
-            Class<T> implClass = flowClass;
-
-            try {
-                if (flowClass.isInterface()) {
-                    implClass = (Class<T>) Class.forName(flowClass.getName() + POSTFIX_IMPL);
-                }
-
-                final Class[] paramTypes = {FlowFragmentContainer.class, Bundle.class};
-                final Object[] paramValues = {container, params};
-                final Constructor<T> constructor = implClass.getConstructor(paramTypes);
-                flow = constructor.newInstance(paramValues);
-            } catch (final Exception e) {
-                throw new RuntimeException(e);
-            }
+            flow = createFlow(flowClass, container, params);
         }
-
         final FlowManager flowManager = D.get(FlowManager.class);
         return flowManager.startFlow(flow, params);
     }

@@ -10,194 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d396865-16ab-442a-aef0-341369e64e82" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/AbstractFlowPresenter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/AbstractFlow.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/AbstractFlow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/flow/AbstractFlowTest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/flow/AbstractFlowTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractPresenter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/AbstractPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/AbstractRequest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/AbstractRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/Action.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/Action.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/ActionContext.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/ActionContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/ActionManager.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/ActionManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/AdapterViewBinding.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/AdapterViewBinding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/Alignment.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/Alignment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/Anchor.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/Anchor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/Anchor.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/Anchor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/Anchor.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/Anchor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/fuusio.api/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/fuusio.api/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/AppToolkit.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/AppToolkit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/ApplicationError.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/ApplicationError.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBindingManager.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBinder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/ApplicationExceptionHandler.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/ApplicationExceptionHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/ApplicationScope.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/ApplicationScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/Binding.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/Binding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/BitmapManager.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/BitmapManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/BitmapManagerImpl.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/BitmapManagerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/CellLayout.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/CellLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/CellLayout.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/CellLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/CellLayoutBuilder.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/CellLayoutBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/ColumnCell.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/ColumnCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/ColumnCell.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/ColumnCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/ColumnDataType.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/ColumnDataType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/ColumnDescriptor.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/ColumnDescriptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/ColumnSpec.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/ColumnSpec.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/Columns.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/Columns.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/CompositeDrawable.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/CompositeDrawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/ContainerCell.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/ContainerCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/ContainerCell.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/ContainerCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/Country.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/Country.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/Database.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/Database.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/DatabaseHelper.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/DatabaseHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/DateToolkit.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/DateToolkit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/DelegatedListAdapter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/DelegatedListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/Dependency.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/Dependency.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScope.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScopeOwner.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScopeOwner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/dependency/DependencyScopeTest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/dependency/DependencyScopeTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/Direction.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/Direction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/DrawableCell.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/DrawableCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/ExceptionToolkit.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/ExceptionToolkit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/FillPolicy.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/FillPolicy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/Flow.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/Flow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowActivity.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowFragment.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowFragmentContainer.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowFragmentContainer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScopeCache.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScopeCache.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowManager.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowView.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplication.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplicationScope.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplicationScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioBaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioBaseActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleApp.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleApp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleAppError.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleAppError.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleAppExceptionHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleAppExceptionHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleAppScope.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/FuusioSampleAppScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/GridLayout.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/GridLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/GsonObject.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/GsonObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/util/GsonObjectTest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/util/GsonObjectTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/GsonRequest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/GsonRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/view/HomeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/view/HomeActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/HomeDependencyScope.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/HomeDependencyScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/presenter/HomePresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/presenter/HomePresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/presenter/HomePresenterImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/presenter/HomePresenterImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/view/HomeView.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/view/HomeView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/HorizontalAlignment.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/HorizontalAlignment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/HttpParams.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/HttpParams.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/IntentAction.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/IntentAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/JSONModelReader.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/JSONModelReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/JSONModelWriter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/JSONModelWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/JSONSerializer.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/JSONSerializer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/L.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/L.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/LayoutCell.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/LayoutCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/LayoutSpec.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/LayoutSpec.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/LogFile.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/LogFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/MersenneTwister.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/MersenneTwister.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/MessageContext.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/MessageContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/Model.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/Model.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Model.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Model.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ModelEvent.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ModelEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObject.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObjectColumns.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObjectColumns.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObjectFactory.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObjectFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObjectManager.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObjectManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObjectMetaInfo.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/ModelObjectMetaInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/ModelObjectTableDescriptor.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/ModelObjectTableDescriptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/Models.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/Models.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/view/NavigationDrawerFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/view/NavigationDrawerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/Nonce.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/Nonce.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/NotifyingAsyncQueryHandler.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/NotifyingAsyncQueryHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/nfc/ParsedNdefRecord.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/nfc/ParsedNdefRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PlugDescriptor.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PlugDescriptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/Plugin.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/Plugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PluginBus.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PluginBus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PluginInjector.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PluginInjector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PluginInvocationHandler.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/plugin/PluginInvocationHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Presenter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Presenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/Property.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/Property.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/PropertyAction.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/ui/action/PropertyAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/PropertyBinding.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/PropertyBinding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/PropertyColumnDescriptor.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/PropertyColumnDescriptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/PropertyModifier.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/model/PropertyModifier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/Radians.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/Radians.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/ResizePolicy.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/ResizePolicy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/ResizePolicy.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/ResizePolicy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/ResizePolicy.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/ResizePolicy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/RestRequest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/RestRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/RowCell.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/RowCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/RowCell.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/RowCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/RowSpec.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/RowSpec.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/widget/ScrollView2D.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/widget/ScrollView2D.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/ServiceToolkit.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/ServiceToolkit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/sensor/ShakeDetector.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/sensor/ShakeDetector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/nfc/SmartPosterRecord.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/nfc/SmartPosterRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/Spacer.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/Spacer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/Spacer.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/cell/Spacer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/SqlStatement.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/SqlStatement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StateBitmapDrawable.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StateBitmapDrawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/fsm/StateMachine.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/fsm/StateMachine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/fsm/StateMachineTest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/fsm/StateMachineTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StateStretchableBitmapDrawable.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StateStretchableBitmapDrawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StretchableBitmap.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StretchableBitmap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StretchableBitmapCellDrawable.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StretchableBitmapCellDrawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StretchableBitmapDrawable.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StretchableBitmapDrawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/util/StringListTest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/util/StringListTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/StringToolkit.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/StringToolkit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/TableDescriptor.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/TableDescriptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/Tables.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/Tables.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/TablesDescriptor.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/TablesDescriptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/dependency/TestDependencyScope.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/dependency/TestDependencyScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/dependency/TestFlow.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/dependency/TestFlow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/flow/TestFlowImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/flow/TestFlowImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestFragment1.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestFragment1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestFragment2.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestFragment2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter1.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter1Impl.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter1Impl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter2.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter2Impl.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/presenter/TestPresenter2Impl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/flow/TestScope.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/flow/TestScope.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/fsm/TestStateMachine.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/fsm/TestStateMachine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestView1.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestView1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestView2.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/view/TestView2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/TextDrawable.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/TextDrawable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/nfc/TextRecord.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/nfc/TextRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/TextViewBinding.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/TextViewBinding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/util/TupleTest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/androidTest/java/org/fuusio/api/util/TupleTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/UIToolkit.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/UIToolkit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/URLToolkit.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/URLToolkit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/nfc/UriRecord.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/nfc/UriRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/VerticalAlignment.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/VerticalAlignment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/View.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/View.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/JavaWriter.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/JavaWriter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewActivity.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/ViewArea.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/view/layout/grid/ViewArea.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBinding.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBinding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBindingManager.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBindingManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/ViewCell.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/ViewCell.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewFragment.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewState.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/VolleyRequestError.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/VolleyRequestError.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/VolleyRequestManager.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/VolleyRequestManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/VolleyRestRequest.java" afterPath="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/rest/volley/VolleyRestRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/fuusio.api/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_test_view_1.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_test_view_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_test_view_2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_test_view_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/global.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/global.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/include_fragment_container.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/include_fragment_container.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_navigation_drawer.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_navigation_drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_navigation_drawer.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_navigation_drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/fuusio.api/build/intermediates/incremental/mergeResourcesandroidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/build/intermediates/incremental/mergeResourcesdebug/merger.xml" afterPath="$PROJECT_DIR$/fuusio.api/build/intermediates/incremental/mergeResourcesdebug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/navigation_drawer_header.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/navigation_drawer_header.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/build/intermediates/res/merged/androidTest/debug/values-ldltr-v21/values-ldltr-v21.xml" afterPath="$PROJECT_DIR$/fuusio.api/build/intermediates/res/merged/androidTest/debug/values-ldltr-v21/values-ldltr-v21.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/build/intermediates/bundles/release/res/values/values.xml" afterPath="$PROJECT_DIR$/fuusio.api/build/intermediates/bundles/release/res/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fuusio.api/fuusio.api.iml" afterPath="$PROJECT_DIR$/fuusio.api/fuusio.api.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="fuusio-app.iws" />
@@ -225,7 +49,18 @@
     <favorites_list name="fuusio-app" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="KeyValue.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/KeyValue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.064935066">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -2535,11 +2370,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/AdapterViewBinding.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/ColumnDataType.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/Columns.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/Database.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/ModelObjectTableDescriptor.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/PropertyColumnDescriptor.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/db/Tables.java" />
@@ -2563,10 +2393,6 @@
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/Flow.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplication.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplicationScope.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewFragment.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScope.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewActivity.java" />
-        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/ApplicationScope.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScopeOwner.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/view/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/test/flow/TestFlowImpl.java" />
@@ -2586,6 +2412,15 @@
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/CellLayoutBuilder.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/layout/CellLayout.java" />
         <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/View.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewFragment.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewActivity.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScopeCache.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/ApplicationScope.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScope.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowManager.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/ApplicationExceptionHandler.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBinding.java" />
+        <option value="$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/JavaWriter.java" />
       </list>
     </option>
   </component>
@@ -2600,10 +2435,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1442" />
-    <option name="y" value="28" />
-    <option name="width" value="1907" />
-    <option name="height" value="1043" />
+    <option name="x" value="1527" />
+    <option name="y" value="92" />
+    <option name="width" value="1678" />
+    <option name="height" value="975" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -2628,7 +2463,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2663,8 +2497,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2779,7 +2613,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mvp" />
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fuusio-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fuusio-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fuusio.api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="binding" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2801,22 +2669,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fuusio-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fuusio-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2833,7 +2688,7 @@
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="ZX1G522DWB" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="AndroidWearable" />
     <property name="FullScreen" value="false" />
     <property name="OverrideImplement.combined" value="true" />
@@ -2928,7 +2783,10 @@
       </option>
       <envs />
       <patterns />
-      <method />
+      <method>
+        <option name="Make" enabled="false" />
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -3017,40 +2875,42 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1442" y="28" width="1907" height="1043" extended-state="0" />
-    <editor active="false" />
+    <frame x="1527" y="92" width="1678" height="975" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21958926" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="PhraseApp" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16065192" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922825" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17050938" sideWeight="0.48651564" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32799324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22371638" sideWeight="0.4479889" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17050938" sideWeight="0.51348436" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22371638" sideWeight="0.5520111" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="RoboVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922825" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32799324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3084,98 +2944,22 @@
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBinding.java</url>
+          <line>149</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/Flow.java</url>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/CompositeDrawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.819568">
-          <caret line="200" column="17" selection-start-line="200" selection-start-column="17" selection-end-line="200" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/HorizontalAlignment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48337293">
-          <caret line="65" column="24" selection-start-line="65" selection-start-column="24" selection-end-line="65" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StateBitmapDrawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8856417">
-          <caret line="104" column="26" selection-start-line="104" selection-start-column="26" selection-end-line="104" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StateStretchableBitmapDrawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.195962">
-          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StretchableBitmap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.047013976">
-          <caret line="568" column="59" selection-start-line="568" selection-start-column="59" selection-end-line="568" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StretchableBitmapCellDrawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69504446">
-          <caret line="112" column="6" selection-start-line="112" selection-start-column="6" selection-end-line="112" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/StretchableBitmapDrawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6010165">
-          <caret line="123" column="38" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/graphics/TextDrawable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.8030496">
-          <caret line="376" column="27" selection-start-line="376" selection-start-column="27" selection-end-line="376" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ListItemView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14251782">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16033255">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="android-dummy:///Users/marko/Projects/MyOpenSource/fuusio-app/fuusio.api/Translations Editor">
-      <provider selected="true" editor-type-id="string-resource-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/AbstractFlowPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08481421">
-          <caret line="7" column="80" selection-start-line="7" selection-start-column="80" selection-end-line="7" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15751211">
@@ -3226,41 +3010,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScopeCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09693053">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/ApplicationScope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.99353796">
-          <caret line="115" column="15" selection-start-line="115" selection-start-column="15" selection-end-line="115" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplicationScope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20597738">
-          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34652665">
-          <caret line="94" column="30" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.490307">
-          <caret line="147" column="36" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/fuusio/app/feature/home/view/HomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5">
@@ -3303,24 +3052,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.68416804">
-          <caret line="49" column="55" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="55" />
-          <folding>
-            <element signature="e#1851#1852#0" expanded="false" />
-            <element signature="e#1895#1896#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/Dependency.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61793214">
-          <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScopeOwner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15751211">
@@ -3332,13 +3063,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8732037">
           <caret line="856" column="82" selection-start-line="856" selection-start-column="82" selection-end-line="856" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16962843">
-          <caret line="52" column="37" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -3444,14 +3168,190 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.016685206">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/ApplicationScope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84983313">
+          <caret line="98" column="9" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.26807564">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/Dependency.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8509455">
+          <caret line="65" column="7" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/dependency/DependencyScopeCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5005562">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6042655">
+          <caret line="175" column="40" selection-start-line="175" selection-start-column="40" selection-end-line="175" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/mvp/ViewFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.8708531">
+          <caret line="211" column="34" selection-start-line="211" selection-start-column="34" selection-end-line="211" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/flow/FlowManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.88372093">
+          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6190476">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/ViewBinding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3073593">
+          <caret line="147" column="41" selection-start-line="147" selection-start-column="41" selection-end-line="147" selection-end-column="41" />
+          <folding>
+            <element signature="e#1403#1404#0" expanded="true" />
+            <element signature="e#1440#1441#0" expanded="true" />
+            <element signature="e#1962#1992#0" expanded="true" />
+            <element signature="e#2423#2424#0" expanded="true" />
+            <element signature="e#2451#2452#0" expanded="true" />
+            <element signature="e#3044#3045#0" expanded="true" />
+            <element signature="e#3091#3092#0" expanded="true" />
+            <element signature="e#3908#3909#0" expanded="true" />
+            <element signature="e#3953#3954#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/binding/PropertyBinding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.36363637">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplicationScope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36796537">
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/FuusioApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.138528">
+          <caret line="49" column="55" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="55" />
+          <folding>
+            <element signature="e#1851#1852#0" expanded="true" />
+            <element signature="e#1895#1896#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/ApplicationExceptionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0043290043">
+          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/app/ApplicationError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.064935066">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/AbstractListenable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19480519">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/Vector2D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.7316017">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/URLBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.064935066">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/URLToolkit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10822511">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/JavaWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.9749217">
+          <caret line="276" column="46" selection-start-line="276" selection-start-column="46" selection-end-line="276" selection-end-column="46" />
+          <folding>
+            <element signature="e#2409#2410#0" expanded="true" />
+            <element signature="e#2450#2451#0" expanded="true" />
+            <element signature="e#4315#4316#0" expanded="true" />
+            <element signature="e#4351#4352#0" expanded="true" />
+            <element signature="e#4954#4955#0" expanded="true" />
+            <element signature="e#4991#4992#0" expanded="true" />
+            <element signature="e#5851#5852#0" expanded="true" />
+            <element signature="e#5892#5893#0" expanded="true" />
+            <element signature="e#6756#6757#0" expanded="true" />
+            <element signature="e#6801#6802#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuusio.api/src/main/java/org/fuusio/api/util/KeyValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.064935066">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>

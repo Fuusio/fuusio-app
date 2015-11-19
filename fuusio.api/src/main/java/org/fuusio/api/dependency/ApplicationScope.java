@@ -27,6 +27,7 @@ import android.location.LocationManager;
 import android.media.AudioManager;
 import android.nfc.NfcManager;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Vibrator;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -75,11 +76,7 @@ public abstract class ApplicationScope<T_Application extends Application> extend
             return dependency(getApplicationContext().getSystemService(Context.ALARM_SERVICE));
         } else if (type(AudioManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.AUDIO_SERVICE));
-        } else if (type(BatteryManager.class)) {
-            return dependency(getApplicationContext().getSystemService(Context.BATTERY_SERVICE));
-        } else if (type(BluetoothManager.class)) {
-            return dependency(getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE));
-        } else if (type(InputMethodManager.class)) {
+        }  else if (type(InputMethodManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE));
         } else if (type(LocationManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.LOCATION_SERVICE));
@@ -93,6 +90,12 @@ public abstract class ApplicationScope<T_Application extends Application> extend
             return dependency(getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE));
         } else if (type(WindowManager.class)) {
             return dependency(getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            if (type(BluetoothManager.class)) {
+                return dependency(getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE));
+            }
         }
         return null;
     }

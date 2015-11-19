@@ -39,19 +39,19 @@ public abstract class DependencyScope {
     protected final HashMap<Class, Object> mDependencies;
 
     /**
-     * A reference to an optional parent {@link DependencyScope}.
-     */
-    protected DependencyScope mParentScope;
-
-    /**
      * A reference to an optional overriding {@link DependencyScope} used providing mock dependencies.
      */
-    protected DependencyScope mMockedScope;
+    protected DependencyScope mMockScope;
 
     /**
      * The {@link DependencyScopeOwner} that manages this {@link DependencyScope}.
      */
     private DependencyScopeOwner mOwner;
+
+    /**
+     * A reference to an optional parent {@link DependencyScope}.
+     */
+    protected DependencyScope mParentScope;
 
     /**
      * A helper field for storing the currently requested type of dependency.
@@ -106,7 +106,7 @@ public abstract class DependencyScope {
      * @return A {@link DependencyScope}. May return {@code null}.
      */
     public final DependencyScope getMockedScope() {
-        return mMockedScope;
+        return mMockScope;
     }
 
     /**
@@ -116,7 +116,7 @@ public abstract class DependencyScope {
      * @param scope A {@link DependencyScope}.
      */
     public void setMockedScope(final DependencyScope scope) {
-        mMockedScope = scope;
+        mMockScope = scope;
     }
 
     /**
@@ -240,8 +240,8 @@ public abstract class DependencyScope {
 
             if (dependency == null) {
 
-                if (mMockedScope != null) {
-                    dependency = mMockedScope.getDependency(dependencyType, dependant, pCreateNew);
+                if (mMockScope != null) {
+                    dependency = mMockScope.getDependency(dependencyType, dependant, pCreateNew);
                 } else {
                     dependency = getDependency();
                 }
@@ -349,9 +349,9 @@ public abstract class DependencyScope {
         mOwner = null;
         mDependencyType = null;
 
-        if (mMockedScope != null) {
-            mMockedScope.dispose();
-            mMockedScope = null;
+        if (mMockScope != null) {
+            mMockScope.dispose();
+            mMockScope = null;
         }
     }
 

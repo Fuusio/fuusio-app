@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 public class DependencyScopeCache {
 
-    private final HashMap<Class<? extends DependencyScopeOwner>, DependencyScope> mSavedScopes;
+    private final HashMap<String, DependencyScope> mSavedScopes;
 
     private FuusioApplication mApplication;
 
@@ -20,17 +20,18 @@ public class DependencyScopeCache {
     }
 
     public void saveDependencyScope(final DependencyScopeOwner owner, final DependencyScope scope) {
-        final Class<? extends DependencyScopeOwner> ownerClass = owner.getClass();
-        mSavedScopes.put(ownerClass, scope);
+        mSavedScopes.put(owner.getScopeId(), scope);
     }
 
     public DependencyScope getDependencyScope(final DependencyScopeOwner owner) {
-        final Class<? extends DependencyScopeOwner> ownerClass = owner.getClass();
-        return mSavedScopes.get(ownerClass);
+        return mSavedScopes.get(owner.getScopeId());
     }
 
     public DependencyScope removeDependencyScope(final DependencyScopeOwner owner) {
-        final Class<? extends DependencyScopeOwner> ownerClass = owner.getClass();
-        return mSavedScopes.remove(ownerClass);
+        return mSavedScopes.remove(owner.getScopeId());
+    }
+
+    public boolean containsDependencyScope(final DependencyScopeOwner owner) {
+        return mSavedScopes.containsKey(owner.getScopeId());
     }
 }
