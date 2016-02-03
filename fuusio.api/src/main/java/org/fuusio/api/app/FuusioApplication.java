@@ -43,9 +43,8 @@ public abstract class FuusioApplication extends Application implements Applicati
         setInstance(this);
         mDependencyScope = createDependencyScope();
         mDependencyScopeCache = createDependencyScopeCache();
-        AppToolkit.setApplication(this);
-        UIToolkit.setApplication(this);
     }
+
 
     public DependencyScopeCache getDependencyScopeCache() {
         return mDependencyScopeCache;
